@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class TrollBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TrollData trollData;
+    
+    public PatrolStateTroll PatrolState = new PatrolStateTroll();
+    public ChaseStateTroll ChaseState = new ChaseStateTroll();
+    public SearchStateTroll SearchState = new SearchStateTroll();
 
-    // Update is called once per frame
-    void Update()
+    private void OnValidate()
     {
-        
+        PatrolState.OnValidate(this);
+        ChaseState.OnValidate(this);
+        SearchState.OnValidate(this);
     }
 }

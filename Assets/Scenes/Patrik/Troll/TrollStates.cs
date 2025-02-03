@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrollStates : MonoBehaviour
+[Serializable]
+public class TrollStates
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected TrollBehaviour TrollBehaviour = null;
+    public virtual void Enter(){}
+    public virtual void Exit(){}
 
-    // Update is called once per frame
-    void Update()
+    public virtual void OnValidate(TrollBehaviour trollBehaviour)
     {
-        
+        TrollBehaviour = trollBehaviour;
     }
 }
