@@ -52,6 +52,10 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector2 moveInput;
     public Vector3 moveDir;
 
+    Camera cam;
+    Vector3 cameraForward;
+    Vector3 cameraRight;
+
 
 
     public float moveSpeed;
@@ -87,6 +91,8 @@ public class PlayerBehaviour : MonoBehaviour
         movementMode = MovementMode.WALK;
         currentState = idle;
 
+        cam = Camera.main;
+
     }
 
     // Update is called once per frame
@@ -94,7 +100,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         currentState?.Update();
         jumpState?.Update();
-        moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        //moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+
+        cameraForward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+        cameraRight = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
+
+        Debug.Log(cameraForward);
     }
 
     private void FixedUpdate()
@@ -198,5 +213,9 @@ public class PlayerBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
+
+
+    
+
 
 }
