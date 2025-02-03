@@ -39,7 +39,7 @@ public class Falling : State
     {
         playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed, ForceMode.Acceleration);
 
-        playerBehaviour.rb.velocity += new Vector3(0, -0.8f, 0);
+        playerBehaviour.rb.velocity += new Vector3(0, -playerBehaviour.gravityWhenFalling, 0);
         
     }
 

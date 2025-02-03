@@ -29,6 +29,11 @@ public class Sneaking : State
     public override void Update()
     {
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
+
+        if (!CheckForGround())
+        {
+            playerBehaviour.ChangeState(playerBehaviour.falling);
+        }
     }
 
     public override void FixedUpdate()
@@ -62,5 +67,17 @@ public class Sneaking : State
     public override void OnMOUSE(InputAction.CallbackContext context)
     {
 
+    }
+
+    public bool CheckForGround()
+    {
+        foreach (Transform t in playerBehaviour.rayCastPoints)
+        {
+            if (Physics.Raycast(t.position, Vector3.down, 0.1f))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

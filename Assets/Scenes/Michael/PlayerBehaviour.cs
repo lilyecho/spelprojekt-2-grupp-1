@@ -45,11 +45,19 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Rigidbody rb;
     public float jumpForce;
+    public float jumpChargeTime;
+    public float gravityWhenJumping;
+    public float gravityWhenFalling;
+
+
+
+    [HideInInspector]
     public Vector3 wallJumpDir;
 
 
-
+    [HideInInspector]
     public Vector2 moveInput;
+    [HideInInspector]
     public Vector3 moveDir;
 
     Camera cam;
@@ -57,7 +65,7 @@ public class PlayerBehaviour : MonoBehaviour
     Vector3 cameraRight;
 
 
-
+    [HideInInspector]
     public float moveSpeed;
     public float sneakSpeed;
     public float walkSpeed;
@@ -109,7 +117,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
 
-        Debug.Log(cameraForward);
+        
     }
 
     private void FixedUpdate()

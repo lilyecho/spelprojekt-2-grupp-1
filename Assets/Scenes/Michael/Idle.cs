@@ -51,7 +51,10 @@ public class Idle : State
 
     public override void Update()
     {
-
+        if (!CheckForGround())
+        {
+            playerBehaviour.ChangeState(playerBehaviour.falling);
+        }
     }
 
     public override void FixedUpdate()
@@ -96,5 +99,17 @@ public class Idle : State
     public override void OnMOUSE(InputAction.CallbackContext context)
     {
 
+    }
+
+    public bool CheckForGround()
+    {
+        foreach (Transform t in playerBehaviour.rayCastPoints)
+        {
+            if (Physics.Raycast(t.position, Vector3.down, 0.1f))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
