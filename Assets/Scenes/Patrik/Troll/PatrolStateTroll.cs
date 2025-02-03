@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PatrolStateTroll : TrollStates
 {
-    [SerializeField] private Vector3[] patrolPoints;
+    public Vector3[] patrolPoints;
 }
