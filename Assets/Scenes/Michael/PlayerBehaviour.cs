@@ -26,6 +26,7 @@ public class PlayerBehaviour : MonoBehaviour
     public State sneaking;
     public State running;
     public State jumping;
+    public State falling;
     public State gliding;
     public State onTree;
     public State wallJumping;
@@ -79,6 +80,7 @@ public class PlayerBehaviour : MonoBehaviour
         sneaking = new Sneaking(this);
         running = new Running(this);
         jumping = new Jumping(this);
+        falling = new Falling(this);
 
         jumpState = ableToJump;
         //walkState = walking;

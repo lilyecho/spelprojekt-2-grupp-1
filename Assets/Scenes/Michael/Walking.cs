@@ -29,7 +29,6 @@ public class Walking : State
     public override void Update()
     {
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
-        Debug.Log("WALKING");
     }
 
     public override void FixedUpdate()
@@ -61,7 +60,6 @@ public class Walking : State
         if (context.canceled)
         {
             playerBehaviour.ChangeState(playerBehaviour.idle);
-            Debug.Log("ADWDOWAD");
         }
     }
     public override void OnMOUSE(InputAction.CallbackContext context)
