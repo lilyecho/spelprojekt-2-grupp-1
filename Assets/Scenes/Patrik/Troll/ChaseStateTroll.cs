@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class ChaseStateTroll : TrollStates
 {
-    
+    public override void Enter()
+    {
+        base.Enter();
+    }
 }

@@ -2,12 +2,25 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class TrollBehaviour : MonoBehaviour
 {
+    public enum States
+    {
+        Null,
+        Patrol,
+        Chase,
+        Search
+    }
+    
     [SerializeField] private TrollData trollData;
 
+    private Transform target = null;
     private NavMeshAgent navMeshAgent;
+
+    public States activeState = States.Null; 
     
     public PatrolStateTroll PatrolState = new PatrolStateTroll();
     public ChaseStateTroll ChaseState = new ChaseStateTroll();
@@ -16,6 +29,7 @@ public class TrollBehaviour : MonoBehaviour
     private TrollStates currentState = null;
 
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
+    public Transform GetTarget => target;
     
     private void OnEnable()
     {

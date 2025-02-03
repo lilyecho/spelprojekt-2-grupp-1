@@ -1,21 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
-using Object = UnityEngine.Object;
 
 [Serializable]
 public class PatrolStateTroll : TrollStates
 {
+    [SerializeField] private GameObject pointHolder;
     [SerializeField] private List<Transform> patrolPoints;
     [SerializeField] private int patrolPointIndex;
+
+    [SerializeField] private bool reCalibrate;
     
-    
+    public override void Awake()
+    {
+        GetAllPoints();
+        RenamePoints();
+    }
+
     public override void Enter()
     {
+        TrollBehaviour.activeState = TrollBehaviour.States.Patrol;
         SetTargetPoint();
     }
 
@@ -26,44 +31,45 @@ public class PatrolStateTroll : TrollStates
     
     public override void Update()
     {
+        
+        CheckSwapPatrolPoint();
+    }
+
+    /*private void CheckForPlayer()
+    {
+        if (TrollBehaviour.GetTarget.position)
+        {
+            
+        }
+    }*/
+    
+    private void CheckSwapPatrolPoint()
+    {
         if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
         {
             patrolPointIndex = (patrolPointIndex+1)%patrolPoints.Count;
             SetTargetPoint();
         }
-        
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void OnValidate(TrollBehaviour trollBehaviour)
     {
         base.OnValidate(trollBehaviour);
-        
-        ValidatePatrolPoints();
+        if (reCalibrate)
+        {
+            GetAllPoints();
+            RenamePoints();
+            reCalibrate = false;
+        }
     }
     
-    private void ValidatePatrolPoints()
+    private void GetAllPoints()
     {
-        RemoveNullPoints();
-        RenamePoints();
-        
-        //TODO do raycast for each point so that it is at the lowest point
-    }
+        List<Transform> temp = pointHolder.GetComponentsInChildren<Transform>().ToList();
+        temp.RemoveAt(0);
+        temp.TrimExcess();
 
-    private void RemoveNullPoints()
-    {
-        for (int i = patrolPoints.Count-1; i >= 0; i--)
-        {
-            if (patrolPoints[i] == null)
-            {
-                patrolPoints.RemoveAt(i);
-            }
-        }
-        patrolPoints.TrimExcess();
+        patrolPoints = new List<Transform>(temp);
     }
     
     private void RenamePoints()
@@ -90,15 +96,10 @@ public class PatrolStateTroll : TrollStates
         
         for (int i = 0; i < patrolPoints.Count; i++)
         {
+            if (!patrolPoints[i] || !patrolPoints[(i+1)%patrolPoints.Count]) continue;
+           
             Gizmos.DrawCube(patrolPoints[i].position, new Vector3(.5f,.5f,.5f));
-            if (i == 0)
-            {
-                Gizmos.DrawLine(patrolPoints[i].position, patrolPoints[^1].position);
-            }
-            else
-            {
-                Gizmos.DrawLine(patrolPoints[i].position, patrolPoints[i-1].position);
-            }
+            Gizmos.DrawLine(patrolPoints[i].position, patrolPoints[(i+1)%patrolPoints.Count].position);
         }
     }
     
