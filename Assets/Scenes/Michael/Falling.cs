@@ -14,6 +14,7 @@ public class Falling : State
     public override void Enter()
     {
         Debug.Log("FALLING");
+        
 
     }
     public override void Exit()

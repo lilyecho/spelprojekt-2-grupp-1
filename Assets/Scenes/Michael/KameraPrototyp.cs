@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class KameraPrototyp : MonoBehaviour
 {
-
-    public float radius = 5;
-    public float height = 2;
-
+    
+    public float radius;
+    public float height;
+    
 
     public float angleH;
     public float angleP;
@@ -29,7 +29,7 @@ public class KameraPrototyp : MonoBehaviour
 
     void Start()
     {
-        target = gameObject.transform;
+        //target = gameObject.transform;
         cam = Camera.main;
     }
 
@@ -67,6 +67,6 @@ public class KameraPrototyp : MonoBehaviour
 
 
 
-        cam.transform.LookAt(transform.position);
+        cam.transform.LookAt(target.position);
     }
 }
