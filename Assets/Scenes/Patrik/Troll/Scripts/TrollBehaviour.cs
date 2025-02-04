@@ -14,25 +14,33 @@ public class TrollBehaviour : MonoBehaviour
         Chase,
         Search
     }
+
+    #region DragReferences
     [SerializeField] private TrollData trollData;
     [SerializeField] private Transform eyes;
 
     [SerializeField] private TargetPort targetPort = null;
     [SerializeField] private Transform target = null;
+    #endregion
+    
     private NavMeshAgent navMeshAgent;
 
-    public States activeState = States.Null; 
-    
+    public States activeState = States.Null;
+
+    #region States
     public PatrolStateTroll PatrolState = new PatrolStateTroll();
     public ChaseStateTroll ChaseState = new ChaseStateTroll();
     public SearchStateTroll SearchState = new SearchStateTroll();
-
+    #endregion
+    
     private TrollStates currentState = null;
-
+    
+    #region Getters & Setters
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
     public Transform GetTarget => target;
     public Transform GetEyes => eyes;
     public TrollData GetTrollData => trollData;
+    #endregion
     
     private void OnEnable()
     {
@@ -103,7 +111,7 @@ public class TrollBehaviour : MonoBehaviour
         Gizmos.color = new Color(0f, 1f, 1f, .7f);
         Gizmos.DrawSphere(transform.position,trollData.GetHearingRange);
     }
-    private void VisualiseSight()
+    private void VisualiseSight() //Shame
     {
         //Only need x, z
         Vector3 forward = transform.forward;
@@ -160,7 +168,6 @@ public class TrollBehaviour : MonoBehaviour
     private Vector2 RotateVectorCounter(Vector2 inputVector, float angle)
     {
         if (angle <= 0) throw new ArgumentException("RotateVectorCounter can't and shouldn't handle angle less or equal to 0");
-        
         
         float vectorX = inputVector.x * Mathf.Cos(Mathf.Deg2Rad * angle) +
                           inputVector.y * -Mathf.Sin(Mathf.Deg2Rad * angle);

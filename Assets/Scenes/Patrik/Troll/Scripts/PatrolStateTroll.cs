@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 [Serializable]
 public class PatrolStateTroll : TrollStates
 {
     [SerializeField] private TrollAlertPort trollAlertPort;
-    [SerializeField] private GameObject pointHolder;
+    [SerializeField,Tooltip("Parent for all patrolPoints")] private GameObject pointHolder;
     [SerializeField] private List<Transform> patrolPoints;
     [SerializeField] private int patrolPointIndex;
 

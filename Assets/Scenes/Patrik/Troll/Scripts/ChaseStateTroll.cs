@@ -29,7 +29,6 @@ public class ChaseStateTroll : TrollStates
         bool test = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
             TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
         
-        Debug.Log("On walkable: "+test);
         //Can't reach target
         if (!test) 
         {
