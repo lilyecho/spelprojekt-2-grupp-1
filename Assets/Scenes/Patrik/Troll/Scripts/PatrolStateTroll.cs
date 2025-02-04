@@ -54,41 +54,16 @@ public class PatrolStateTroll : TrollStates
     
     private void Check4Player()
     {
-        if (TrollBehaviour.GetTarget == null)return;
+        if (!CheckIfTargetIsSeen()) return;
         
-        float distance =
-            Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
-        if ( distance > TrollBehaviour.GetTrollData.GetSightRange) return;
-
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position)
-            .normalized;
-        if (!CheckWithinDefinedAngleSight(directionToPlayer))
-        {
-            Debug.Log("Out of sight");
-            return;
-        }
-        
+        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
         Physics.Raycast(TrollBehaviour.gameObject.transform.position,directionToPlayer ,out RaycastHit hit);
-        /*if (!NavMesh.SamplePosition(TrollBehaviour.GetTarget.position,out NavMeshHit Navhit, float.MaxValue, NavMesh.GetAreaFromName("Walkable")))
-        {
-            Debug.Log("Unreachable");
-            return;
-        }*/
-            
-        //Debug.Log();
+        
         if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
         }
     }
-
-    private bool CheckWithinDefinedAngleSight(Vector3 playerDirection)
-    {
-        float angle = Vector3.Angle(TrollBehaviour.transform.forward, playerDirection);
-        return angle <= TrollBehaviour.GetTrollData.GetSightAngle;
-    }
-    
-    
     
     private void CheckSwapPatrolPoint()
     {

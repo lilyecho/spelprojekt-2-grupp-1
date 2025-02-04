@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SearchStateTroll : TrollStates
 {
@@ -15,12 +16,22 @@ public class SearchStateTroll : TrollStates
         {
             TrollBehaviour.Transition(TrollBehaviour.PatrolState);
         }
+        
         Check4Player();
         
     }
     
     private void Check4Player()
     {
+        if (!CheckIfTargetIsSeen()) return;
+        
+        NavMeshPath path = new NavMeshPath();
+        //Can't reach target
+        if (!NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position, TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path))
+        {
+            TrollBehaviour.Transition(TrollBehaviour.PatrolState);
+        }
+        
         Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
         Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);
         
@@ -28,5 +39,7 @@ public class SearchStateTroll : TrollStates
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
         }
+        
+        
     }
 }
