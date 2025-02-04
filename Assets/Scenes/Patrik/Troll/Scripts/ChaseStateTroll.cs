@@ -36,7 +36,7 @@ public class ChaseStateTroll : TrollStates
 
     private void VisualiseSightRange()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = new Color(0,1,0,.5f);
         Gizmos.DrawSphere(TrollBehaviour.transform.position, TrollBehaviour.GetTrollData.GetSightRange);
     }
 }
