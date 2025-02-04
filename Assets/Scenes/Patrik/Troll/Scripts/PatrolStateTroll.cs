@@ -67,6 +67,8 @@ public class PatrolStateTroll : TrollStates
         }
     }
     
+    
+    
     private void CheckSwapPatrolPoint()
     {
         if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
