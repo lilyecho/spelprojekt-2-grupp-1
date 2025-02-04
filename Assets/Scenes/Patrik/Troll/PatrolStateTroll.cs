@@ -41,6 +41,7 @@ public class PatrolStateTroll : TrollStates
     
     public override void Update()
     {
+        Check4Player();
         CheckSwapPatrolPoint();
     }
 
@@ -50,14 +51,15 @@ public class PatrolStateTroll : TrollStates
         TrollBehaviour.Transition(TrollBehaviour.SearchState);
     }
     
-    private void CheckForPlayer()
+    private void Check4Player()
     {
         float distance =
             Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
         if ( distance <= TrollBehaviour.GetTrollData.GetSightRange)
         {
-            Physics.Raycast(TrollBehaviour.gameObject.transform.position, TrollBehaviour.GetTarget.position,out RaycastHit hit);
+            Physics.Raycast(TrollBehaviour.gameObject.transform.position, (TrollBehaviour.GetTarget.position-TrollBehaviour.gameObject.transform.position).normalized,out RaycastHit hit);
 
+            //Debug.Log();
             if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
             {
                 TrollBehaviour.Transition(TrollBehaviour.ChaseState);
@@ -77,8 +79,6 @@ public class PatrolStateTroll : TrollStates
     public override void OnValidate(TrollBehaviour trollBehaviour)
     {
         base.OnValidate(trollBehaviour);
-        
-        //patrolPointIndex %= patrolPoints.Count;
         
         if (reCalibrate)
         {

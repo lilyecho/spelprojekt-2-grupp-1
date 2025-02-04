@@ -14,11 +14,11 @@ public class TrollBehaviour : MonoBehaviour
         Chase,
         Search
     }
-    
     [SerializeField] private TrollData trollData;
     [SerializeField] private Transform eyes;
-    
-    private Transform target = null;
+
+    [SerializeField] private TargetPort targetPort = null;
+    [SerializeField] private Transform target = null;
     private NavMeshAgent navMeshAgent;
 
     public States activeState = States.Null; 
@@ -36,9 +36,21 @@ public class TrollBehaviour : MonoBehaviour
     
     private void OnEnable()
     {
+        targetPort.OnTargetCreated += RegisterTarget;
+        
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+    private void OnDisable()
+    {
+        targetPort.OnTargetCreated -= RegisterTarget;
+    }
+
+    private void RegisterTarget(GameObject newTarget)
+    {
+        target = newTarget.transform;
+    }
+    
     private void Start()
     {
         InstantiateBeginState();
@@ -47,6 +59,11 @@ public class TrollBehaviour : MonoBehaviour
     private void Update()
     {
         currentState.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        currentState.FixedUpdate();
     }
 
     private void OnValidate()
@@ -68,9 +85,10 @@ public class TrollBehaviour : MonoBehaviour
         currentState = nextState;
         currentState.Enter();
     }
-    
-    private void OnDrawGizmos()
+
+    private void OnDrawGizmosSelected()
     {
         PatrolState.OnDrawGizmos();
+        ChaseState.OnDrawGizmos();
     }
 }

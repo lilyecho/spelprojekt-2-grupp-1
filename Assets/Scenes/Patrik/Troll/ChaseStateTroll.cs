@@ -6,6 +6,7 @@ public class ChaseStateTroll : TrollStates
 {
     public override void Enter()
     {
+        TrollBehaviour.activeState = TrollBehaviour.States.Chase;
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
     }
     
@@ -16,15 +17,26 @@ public class ChaseStateTroll : TrollStates
 
     private void Check4Player()
     {
-        Physics.Raycast(TrollBehaviour.gameObject.transform.position, TrollBehaviour.GetTarget.position,out RaycastHit hit);
+        Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
+        Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);
 
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
         
         if (hit.collider != TrollBehaviour.GetTarget.GetComponent<Collider>())
         {
-            TrollBehaviour.Transition(TrollBehaviour.ChaseState);
+            TrollBehaviour.Transition(TrollBehaviour.SearchState);
         }
-        
-        
+    }
+
+
+    public void OnDrawGizmos()
+    {
+        VisualiseSightRange();
+    }
+
+    private void VisualiseSightRange()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(TrollBehaviour.transform.position, TrollBehaviour.GetTrollData.GetSightRange);
     }
 }

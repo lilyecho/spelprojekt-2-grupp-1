@@ -371,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1804841544965849714, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 6.34
       objectReference: {fileID: 0}
     - target: {fileID: 1804841544965849714, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
       propertyPath: m_LocalPosition.y
@@ -379,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1804841544965849714, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.071
+      value: 5.07
       objectReference: {fileID: 0}
     - target: {fileID: 1804841544965849714, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
       propertyPath: m_LocalRotation.w
@@ -409,11 +409,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3966830211489926986, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 797087757}
+    - target: {fileID: 3966830211489926986, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1317238561006606536, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 797087749}
   m_SourcePrefab: {fileID: 100100000, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
+--- !u!1 &797087748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1317238561006606536, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
+  m_PrefabInstance: {fileID: 797087747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &797087749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797087748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecb7264420839d4bace613efe1c2dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPort: {fileID: 11400000, guid: ec91b2e471e10d9488d4b98081f6f0d8, type: 2}
+--- !u!4 &797087757 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1804841544965849714, guid: b6918d77809c7fa40adb92e8db4f0333, type: 3}
+  m_PrefabInstance: {fileID: 797087747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &812354523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'PatrolPoint: 2'
       objectReference: {fileID: 0}
+    - target: {fileID: 2069585925351230048, guid: 710155d38977f994ead9fe4713800255, type: 3}
+      propertyPath: targetPort
+      value: 
+      objectReference: {fileID: 11400000, guid: ec91b2e471e10d9488d4b98081f6f0d8, type: 2}
     - target: {fileID: 2069585925351230048, guid: 710155d38977f994ead9fe4713800255, type: 3}
       propertyPath: PatrolState.reCalibrate
       value: 0

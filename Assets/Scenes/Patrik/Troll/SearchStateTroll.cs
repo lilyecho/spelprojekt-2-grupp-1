@@ -11,23 +11,20 @@ public class SearchStateTroll : TrollStates
 
     public override void FixedUpdate()
     {
-        Check4Player();
-        
         if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
         {
             TrollBehaviour.Transition(TrollBehaviour.PatrolState);
         }
+        Check4Player();
+        
     }
     
     private void Check4Player()
     {
-        Physics.Raycast(TrollBehaviour.gameObject.transform.position, TrollBehaviour.GetTarget.position,out RaycastHit hit);
+        Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
+        Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);
         
-        if (hit.collider != TrollBehaviour.GetTarget.GetComponent<Collider>())
-        {
-            TrollBehaviour.Transition(TrollBehaviour.PatrolState);
-        }
-        else
+        if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
         }
