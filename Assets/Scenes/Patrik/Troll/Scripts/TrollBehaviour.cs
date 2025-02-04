@@ -86,11 +86,15 @@ public class TrollBehaviour : MonoBehaviour
         currentState.Enter();
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         PatrolState.OnDrawGizmos();
-        ChaseState.OnDrawGizmos();
         VisualiseSight();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        ChaseState.OnDrawGizmos();
         VisualiseAlert();
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class PatrolStateTroll : TrollStates
@@ -57,16 +58,34 @@ public class PatrolStateTroll : TrollStates
         
         float distance =
             Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
-        if ( distance <= TrollBehaviour.GetTrollData.GetSightRange)
-        {
-            Physics.Raycast(TrollBehaviour.gameObject.transform.position, (TrollBehaviour.GetTarget.position-TrollBehaviour.gameObject.transform.position).normalized,out RaycastHit hit);
+        if ( distance > TrollBehaviour.GetTrollData.GetSightRange) return;
 
-            //Debug.Log();
-            if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
-            {
-                TrollBehaviour.Transition(TrollBehaviour.ChaseState);
-            }
+        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position)
+            .normalized;
+        if (!CheckWithinDefinedAngleSight(directionToPlayer))
+        {
+            Debug.Log("Out of sight");
+            return;
         }
+        
+        Physics.Raycast(TrollBehaviour.gameObject.transform.position,directionToPlayer ,out RaycastHit hit);
+        /*if (!NavMesh.SamplePosition(TrollBehaviour.GetTarget.position,out NavMeshHit Navhit, float.MaxValue, NavMesh.GetAreaFromName("Walkable")))
+        {
+            Debug.Log("Unreachable");
+            return;
+        }*/
+            
+        //Debug.Log();
+        if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
+        {
+            TrollBehaviour.Transition(TrollBehaviour.ChaseState);
+        }
+    }
+
+    private bool CheckWithinDefinedAngleSight(Vector3 playerDirection)
+    {
+        float angle = Vector3.Angle(TrollBehaviour.transform.forward, playerDirection);
+        return angle <= TrollBehaviour.GetTrollData.GetSightAngle;
     }
     
     
