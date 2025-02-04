@@ -90,5 +90,40 @@ public class TrollBehaviour : MonoBehaviour
     {
         PatrolState.OnDrawGizmos();
         ChaseState.OnDrawGizmos();
+        VisualiseSight();
+    }
+
+    private void VisualiseSight()
+    {
+        //Only need x, z
+        Vector3 forward = transform.forward;
+        Gizmos.color = Color.red;
+
+        SightLeftSide(forward);
+        SightRightSide(forward);
+    }
+
+    private void SightLeftSide(Vector3 forward)
+    {
+        float leftSideX = forward.x * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle) +
+                          forward.z * -Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle);
+        float leftSideZ = forward.x * Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle) +
+                          forward.z * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle);
+        
+        Vector3 leftSide = new Vector3(leftSideX, 0, leftSideZ) * trollData.GetSightRange;
+        
+        Gizmos.DrawLine(transform.position, transform.position+leftSide);
+    }
+
+    private void SightRightSide(Vector3 forward)
+    {
+        float rightSideX = forward.x * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle) +
+                           forward.z * Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle);
+        float rightSideZ = forward.x * -Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle) +
+                           forward.z * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle);
+        
+        Vector3 rightSide = new Vector3(rightSideX, 0, rightSideZ) * trollData.GetSightRange;
+        
+        Gizmos.DrawLine(transform.position, transform.position+rightSide);
     }
 }
