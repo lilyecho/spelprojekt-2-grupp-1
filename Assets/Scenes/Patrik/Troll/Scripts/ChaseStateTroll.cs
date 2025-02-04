@@ -18,6 +18,26 @@ public class ChaseStateTroll : TrollStates
 
     private void Check4Player()
     {
+        NavMeshPath path = new NavMeshPath();
+
+        if (CheckTargetInRange())
+        {
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+            return;
+        }
+
+        bool test = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
+            TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
+        
+        Debug.Log("On walkable: "+test);
+        //Can't reach target
+        if (!test) 
+        {
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+            TrollBehaviour.Transition(TrollBehaviour.SearchState);
+            return;
+        }
+            
         Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
         Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);
         
@@ -28,17 +48,7 @@ public class ChaseStateTroll : TrollStates
             TrollBehaviour.Transition(TrollBehaviour.SearchState);
             return;
         }
-        
-        NavMeshPath path = new NavMeshPath();
-        //Can't reach target
-        if (!NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position, TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path))
-        {
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
-            TrollBehaviour.Transition(TrollBehaviour.SearchState);
-            return;
-        }
-        
+            
         TrollBehaviour.GetNavMeshAgent.path = path;
-
     }
 }

@@ -23,14 +23,12 @@ public class SearchStateTroll : TrollStates
     
     private void Check4Player()
     {
-        if (!CheckIfTargetIsSeen()) return;
+        if (TrollBehaviour.GetTarget == null) return;
         
         NavMeshPath path = new NavMeshPath();
         //Can't reach target
-        if (!NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position, TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path))
-        {
-            TrollBehaviour.Transition(TrollBehaviour.PatrolState);
-        }
+        if (!NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position, TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path)) return;
+        if (!CheckTargetWithinAngleOfSight()) return;
         
         Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
         Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);

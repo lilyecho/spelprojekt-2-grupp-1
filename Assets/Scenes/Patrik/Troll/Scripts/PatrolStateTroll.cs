@@ -54,7 +54,9 @@ public class PatrolStateTroll : TrollStates
     
     private void Check4Player()
     {
-        if (!CheckIfTargetIsSeen()) return;
+        if (TrollBehaviour.GetTarget == null) return;
+        if (!CheckTargetInRange()) return;
+        if (!CheckTargetWithinAngleOfSight()) return;
         
         Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
         Physics.Raycast(TrollBehaviour.gameObject.transform.position,directionToPlayer ,out RaycastHit hit);
