@@ -91,39 +91,89 @@ public class TrollBehaviour : MonoBehaviour
         PatrolState.OnDrawGizmos();
         ChaseState.OnDrawGizmos();
         VisualiseSight();
+        VisualiseAlert();
     }
 
+    private void VisualiseAlert()
+    {
+        Gizmos.color = new Color(0f, 1f, 1f, .7f);
+        Gizmos.DrawSphere(transform.position,trollData.GetHearingRange);
+    }
     private void VisualiseSight()
     {
         //Only need x, z
         Vector3 forward = transform.forward;
         Gizmos.color = Color.red;
 
-        SightLeftSide(forward);
-        SightRightSide(forward);
-    }
+        //LeftSide
+        Vector2 valuesForLeftSide = RotateVectorCounter(new Vector2(forward.x,forward.z), trollData.GetSightAngle);
+        Vector3 leftSide = new Vector3(valuesForLeftSide.x, 0, valuesForLeftSide.y)*trollData.GetSightRange;
 
-    private void SightLeftSide(Vector3 forward)
-    {
-        float leftSideX = forward.x * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle) +
-                          forward.z * -Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle);
-        float leftSideZ = forward.x * Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle) +
-                          forward.z * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle);
+        Vector3 currentCubePos = transform.position + leftSide;
+        Gizmos.DrawLine(transform.position, currentCubePos);
+        Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
+        Vector3 pastCubePos = currentCubePos;
         
-        Vector3 leftSide = new Vector3(leftSideX, 0, leftSideZ) * trollData.GetSightRange;
+        //Points on frontline
+        //LeftPoint
+        Vector2 values4LeftPoint = RotateVectorCounter(new Vector2(forward.x,forward.z), trollData.GetSightAngle/2);
+        Vector3 leftSidePoint = new Vector3(values4LeftPoint.x, 0, values4LeftPoint.y)*trollData.GetSightRange;
+        currentCubePos = transform.position + leftSidePoint;
         
-        Gizmos.DrawLine(transform.position, transform.position+leftSide);
-    }
+        Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
+        Gizmos.DrawLine(pastCubePos, currentCubePos);
+        pastCubePos = currentCubePos;
+        
+        //CenterPoint
+        currentCubePos = transform.position + transform.forward * trollData.GetSightRange;
+        Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
+        Gizmos.DrawLine(pastCubePos, currentCubePos);
+        pastCubePos = currentCubePos;
+        
+        //RightPoint
+        Vector2 values4RightPoint = RotateVectorClock(new Vector2(forward.x,forward.z), trollData.GetSightAngle/2);
+        Vector3 rightSidePoint = new Vector3(values4RightPoint.x, 0, values4RightPoint.y)*trollData.GetSightRange;
+        
+        currentCubePos = transform.position + rightSidePoint;
+        Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
+        Gizmos.DrawLine(pastCubePos, currentCubePos);
+        pastCubePos = currentCubePos;
+        
+        //RightSide
+        Vector2 valuesForRightSide = RotateVectorClock(new Vector2(forward.x,forward.z), trollData.GetSightAngle);
+        Vector3 rightSide = new Vector3(valuesForRightSide.x, 0, valuesForRightSide.y)*trollData.GetSightRange;
 
-    private void SightRightSide(Vector3 forward)
+        currentCubePos = transform.position + rightSide;
+        Gizmos.DrawLine(pastCubePos, currentCubePos);
+        Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
+        pastCubePos = currentCubePos;
+        
+        //LastLineRight
+        currentCubePos = transform.position;
+        Gizmos.DrawLine(pastCubePos, currentCubePos);
+    }
+    
+    private Vector2 RotateVectorCounter(Vector2 inputVector, float angle)
     {
-        float rightSideX = forward.x * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle) +
-                           forward.z * Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle);
-        float rightSideZ = forward.x * -Mathf.Sin(Mathf.Deg2Rad * trollData.GetSightAngle) +
-                           forward.z * Mathf.Cos(Mathf.Deg2Rad * trollData.GetSightAngle);
+        if (angle <= 0) throw new ArgumentException("RotateVectorCounter can't and shouldn't handle angle less or equal to 0");
         
-        Vector3 rightSide = new Vector3(rightSideX, 0, rightSideZ) * trollData.GetSightRange;
         
-        Gizmos.DrawLine(transform.position, transform.position+rightSide);
+        float vectorX = inputVector.x * Mathf.Cos(Mathf.Deg2Rad * angle) +
+                          inputVector.y * -Mathf.Sin(Mathf.Deg2Rad * angle);
+        float vectorY = inputVector.x * Mathf.Sin(Mathf.Deg2Rad * angle) +
+                        inputVector.y * Mathf.Cos(Mathf.Deg2Rad * angle);
+
+        return new Vector2(vectorX, vectorY);
+    }
+    private Vector2 RotateVectorClock(Vector2 inputVector, float angle)
+    {
+        if (angle <= 0) throw new ArgumentException("RotateVectorCounter can't and shouldn't handle angle less or equal to 0");
+        
+        float vectorX = inputVector.x * Mathf.Cos(Mathf.Deg2Rad * angle) +
+                          inputVector.y * Mathf.Sin(Mathf.Deg2Rad * angle);
+        float vectorY = inputVector.x * -Mathf.Sin(Mathf.Deg2Rad * angle) +
+                          inputVector.y * Mathf.Cos(Mathf.Deg2Rad * angle);
+
+        return new Vector2(vectorX, vectorY);
     }
 }

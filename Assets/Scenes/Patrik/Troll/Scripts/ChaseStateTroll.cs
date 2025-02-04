@@ -27,16 +27,4 @@ public class ChaseStateTroll : TrollStates
             TrollBehaviour.Transition(TrollBehaviour.SearchState);
         }
     }
-
-
-    public void OnDrawGizmos()
-    {
-        VisualiseSightRange();
-    }
-
-    private void VisualiseSightRange()
-    {
-        Gizmos.color = new Color(0,1,0,.5f);
-        Gizmos.DrawSphere(TrollBehaviour.transform.position, TrollBehaviour.GetTrollData.GetSightRange);
-    }
 }

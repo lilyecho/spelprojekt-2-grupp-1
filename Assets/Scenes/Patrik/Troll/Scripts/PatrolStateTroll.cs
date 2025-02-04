@@ -53,6 +53,8 @@ public class PatrolStateTroll : TrollStates
     
     private void Check4Player()
     {
+        if (TrollBehaviour.GetTarget == null)return;
+        
         float distance =
             Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
         if ( distance <= TrollBehaviour.GetTrollData.GetSightRange)
