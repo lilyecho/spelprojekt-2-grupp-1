@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PatrolStateTroll : TrollStates
 {
+    [SerializeField] private TrollAlertPort trollAlertPort;
     [SerializeField] private GameObject pointHolder;
     [SerializeField] private List<Transform> patrolPoints;
     [SerializeField] private int patrolPointIndex;
@@ -20,8 +21,17 @@ public class PatrolStateTroll : TrollStates
 
     public override void Enter()
     {
+        //Events
+        trollAlertPort.OnAlertedPosition += SearchAtAlertPoint;
+        
         TrollBehaviour.activeState = TrollBehaviour.States.Patrol;
         SetTargetPoint();
+    }
+
+    public override void Exit()
+    {
+        //Events
+        trollAlertPort.OnAlertedPosition -= SearchAtAlertPoint;
     }
 
     private void SetTargetPoint()
@@ -31,17 +41,29 @@ public class PatrolStateTroll : TrollStates
     
     public override void Update()
     {
-        
         CheckSwapPatrolPoint();
     }
 
-    /*private void CheckForPlayer()
+    private void SearchAtAlertPoint(Vector3 alertSourcePosition)
     {
-        if (TrollBehaviour.GetTarget.position)
+        TrollBehaviour.GetNavMeshAgent.SetDestination(alertSourcePosition);
+        TrollBehaviour.Transition(TrollBehaviour.SearchState);
+    }
+    
+    private void CheckForPlayer()
+    {
+        float distance =
+            Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
+        if ( distance <= TrollBehaviour.GetTrollData.GetSightRange)
         {
-            
+            Physics.Raycast(TrollBehaviour.gameObject.transform.position, TrollBehaviour.GetTarget.position,out RaycastHit hit);
+
+            if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
+            {
+                TrollBehaviour.Transition(TrollBehaviour.ChaseState);
+            }
         }
-    }*/
+    }
     
     private void CheckSwapPatrolPoint()
     {
@@ -55,6 +77,9 @@ public class PatrolStateTroll : TrollStates
     public override void OnValidate(TrollBehaviour trollBehaviour)
     {
         base.OnValidate(trollBehaviour);
+        
+        //patrolPointIndex %= patrolPoints.Count;
+        
         if (reCalibrate)
         {
             GetAllPoints();

@@ -16,7 +16,8 @@ public class TrollBehaviour : MonoBehaviour
     }
     
     [SerializeField] private TrollData trollData;
-
+    [SerializeField] private Transform eyes;
+    
     private Transform target = null;
     private NavMeshAgent navMeshAgent;
 
@@ -30,6 +31,8 @@ public class TrollBehaviour : MonoBehaviour
 
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
     public Transform GetTarget => target;
+    public Transform GetEyes => eyes;
+    public TrollData GetTrollData => trollData;
     
     private void OnEnable()
     {
