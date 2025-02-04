@@ -8,12 +8,11 @@ public class ChargingJump : JumpState
     public ChargingJump(PlayerBehaviour playerBehaviour) : base(playerBehaviour) { }
 
 
-    public float chargeTime = 0.5f;
     public float chargeTimer;
 
     public override void Enter()
     {
-        chargeTimer = chargeTime;
+        chargeTimer = playerBehaviour.jumpChargeTime;
         Debug.Log("CHARGINGJUMP");
     }
     public override void Exit()
