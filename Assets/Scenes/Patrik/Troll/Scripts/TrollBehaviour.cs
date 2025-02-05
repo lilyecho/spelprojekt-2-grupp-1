@@ -25,7 +25,7 @@ public class TrollBehaviour : MonoBehaviour
     
     private NavMeshAgent navMeshAgent;
 
-    public States activeState = States.Null;
+    [ReadOnly] public States activeState = States.Null;
 
     #region States
     public PatrolStateTroll PatrolState = new PatrolStateTroll();

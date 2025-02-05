@@ -9,7 +9,7 @@ public class PatrolStateTroll : TrollStates
 {
     [SerializeField] private TrollAlertPort trollAlertPort;
     [SerializeField,Tooltip("Parent for all patrolPoints")] private GameObject pointHolder;
-    [SerializeField] private List<Transform> patrolPoints;
+    [SerializeField, ReadOnly] private List<Transform> patrolPoints;
     [SerializeField] private int patrolPointIndex;
 
     [SerializeField] private bool reCalibrate;
