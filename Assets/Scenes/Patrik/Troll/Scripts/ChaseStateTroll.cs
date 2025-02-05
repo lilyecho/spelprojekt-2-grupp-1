@@ -26,22 +26,13 @@ public class ChaseStateTroll : TrollStates
             return;
         }
 
-        bool test = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
-            TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
-        
-        //Can't reach target
-        if (!test) 
+        if (!CheckIfTargetPositionIsWalkable(out path))
         {
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
             TrollBehaviour.Transition(TrollBehaviour.SearchState);
             return;
         }
-            
-        Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
-        Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);
-        
-        //Can't see target
-        if (hit.collider != TrollBehaviour.GetTarget.GetComponent<Collider>())
+
+        if (!CheckIfRaycastHit())
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
             TrollBehaviour.Transition(TrollBehaviour.SearchState);

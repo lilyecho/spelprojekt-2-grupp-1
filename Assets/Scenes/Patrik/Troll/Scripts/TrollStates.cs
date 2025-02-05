@@ -39,4 +39,30 @@ public class TrollStates
         
         return angle <= TrollBehaviour.GetTrollData.GetSightAngle;
     }
+
+    protected bool CheckIfTargetPositionIsWalkable()
+    {
+        NavMeshPath path = new NavMeshPath();
+        bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
+            TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
+
+        return isWalkable;
+    }
+    
+    protected bool CheckIfTargetPositionIsWalkable(out NavMeshPath path)
+    {
+        path = new NavMeshPath();
+        bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
+            TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
+
+        return isWalkable;
+    }
+
+    protected bool CheckIfRaycastHit()
+    {
+        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
+        Physics.Raycast(TrollBehaviour.gameObject.transform.position,directionToPlayer ,out RaycastHit hit);
+
+        return hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>();
+    }
 }

@@ -18,26 +18,17 @@ public class SearchStateTroll : TrollStates
         }
         
         Check4Player();
-        
     }
     
     private void Check4Player()
     {
         if (TrollBehaviour.GetTarget == null) return;
-        
-        NavMeshPath path = new NavMeshPath();
-        //Can't reach target
-        if (!NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position, TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path)) return;
+        if (CheckIfTargetPositionIsWalkable()) return;
         if (!CheckTargetWithinAngleOfSight()) return;
-        
-        Vector3 direction = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
-        Physics.Raycast(TrollBehaviour.gameObject.transform.position, direction,out RaycastHit hit);
-        
-        if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
+
+        if (CheckIfRaycastHit())
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
         }
-        
-        
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class PatrolStateTroll : TrollStates
@@ -56,13 +57,9 @@ public class PatrolStateTroll : TrollStates
         if (TrollBehaviour.GetTarget == null) return;
         if (!CheckTargetInRange()) return;
         if (!CheckTargetWithinAngleOfSight()) return;
-        
-        //TODO Skip if player not on mesh for nav
-        
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
-        Physics.Raycast(TrollBehaviour.gameObject.transform.position,directionToPlayer ,out RaycastHit hit);
-        
-        if (hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>())
+        if (!CheckIfTargetPositionIsWalkable()) return;
+
+        if (CheckIfRaycastHit())
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
         }
