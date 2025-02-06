@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13199af10343e3f40ae07a8837062516, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
-  gravitationMagnitude: 10
+  gravitationMagnitudeUp: 10
+  gravitationMagnitudeDown: 10
   normalJump:
     jumpHeight: 1
     momentumKept: 0
   megaJump:
-    jumpHeight: 2
+    jumpHeight: 8
     momentumKept: 0
   appliedAirForces:
     forceToApply: 0

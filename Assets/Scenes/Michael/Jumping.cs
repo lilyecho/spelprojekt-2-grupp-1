@@ -13,6 +13,8 @@ public class Jumping : State
     float pisstid = 0.1f;
     float pisstidstimer;
 
+    [SerializeField] private Vector3 airActiveCorrectiveForces;
+    
     public override void Enter()
     {
         Debug.Log("JUMPING");
@@ -42,7 +44,7 @@ public class Jumping : State
 
     public override void FixedUpdate()
     {
-        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
         
         //Gravity
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Acceleration);
@@ -67,7 +69,7 @@ public class Jumping : State
 
     public override void OnWASD(InputAction.CallbackContext context)
     {
-
+        //airActiveCorrectiveForces = 
     }
     public override void OnMOUSE(InputAction.CallbackContext context)
     {

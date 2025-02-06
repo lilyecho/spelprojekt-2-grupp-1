@@ -12,11 +12,13 @@ public class PlayerMovementData : ScriptableObject
     [Header("Jump-Related")]
     [SerializeField] private JumpParameters normalJump;
     [SerializeField] private JumpParameters megaJump;
-    [SerializeField] private MidAirForces appliedAirForces;
+    [SerializeField] private MidAirForces appliableAirForces;
 
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
+    public MidAirForces GetMidAirForces => appliableAirForces;
 
     public float GetGravityMagnitudeUp => gravitationMagnitudeUp;
     public float GetGravityMagnitudeDown => gravitationMagnitudeDown;
+    
 }
