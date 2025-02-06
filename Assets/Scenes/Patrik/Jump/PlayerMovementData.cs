@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerMovementData : ScriptableObject
 {
     [Header("Player Physics")] 
-    [SerializeField, Min(0)] private float gravitationMagnitude; 
+    [SerializeField, Min(0)] private float gravitationMagnitudeUp; 
+    [SerializeField, Min(0)] private float gravitationMagnitudeDown; 
     
     [Header("Jump-Related")]
     [SerializeField] private JumpParameters normalJump;
@@ -16,5 +17,6 @@ public class PlayerMovementData : ScriptableObject
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
 
-    public float GetGravityMagnitude => gravitationMagnitude;
+    public float GetGravityMagnitudeUp => gravitationMagnitudeUp;
+    public float GetGravityMagnitudeDown => gravitationMagnitudeDown;
 }

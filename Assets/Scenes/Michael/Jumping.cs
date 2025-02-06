@@ -45,7 +45,7 @@ public class Jumping : State
         playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed, ForceMode.Acceleration);
         
         //Gravity
-        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitude, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Acceleration);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
