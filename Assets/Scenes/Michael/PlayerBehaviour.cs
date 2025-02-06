@@ -43,6 +43,10 @@ public class PlayerBehaviour : MonoBehaviour
 
 
 
+    //Patrik pillar lite
+    [SerializeField] private PlayerMovementData playerMovementData; 
+    //Patrik pillar inte mer
+    
     public Rigidbody rb;
     public float jumpForce;
     public float jumpChargeTime;
@@ -80,6 +84,8 @@ public class PlayerBehaviour : MonoBehaviour
     public Transform rightBackPaw;
     */
 
+    public PlayerMovementData GetMovementData => playerMovementData;
+    
     void Start()
     {
         ableToJump = new AbleToJump(this);
