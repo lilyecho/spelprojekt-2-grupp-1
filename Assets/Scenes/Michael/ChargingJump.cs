@@ -37,9 +37,8 @@ public class ChargingJump : JumpState
     {
         if (context.canceled)
         {
-            playerBehaviour.rb.AddForce(Vector3.up * playerBehaviour.jumpForce, ForceMode.Impulse);
-            playerBehaviour.ChangeState(playerBehaviour.jumping);
-            playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
+            float jumpForce = ForceToJumpCertainHeight(playerBehaviour.GetMovementData.GetNormalJump.GetJumpHeight, 1,  playerBehaviour.GetMovementData.GetGravityMagnitude);
+            Jump(jumpForce);
         }
     }
 

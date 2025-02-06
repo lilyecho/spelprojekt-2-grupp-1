@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,18 @@ public abstract class JumpState
     public JumpState(PlayerBehaviour playerBehaviour)
     {
         this.playerBehaviour = playerBehaviour;
+    }
+
+    protected void Jump(float jumpForce)
+    {
+        playerBehaviour.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        playerBehaviour.ChangeState(playerBehaviour.jumping);
+        playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
+    }
+    
+    protected float ForceToJumpCertainHeight(float heightValue, float objectMass, float gravityMagnitude)
+    {
+        return objectMass * MathF.Sqrt(heightValue * 2f * gravityMagnitude);
     }
 
 }

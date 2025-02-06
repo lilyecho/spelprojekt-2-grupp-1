@@ -7,11 +7,10 @@ using Debug = FMOD.Debug;
 [Serializable]
 public struct JumpParameters
 {
+    [SerializeField] private float jumpHeight;
     [SerializeField,Range(0,100)] private float momentumKept;
-    [SerializeField] private MidAirForces midAirForces;
 
-    public MidAirForces GetMidAirForces => midAirForces;
-
+    public float GetJumpHeight => jumpHeight;
 }
 
 [Flags]
