@@ -74,21 +74,29 @@ public abstract class State
     }
 
 
-    protected Quaternion AlignToSlope(Transform[] rayCastPoints, Transform playerTransform, float timeCount, Vector3 normal)
+    protected Quaternion AlignToSlope(Transform[] rayCastPoints, Transform playerTransform, Vector3 normal)
     {
         //
         LayerMask layerToIgnore = 1 << 6;
-        Vector3 point1 = new Vector3();
-        Vector3 point2 = new Vector3();
+        Vector3 point1 = Vector3.zero;
+        Vector3 point2 = Vector3.zero;
         RaycastHit hit1;
         RaycastHit hit2;
         if (Physics.Raycast(rayCastPoints[1].position, Vector3.down, out hit1, 2f, ~layerToIgnore))
         {
-            point1 = hit1.point;
+            if(Vector3.Angle(Vector3.up, hit1.normal) < 80f)
+            {
+                point1 = hit1.point;
+            }
+            
         }
         if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, 2f, ~layerToIgnore))
         {
-            point2 = hit2.point;
+            if (Vector3.Angle(Vector3.up, hit1.normal) < 80f)
+            {
+                point2 = hit2.point;
+            }
+            
         }
 
         //bool point1hit = Physics.Raycast(playerBehaviour.rayCastPoints[1].position, Vector3.down, out hit1, 2f, ~layerToIgnore);
@@ -96,7 +104,7 @@ public abstract class State
 
         Quaternion targetRotation;
         Vector3 vectorBetweenPoints;
-        if (point1 != null && point2 != null)
+        if (point1 != Vector3.zero && point2 != Vector3.zero)
         {
             vectorBetweenPoints = (point1 - point2).normalized;
             targetRotation = Quaternion.FromToRotation(playerTransform.forward, vectorBetweenPoints) * playerTransform.rotation;
@@ -113,7 +121,7 @@ public abstract class State
 
         //playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, timeCount);
 
-        timeCount = timeCount + 2 * Time.deltaTime;
+        //timeCount = timeCount + 2 * Time.deltaTime;
         return targetRotation;
     }
 
