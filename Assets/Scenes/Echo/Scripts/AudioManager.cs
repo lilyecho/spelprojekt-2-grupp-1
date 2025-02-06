@@ -97,24 +97,41 @@ public class AudioManager : MonoBehaviour
 
                 if (global)
                 {
-                    RuntimeManager.StudioSystem.setParameterByName(eventInfo.paramName, eventInfo.value);
+                    RuntimeManager.StudioSystem.setParameterByName(eventInfo.paramName, eventInfo.value, eventInfo.ignoreSeekSpeed);
                 }
                 else
                 {
-                    instance.setParameterByName(eventInfo.paramName, eventInfo.value);
+                    instance.setParameterByName(eventInfo.paramName, eventInfo.value, eventInfo.ignoreSeekSpeed);
                 }
             }
             else
             {
                 try
                 {
-                    RuntimeManager.StudioSystem.setParameterByName(eventInfo.paramName, eventInfo.value);
+                    RuntimeManager.StudioSystem.setParameterByName(eventInfo.paramName, eventInfo.value, eventInfo.ignoreSeekSpeed);
                 }
                 catch (Exception e)
                 {
                     Debug.LogError($"Can't set {eventInfo.paramName} parameter: {e}");
                 }
             }
+    }
+    
+    public void PlayOneShot(EventInfo eventInfo)
+    {
+        if (eventInfo.audioSource != null && eventInfo is { attachedInstance: true, attachedOneShot: true })
+        {
+            RuntimeManager.PlayOneShotAttached(eventInfo.eventReference, eventInfo.audioSource);
+            return;
+        }
+        if (eventInfo.audioSource != null && eventInfo is { attachedInstance: true, attachedOneShot: false })
+        {
+            RuntimeManager.PlayOneShot(eventInfo.eventReference, eventInfo.audioSource.transform.position);
+            return;
+        }
+        
+        RuntimeManager.PlayOneShot(eventInfo.eventReference);
+        
     }
     
     
@@ -134,11 +151,18 @@ public class AudioManager : MonoBehaviour
                     
                 break;
                 
+            case Action.PlayOneShot:
+                    
+                PlayOneShot(eventInfo);
+
+                break;
+                
             case Action.SetParameter:
 
                 SetParameter(eventInfo);
 
                 break;
+
         }
     }
     

@@ -9,6 +9,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 public enum Action
 {
     Play,
+    PlayOneShot,
     Stop,
     SetParameter,
 }
@@ -26,5 +27,6 @@ public struct EventInfo
 
     [ParamRef] public string paramName;
     public float value;
+    public bool ignoreSeekSpeed;
 }
 
