@@ -74,9 +74,10 @@ public class Falling : State
 
     public bool CheckForGround()
     {
+        LayerMask layerToIgnore = 1 << 6;
         foreach (Transform t in playerBehaviour.rayCastPoints)
         {
-            if (Physics.Raycast(t.position, Vector3.down, 0.1f))
+            if (Physics.Raycast(t.position, Vector3.down, playerBehaviour.rayCastLength, ~layerToIgnore))
             {
                 return true;
             }

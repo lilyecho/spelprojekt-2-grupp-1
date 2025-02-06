@@ -77,6 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     public Transform[] rayCastPoints = new Transform[4];
+    public float rayCastLength;
     /*
     public Transform leftFontPaw;
     public Transform rightFontPaw;

@@ -10,7 +10,8 @@ public class Idle : State
     {
 
     }
-
+    float time = 0f;
+    Vector3 normal;
 
     public override void Enter()
     {
@@ -52,7 +53,11 @@ public class Idle : State
 
     public override void Update()
     {
-        if (!CheckForGround())
+        playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
+        normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength);
+        playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
+
+        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength))
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
         }
@@ -60,7 +65,8 @@ public class Idle : State
 
     public override void FixedUpdate()
     {
-
+        playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
+        playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -101,16 +107,17 @@ public class Idle : State
     {
 
     }
-
+    /*
     public bool CheckForGround()
     {
         foreach (Transform t in playerBehaviour.rayCastPoints)
         {
-            if (Physics.Raycast(t.position, Vector3.down, 0.1f))
+            if (Physics.Raycast(t.position, Vector3.down, playerBehaviour.rayCastLength))
             {
                 return true;
             }
         }
         return false;
     }
+    */
 }
