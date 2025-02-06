@@ -31,11 +31,11 @@ public class Walking : State
     public override void Update()
     {
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
-        normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength);
+        normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal), time) ;
         time = time + Time.deltaTime;
-        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength))
+        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
         }
