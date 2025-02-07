@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
   gravitationMagnitudeUp: 10
-  gravitationMagnitudeDown: 10
+  gravitationMagnitudeDown: 20
+  rayCastLength: 0
+  speedRelated:
+    sneakSpeed: 0
+    walkSpeed: 0
+    runSpeed: 0
   normalJump:
-    jumpHeight: 1
+    jumpHeight: 2
     momentumKept: 0
   megaJump:
-    jumpHeight: 8
+    jumpHeight: 2
     momentumKept: 0
   appliableAirForces:
     airCorrectionMagnitude: 1
+  rotationSpeed: 0
