@@ -21,3 +21,11 @@ public struct MidAirForces
 
     public float GetAppliedMagnitude => airCorrectionMagnitude;
 }
+
+[Serializable]
+public struct SpeedRelated
+{
+    [SerializeField, Min(0)] public float sneakSpeed;
+    [SerializeField, Min(0)] public float walkSpeed;
+    [SerializeField, Min(0)] public float runSpeed;
+}
