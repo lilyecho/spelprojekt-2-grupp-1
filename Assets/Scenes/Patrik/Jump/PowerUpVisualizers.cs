@@ -32,7 +32,7 @@ public class PowerUpVisualizers : MonoBehaviour
             DrawJumpHeight(playerMovementData.GetMegaJump.GetJumpHeight);
         }
         
-        DrawAreaOfLandingFromPoint(transform.position,4);
+        //DrawAreaOfLandingFromPoint(transform.position,4);
     }
 
     private void DrawJumpHeight(float jumpHeight)
@@ -57,11 +57,11 @@ public class PowerUpVisualizers : MonoBehaviour
             float angleCurrent = angleBetweenPoints * i;
             
             Quaternion rotationY = Quaternion.AngleAxis(angleCurrent, Vector3.up);
-            Quaternion rotationX = Quaternion.AngleAxis(angleOfFall, Vector3.right);
+            //Quaternion rotationX = Quaternion.AngleAxis(angleOfFall, Vector3.right);
             
-            Quaternion finalRotation = rotationX * rotationY;
+            //Quaternion finalRotation = rotationX * rotationY;
 
-            Vector3 finalDirection = finalRotation * startDirection;
+            //Vector3 finalDirection = finalRotation * startDirection;
             
             //Debug.Log(finalDirection.ToString());
             
