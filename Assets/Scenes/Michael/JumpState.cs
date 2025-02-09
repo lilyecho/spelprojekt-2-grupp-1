@@ -46,10 +46,5 @@ public abstract class JumpState
         playerBehaviour.ChangeState(playerBehaviour.jumping);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
     }
-    
-    protected float ForceToJumpCertainHeight(float heightValue, float objectMass, float gravityMagnitude)
-    {
-        return objectMass * MathF.Sqrt(heightValue * 2f * gravityMagnitude);
-    }
 
 }
