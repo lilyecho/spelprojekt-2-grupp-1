@@ -5,7 +5,7 @@ using UnityEngine;
 public struct JumpParameters
 {
     [SerializeField] private float jumpHeight;
-    [SerializeField,Range(0,100)] private float momentumKept;
+    [SerializeField,Range(0,100)] private float keptMomentum;
 
     public float GetJumpHeight => jumpHeight;
 }
