@@ -369,6 +369,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4725726785991415371, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1587131088307156453}
+    - targetCorrespondingSourceObject: {fileID: 4725726785991415371, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1456377542284327715}
   m_SourcePrefab: {fileID: 100100000, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
 --- !u!1 &4828545503118338223 stripped
 GameObject:
@@ -475,6 +478,7 @@ MonoBehaviour:
   - {fileID: 5055715327688084635}
   - {fileID: 420681389249066763}
   rayCastLength: 0.6
+  accTime: 0
   rotationSpeed: 10
 --- !u!114 &2964127906287508943
 MonoBehaviour:
@@ -672,6 +676,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 2.36, z: 1.13}
+--- !u!114 &-1456377542284327715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828545503118338223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7438cd8007361eb4e88360f2d7ca5389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementData: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
+  visualizePlayerQualities: -1
+  speedState: 1
+  resolutionAreaMarkers: 4
+  maxLengthPointPlacement: 4
+  rigidB: {fileID: 8305957983544821018}
 --- !u!4 &5208870511880040981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5395021901227707633, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
