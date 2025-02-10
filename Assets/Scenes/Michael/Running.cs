@@ -15,7 +15,7 @@ public class Running : State
     public override void Enter()
     {
         Debug.Log("RUNNING");
-        playerBehaviour.moveSpeed = playerBehaviour.runSpeed;
+        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetRunSpeed;
     }
     public override void Exit()
     {

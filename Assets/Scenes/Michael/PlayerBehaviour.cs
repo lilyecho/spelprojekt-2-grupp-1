@@ -48,16 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
     //Patrik pillar inte mer
     
     public Rigidbody rb;
-    public float jumpForce;
-    public float jumpChargeTime;
-    public float gravityWhenJumping;
-    public float gravityWhenFalling;
-
-
-
-    [HideInInspector]
-    public Vector3 wallJumpDir;
-
+    
 
     [HideInInspector]
     public Vector2 moveInput;
@@ -71,10 +62,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     [HideInInspector]
     public float moveSpeed;
-    public float sneakSpeed;
-    public float walkSpeed;
-    public float runSpeed;
-
+    
 
     public Transform[] rayCastPoints = new Transform[4];
     public float rayCastLength;

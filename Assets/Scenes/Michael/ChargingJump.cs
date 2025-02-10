@@ -12,7 +12,7 @@ public class ChargingJump : JumpState
 
     public override void Enter()
     {
-        chargeTimer = playerBehaviour.jumpChargeTime;
+        chargeTimer = playerBehaviour.GetMovementData.GetChargeTime;
         Debug.Log("CHARGINGJUMP");
     }
     public override void Exit()
