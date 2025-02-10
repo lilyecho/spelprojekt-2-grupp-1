@@ -7,6 +7,7 @@ public class PowerVisualizers : MonoBehaviour
 {
     [SerializeField] private PlayerMovementData playerMovementData = null;
     [SerializeField] private PlayerQualities visualizePlayerQualities;
+    [SerializeField] private SpeedState speedState = SpeedState.Idle;
 
     [SerializeField, Min(4)] private int resolutionAreaMarkers=4;
     [SerializeField, Min(0)] private float maxLengthPointPlacement=4;
@@ -21,68 +22,87 @@ public class PowerVisualizers : MonoBehaviour
         Glide = 4
     }
 
+    private enum SpeedState
+    {
+        Idle,
+        Walking,
+        Running
+    }
+
     private void OnDrawGizmos()
     {
         if (playerMovementData == null) return;
 
         //Jump & MegaJump
+        DrawJump();
+        DrawMegaJump();
+    }
+
+    private void DrawJump()
+    {
         if (visualizePlayerQualities.HasFlag(PlayerQualities.Jump))
         {
             Gizmos.color = Color.blue;
             DrawJumpHeight(playerMovementData.GetNormalJump.GetJumpHeight);
-            FindFurthestPointWhenJumping(transform.position,playerMovementData.GetNormalJump.GetJumpHeight,resolutionAreaMarkers);
+            FindFurthestPointAccordingToSpeed(playerMovementData.GetNormalJump.GetJumpHeight);
         }
-        
+    }
+
+    private void DrawMegaJump()
+    {
         if (visualizePlayerQualities.HasFlag(PlayerQualities.MegaJump))
         {
             Gizmos.color = Color.red;
             DrawJumpHeight(playerMovementData.GetMegaJump.GetJumpHeight);
-            FindFurthestPointWhenJumping(transform.position,playerMovementData.GetMegaJump.GetJumpHeight,resolutionAreaMarkers);
+            FindFurthestPointAccordingToSpeed(playerMovementData.GetMegaJump.GetJumpHeight);
         }
-        
-        
-        
     }
-
+    
     private void DrawJumpHeight(float jumpHeight)
     {
         Vector3 cubePosition = transform.position + new Vector3(0,jumpHeight,0);
         Gizmos.DrawCube(cubePosition, new Vector3(.1f,.1f,.1f));
     }
 
-    private void DrawAreaOfLandingFromPoint(Vector3 startPosition,int resolution)
+    private void FindFurthestPointAccordingToSpeed(float jumpHeight)
     {
-        Vector3 startDirection = new Vector3(0,0,1);
-        float ratio = playerMovementData.GetGravityMagnitudeDown /
-                      playerMovementData.GetMidAirForces.GetAppliedMagnitude;
-        
-        float angleOfFall = Mathf.Atan(ratio)*Mathf.Rad2Deg;
-        
-        float angleBetweenPoints = 360f / resolution;
-        
-        
-        for (int i = 0; i < resolution; i++)
+        float speed;
+        switch (speedState)
         {
-            float angleCurrent = angleBetweenPoints * i;
+            case SpeedState.Idle:
+            {
+                speed = 0;
+            }
+                break;
             
-            Quaternion rotationY = Quaternion.AngleAxis(angleCurrent, Vector3.up);
-            Quaternion rotationX = Quaternion.AngleAxis(angleOfFall, Vector3.right);
+            case SpeedState.Walking:
+            {
+                speed = playerMovementData.GetWalkSpeed;
+            }
+                break;
             
-            Quaternion finalRotation = rotationY * rotationX;
-            Vector3 finalDirection = finalRotation * startDirection;
-
-            Physics.Raycast(startPosition, finalDirection, out RaycastHit hit, maxLengthPointPlacement);
-            Gizmos.DrawSphere(hit.point,.1f);
+            case SpeedState.Running:
+            {
+                speed = playerMovementData.GetRunSpeed;
+            }
+                break;
+            default:
+                throw new Exception("Invalid outcome for PowerVisualizer --> resulted in default");
         }
+        
+        FindFurthestPointForJumping(transform.position,jumpHeight,speed,resolutionAreaMarkers);
+        
     }
-
-    private void FindFurthestPointWhenJumping(Vector3 playerPosition,float jumpHeight,int resolution)
+    
+    private void FindFurthestPointForJumping(Vector3 playerPosition,float jumpHeight,float playerSpeed,int resolution)
     {
         //Setting up. Front is first point on ascending-path
+        float totalMovementSpeed = playerSpeed + playerMovementData.GetMidAirForces.GetAppliedMagnitude;
+        
         Vector3 startDirection = Vector3.forward;
         float startForce = PhysicsCalculations.ForceToJumpCertainHeight(jumpHeight, rigidB.mass,playerMovementData.GetGravityMagnitudeUp);
-        Vector3 maxWidthVelocity = (startDirection * playerMovementData.GetMidAirForces.GetAppliedMagnitude +
-                                        Vector3.up * startForce);
+        Vector3 maxWidthVelocity = startDirection * (totalMovementSpeed)
+                                    + Vector3.up * startForce;
 
         float startSpeed = maxWidthVelocity.magnitude;
         float angleOfIncrease = Vector3.Angle(startDirection, maxWidthVelocity.normalized);
@@ -101,7 +121,7 @@ public class PowerVisualizers : MonoBehaviour
             }
             else
             {
-                FindCorrespondingCollisionPointDescending(heightPoints[i], angleCurrent);
+                FindCorrespondingCollisionPointDescending(heightPoints[i], angleCurrent, totalMovementSpeed);
             }
         }
     }
@@ -153,7 +173,7 @@ public class PowerVisualizers : MonoBehaviour
         return true;
     }
 
-    private void FindCorrespondingCollisionPointDescending(Vector3 guidHeightPoint, float angleCurrent)
+    private void FindCorrespondingCollisionPointDescending(Vector3 guidHeightPoint, float angleCurrent, float speedPlayer)
     {
         //Point on descending   
                 

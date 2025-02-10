@@ -15,7 +15,7 @@ public class Sneaking : State
     public override void Enter()
     {
         Debug.Log("SNEAKING");
-        playerBehaviour.moveSpeed = playerBehaviour.sneakSpeed;
+        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSneakSpeed;
     }
     public override void Exit()
     {

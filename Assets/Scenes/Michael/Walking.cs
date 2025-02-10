@@ -16,7 +16,7 @@ public class Walking : State
     public override void Enter()
     {
         Debug.Log("WALKING");
-        playerBehaviour.moveSpeed = playerBehaviour.walkSpeed;
+        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetWalkSpeed;
     }
     public override void Exit()
     {

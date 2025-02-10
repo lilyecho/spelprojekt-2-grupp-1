@@ -63,11 +63,19 @@ public abstract class State
 
     protected bool CheckForGround(Transform[] raycastPoints, float rayCastLength)
     {
+        LayerMask layerToIgnore = 1 << 6;
+        RaycastHit hit;
         foreach (Transform t in raycastPoints)
         {
-            if (Physics.Raycast(t.position, Vector3.down, rayCastLength))
+            if (Physics.Raycast(t.position, Vector3.down, out hit, rayCastLength, ~layerToIgnore))
             {
-                return true;
+                float angle = Vector3.Angle(Vector3.up, hit.normal);
+                
+                if (angle < 30f)
+                {
+                    return true;
+                }
+                
             }
         }
         return false;
@@ -84,7 +92,7 @@ public abstract class State
         RaycastHit hit2;
         if (Physics.Raycast(rayCastPoints[1].position, Vector3.down, out hit1, 2f, ~layerToIgnore))
         {
-            if(Vector3.Angle(Vector3.up, hit1.normal) < 80f)
+            if(Vector3.Angle(Vector3.up, hit1.normal) < 30f)
             {
                 point1 = hit1.point;
             }
@@ -92,7 +100,7 @@ public abstract class State
         }
         if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, 2f, ~layerToIgnore))
         {
-            if (Vector3.Angle(Vector3.up, hit1.normal) < 80f)
+            if (Vector3.Angle(Vector3.up, hit1.normal) < 30f)
             {
                 point2 = hit2.point;
             }
@@ -133,17 +141,34 @@ public abstract class State
         RaycastHit hit;
         if (Physics.Raycast(raycastPoints[1].position, Vector3.down, out hit, rayCastLength, ~layerToIgnore))
         {
-            return hit.normal;
+            float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            if (angle < 30f)
+            {
+                return hit.normal;
+            }
+            
         }
         else if (Physics.Raycast(raycastPoints[0].position, Vector3.down, out hit, rayCastLength, ~layerToIgnore))
         {
-            return hit.normal;
+            float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            if (angle < 30f)
+            {
+                return hit.normal;
+            }
         }
         else if (Physics.Raycast(raycastPoints[2].position, Vector3.down, out hit, rayCastLength, ~layerToIgnore))
         {
-            return hit.normal;
+            float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            if (angle < 30f)
+            {
+                return hit.normal;
+            }
         }
 
-        return Vector3.up;
+        //return Vector3.up;
+        return Vector3.zero;
     }
 }
