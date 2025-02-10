@@ -20,6 +20,7 @@ public class PlayerMovementData : ScriptableObject
     [SerializeField] private JumpParameters normalJump;
     [SerializeField] private JumpParameters megaJump;
     [SerializeField] private MidAirForces appliableAirForces;
+    [SerializeField] private float chargeTime;
 
     [Space, Header("Rotational")] 
     [SerializeField] private float rotationSpeed;
@@ -38,6 +39,7 @@ public class PlayerMovementData : ScriptableObject
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
     public MidAirForces GetMidAirForces => appliableAirForces;
+    public float GetChargeTime => chargeTime; 
 
     public float GetRotationSpeed => rotationSpeed;
 

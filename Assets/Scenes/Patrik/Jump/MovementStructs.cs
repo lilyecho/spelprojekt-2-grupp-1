@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Debug = FMOD.Debug;
 
 [Serializable]
 public struct JumpParameters
 {
     [SerializeField] private float jumpHeight;
-    [SerializeField,Range(0,100)] private float momentumKept;
+    [SerializeField,Range(0,100)] private float keptMomentum;
 
     public float GetJumpHeight => jumpHeight;
 }
