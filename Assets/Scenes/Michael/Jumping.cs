@@ -10,21 +10,23 @@ public class Jumping : State
 
     }
 
-    float pisstid = 0.1f;
-    float pisstidstimer;
+    //float pisstid = 0.1f;
+    //float pisstidstimer;
+
+    private bool test;
 
     [SerializeField] private Vector3 airActiveCorrectiveForces;
     
     public override void Enter()
     {
         Debug.Log("JUMPING");
-        pisstidstimer = pisstid;
+        //pisstidstimer = pisstid;
         //playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
 
     }
     public override void Exit()
     {
-
+        test = false;
     }
 
     public override void OnCollision(Collision collision)
@@ -34,12 +36,12 @@ public class Jumping : State
 
     public override void Update()
     {
-        if(playerBehaviour.rb.velocity.y < 0 && pisstidstimer <= 0)
+        //Byta till falling vector y är mindre än 0
+        if(test && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
-
         }
-        pisstidstimer -= Time.deltaTime;
+        //pisstidstimer -= Time.deltaTime;
     }
 
     public override void FixedUpdate()
@@ -48,6 +50,8 @@ public class Jumping : State
         
         //Gravity
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Acceleration);
+
+        test = true;
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)

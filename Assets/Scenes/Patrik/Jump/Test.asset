@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13199af10343e3f40ae07a8837062516, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  gravitationMagnitudeUp: 10
-  gravitationMagnitudeDown: 2.7
-  rayCastLength: 0
+  gravitationMagnitudeUp: 1
+  gravitationMagnitudeDown: 1
+  rayCastLength: 0.3
   speedRelated:
-    sneakSpeed: 0
-    walkSpeed: 0
-    runSpeed: 0
+    sneakSpeed: 10
+    walkSpeed: 20
+    runSpeed: 50
   normalJump:
-    jumpHeight: 1.1
-    momentumKept: 0
+    jumpHeight: 20
+    keptMomentum: 0
   megaJump:
-    jumpHeight: 2.55
-    momentumKept: 0
+    jumpHeight: 40
+    keptMomentum: 0
   appliableAirForces:
     airCorrectionMagnitude: 4
-  rotationSpeed: 0
+  chargeTime: 0
+  rotationSpeed: 100
