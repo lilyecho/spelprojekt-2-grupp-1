@@ -48,10 +48,10 @@ public class Falling : State
 
     public override void FixedUpdate()
     {
-        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Force);
         
         //Gravity
-        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeDown, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeDown, ForceMode.Force);
         
     }
 

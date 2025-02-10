@@ -31,6 +31,8 @@ public class PlayerMovementData : ScriptableObject
     public float GetGravityMagnitudeDown => gravitationMagnitudeDown;
 
     public float GetRayCastLength => rayCastLength;
+
+    public SpeedRelated GetSpeedRelated => speedRelated;
     
     public float GetSneakSpeed => speedRelated.sneakSpeed;
     public float GetWalkSpeed => speedRelated.walkSpeed;
