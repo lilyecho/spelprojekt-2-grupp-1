@@ -16,9 +16,15 @@ MonoBehaviour:
   gravitationMagnitudeDown: 100
   rayCastLength: 0
   speedRelated:
-    sneakSpeed: 5
-    walkSpeed: 15
-    runSpeed: 30
+    sneak:
+      speed: 5
+      accTotalTime: 0.001
+    walk:
+      speed: 15
+      accTotalTime: 0.001
+    run:
+      speed: 30
+      accTotalTime: 0.001
   normalJump:
     jumpHeight: 9
     keptMomentum: 0

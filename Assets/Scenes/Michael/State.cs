@@ -176,10 +176,9 @@ public abstract class State
             Debug.Log("MaxSpeed");
             return maxSpeed;
         }
-        //Debug.Log(playerBehaviour.rb.velocity.magnitude);
-        Debug.Log(time);
+        
         float tValue = Mathf.Clamp(time / totalAccelerationTime,0,1);
-
+        //Debug.Log("Lerp: "+Mathf.Lerp(0, maxSpeed, tValue));
         return Mathf.Lerp(0, maxSpeed, tValue);
 
     }
@@ -189,5 +188,6 @@ public abstract class State
         playerBehaviour.accTime += Time.fixedDeltaTime;
         playerBehaviour.moveSpeed = CalculateNextSpeed(maxSpeed,playerBehaviour.accTime, accelerationTotalTime);
         playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
+        //Debug.Log("Magnitude: "+playerBehaviour.rb.velocity.magnitude);
     }
 }
