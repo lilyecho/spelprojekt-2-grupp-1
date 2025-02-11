@@ -25,6 +25,10 @@ public class KameraPrototyp : MonoBehaviour
 
     public Transform target;
 
+
+    public Transform audioListener;
+    private Vector2 camXandZ;
+
     private Vector2 delta;
 
     void Start()
@@ -37,6 +41,10 @@ public class KameraPrototyp : MonoBehaviour
     void Update()
     {
         UpdateRotation();
+        RotateAudioListener();
+        
+
+        //audioListener.localRotation
     }
 
     public void LookAround(InputAction.CallbackContext context)
@@ -68,5 +76,13 @@ public class KameraPrototyp : MonoBehaviour
 
 
         cam.transform.LookAt(target.position);
+    }
+
+    public void RotateAudioListener()
+    {
+        camXandZ.x = cam.transform.forward.x;
+        camXandZ.y = cam.transform.forward.z;
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(camXandZ.x, 0, camXandZ.y)).normalized;
+        audioListener.rotation = targetRotation;
     }
 }
