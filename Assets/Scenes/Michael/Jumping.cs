@@ -10,23 +10,17 @@ public class Jumping : State
 
     }
 
-    //float pisstid = 0.1f;
-    //float pisstidstimer;
-
-    private bool test;
-
-    [SerializeField] private Vector3 airActiveCorrectiveForces;
+    private bool flagAbleToFall;
     
     public override void Enter()
     {
         Debug.Log("JUMPING");
-        //pisstidstimer = pisstid;
         //playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
 
     }
     public override void Exit()
     {
-        test = false;
+        flagAbleToFall = false;
     }
 
     public override void OnCollision(Collision collision)
@@ -36,22 +30,20 @@ public class Jumping : State
 
     public override void Update()
     {
-        //Byta till falling vector y är mindre än 0
-        if(test && playerBehaviour.rb.velocity.normalized.y <= 0)
+        if(flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
         }
-        //pisstidstimer -= Time.deltaTime;
     }
 
     public override void FixedUpdate()
     {
-        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Force);
         
         //Gravity
-        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Force);
 
-        test = true;
+        flagAbleToFall = true;
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)

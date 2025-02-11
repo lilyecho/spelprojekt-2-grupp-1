@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -170,5 +167,20 @@ public abstract class State
 
         //return Vector3.up;
         return Vector3.zero;
+    }
+
+    protected float CalculateNextSpeed(float maxSpeed, float time, float totalAccelerationTime)
+    {
+        if (playerBehaviour.rb.velocity.magnitude >= maxSpeed)
+        {
+            Debug.Log("MaxSpeed");
+            return maxSpeed;
+        }
+        //Debug.Log(playerBehaviour.rb.velocity.magnitude);
+        Debug.Log(time);
+        float tValue = Mathf.Clamp(time / totalAccelerationTime,0,1);
+
+        return Mathf.Lerp(0, maxSpeed, tValue);
+
     }
 }

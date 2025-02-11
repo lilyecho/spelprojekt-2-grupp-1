@@ -76,7 +76,6 @@ public class Idle : State
     }
     public override void OnShift(InputAction.CallbackContext context)
     {
-
     }
     public override void OnCTRL(InputAction.CallbackContext context)
     {

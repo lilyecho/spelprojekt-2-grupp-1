@@ -15,7 +15,7 @@ public class Sneaking : State
     public override void Enter()
     {
         Debug.Log("SNEAKING");
-        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSneakSpeed;
+        //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSneakSpeed;
     }
     public override void Exit()
     {
@@ -42,8 +42,11 @@ public class Sneaking : State
 
     public override void FixedUpdate()
     {
-        playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
+        //playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
+
+        playerBehaviour.accTime += Time.fixedDeltaTime;
+        playerBehaviour.moveSpeed = CalculateNextSpeed(playerBehaviour.GetMovementData.GetSneakSpeed,playerBehaviour.accTime, playerBehaviour.GetMovementData.GetSpeedRelated.accTotalTime);
         playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
     }
 

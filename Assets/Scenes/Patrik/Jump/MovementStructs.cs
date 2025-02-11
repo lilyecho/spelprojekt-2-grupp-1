@@ -25,6 +25,6 @@ public struct SpeedRelated
     [SerializeField, Min(0)] public float sneakSpeed;
     [SerializeField, Min(0)] public float walkSpeed;
     [SerializeField, Min(0)] public float runSpeed;
-    
-    //[SerializeField]
+
+    [SerializeField, Min(0.0001f)] public float accTotalTime;
 }

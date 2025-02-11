@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,9 +60,13 @@ public class PlayerBehaviour : MonoBehaviour
     [HideInInspector]
     public float moveSpeed;
     
-
     public Transform[] rayCastPoints = new Transform[4];
     public float rayCastLength;
+
+
+
+    [HideInInspector]public float accTime;
+    
     /*
     public Transform leftFontPaw;
     public Transform rightFontPaw;
@@ -187,6 +188,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (context.canceled)
         {
             moveInput = Vector2.zero;
+            accTime = 0;
         }
 
 
