@@ -31,7 +31,7 @@ public class JumpCharged : JumpState
         if (context.canceled)
         {
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.GetMovementData.GetMegaJump.GetJumpHeight, 1, playerBehaviour.GetMovementData.GetGravityMagnitudeUp);
-            Jump(jumpForce);
+            Jump(jumpForce, playerBehaviour.GetMovementData.GetMegaJump.GetKeptMomentumPercentage);
         }
     }
 

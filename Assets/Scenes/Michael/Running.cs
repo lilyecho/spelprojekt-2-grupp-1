@@ -44,7 +44,7 @@ public class Running : State, IAcceleration
 
     public override void FixedUpdate()
     {
-        //playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
+        
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.run.speed,playerBehaviour.GetMovementData.GetSpeedRelated.run.accTotalTime);

@@ -40,9 +40,11 @@ public abstract class JumpState
         this.playerBehaviour = playerBehaviour;
     }
 
-    protected void Jump(float jumpForce)
+    protected void Jump(float jumpForce, float momentumKeptPercentage)
     {
+        playerBehaviour.rb.velocity *= momentumKeptPercentage; 
         playerBehaviour.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        
         playerBehaviour.ChangeState(playerBehaviour.jumping);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
     }
