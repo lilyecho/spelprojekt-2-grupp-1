@@ -64,6 +64,10 @@ public class AudioManager : MonoBehaviour
         {
             RuntimeManager.AttachInstanceToGameObject(instance, eventInfo.audioSource.transform);
         }
+        else if (eventInfo.attachedInstance == false && eventInfo.audioSource != null)
+        {
+            instance.set3DAttributes(eventInfo.audioSource.transform.position.To3DAttributes());
+        }
         instance.start();
         eventDict[eventInfo.eventReference.Guid] = instance;
         Debug.Log("Play Event");
@@ -119,12 +123,12 @@ public class AudioManager : MonoBehaviour
     
     public void PlayOneShot(EventInfo eventInfo)
     {
-        if (eventInfo.audioSource != null && eventInfo is { attachedInstance: true, attachedOneShot: true })
+        if (eventInfo.audioSource != null && eventInfo is {attachedOneShot: true })
         {
             RuntimeManager.PlayOneShotAttached(eventInfo.eventReference, eventInfo.audioSource);
             return;
         }
-        if (eventInfo.audioSource != null && eventInfo is { attachedInstance: true, attachedOneShot: false })
+        if (eventInfo.audioSource != null && eventInfo is {attachedOneShot: false })
         {
             RuntimeManager.PlayOneShot(eventInfo.eventReference, eventInfo.audioSource.transform.position);
             return;
