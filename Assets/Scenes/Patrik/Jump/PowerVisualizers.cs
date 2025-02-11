@@ -25,6 +25,7 @@ public class PowerVisualizers : MonoBehaviour
     private enum SpeedState
     {
         Idle,
+        Sneak,
         Walking,
         Running
     }
@@ -75,15 +76,21 @@ public class PowerVisualizers : MonoBehaviour
             }
                 break;
             
+            case SpeedState.Sneak:
+            {
+                speed = playerMovementData.GetSpeedRelated.sneak.speed;
+            }
+                break;
+            
             case SpeedState.Walking:
             {
-                speed = playerMovementData.GetWalkSpeed;
+                speed = playerMovementData.GetSpeedRelated.walk.speed;
             }
                 break;
             
             case SpeedState.Running:
             {
-                speed = playerMovementData.GetRunSpeed;
+                speed = playerMovementData.GetSpeedRelated.run.speed;
             }
                 break;
             default:

@@ -169,7 +169,7 @@ public abstract class State
         return Vector3.zero;
     }
 
-    protected float CalculateNextSpeed(float maxSpeed, float time, float totalAccelerationTime)
+    private float CalculateNextSpeed(float maxSpeed, float time, float totalAccelerationTime)
     {
         if (playerBehaviour.rb.velocity.magnitude >= maxSpeed)
         {
@@ -182,5 +182,12 @@ public abstract class State
 
         return Mathf.Lerp(0, maxSpeed, tValue);
 
+    }
+
+    protected void ApplyAcceleration(float maxSpeed, float accelerationTotalTime)
+    {
+        playerBehaviour.accTime += Time.fixedDeltaTime;
+        playerBehaviour.moveSpeed = CalculateNextSpeed(maxSpeed,playerBehaviour.accTime, accelerationTotalTime);
+        playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
     }
 }

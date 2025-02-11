@@ -16,7 +16,7 @@ public class Walking : State
     public override void Enter()
     {
         Debug.Log("WALKING");
-        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetWalkSpeed;
+        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
     }
     public override void Exit()
     {
@@ -45,8 +45,8 @@ public class Walking : State
     {
         playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
-        playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
-
+        
+        ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed,playerBehaviour.GetMovementData.GetSpeedRelated.walk.accTotalTime);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)

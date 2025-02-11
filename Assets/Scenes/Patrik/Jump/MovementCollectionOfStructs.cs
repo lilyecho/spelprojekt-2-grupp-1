@@ -22,9 +22,16 @@ public struct MidAirForces
 [Serializable]
 public struct SpeedRelated
 {
-    [SerializeField, Min(0)] public float sneakSpeed;
-    [SerializeField, Min(0)] public float walkSpeed;
-    [SerializeField, Min(0)] public float runSpeed;
+    [SerializeField] public SpeedParameters sneak;
+    [SerializeField] public SpeedParameters walk;
+    [SerializeField] public SpeedParameters run;
 
-    [SerializeField, Min(0.0001f)] public float accTotalTime;
+    
+}
+
+[Serializable]
+public struct SpeedParameters
+{
+    [SerializeField, Min(0)] public float speed;
+    [SerializeField, Min(0.001f)] public float accTotalTime;
 }

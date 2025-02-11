@@ -45,11 +45,9 @@ public class Sneaking : State
         //playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
 
-        playerBehaviour.accTime += Time.fixedDeltaTime;
-        playerBehaviour.moveSpeed = CalculateNextSpeed(playerBehaviour.GetMovementData.GetSneakSpeed,playerBehaviour.accTime, playerBehaviour.GetMovementData.GetSpeedRelated.accTotalTime);
-        playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
+        ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.sneak.speed,playerBehaviour.GetMovementData.GetSpeedRelated.sneak.accTotalTime);
     }
-
+    
     public override void OnSpaceBar(InputAction.CallbackContext context)
     {
 

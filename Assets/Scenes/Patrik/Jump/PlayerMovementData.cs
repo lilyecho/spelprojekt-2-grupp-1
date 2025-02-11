@@ -34,10 +34,6 @@ public class PlayerMovementData : ScriptableObject
 
     public SpeedRelated GetSpeedRelated => speedRelated;
     
-    public float GetSneakSpeed => speedRelated.sneakSpeed;
-    public float GetWalkSpeed => speedRelated.walkSpeed;
-    public float GetRunSpeed => speedRelated.runSpeed;
-    
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
     public MidAirForces GetMidAirForces => appliableAirForces;
