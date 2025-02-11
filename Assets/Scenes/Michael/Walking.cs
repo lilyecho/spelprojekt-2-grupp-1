@@ -4,7 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Walking : State
+public class Walking : State, IAcceleration
 {
     public Walking(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
     {
@@ -16,8 +16,11 @@ public class Walking : State
     public override void Enter()
     {
         Debug.Log("WALKING");
-        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
+        //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
+        
+        FixCurrentAccelerationTime();
     }
+    
     public override void Exit()
     {
 
@@ -79,6 +82,14 @@ public class Walking : State
     {
 
     }
+
+    public void FixCurrentAccelerationTime()
+    {
+        float currentSpeed = playerBehaviour.rb.velocity.magnitude;
+        float maxSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
+        float totalAccelerationTime = playerBehaviour.GetMovementData.GetSpeedRelated.walk.accTotalTime;
+        playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
+    }
     /*
     public bool CheckForGround()
     {
@@ -92,6 +103,7 @@ public class Walking : State
         return false;
     }
     */
+    
 }
 
 /*

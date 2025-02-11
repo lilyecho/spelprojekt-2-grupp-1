@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Running : State
+public class Running : State, IAcceleration
 {
     public Running(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
     {
@@ -15,7 +15,9 @@ public class Running : State
     public override void Enter()
     {
         Debug.Log("RUNNING");
-        playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.run.speed;
+        //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.run.speed;
+        
+        FixCurrentAccelerationTime();
     }
     public override void Exit()
     {
@@ -42,7 +44,7 @@ public class Running : State
 
     public override void FixedUpdate()
     {
-        playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
+        //playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.run.speed,playerBehaviour.GetMovementData.GetSpeedRelated.run.accTotalTime);
@@ -75,6 +77,14 @@ public class Running : State
     {
 
     }
+    
+    public void FixCurrentAccelerationTime()
+    {
+        float currentSpeed = playerBehaviour.rb.velocity.magnitude;
+        float maxSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.run.speed;
+        float totalAccelerationTime = playerBehaviour.GetMovementData.GetSpeedRelated.run.accTotalTime;
+        playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
+    }
     /*
     public bool CheckForGround()
     {
@@ -88,4 +98,5 @@ public class Running : State
         return false;
     }
     */
+    
 }

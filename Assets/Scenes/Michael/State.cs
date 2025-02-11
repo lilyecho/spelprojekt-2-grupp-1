@@ -188,6 +188,12 @@ public abstract class State
         playerBehaviour.accTime += Time.fixedDeltaTime;
         playerBehaviour.moveSpeed = CalculateNextSpeed(maxSpeed,playerBehaviour.accTime, accelerationTotalTime);
         playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
-        //Debug.Log("Magnitude: "+playerBehaviour.rb.velocity.magnitude);
+        Debug.Log("Magnitude: "+playerBehaviour.rb.velocity.magnitude);
+    }
+
+    protected float CalculateAccelerationTimeFromSpeed(float currentSpeed, float maxSpeed, float totalAccelerationTime)
+    {
+        float tValue = Mathf.InverseLerp(0, maxSpeed, currentSpeed);
+        return tValue * totalAccelerationTime;
     }
 }

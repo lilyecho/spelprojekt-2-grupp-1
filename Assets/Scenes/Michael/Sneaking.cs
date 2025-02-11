@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Sneaking : State
+public class Sneaking : State, IAcceleration
 {
     public Sneaking(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
     {
@@ -88,4 +88,11 @@ public class Sneaking : State
         return false;
     }
     */
+    public void FixCurrentAccelerationTime()
+    {
+        float currentSpeed = playerBehaviour.rb.velocity.magnitude;
+        float maxSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.sneak.speed;
+        float totalAccelerationTime = playerBehaviour.GetMovementData.GetSpeedRelated.sneak.accTotalTime;
+        playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
+    }
 }
