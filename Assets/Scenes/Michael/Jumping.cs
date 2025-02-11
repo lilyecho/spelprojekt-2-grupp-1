@@ -38,7 +38,7 @@ public class Jumping : State
 
     public override void FixedUpdate()
     {
-        playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Force);
+        ApplyCorrectiveAirForces();
         
         //Gravity
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Force);

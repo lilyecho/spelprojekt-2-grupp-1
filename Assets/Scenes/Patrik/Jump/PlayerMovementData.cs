@@ -19,7 +19,7 @@ public class PlayerMovementData : ScriptableObject
     [Space,Header("Jump-Related")]
     [SerializeField] private JumpParameters normalJump;
     [SerializeField] private JumpParameters megaJump;
-    [SerializeField] private MidAirForces appliableAirForces;
+    [SerializeField, Tooltip("Data according to X-Z plane")] private MidAirForces appliableAirForces;
     [SerializeField] private float chargeTime;
 
     [Space, Header("Rotational")] 

@@ -16,8 +16,10 @@ public struct MidAirForces
 {
     //TODO custom
     [SerializeField] private float airCorrectionMagnitude;
+    [SerializeField] private float maximumSpeedInPlane;
 
     public float GetAppliedMagnitude => airCorrectionMagnitude;
+    public float GetMaximumSpeed => maximumSpeedInPlane;
 }
 
 [Serializable]
@@ -26,8 +28,6 @@ public struct SpeedRelated
     [SerializeField] public SpeedParameters sneak;
     [SerializeField] public SpeedParameters walk;
     [SerializeField] public SpeedParameters run;
-
-    
 }
 
 [Serializable]

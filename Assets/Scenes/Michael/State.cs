@@ -178,7 +178,6 @@ public abstract class State
         }
         
         float tValue = Mathf.Clamp(time / totalAccelerationTime,0,1);
-        //Debug.Log("Lerp: "+Mathf.Lerp(0, maxSpeed, tValue));
         return Mathf.Lerp(0, maxSpeed, tValue);
 
     }
@@ -188,12 +187,32 @@ public abstract class State
         playerBehaviour.accTime += Time.fixedDeltaTime;
         playerBehaviour.moveSpeed = CalculateNextSpeed(maxSpeed,playerBehaviour.accTime, accelerationTotalTime);
         playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
-        Debug.Log("Magnitude: "+playerBehaviour.rb.velocity.magnitude);
     }
 
     protected float CalculateAccelerationTimeFromSpeed(float currentSpeed, float maxSpeed, float totalAccelerationTime)
     {
         float tValue = Mathf.InverseLerp(0, maxSpeed, currentSpeed);
         return tValue * totalAccelerationTime;
+    }
+    
+    protected void ApplyCorrectiveAirForces()
+    {
+        Vector3 currentVelocity = playerBehaviour.rb.velocity;
+
+        Vector2 currentXZVelocity = new Vector2(currentVelocity.x,currentVelocity.z);
+        
+        //Works as a cap so the player wont move to fast
+        if (currentXZVelocity.magnitude >= playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed)
+        {
+            Vector2 adaptedXZ = currentXZVelocity.normalized *
+                                playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed;
+            playerBehaviour.rb.velocity = new Vector3(adaptedXZ.x,currentVelocity.y,adaptedXZ.y);
+            Debug.Log("MaxSpeed - In Air");
+        }
+        else
+        {
+            playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+        }
+        
     }
 }
