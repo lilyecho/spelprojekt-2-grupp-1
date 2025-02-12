@@ -22,12 +22,20 @@ public class ChargingJump : JumpState
 
     public override void Update()
     {
+        TryChargeMegaJump();
+    }
+
+    private void TryChargeMegaJump()
+    {
+        if (!playerBehaviour.Abilities.HasFlag(AbilityData.Abilities.MegaJump)) return;
+        
         chargeTimer -= Time.deltaTime;
         if (chargeTimer < 0)
         {
             playerBehaviour.ChangeJumpState(playerBehaviour.jumpCharged);
         }
     }
+    
     public override void FixedUpdate()
     {
 

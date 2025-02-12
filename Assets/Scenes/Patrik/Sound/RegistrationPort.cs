@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Scene/Port/Registration")]
+[CreateAssetMenu(menuName = "LevelHandling/Port/Registration")]
 public class RegistrationPort : ScriptableObject
 {
     public enum TypeOfRegistration

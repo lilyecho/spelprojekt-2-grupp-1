@@ -40,9 +40,11 @@ public class PlayerBehaviour : MonoBehaviour
 
 
 
-    //Patrik pillar lite
-    [SerializeField] private PlayerMovementData playerMovementData; 
-    //Patrik pillar inte mer
+    
+    [SerializeField] private PlayerMovementData playerMovementData;
+    //[SerializeField] private AbilityData abilityData;
+    [SerializeField] private AbilityData.Abilities currentAbilities;
+    
     
     public Rigidbody rb;
     
@@ -84,7 +86,13 @@ public class PlayerBehaviour : MonoBehaviour
     */
 
     public PlayerMovementData GetMovementData => playerMovementData;
-    
+    //public AbilityData GetAbilityData => abilityData;
+    public AbilityData.Abilities Abilities
+    {
+        get => currentAbilities;
+        set => currentAbilities |= value;
+    }
+
     void Start()
     {
         ableToJump = new AbleToJump(this);
