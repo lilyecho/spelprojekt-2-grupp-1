@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.Serialization;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -23,6 +23,7 @@ public class TrollBehaviour : MonoBehaviour
     [SerializeField] private Transform target = null;
 
     [SerializeField] private TrollAudioData trollAudioData;
+    [SerializeField] private RegistrationPort registrationPort;
     #endregion
     
     private NavMeshAgent navMeshAgent;
@@ -65,6 +66,7 @@ public class TrollBehaviour : MonoBehaviour
     
     private void Start()
     {
+        registrationPort.OnRegister(RegistrationPort.TypeOfRegistration.Enemy, gameObject);
         InstantiateBeginState();
     }
 
