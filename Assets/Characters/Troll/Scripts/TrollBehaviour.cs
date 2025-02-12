@@ -21,6 +21,8 @@ public class TrollBehaviour : MonoBehaviour
 
     [SerializeField] private TargetPort targetPort = null;
     [SerializeField] private Transform target = null;
+
+    [SerializeField] private TrollAudioData trollAudioData;
     #endregion
     
     private NavMeshAgent navMeshAgent;
@@ -40,6 +42,8 @@ public class TrollBehaviour : MonoBehaviour
     public Transform GetTarget => target;
     public Transform GetEyes => eyes;
     public TrollData GetTrollData => trollData;
+    public TrollAudioData GetAudioData => trollAudioData;
+    
     #endregion
     
     private void OnEnable()

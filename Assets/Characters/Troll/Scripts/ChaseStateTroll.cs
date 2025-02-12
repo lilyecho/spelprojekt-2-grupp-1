@@ -9,8 +9,14 @@ public class ChaseStateTroll : TrollStates
     {
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+        AudioManager.Instance.InvokeEventInfo(TrollBehaviour.GetAudioData.GetChaseMusicEvent);
     }
-    
+
+    public override void Exit()
+    {
+        AudioManager.Instance.InvokeEventInfo(TrollBehaviour.GetAudioData.GetExitChaseMusicEvent);
+    }
+
     public override void FixedUpdate()
     {
         Check4Player();
