@@ -9,6 +9,18 @@ public class TempAudioManager : MonoBehaviour
     [SerializeField, ReadOnly] private EnemyManager enemyManager;
     //[SerializeField, ReadOnly] private Transform playerTransform;
 
+    [SerializeField] private EventInfo mainMusicEvent;
+
+    [SerializeField] private float closeDistance;
+
+    [SerializeField] private EventInfo CloseToTroll;
+    [SerializeField] private EventInfo NotCloseToTroll;
+    
+    private void Awake()
+    {
+        AudioManager.Instance.InvokeEventInfo(mainMusicEvent);
+    }
+
     private void OnEnable()
     {
         registrationPort.OnRegister += SetRegistration;
@@ -37,6 +49,21 @@ public class TempAudioManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CheckEnemyRelatedMusic();
+    }
+
+    private void CheckEnemyRelatedMusic()
+    {
         float distance = enemyManager.GetClosestDistanceToEnemyFromPlayer();
+
+        if (distance <= closeDistance)
+        {
+            AudioManager.Instance.InvokeEventInfo(CloseToTroll);
+        }
+        else
+        {
+            AudioManager.Instance.InvokeEventInfo(NotCloseToTroll);
+        }
+        
     }
 }

@@ -35,13 +35,7 @@ public class EnemyManager : MonoBehaviour
     public float GetClosestDistanceToEnemyFromPlayer()
     {
         enemies.Sort();
-
-        string t = "";
-        foreach (var enemy in enemies)
-        {
-            t += enemy.gameObject.name + " : " + enemy.GetDistanceToPlayer();
-        }
-        Debug.Log(t);
+        
         return enemies[0].GetDistanceToPlayer();
     }
     
