@@ -41,7 +41,8 @@ public class Falling : State
 
     public override void Update()
     {
-        if(CheckForGround())
+        playerBehaviour.transform.rotation = UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb);
+        if (CheckForGround())
         {
             
             playerBehaviour.ChangeState(playerBehaviour.idle);
@@ -58,9 +59,11 @@ public class Falling : State
             
         }
 
-
+        /*
         targetRotation = Quaternion.FromToRotation(playerBehaviour.transform.up, Vector3.up) * playerBehaviour.transform.rotation;
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, time);
+        */
+        
 
         time += 2 * Time.deltaTime;
 
@@ -151,4 +154,6 @@ public class Falling : State
         }
         return false;
     }
+
+    
 }

@@ -30,7 +30,9 @@ public class Jumping : State
 
     public override void Update()
     {
-        if(flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
+        playerBehaviour.transform.rotation = UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb);
+
+        if (flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
         }

@@ -215,4 +215,20 @@ public abstract class State
         }
         
     }
+
+
+    protected Quaternion UpdateAirborneRotation(Vector2 moveInput, Transform playerTransform, Rigidbody rb)
+    {
+        Quaternion targetRotation;
+        if (moveInput != Vector2.zero)
+        {
+            targetRotation = Quaternion.LookRotation(new Vector3(rb.velocity.x, 0, rb.velocity.z));
+        }
+        else
+        {
+            targetRotation = Quaternion.LookRotation(new Vector3(playerTransform.forward.x, 0, playerTransform.forward.z));
+        }
+        //playerBehaviour.transform.rotation = targetRotation;
+        return targetRotation;
+    }
 }
