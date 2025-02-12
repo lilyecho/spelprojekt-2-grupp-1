@@ -52,6 +52,8 @@ public class PlayerBehaviour : MonoBehaviour
     [HideInInspector]
     public Vector3 moveDir;
 
+    
+
     Camera cam;
     Vector3 cameraForward;
     Vector3 cameraRight;
@@ -104,6 +106,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         cam = Camera.main;
 
+
     }
 
     // Update is called once per frame
@@ -120,7 +123,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
 
-        
     }
 
     private void FixedUpdate()

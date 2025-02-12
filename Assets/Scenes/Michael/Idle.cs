@@ -15,7 +15,11 @@ public class Idle : State
 
     public override void Enter()
     {
-        playerBehaviour.rb.velocity = Vector3.zero;
+        if(playerBehaviour.moveInput == Vector2.zero)
+        {
+            playerBehaviour.rb.velocity = Vector3.zero;
+        }
+        
         
         if(playerBehaviour.moveInput != null )
         {
