@@ -13,12 +13,18 @@ public class Walking : State, IAcceleration
 
     float time = 0f;
     Vector3 normal;
+
+    bool coyote = false;
+    float coyoteTime = 0.2f;
+    float coyoteTimer;
     public override void Enter()
     {
         Debug.Log("WALKING");
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
         
         FixCurrentAccelerationTime();
+
+        coyoteTimer = coyoteTime;
     }
     
     public override void Exit()
@@ -38,9 +44,27 @@ public class Walking : State, IAcceleration
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal), time) ;
         time = time + Time.deltaTime;
-        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
+
+        if (!coyote && !CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
         {
-            playerBehaviour.ChangeState(playerBehaviour.falling);
+            //playerBehaviour.ChangeState(playerBehaviour.falling);
+            coyote = true;
+        }
+
+
+
+        if (coyote)
+        {
+            coyoteTimer -= Time.deltaTime;
+            if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
+            {
+                coyote = false;
+                coyoteTimer = coyoteTime;
+            }
+            if (coyoteTimer <= 0)
+            {
+                playerBehaviour.ChangeState(playerBehaviour.falling);
+            }
         }
     }
 
