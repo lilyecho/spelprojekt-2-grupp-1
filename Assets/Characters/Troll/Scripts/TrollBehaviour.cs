@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.Serialization;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class TrollBehaviour : MonoBehaviour
+public class TrollBehaviour : EnemyBehaviour
 {
     public enum States
     {
@@ -18,9 +18,7 @@ public class TrollBehaviour : MonoBehaviour
     #region DragReferences
     [SerializeField] private TrollData trollData;
     [SerializeField] private Transform eyes;
-
-    [SerializeField] private TargetPort targetPort = null;
-    [SerializeField] private Transform target = null;
+    
 
     [SerializeField] private TrollAudioData trollAudioData;
     #endregion
@@ -39,32 +37,22 @@ public class TrollBehaviour : MonoBehaviour
     
     #region Getters & Setters
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
-    public Transform GetTarget => target;
+    
     public Transform GetEyes => eyes;
     public TrollData GetTrollData => trollData;
     public TrollAudioData GetAudioData => trollAudioData;
     
     #endregion
-    
-    private void OnEnable()
+
+    protected override void OnEnable()
     {
-        targetPort.OnTargetCreated += RegisterTarget;
-        
+        base.OnEnable();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    private void OnDisable()
+    protected override void Start()
     {
-        targetPort.OnTargetCreated -= RegisterTarget;
-    }
-
-    private void RegisterTarget(GameObject newTarget)
-    {
-        target = newTarget.transform;
-    }
-    
-    private void Start()
-    {
+        base.Start();
         InstantiateBeginState();
     }
 
