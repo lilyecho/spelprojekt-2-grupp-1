@@ -13,6 +13,12 @@ public class AbleToJump : JumpState
     {
         
         Debug.Log("ABLETOJUMP");
+        if (playerBehaviour.intoJump)
+        {
+            float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.GetMovementData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.GetMovementData.GetGravityMagnitudeUp);
+            Jump(jumpForce, playerBehaviour.GetMovementData.GetNormalJump.GetKeptMomentumPercentage);
+            playerBehaviour.intoJump = false;
+        }
     }
     public override void Exit()
     {

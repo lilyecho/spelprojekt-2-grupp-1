@@ -11,11 +11,19 @@ public class Falling : State
 
     }
 
+    /*
+    bool intoJump = false;
+    bool intoChargingJump = false;
+    */
+
+    float jumpBufferTimer;
+
 
     public override void Enter()
     {
         Debug.Log("FALLING");
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
+        jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
         time = 0;
     }
     public override void Exit()
@@ -35,8 +43,19 @@ public class Falling : State
     {
         if(CheckForGround())
         {
+            
             playerBehaviour.ChangeState(playerBehaviour.idle);
-            playerBehaviour.ChangeJumpState(playerBehaviour.ableToJump);
+
+            if(playerBehaviour.intoChargingJump)
+            {
+                playerBehaviour.ChangeJumpState(playerBehaviour.chargingJump);
+                playerBehaviour.intoChargingJump = false;
+            }
+            else
+            {
+                playerBehaviour.ChangeJumpState(playerBehaviour.ableToJump);
+            }
+            
         }
 
 
@@ -44,6 +63,19 @@ public class Falling : State
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, time);
 
         time += 2 * Time.deltaTime;
+
+
+
+
+        if(playerBehaviour.intoJump || playerBehaviour.intoChargingJump)
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+        if(jumpBufferTimer <= 0 )
+        {
+            playerBehaviour.intoJump = false;
+            playerBehaviour.intoChargingJump = false;
+        }
     }
 
     public override void FixedUpdate()
@@ -60,6 +92,18 @@ public class Falling : State
         if (context.performed)
         {
             //playerBehaviour.ChangeState(playerBehaviour.gliding);
+
+            playerBehaviour.intoChargingJump = true;
+            jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
+        }
+
+        if (context.canceled)
+        {
+            if (playerBehaviour.intoChargingJump)
+            {
+                playerBehaviour.intoJump = true;
+                playerBehaviour.intoChargingJump = false;
+            }
         }
 
     }

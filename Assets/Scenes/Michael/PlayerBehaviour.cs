@@ -66,7 +66,14 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     [HideInInspector]public float accTime;
-    
+
+
+
+    [HideInInspector]
+    public bool intoJump = false;
+    [HideInInspector]
+    public bool intoChargingJump = false;
+
     /*
     public Transform leftFontPaw;
     public Transform rightFontPaw;
