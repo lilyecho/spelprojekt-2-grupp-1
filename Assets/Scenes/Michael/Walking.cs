@@ -15,16 +15,15 @@ public class Walking : State, IAcceleration
     Vector3 normal;
 
     bool coyote = false;
-    float coyoteTime = 0.2f;
     float coyoteTimer;
     public override void Enter()
     {
         Debug.Log("WALKING");
+        coyoteTimer = playerBehaviour.GetMovementData.GetCoyoteTime;
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
-        
+
         FixCurrentAccelerationTime();
 
-        coyoteTimer = coyoteTime;
     }
     
     public override void Exit()
@@ -59,7 +58,7 @@ public class Walking : State, IAcceleration
             if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
             {
                 coyote = false;
-                coyoteTimer = coyoteTime;
+                coyoteTimer = coyoteTimer = playerBehaviour.GetMovementData.GetCoyoteTime;
             }
             if (coyoteTimer <= 0)
             {
