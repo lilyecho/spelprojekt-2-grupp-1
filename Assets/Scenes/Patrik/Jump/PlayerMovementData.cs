@@ -21,6 +21,8 @@ public class PlayerMovementData : ScriptableObject
     [SerializeField] private JumpParameters megaJump;
     [SerializeField, Tooltip("Data according to X-Z plane")] private MidAirForces appliableAirForces;
     [SerializeField] private float chargeTime;
+    [SerializeField] private float coyoteTime;
+    [SerializeField] private float jumpBufferDuration;
 
     [Space, Header("Rotational")] 
     [SerializeField] private float rotationSpeed;
@@ -37,7 +39,9 @@ public class PlayerMovementData : ScriptableObject
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
     public MidAirForces GetMidAirForces => appliableAirForces;
-    public float GetChargeTime => chargeTime; 
+    public float GetChargeTime => chargeTime;
+    public float GetCoyoteTime => coyoteTime;
+    public float GetJumpBufferDuration => jumpBufferDuration;
 
     public float GetRotationSpeed => rotationSpeed;
 
