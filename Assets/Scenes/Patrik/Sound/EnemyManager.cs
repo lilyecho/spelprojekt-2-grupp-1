@@ -7,11 +7,11 @@ using UnityEngine.Serialization;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private RegistrationPort registrationPort;
-    [SerializeField, ReadOnly] private List<GameObject> enemies;
+    [SerializeField, ReadOnly] private List<EnemyBehaviour> enemies;
 
     private void Awake()
     {
-        enemies = new List<GameObject>();
+        enemies = new List<EnemyBehaviour>();
     }
 
     private void OnEnable()
@@ -27,9 +27,22 @@ public class EnemyManager : MonoBehaviour
     {
         if (type != RegistrationPort.TypeOfRegistration.Enemy) return;
         
-        enemies.Add(newEnemy);
+        enemies.Add(newEnemy.GetComponent<EnemyBehaviour>());
         newEnemy.name = "Troll: "+enemies.Count;
     }
-    
+
+
+    public float GetClosestDistanceToEnemyFromPlayer()
+    {
+        enemies.Sort();
+
+        string t = "";
+        foreach (var enemy in enemies)
+        {
+            t += enemy.gameObject.name + " : " + enemy.GetDistanceToPlayer();
+        }
+        Debug.Log(t);
+        return enemies[0].GetDistanceToPlayer();
+    }
     
 }

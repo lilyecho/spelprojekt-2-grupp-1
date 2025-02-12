@@ -5,23 +5,38 @@ using UnityEngine;
 
 public class TempAudioManager : MonoBehaviour
 {
-    [SerializeField] private RegistrationPort enemyManagerRegistrationPort;
-    [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private RegistrationPort registrationPort;
+    [SerializeField, ReadOnly] private EnemyManager enemyManager;
+    //[SerializeField, ReadOnly] private Transform playerTransform;
 
     private void OnEnable()
     {
-        throw new NotImplementedException();
+        registrationPort.OnRegister += SetRegistration;
     }
 
     private void OnDisable()
     {
-        throw new NotImplementedException();
+        registrationPort.OnRegister -= SetRegistration;
     }
 
-    private void SetEnemyManager(RegistrationPort.TypeOfRegistration type, GameObject enemyManagerGameObject)
+    private void SetRegistration(RegistrationPort.TypeOfRegistration type, GameObject enemyManagerGameObject)
     {
-        if (type != RegistrationPort.TypeOfRegistration.EnemyManager) return;
+        switch (type)
+        {
+            case RegistrationPort.TypeOfRegistration.EnemyManager:
+                enemyManager = enemyManagerGameObject.GetComponent<EnemyManager>();
+                break;
+            
+            /*case RegistrationPort.TypeOfRegistration.Player:
+                playerTransform = enemyManagerGameObject.GetComponent<Transform>();
+                break;*/
+            default:
+                return;
+        }
+    }
 
-        enemyManager = enemyManagerGameObject.GetComponent<EnemyManager>();
+    private void FixedUpdate()
+    {
+        float distance = enemyManager.GetClosestDistanceToEnemyFromPlayer();
     }
 }
