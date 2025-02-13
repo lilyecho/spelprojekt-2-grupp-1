@@ -291,7 +291,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1796082588}
+  - {fileID: 1812498631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &91000082
@@ -590,8 +592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e45b78bf7395a4d936917903aa5f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
+  enemyManagerPort: {fileID: 11400000, guid: bd24d7fe86c5b72449515210c88381f3, type: 2}
   enemies: []
+  amountOfChaseUnits: 0
+  audioManagerPort: {fileID: 11400000, guid: bc607c3b1f38b8145ae77c3b6e074bbe, type: 2}
 --- !u!4 &540381984
 Transform:
   m_ObjectHideFlags: 0
@@ -712,6 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
+  audioManagerPort: {fileID: 11400000, guid: bc607c3b1f38b8145ae77c3b6e074bbe, type: 2}
   enemyManager: {fileID: 0}
   mainMusicEvent:
     eventReference:
@@ -760,6 +765,38 @@ MonoBehaviour:
     attachedOneShot: 0
     audioSource: {fileID: 0}
     paramName: CloseToTroll
+    value: 0
+    ignoreSeekSpeed: 0
+  Chasing:
+    eventReference:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    action: 3
+    stopMode: 0
+    attachedInstance: 0
+    attachedOneShot: 0
+    audioSource: {fileID: 0}
+    paramName: TrollChasing
+    value: 1
+    ignoreSeekSpeed: 0
+  NotChasing:
+    eventReference:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    action: 3
+    stopMode: 0
+    attachedInstance: 0
+    attachedOneShot: 0
+    audioSource: {fileID: 0}
+    paramName: TrollChasing
     value: 0
     ignoreSeekSpeed: 0
 --- !u!4 &938304231
@@ -940,12 +977,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796082584}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.33, y: 1.98, z: -13.34}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.066, y: 1.98, z: -2.668}
+  m_LocalScale: {x: 2, y: 5, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 91000081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1812498627
 GameObject:
@@ -1045,12 +1082,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812498627}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.3, y: 1.98, z: -13.01}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -2.0600002, y: 1.98, z: -2.602}
+  m_LocalScale: {x: 2, y: 5, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 91000081}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2008036358 stripped
 GameObject:
@@ -1083,6 +1120,4 @@ SceneRoots:
   - {fileID: 31386939}
   - {fileID: 110128114}
   - {fileID: 540381984}
-  - {fileID: 1796082588}
-  - {fileID: 1812498631}
   - {fileID: 938304231}

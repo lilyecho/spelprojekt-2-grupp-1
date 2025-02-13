@@ -7,13 +7,15 @@ public class ChaseStateTroll : TrollStates
 {
     public override void Enter()
     {
+        //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
-        AudioManager.Instance.InvokeEventInfo(TrollBehaviour.GetAudioData.GetChaseMusicEvent);
+        TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Increase);
     }
 
     public override void Exit()
     {
+        TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Decrease);
         AudioManager.Instance.InvokeEventInfo(TrollBehaviour.GetAudioData.GetExitChaseMusicEvent);
     }
 

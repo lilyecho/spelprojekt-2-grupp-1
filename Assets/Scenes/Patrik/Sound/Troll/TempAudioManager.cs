@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class TempAudioManager : MonoBehaviour
 {
-    [SerializeField] private RegistrationPort registrationPort;
-    [SerializeField, ReadOnly] private EnemyManager enemyManager;
+    [SerializeField] private RegistrationPort registrationPort = null;
+    [SerializeField] private AudioManagerPort audioManagerPort = null;
+    [SerializeField, ReadOnly] private EnemyManager enemyManager = null;
     //[SerializeField, ReadOnly] private Transform playerTransform;
 
     [SerializeField] private EventInfo mainMusicEvent;
@@ -15,6 +16,8 @@ public class TempAudioManager : MonoBehaviour
 
     [SerializeField] private EventInfo CloseToTroll;
     [SerializeField] private EventInfo NotCloseToTroll;
+    [SerializeField] private EventInfo Chasing;
+    [SerializeField] private EventInfo NotChasing;
     
     private void Awake()
     {
@@ -24,11 +27,14 @@ public class TempAudioManager : MonoBehaviour
     private void OnEnable()
     {
         registrationPort.OnRegister += SetRegistration;
+        audioManagerPort.OnChased += PlayerChasedMusic;
+        
     }
 
     private void OnDisable()
     {
         registrationPort.OnRegister -= SetRegistration;
+        audioManagerPort.OnChased -= PlayerChasedMusic;
     }
 
     private void SetRegistration(RegistrationPort.TypeOfRegistration type, GameObject enemyManagerGameObject)
@@ -63,6 +69,19 @@ public class TempAudioManager : MonoBehaviour
         else
         {
             AudioManager.Instance.InvokeEventInfo(NotCloseToTroll);
+        }
+        
+    }
+
+    private void PlayerChasedMusic(bool onOff)
+    {
+        if (onOff)
+        {
+            AudioManager.Instance.InvokeEventInfo(Chasing);
+        }
+        else
+        {
+            AudioManager.Instance.InvokeEventInfo(NotChasing);
         }
         
     }

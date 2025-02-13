@@ -6,12 +6,17 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
 {
     
+    [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private RegistrationPort registrationPort = null;
     [SerializeField] protected Transform target = null;
 
-    public Transform GetTarget => target;
     
     private Transform transform = null; 
+    
+    public Transform GetTarget => target;
+    public EnemyManagerPort GetEnemyManagerPort => enemyManagerPort;
+    
+    
     
     
     protected virtual void OnEnable()
@@ -38,7 +43,7 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
 
     protected virtual void Start()
     {
-        registrationPort.OnRegister(RegistrationPort.TypeOfRegistration.Enemy, gameObject);
+        enemyManagerPort.OnRegister(RegistrationPort.TypeOfRegistration.Enemy, gameObject);
     }
 
     public float GetDistanceToPlayer()

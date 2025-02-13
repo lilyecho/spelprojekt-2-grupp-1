@@ -19,3 +19,9 @@ public enum CharacterActivity
     Jump=8,
     Grab=16
 }
+
+public enum ChangeValue
+{
+    Increase,
+    Decrease
+}
