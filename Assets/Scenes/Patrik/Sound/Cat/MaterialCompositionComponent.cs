@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DynamicMaterial : MonoBehaviour
+public class MaterialCompositionComponent : MonoBehaviour
 {
     [SerializeField] private MaterialComposition materialType;
 

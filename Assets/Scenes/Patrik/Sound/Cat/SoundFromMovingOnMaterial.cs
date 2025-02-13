@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class SoundFromMovingOnMaterial
 {
-    private MaterialComposition GetObjectMaterial(Transform materialCheckerTransform)
+    //TODO Fixa så att den egentligen är baserad på animation
+    /// <summary>
+    /// Raycast straight down from object-space and gets one material overall from the other objects component "MaterialCompositionComponent"
+    /// </summary>
+    /// <param name="materialCheckerTransform"></param>
+    /// <returns></returns>
+    public static MaterialComposition GetObjectMaterial(Transform materialCheckerTransform)
     {
         Vector3 directionToMaterial = materialCheckerTransform.up * -1;
         if (!Physics.Raycast(materialCheckerTransform.position, directionToMaterial, out RaycastHit hit, 1))
@@ -17,7 +23,7 @@ public class SoundFromMovingOnMaterial
 
         try
         {
-            return hit.collider.GetComponent<DynamicMaterial>().GetMaterial;
+            return hit.collider.GetComponent<MaterialCompositionComponent>().GetMaterial;
         }
         catch (Exception e)
         {

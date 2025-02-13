@@ -73,6 +73,9 @@ public class Walking : State, IAcceleration
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed,playerBehaviour.GetMovementData.GetSpeedRelated.walk.accTotalTime);
+        
+        //Sound from material
+        Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)

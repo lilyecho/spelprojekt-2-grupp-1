@@ -68,6 +68,9 @@ public class Sneaking : State, IAcceleration
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
 
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.sneak.speed,playerBehaviour.GetMovementData.GetSpeedRelated.sneak.accTotalTime);
+        
+        //Sound from material
+        Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
     }
     
     public override void OnSpaceBar(InputAction.CallbackContext context)

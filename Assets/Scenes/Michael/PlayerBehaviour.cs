@@ -38,12 +38,20 @@ public class PlayerBehaviour : MonoBehaviour
     public JumpState jumpCharged;
     #endregion
 
-
-
     
     [SerializeField] private PlayerMovementData playerMovementData;
     //[SerializeField] private AbilityData abilityData;
     [SerializeField] private AbilityData.Abilities currentAbilities;
+    //TODO change when we get animations instead of a certain point 
+
+    #region MyRegion
+
+    [SerializeField] private Transform materialCheckerTransform = null;
+    public Transform GetCheckerTransform => materialCheckerTransform;
+
+    #endregion
+    
+    
     
     
     public Rigidbody rb;
