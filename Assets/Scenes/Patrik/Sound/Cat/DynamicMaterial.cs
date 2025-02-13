@@ -4,6 +4,7 @@ public class DynamicMaterial : MonoBehaviour
 {
     public enum MaterialTypes
     {
+        None,
         Gras,
         Wood,
         Stone
