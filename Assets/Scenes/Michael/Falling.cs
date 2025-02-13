@@ -41,7 +41,9 @@ public class Falling : State
 
     public override void Update()
     {
-        playerBehaviour.transform.rotation = UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb);
+        playerBehaviour.transform.rotation = Quaternion.Lerp(playerBehaviour.transform.rotation,
+                                                        UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb),
+                                                        playerBehaviour.rotationSpeed * Time.deltaTime);
         if (CheckForGround())
         {
             
