@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 5771589551779632254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0.4, z: -0.6}
+  m_LocalPosition: {x: -0.4, y: 5, z: -0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -499,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementMode: 0
   playerMovementData: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
+  currentAbilities: 0
   rb: {fileID: 8305957983544821018}
   moveInput: {x: 0, y: 0}
   moveDir: {x: 0, y: 0, z: 0}
@@ -513,6 +514,8 @@ MonoBehaviour:
   - {fileID: 420681389249066763}
   rayCastLength: 0.6
   accTime: 0
+  intoJump: 0
+  intoChargingJump: 0
   rotationSpeed: 10
 --- !u!114 &2964127906287508943
 MonoBehaviour:
@@ -723,7 +726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecb7264420839d4bace613efe1c2dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPort: {fileID: 11400000, guid: ec91b2e471e10d9488d4b98081f6f0d8, type: 2}
 --- !u!4 &5208870511880040981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5395021901227707633, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
