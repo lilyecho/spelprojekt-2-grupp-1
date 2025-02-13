@@ -15,8 +15,10 @@ public class KameraPrototyp : MonoBehaviour
     public float angleP;
     public float pMax;
     public float pMin;
-    
 
+    public float gamepadSpeedMultiplier;
+    public float mouseSpeedMultiplier;
+    private float speedMultiplier;
 
     public float rotateSpeedH;
     public float rotateSpeedP;
@@ -40,7 +42,7 @@ public class KameraPrototyp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateRotation();
+        UpdateRotation(speedMultiplier);
         RotateAudioListener();
         
 
@@ -51,7 +53,18 @@ public class KameraPrototyp : MonoBehaviour
     {
         if(context.performed)
         {
+            InputDevice device = context.control.device;
             delta = context.ReadValue<Vector2>();
+
+            if(device is Gamepad)
+            {
+                speedMultiplier = gamepadSpeedMultiplier;
+            }
+            if (device is Mouse)
+            {
+                speedMultiplier = mouseSpeedMultiplier;
+            }
+
         }
 
         if(context.canceled)
@@ -61,11 +74,11 @@ public class KameraPrototyp : MonoBehaviour
         
     }
 
-    public void UpdateRotation()
+    public void UpdateRotation(float multi)
     {
-        angleH += delta.x * rotateSpeedH * Time.deltaTime;
+        angleH += delta.x * rotateSpeedH * multi * Time.deltaTime;
 
-        angleP += delta.y * rotateSpeedP * Time.deltaTime;
+        angleP += delta.y * rotateSpeedP * multi * Time.deltaTime;
         angleP = Mathf.Clamp(angleP, pMax, pMin);
 
 
