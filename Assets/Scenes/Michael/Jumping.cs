@@ -30,7 +30,9 @@ public class Jumping : State
 
     public override void Update()
     {
-        playerBehaviour.transform.rotation = UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb);
+        playerBehaviour.transform.rotation = Quaternion.Lerp(playerBehaviour.transform.rotation, 
+                                                        UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb), 
+                                                        playerBehaviour.rotationSpeed * Time.deltaTime);
 
         if (flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
