@@ -1,6 +1,7 @@
+
 using System;
 
-public enum Materialcomposition {
+public enum MaterialComposition {
     
     None,
     Dirt,
