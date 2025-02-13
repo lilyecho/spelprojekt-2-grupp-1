@@ -6,27 +6,34 @@ using UnityEngine.InputSystem;
 
 public class KameraPrototyp : MonoBehaviour
 {
+    [SerializeField] private CameraData cameraData;
+    public CameraData GetCameraData
+    {
+        get { return cameraData;}
+    }
+    /*
+    private float radius;
+    private float height;
+
+
     
-    public float radius;
-    public float height;
+    private float pMax;
+    private float pMin;
+
+    private float gamepadSpeedMultiplier;
+    private float mouseSpeedMultiplier;
     
 
-    public float angleH;
-    public float angleP;
-    public float pMax;
-    public float pMin;
-
-    public float gamepadSpeedMultiplier;
-    public float mouseSpeedMultiplier;
-    private float speedMultiplier;
-
-    public float rotateSpeedH;
-    public float rotateSpeedP;
-
+    private float rotateSpeedH;
+    private float rotateSpeedP;
+    */
     Camera cam;
 
     public Transform target;
 
+    private float speedMultiplier;
+    private float angleH;
+    private float angleP;
 
     public Transform audioListener;
     private Vector2 camXandZ;
@@ -37,6 +44,17 @@ public class KameraPrototyp : MonoBehaviour
     {
         //target = gameObject.transform;
         cam = Camera.main;
+
+        /*
+        radius = GetCameraData.GetRadius;
+        height = GetCameraData.GetHeight;
+        pMax = GetCameraData.GetPMax;
+        pMin = GetCameraData.GetPMin;
+        gamepadSpeedMultiplier = GetCameraData.GetGamepadSpeedMultiplier;
+        mouseSpeedMultiplier = GetCameraData.GetMouseSpeedMultiplier;
+        rotateSpeedH = GetCameraData.GetRotateSpeedH;
+        rotateSpeedP = GetCameraData.GetRotateSpeedP;
+        */
     }
 
     // Update is called once per frame
@@ -58,11 +76,11 @@ public class KameraPrototyp : MonoBehaviour
 
             if(device is Gamepad)
             {
-                speedMultiplier = gamepadSpeedMultiplier;
+                speedMultiplier = GetCameraData.GetGamepadSpeedMultiplier;
             }
             if (device is Mouse)
             {
-                speedMultiplier = mouseSpeedMultiplier;
+                speedMultiplier = GetCameraData.GetMouseSpeedMultiplier;
             }
 
         }
@@ -76,13 +94,13 @@ public class KameraPrototyp : MonoBehaviour
 
     public void UpdateRotation(float multi)
     {
-        angleH += delta.x * rotateSpeedH * multi * Time.deltaTime;
+        angleH += delta.x * GetCameraData.GetRotateSpeedH * multi * Time.deltaTime;
 
-        angleP += delta.y * rotateSpeedP * multi * Time.deltaTime;
-        angleP = Mathf.Clamp(angleP, pMax, pMin);
+        angleP += delta.y * GetCameraData.GetRotateSpeedP * multi * Time.deltaTime;
+        angleP = Mathf.Clamp(angleP, GetCameraData.GetPMax, GetCameraData.GetPMin);
 
 
-        Vector3 offset = new Vector3(0, height, -radius);
+        Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
         Quaternion rotation = Quaternion.Euler(angleP, angleH, 0);
         cam.transform.position = target.position + rotation * offset;
 
