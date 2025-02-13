@@ -11,30 +11,13 @@ public class CameraData : ScriptableObject
     [Tooltip("Not working as intended. Adjust y-value of CameraFocusPoint child object for camera height ajustments")]
     [SerializeField] private float height;
 
-    [Tooltip("Max vertical angle of the camera")]
-    [SerializeField] private float pMax;
+    [SerializeField] private CameraAngles cameraAngleSettings;
 
-    [Tooltip("Min vertical angle of the camera")]
-    [SerializeField] private float pMin;
+    [SerializeField] private CameraRotationalSpeed cameraRotationalSpeedSettings;
 
-    [Tooltip("Horizontal rotation speed")]
-    [SerializeField] private float rotateSpeedH;
-
-    [Tooltip("Vertical rotation speed")]
-    [SerializeField] private float rotateSpeedP;
-
-    [Tooltip("Multiplier for rotation speed when using gamepad")]
-    [SerializeField] private float gamepadSpeedMultiplier;
-
-    [Tooltip("Multiplier for ratation speed when using mouse")]
-    [SerializeField] private float mouseSpeedMultiplier;
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private DeviceSpeedMultiplier deviceSettings;
     
-
+    
     public float GetRadius
     {
         get { return radius; }
@@ -47,30 +30,30 @@ public class CameraData : ScriptableObject
 
     public float GetPMax
     {
-        get { return pMax; }
+        get { return cameraAngleSettings.pMax; }
     }
     public float GetPMin
     {
-        get { return pMin; }
+        get { return cameraAngleSettings.pMin; }
     }
 
 
     public float GetRotateSpeedH
     {
-        get { return rotateSpeedH; }
+        get { return cameraRotationalSpeedSettings.rotateSpeedH; }
     }
     public float GetRotateSpeedP
     {
-        get { return rotateSpeedP; }
+        get { return cameraRotationalSpeedSettings.rotateSpeedP; }
     }
 
 
     public float GetGamepadSpeedMultiplier
     {
-        get { return gamepadSpeedMultiplier; }
+        get { return deviceSettings.gamepadSpeedMultiplier; }
     }
     public float GetMouseSpeedMultiplier
     {
-        get { return mouseSpeedMultiplier; }
+        get { return deviceSettings.mouseSpeedMultiplier; }
     }
 }
