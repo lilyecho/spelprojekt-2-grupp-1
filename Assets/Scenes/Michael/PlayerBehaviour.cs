@@ -43,15 +43,24 @@ public class PlayerBehaviour : MonoBehaviour
     //[SerializeField] private AbilityData abilityData;
     [SerializeField] private AbilityData.Abilities currentAbilities;
     //TODO change when we get animations instead of a certain point 
-
+    
     #region MyRegion
 
     [SerializeField] private Transform materialCheckerTransform = null;
     public Transform GetCheckerTransform => materialCheckerTransform;
 
     #endregion
-    
-    
+
+    #region Audio
+
+    [Header("Audio-Stuff")]
+    [SerializeField] private AudioPort audioPort;
+    [SerializeField] private CharacterAudioData characterAudioData;
+    public AudioPort GetAudioPort => audioPort;
+    public CharacterAudioData GetAudioData => characterAudioData;
+
+    #endregion
+    [Space]
     
     
     public Rigidbody rb;

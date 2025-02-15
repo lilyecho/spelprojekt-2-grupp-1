@@ -6,5 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Audio/Characters/CharactersAudioData")]
 public class CharacterAudioData : ScriptableObject
 {
-    [SerializeReference] private EventReference movementEvent;
+    [SerializeField] private EventReference audioMovement;
+
+    public EventReference GetAudioMovement => audioMovement;
 }

@@ -11,6 +11,10 @@ public class Walking : State, IAcceleration
 
     }
 
+    private float timeStep = .5f;
+    private float currentTime = 0;
+    
+    
     float time = 0f;
     Vector3 normal;
 
@@ -50,8 +54,7 @@ public class Walking : State, IAcceleration
             coyote = true;
         }
 
-
-
+        
         if (coyote)
         {
             coyoteTimer -= Time.deltaTime;
@@ -65,6 +68,15 @@ public class Walking : State, IAcceleration
                 playerBehaviour.ChangeState(playerBehaviour.falling);
             }
         }
+        
+        //TODO Sound temporary
+        currentTime += Time.deltaTime;
+        if (currentTime >= timeStep)
+        {
+            TakeStep();
+            currentTime = 0;
+        }
+        
     }
 
     public override void FixedUpdate()
@@ -75,7 +87,13 @@ public class Walking : State, IAcceleration
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed,playerBehaviour.GetMovementData.GetSpeedRelated.walk.accTotalTime);
         
         //Sound from material
-        Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
+        //Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
+    }
+
+    private void TakeStep()
+    {
+        playerBehaviour.GetAudioPort.OnStep(playerBehaviour.GetAudioData.GetAudioMovement,
+            SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform),playerBehaviour.transform.position);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
