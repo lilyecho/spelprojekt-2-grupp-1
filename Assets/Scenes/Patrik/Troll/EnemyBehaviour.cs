@@ -11,7 +11,7 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
     [SerializeField] protected Transform target = null;
 
     
-    private Transform transform = null; 
+    private Transform enemyTransform = null; 
     
     public Transform GetTarget => target;
     public EnemyManagerPort GetEnemyManagerPort => enemyManagerPort;
@@ -38,7 +38,7 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
     
     private void Awake()
     {
-        transform = GetComponent<Transform>();
+        enemyTransform = GetComponent<Transform>();
     }
 
     protected virtual void Start()
@@ -48,7 +48,7 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
 
     public float GetDistanceToPlayer()
     {
-        return Vector3.Distance(transform.position, target.position);
+        return Vector3.Distance(enemyTransform.position, target.position);
     }
     
     public int CompareTo(EnemyBehaviour other)

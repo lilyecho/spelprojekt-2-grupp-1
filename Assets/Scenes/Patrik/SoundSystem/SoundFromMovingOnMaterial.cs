@@ -19,15 +19,14 @@ public class SoundFromMovingOnMaterial
             Debug.Log("Missed");
             return MaterialComposition.None;
         }
-
-
+        
         try
         {
             return hit.collider.GetComponent<MaterialCompositionComponent>().GetMaterial;
         }
         catch (Exception e)
         {
-            Debug.Log(hit.collider.gameObject.name +": Missing the DynamaicMaterial-component");
+            Debug.Log(hit.collider.gameObject.name +": Missing the DynamaicMaterial-component"+"\n "+e);
             return MaterialComposition.None;
         }
         
