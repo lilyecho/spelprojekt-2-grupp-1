@@ -23,6 +23,7 @@ public class SFXManager : MonoBehaviour
 
     private void CreateSound4Step(EventReference audioEvent, MaterialComposition material, Vector3 position)
     {
+        //TODO performance-heavy
         EventInstance instance = RuntimeManager.CreateInstance(audioEvent);
 
         instance.set3DAttributes(position.To3DAttributes());
