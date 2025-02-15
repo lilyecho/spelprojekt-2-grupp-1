@@ -26,7 +26,8 @@ public struct EventInfo
     public GameObject audioSource;
 
     [ParamRef] public string paramName;
-    public float value;
+    public float value { get; set; }
     public bool ignoreSeekSpeed;
 }
+
 
