@@ -60,7 +60,7 @@ public abstract class State
 
     protected bool CheckForGround(Transform[] raycastPoints, float rayCastLength)
     {
-        LayerMask layerToIgnore = 1 << 6;
+        LayerMask layerToIgnore = 1 << 8;
         RaycastHit hit;
         foreach (Transform t in raycastPoints)
         {
@@ -82,7 +82,7 @@ public abstract class State
     protected Quaternion AlignToSlope(Transform[] rayCastPoints, Transform playerTransform, Vector3 normal)
     {
         //
-        LayerMask layerToIgnore = 1 << 6;
+        LayerMask layerToIgnore = 1 << 8;
         Vector3 point1 = Vector3.zero;
         Vector3 point2 = Vector3.zero;
         RaycastHit hit1;
@@ -133,7 +133,7 @@ public abstract class State
 
     public Vector3 GetSurfaceNormal(Transform[] raycastPoints, float rayCastLength)
     {
-        LayerMask layerToIgnore = 1 << 6;
+        LayerMask layerToIgnore = 1 << 8;
         
         RaycastHit hit;
         if (Physics.Raycast(raycastPoints[1].position, Vector3.down, out hit, rayCastLength, ~layerToIgnore))
