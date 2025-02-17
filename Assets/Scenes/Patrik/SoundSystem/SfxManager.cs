@@ -6,7 +6,7 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class SfxManager : MonoBehaviour
 {
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private FmodParameterData parameters = null;
