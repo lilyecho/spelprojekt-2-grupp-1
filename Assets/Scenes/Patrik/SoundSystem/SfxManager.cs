@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using FMOD;
-using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
@@ -10,6 +5,9 @@ public class SfxManager : MonoBehaviour
 {
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private FmodParameterData parameters = null;
+    
+    [Header("Sfx-Related")]
+    [SerializeField] private AudioHandler audioHandler = null;
 
     private void OnEnable()
     {
@@ -21,14 +19,8 @@ public class SfxManager : MonoBehaviour
         audioPort.OnStep -= CreateSound4Step;
     }
 
-    private void CreateSound4Step(EventReference audioEvent, MaterialComposition material, Vector3 position)
+    private void CreateSound4Step(CharacterAudioData characterAudioData, MaterialComposition material, Vector3 position)
     {
-        //TODO performance-heavy
-        EventInstance instance = RuntimeManager.CreateInstance(audioEvent);
-
-        instance.set3DAttributes(position.To3DAttributes());
-        //instance.setParameterByName(parameters.GetMaterialParameter,(int)material);
-        instance.start();
-        instance.release();
+        audioHandler.PlayOneShot(characterAudioData.GetAudioMovement,position,parameters.GetMaterialParameter,(int)material);
     }
 }

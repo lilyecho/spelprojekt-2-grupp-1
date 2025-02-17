@@ -7,5 +7,5 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "LevelHandling/Port/AudioPort")]
 public class AudioPort : ScriptableObject
 {
-    public UnityAction<EventReference,MaterialComposition,Vector3> OnStep = delegate(EventReference arg0, MaterialComposition composition, Vector3 vector3) {  };
+    public UnityAction<CharacterAudioData,MaterialComposition,Vector3> OnStep = delegate(CharacterAudioData arg0, MaterialComposition composition, Vector3 vector3) {  };
 }
