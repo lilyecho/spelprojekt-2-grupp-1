@@ -13,4 +13,11 @@ public class Scene_Switch : MonoBehaviour
         // loads next level
         SceneManager.LoadScene(sceneLoaded.buildIndex + 1);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        // gets the curent screen
+        Scene sceneLoaded = SceneManager.GetActiveScene();
+        // loads next level
+        SceneManager.LoadScene(sceneLoaded.buildIndex + 1);
+    }
 }
