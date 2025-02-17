@@ -92,7 +92,7 @@ public class Walking : State, IAcceleration
 
     private void TakeStep()
     {
-        playerBehaviour.GetAudioPort.OnStep(playerBehaviour.GetAudioData.GetAudioMovement,
+        playerBehaviour.GetAudioPort.OnStep(playerBehaviour.GetAudioData,
             SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform),playerBehaviour.transform.position);
     }
 
