@@ -5,37 +5,40 @@ using FMODUnity;
 using Unity.Collections;
 using UnityEngine;
 
-public class MusicManager : TempAudioManager
+public class MusicManager : MonoBehaviour
 {
+    [Header("Port-Related")]
     [SerializeField] private RegistrationPort registrationPort = null;
     [SerializeField] private AudioManagerPort audioManagerPort = null;
+    [Header("Music-Related")]
+    [SerializeField] private MusicData musicData;
+    [SerializeField] private AudioHandler audioHandler = null;
+    [Header("Behaviour-Related")]
     [SerializeField, ReadOnly] private EnemyManager enemyManager = null;
-
-    [SerializeField] private EventInfo mainMusicEvent;
-
     [SerializeField] private float closeDistance;
-
-    [SerializeField] private EventInfo CloseToTroll;
-    [SerializeField] private EventInfo NotCloseToTroll;
-    [SerializeField] private EventInfo Chasing;
-    [SerializeField] private EventInfo NotChasing;
     
     private void Awake()
     {
-        AudioManager.Instance.InvokeEventInfo(mainMusicEvent);
+        InitialSetup();
+    }
+
+    private void InitialSetup()
+    {
+        audioHandler.CreateInstance(musicData.GetMainMusic, out EventInstance mainInstance);
+        mainInstance.start();
     }
 
     private void OnEnable()
     {
         registrationPort.OnRegister += SetRegistration;
-        audioManagerPort.OnChased += PlayerChasedMusic;
+        //audioManagerPort.OnChased += PlayerChasedMusic;
         
     }
 
     private void OnDisable()
     {
         registrationPort.OnRegister -= SetRegistration;
-        audioManagerPort.OnChased -= PlayerChasedMusic;
+        //audioManagerPort.OnChased -= PlayerChasedMusic;
     }
 
     private void SetRegistration(RegistrationPort.TypeOfRegistration type, GameObject enemyManagerGameObject)
@@ -56,9 +59,10 @@ public class MusicManager : TempAudioManager
 
     private void FixedUpdate()
     {
-        CheckEnemyRelatedMusic();
+        //CheckEnemyRelatedMusic();
     }
 
+    /*
     private void CheckEnemyRelatedMusic()
     {
         float distance = enemyManager.GetClosestDistanceToEnemyFromPlayer();
@@ -84,27 +88,5 @@ public class MusicManager : TempAudioManager
         {
             AudioManager.Instance.InvokeEventInfo(NotChasing);
         }
-    }
-
-    private void EnableStartMusic(EventReference musicEvent)
-    {
-        EventInstance instance = RuntimeManager.CreateInstance(musicEvent);
-        instance.start();
-    }
-
-    private void PlayEvent()
-    {
-        
-    }
-
-    private void PlayOneStop()
-    {
-        
-    }
-
-    private void StopEvent()
-    {
-        
-    }
-
+    }*/
 }

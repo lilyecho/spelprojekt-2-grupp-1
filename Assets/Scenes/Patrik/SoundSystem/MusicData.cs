@@ -7,4 +7,6 @@ using UnityEngine;
 public class MusicData : ScriptableObject
 {
     [SerializeField] private EventReference mainMusic;
+
+    public EventReference GetMainMusic => mainMusic;
 }
