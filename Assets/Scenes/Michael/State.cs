@@ -1,4 +1,5 @@
 using FMODUnity;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -236,6 +237,16 @@ public abstract class State
         }
         //playerBehaviour.transform.rotation = targetRotation;
         return targetRotation;
+    }
+
+    protected float UpdateAirborneRotation2(Rigidbody rb, Transform playerTransform, float currentVelocity, float smoothTime)
+    {
+        float targetAngle = MathF.Atan2(rb.velocity.x, rb.velocity.z) * Mathf.Rad2Deg;
+
+        float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+
+        
+        return angle;
     }
 
     protected void TakeStep()

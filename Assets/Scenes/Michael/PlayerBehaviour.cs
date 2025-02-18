@@ -268,17 +268,29 @@ public class PlayerBehaviour : MonoBehaviour
 
     public float rotationSpeed = 10f;
 
+    [HideInInspector]public float currentVelocity;
+    private float smoothTime = 0.05f;
+
     public void RotateCharacter(Vector3 moveDir)
     {
         if (moveDir != Vector3.zero)
         {
+            /*
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveDir.x, 0, moveDir.z));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 40);
+            */
+
+            float targetAngle = MathF.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, angle, transform.eulerAngles.z);
+
         }
     }
 
 
-    
+
 
 
 }
