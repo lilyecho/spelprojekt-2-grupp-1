@@ -39,19 +39,19 @@ public class AudioHandler : MonoBehaviour
     }
     
     /// <summary>
-    /// Change parameters before the sound
+    /// Change parameters before the sound, but keep in mind the importance of index-relation between parameterNames and parameterValues 
     /// </summary>
-    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, string[] parameterNames, int[] parameterValues)
+    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, Dictionary<string, int> parameterNamesAndValues)
     {
-        if (parameterNames.Length != parameterValues.Length) throw new Exception("The amount of elements in parameterNames has to be the same as parameterValues");
+        if (parameterNamesAndValues.Count <= 0) throw new Exception("Elements in parameterNamesAndValues has to exist");
         
         //TODO performance-heavy
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);
         
         instance.set3DAttributes(placementPos.To3DAttributes());
-        for (int i = 0; i < parameterNames.Length; i++)
+        foreach (var nameAndValue in parameterNamesAndValues)
         {
-            instance.setParameterByName(parameterNames[i],parameterValues[i]);
+            instance.setParameterByName(nameAndValue.Key,nameAndValue.Value);
         }
         
         instance.start();
