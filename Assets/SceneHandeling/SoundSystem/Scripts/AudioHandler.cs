@@ -8,11 +8,28 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioHandler : MonoBehaviour
 {
+    [SerializeField] private AudioPort audioPort = null;
+    [SerializeField] private FmodParameterData parameterData = null;
     private List<EventInstance> eventInstances = new List<EventInstance>();
+
+    private void OnEnable()
+    {
+        audioPort.OnChangeGlobalParameter += ChangeGlobalParameter;
+    }
+
+    private void OnDisable()
+    {
+        audioPort.OnChangeGlobalParameter -= ChangeGlobalParameter;
+    }
+
+    private void ChangeGlobalParameter(string parameterName, int value)
+    {
+        RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
+    }
     
     public void PlayOneShot(EventReference eventReference)
     {
-        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+        RuntimeManager.PlayOneShot(eventReference);
     }
     
     public void PlayOneShot(EventReference eventReference, Vector3 placementPos)
@@ -64,6 +81,8 @@ public class AudioHandler : MonoBehaviour
         eventInstances.Add(instance);
     }
 
+    
+    
     private void OnDestroy()
     {
         foreach (EventInstance instance in eventInstances)

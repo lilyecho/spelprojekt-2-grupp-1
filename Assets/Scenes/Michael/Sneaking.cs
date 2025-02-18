@@ -9,6 +9,11 @@ public class Sneaking : State, IAcceleration
     {
 
     }
+    
+    private float timeStep = .5f;
+    private float currentTime = 0;
+    
+    
     float time = 0f;
     Vector3 normal;
 
@@ -17,9 +22,11 @@ public class Sneaking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
+        OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
         Debug.Log("SNEAKING");
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSneakSpeed;
     }
+    
     public override void Exit()
     {
 
@@ -60,6 +67,14 @@ public class Sneaking : State, IAcceleration
                 playerBehaviour.ChangeState(playerBehaviour.falling);
             }
         }
+        
+        //TODO Sound temporary
+        currentTime += Time.deltaTime;
+        if (currentTime >= timeStep)
+        {
+            TakeStep();
+            currentTime = 0;
+        }
     }
 
     public override void FixedUpdate()
@@ -69,8 +84,6 @@ public class Sneaking : State, IAcceleration
 
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.sneak.speed,playerBehaviour.GetMovementData.GetSpeedRelated.sneak.accTotalTime);
         
-        //Sound from material
-        Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
     }
     
     public override void OnSpaceBar(InputAction.CallbackContext context)

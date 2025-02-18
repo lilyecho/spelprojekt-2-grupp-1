@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -237,8 +238,18 @@ public abstract class State
         return targetRotation;
     }
 
-    protected virtual void SoundChangesOnEnter()
+    protected void TakeStep()
     {
-        
+        playerBehaviour.GetAudioPort.OnStep(
+            playerBehaviour.GetAudioData,
+            playerBehaviour.GetCheckerTransform);
+    }
+    
+    /// <summary>
+    /// Only capable 4 now to change global parameters (Won't search for a suitable change in any local parameters)
+    /// </summary>
+    protected void OnEnterChangeGlobalActivityParameter(string parameterName , int value)
+    {
+        playerBehaviour.GetAudioPort.OnChangeGlobalParameter(parameterName, value);
     }
 }

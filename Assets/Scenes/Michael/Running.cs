@@ -9,6 +9,10 @@ public class Running : State, IAcceleration
     {
 
     }
+    
+    private float timeStep = .5f;
+    private float currentTime = 0;
+    
     float time = 0f;
     Vector3 normal;
 
@@ -17,6 +21,7 @@ public class Running : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
+        OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
         Debug.Log("RUNNING");
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.run.speed;
         
@@ -62,6 +67,14 @@ public class Running : State, IAcceleration
             {
                 playerBehaviour.ChangeState(playerBehaviour.falling);
             }
+        }
+        
+        //TODO Sound temporary
+        currentTime += Time.deltaTime;
+        if (currentTime >= timeStep)
+        {
+            TakeStep();
+            currentTime = 0;
         }
     }
 

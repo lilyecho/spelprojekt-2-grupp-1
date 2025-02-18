@@ -22,6 +22,8 @@ public class Walking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
+        OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
+        
         Debug.Log("WALKING");
         coyoteTimer = playerBehaviour.GetMovementData.GetCoyoteTime;
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
@@ -85,13 +87,6 @@ public class Walking : State, IAcceleration
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed,playerBehaviour.GetMovementData.GetSpeedRelated.walk.accTotalTime);
-    }
-
-    private void TakeStep()
-    {
-        playerBehaviour.GetAudioPort.OnStep(
-            playerBehaviour.GetAudioData,
-            playerBehaviour.GetCheckerTransform);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
