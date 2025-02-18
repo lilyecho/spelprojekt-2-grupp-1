@@ -18,14 +18,14 @@ public class ChargingJump : JumpState
     }
     public override void Exit()
     {
-
+        
     }
 
 
     private void ActivateSound()
     {
         EventReference eventRef = playerBehaviour.GetAudioData.GetAudioJump;
-        
+        playerBehaviour.GetAudioPort.OnCreate(playerBehaviour.GetAudioData.GetAudioJump);
     }
     
     public override void Update()

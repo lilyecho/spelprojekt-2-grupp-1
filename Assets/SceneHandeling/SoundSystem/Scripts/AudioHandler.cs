@@ -5,6 +5,7 @@ using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioHandler : MonoBehaviour
@@ -16,16 +17,78 @@ public class AudioHandler : MonoBehaviour
     private void OnEnable()
     {
         audioPort.OnChangeGlobalParameter += ChangeGlobalParameter;
+        audioPort.OnCreate += CreateInstance;
+        audioPort.onStart += PlayInstance;
+        audioPort.OnSetParameter += ChangeLocalParameter;
+        audioPort.OnRemove += RemoveInstance;
     }
 
     private void OnDisable()
     {
         audioPort.OnChangeGlobalParameter -= ChangeGlobalParameter;
+        audioPort.OnCreate -= CreateInstance;
+        audioPort.onStart -= PlayInstance;
+        audioPort.OnSetParameter -= ChangeLocalParameter;
+        audioPort.OnRemove -= RemoveInstance;
     }
 
     private void ChangeGlobalParameter(string parameterName, int value)
     {
         RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
+    }
+    
+    private void CreateInstance(EventReference eventReference)
+    {
+        GUID eventGUID = eventReference.Guid;
+        if (dictionaryGuidInstances.ContainsKey(eventGUID))
+        {
+            return;
+        }
+        dictionaryGuidInstances[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
+    }
+
+    private void PlayInstance(EventReference eventReference)
+    {
+        if (!TryGetInstance(eventReference, out EventInstance instance)) return;
+
+        instance.start();
+    }
+    
+    private void ChangeLocalParameter(EventReference reference, string parameterName, int value)
+    {
+        if (!dictionaryGuidInstances.ContainsKey(reference.Guid)) return;
+        
+        dictionaryGuidInstances[reference.Guid].setParameterByName(parameterName, value);
+    }
+
+    private void RemoveInstance(EventReference eventReference)
+    {
+        GUID eventGUID = eventReference.Guid;
+        if (!TryGetInstance(eventGUID, out EventInstance instance)) return;
+        
+        dictionaryGuidInstances.Remove(eventGUID);
+        //TODO hårdkodat
+        instance.stop(STOP_MODE.ALLOWFADEOUT);
+        instance.release();
+        
+    }
+    
+    private bool TryGetInstance(GUID eventGUID, out EventInstance instance)
+    {
+        instance = new EventInstance();
+        if (!dictionaryGuidInstances.ContainsKey(eventGUID)) return false;
+
+        instance = dictionaryGuidInstances[eventGUID];
+        return true;
+    }
+    private bool TryGetInstance(EventReference eventReference, out EventInstance instance)
+    {
+        GUID eventGUID = eventReference.Guid;
+        instance = new EventInstance();
+        if (!dictionaryGuidInstances.ContainsKey(eventGUID)) return false;
+
+        instance = dictionaryGuidInstances[eventGUID];
+        return true;
     }
     
     public void PlayOneShot(EventReference eventReference)
@@ -75,11 +138,22 @@ public class AudioHandler : MonoBehaviour
         instance.start();
         instance.release();
     }
-
+    
+    public bool TryCreateInstance(EventReference eventReference)
+    {
+        GUID eventGUID = eventReference.Guid;
+        if (dictionaryGuidInstances.ContainsKey(eventGUID))
+        {
+            return false;
+        }
+        dictionaryGuidInstances[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
+        return true;
+    }
+    
     public bool TryCreateInstance(EventReference eventReference, out EventInstance instance)
     {
-        GUID eventID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventID))
+        GUID eventGUID = eventReference.Guid;
+        if (dictionaryGuidInstances.ContainsKey(eventGUID))
         {
             instance = new EventInstance();
             return false;
@@ -90,9 +164,26 @@ public class AudioHandler : MonoBehaviour
         return true;
     }
 
-    public void TryChangeLocalParameter(EventInstance instance, string parameterName, int value)
+    public bool TryChangeLocalParameter(EventReference reference, string parameterName, int value)
     {
-        instance.setParameterByName(parameterName, value);
+        if (dictionaryGuidInstances.ContainsKey(reference.Guid))
+        {
+            dictionaryGuidInstances[reference.Guid].setParameterByName(parameterName, value);
+            return true;
+        }
+        return false;
+    }
+
+    private bool TryStopSound(EventReference eventReference)
+    {
+        GUID eventGUID = eventReference.Guid;
+        if (dictionaryGuidInstances.ContainsKey(eventGUID))
+        {
+            dictionaryGuidInstances.Remove(eventGUID);
+            return true;
+        }
+
+        return false;
     }
     
     private void OnDestroy()
