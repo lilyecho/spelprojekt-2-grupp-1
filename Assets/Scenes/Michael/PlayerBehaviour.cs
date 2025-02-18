@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -102,6 +103,24 @@ public class PlayerBehaviour : MonoBehaviour
     public Transform rightBackPaw;
     */
 
+    [SerializeField] private TimeManager timeManager = null;
+    private bool _movementOn = true;
+
+    private void OnEnable()
+    {
+        timeManager.OnMovement += ChangeMovementActivation;
+    }
+
+    private void OnDisable()
+    {
+        timeManager.OnMovement -= ChangeMovementActivation;
+    }
+
+    private void ChangeMovementActivation(bool nextValue)
+    {
+        _movementOn = nextValue;
+    }
+
     public PlayerMovementData GetMovementData => playerMovementData;
     //public AbilityData GetAbilityData => abilityData;
     public AbilityData.Abilities Abilities
@@ -137,6 +156,8 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_movementOn) return;
+        
         currentState?.Update();
         jumpState?.Update();
         //moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
@@ -152,6 +173,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_movementOn) return;
         currentState?.FixedUpdate();
     }
 
