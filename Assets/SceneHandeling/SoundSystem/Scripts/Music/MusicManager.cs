@@ -9,7 +9,6 @@ public class MusicManager : MonoBehaviour
 {
     [Header("Port-Related")]
     [SerializeField] private RegistrationPort registrationPort = null;
-    [SerializeField] private AudioManagerPort audioManagerPort = null;
     [Header("Music-Related")]
     [SerializeField] private MusicData musicData;
     [SerializeField] private AudioHandler audioHandler = null;
@@ -31,14 +30,11 @@ public class MusicManager : MonoBehaviour
     private void OnEnable()
     {
         registrationPort.OnRegister += SetRegistration;
-        //audioManagerPort.OnChased += PlayerChasedMusic;
-        
     }
 
     private void OnDisable()
     {
         registrationPort.OnRegister -= SetRegistration;
-        //audioManagerPort.OnChased -= PlayerChasedMusic;
     }
 
     private void SetRegistration(RegistrationPort.TypeOfRegistration type, GameObject enemyManagerGameObject)

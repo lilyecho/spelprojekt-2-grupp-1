@@ -44,7 +44,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AbilityData.Abilities currentAbilities;
     //TODO change when we get animations instead of a certain point 
     
-    #region MyRegion
+    #region MaterialChecker
 
     [SerializeField] private Transform materialCheckerTransform = null;
     public Transform GetCheckerTransform => materialCheckerTransform;
