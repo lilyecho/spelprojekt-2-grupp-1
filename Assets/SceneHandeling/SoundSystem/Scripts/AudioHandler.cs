@@ -10,14 +10,17 @@ public class AudioHandler : MonoBehaviour
 {
     private List<EventInstance> eventInstances = new List<EventInstance>();
     
-    /*public void PlayOneShot(EventReference eventReference)
+    public void PlayOneShot(EventReference eventReference)
     {
-        
-    }*/
+        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+    }
     
     public void PlayOneShot(EventReference eventReference, Vector3 placementPos)
     {
-        
+        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+        instance.set3DAttributes(placementPos.To3DAttributes());
+        instance.start();
+        instance.release();
     }
 
     /// <summary>
@@ -27,8 +30,9 @@ public class AudioHandler : MonoBehaviour
     {
         //TODO performance-heavy
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);
-        
+
         instance.set3DAttributes(placementPos.To3DAttributes());
+        
         instance.setParameterByName(parameterName,parameterValue);
         instance.start();
         instance.release();
