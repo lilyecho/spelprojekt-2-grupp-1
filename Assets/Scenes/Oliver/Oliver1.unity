@@ -9483,6 +9483,7 @@ GameObject:
   - component: {fileID: 533334190}
   - component: {fileID: 533334189}
   - component: {fileID: 533334191}
+  - component: {fileID: 533334192}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -9545,6 +9546,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 533334185}
   commandList:
+  - {fileID: 533334192}
   - {fileID: 533334188}
   - {fileID: 533334190}
   - {fileID: 533334189}
@@ -9577,7 +9579,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 533334186}
   selectedCommands:
-  - {fileID: 533334191}
+  - {fileID: 533334192}
   variables: []
   description: 
   stepPause: 0
@@ -9729,6 +9731,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &533334192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533334181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 8
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &538192934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 59615149175501986, guid: 9ea968d49d284224daf1d27f6a0e8024, type: 3}
