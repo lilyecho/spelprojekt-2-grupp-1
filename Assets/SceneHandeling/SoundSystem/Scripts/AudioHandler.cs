@@ -33,6 +33,26 @@ public class AudioHandler : MonoBehaviour
         instance.start();
         instance.release();
     }
+    
+    /// <summary>
+    /// Change parameters before the sound
+    /// </summary>
+    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, string[] parameterNames, int[] parameterValues)
+    {
+        if (parameterNames.Length != parameterValues.Length) throw new Exception("The amount of elements in parameterNames has to be the same as parameterValues");
+        
+        //TODO performance-heavy
+        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+        
+        instance.set3DAttributes(placementPos.To3DAttributes());
+        for (int i = 0; i < parameterNames.Length; i++)
+        {
+            instance.setParameterByName(parameterNames[i],parameterValues[i]);
+        }
+        
+        instance.start();
+        instance.release();
+    }
 
     public void CreateInstance(EventReference eventReference, out EventInstance instance)
     {

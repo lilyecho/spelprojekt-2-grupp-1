@@ -21,6 +21,9 @@ public class SfxManager : MonoBehaviour
 
     private void CreateSound4Step(CharacterAudioData characterAudioData, MaterialComposition material, Vector3 position)
     {
-        audioHandler.PlayOneShot(characterAudioData.GetAudioMovement,position,parameters.GetMaterialParameter,(int)material);
+        audioHandler.PlayOneShot(
+            characterAudioData.GetAudioMovement,
+            position,parameters.GetMaterialParameter,
+            (int)material);
     }
 }
