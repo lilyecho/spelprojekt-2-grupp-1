@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class AudioHandler : MonoBehaviour
 {
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private FmodParameterData parameterData = null;
-    private List<EventInstance> eventInstances = new List<EventInstance>();
+    private Dictionary<GUID,EventInstance> dictionaryGuidInstances = new Dictionary<GUID, EventInstance>();
 
     private void OnEnable()
     {
@@ -75,20 +76,31 @@ public class AudioHandler : MonoBehaviour
         instance.release();
     }
 
-    public void CreateInstance(EventReference eventReference, out EventInstance instance)
+    public bool TryCreateInstance(EventReference eventReference, out EventInstance instance)
     {
+        GUID eventID = eventReference.Guid;
+        if (dictionaryGuidInstances.ContainsKey(eventID))
+        {
+            instance = new EventInstance();
+            return false;
+        }
+        
         instance = RuntimeManager.CreateInstance(eventReference);
-        eventInstances.Add(instance);
+        dictionaryGuidInstances[eventReference.Guid] = instance;
+        return true;
     }
 
-    
+    public void TryChangeLocalParameter(EventInstance instance, string parameterName, int value)
+    {
+        instance.setParameterByName(parameterName, value);
+    }
     
     private void OnDestroy()
     {
-        foreach (EventInstance instance in eventInstances)
+        foreach (var keyValue in dictionaryGuidInstances)
         {
-            instance.stop(STOP_MODE.IMMEDIATE);
-            instance.release();
+            keyValue.Value.stop(STOP_MODE.IMMEDIATE);
+            keyValue.Value.release();
         }
     }
 }

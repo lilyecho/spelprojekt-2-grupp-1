@@ -23,7 +23,7 @@ public class MusicManager : MonoBehaviour
 
     private void InitialSetup()
     {
-        audioHandler.CreateInstance(musicData.GetMainMusic, out EventInstance mainInstance);
+        audioHandler.TryCreateInstance(musicData.GetMainMusic, out EventInstance mainInstance);
         mainInstance.start();
     }
 
