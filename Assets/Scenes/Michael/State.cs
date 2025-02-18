@@ -195,8 +195,12 @@ public abstract class State
         return tValue * totalAccelerationTime;
     }
     
+    /// <summary>
+    /// Makes it so that only x and z movement matters in air-movement
+    /// </summary>
     protected void ApplyCorrectiveAirForces()
     {
+        //Flaws is the use of vector2 which only use x and y, but keep in mind that x => x and z => y
         Vector3 currentVelocity = playerBehaviour.rb.velocity;
 
         Vector2 currentXZVelocity = new Vector2(currentVelocity.x,currentVelocity.z);
@@ -204,9 +208,10 @@ public abstract class State
         //Works as a cap so the player wont move to fast
         if (currentXZVelocity.magnitude >= playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed)
         {
-            Vector2 adaptedXZ = currentXZVelocity.normalized *
+            
+            Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z) *
                                 playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed;
-            playerBehaviour.rb.velocity = new Vector3(adaptedXZ.x,currentVelocity.y,adaptedXZ.y);
+            playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);
             Debug.Log("MaxSpeed - In Air");
         }
         else
