@@ -1620,7 +1620,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 657733002417563932, guid: 4742a4e3fef7ed241998b39c58e40ad4, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2715060620732193819, guid: 4742a4e3fef7ed241998b39c58e40ad4, type: 3}
       propertyPath: m_LocalScale.x
@@ -3740,7 +3740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd5fa0d4ddc55b4eba8ff317685d33b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 96.10003
+      value: 98.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd5fa0d4ddc55b4eba8ff317685d33b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3748,7 +3748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd5fa0d4ddc55b4eba8ff317685d33b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50.829834
+      value: 53.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd5fa0d4ddc55b4eba8ff317685d33b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5708,15 +5708,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.78
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.54
+      value: 12.07
       objectReference: {fileID: 0}
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.57
+      value: -13.19
       objectReference: {fileID: 0}
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5750,33 +5750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astrid 3.0
       objectReference: {fileID: 0}
-    - target: {fileID: 6820916478898539351, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6820916478898539351, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049046979394251196, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049046979394251196, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.226
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049046979394251196, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6820916478898539351, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1682117248}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
 --- !u!1001 &998250745
 PrefabInstance:
@@ -11404,25 +11381,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 879feaa76c1a80c4fa3aa36656cd5f85, type: 3}
   m_PrefabInstance: {fileID: 1648087683}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1682117238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6820916478898539351, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
-  m_PrefabInstance: {fileID: 987785797}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1682117248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682117238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ef0caec013f6044845b09a095800fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
-  typeOfRegistration: 1
 --- !u!1001 &1683322844
 PrefabInstance:
   m_ObjectHideFlags: 0
