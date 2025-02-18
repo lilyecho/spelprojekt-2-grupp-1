@@ -239,14 +239,14 @@ public abstract class State
         return targetRotation;
     }
 
-    protected float UpdateAirborneRotation2(Rigidbody rb, Transform playerTransform, float currentVelocity, float smoothTime)
+    protected void UpdateAirborneRotation2(Rigidbody rb, Transform playerTransform, ref float currentVelocity, float smoothTime)
     {
         float targetAngle = MathF.Atan2(rb.velocity.x, rb.velocity.z) * Mathf.Rad2Deg;
 
         float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
 
-        
-        return angle;
+        playerTransform.rotation = Quaternion.Euler(playerTransform.eulerAngles.x, angle, playerTransform.eulerAngles.z);
+
     }
 
     protected void TakeStep()

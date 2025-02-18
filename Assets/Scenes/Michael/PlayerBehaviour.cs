@@ -269,7 +269,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float rotationSpeed = 10f;
 
     [HideInInspector]public float currentVelocity;
-    private float smoothTime = 0.05f;
+    [HideInInspector]public float smoothTime = 0.1f;
 
     public void RotateCharacter(Vector3 moveDir)
     {
