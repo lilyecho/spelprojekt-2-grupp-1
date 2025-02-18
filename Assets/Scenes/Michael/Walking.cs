@@ -91,8 +91,7 @@ public class Walking : State, IAcceleration
     {
         playerBehaviour.GetAudioPort.OnStep(
             playerBehaviour.GetAudioData,
-            SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform),
-            playerBehaviour.transform.position);
+            playerBehaviour.GetCheckerTransform);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)

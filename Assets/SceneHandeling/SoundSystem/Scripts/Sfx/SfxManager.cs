@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 
@@ -19,11 +20,13 @@ public class SfxManager : MonoBehaviour
         audioPort.OnStep -= CreateSound4Step;
     }
 
-    private void CreateSound4Step(CharacterAudioData characterAudioData, MaterialComposition material, Vector3 position)
+    private void CreateSound4Step(CharacterAudioData characterAudioData, Transform checkerTransform)
     {
+        MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
+        
         audioHandler.PlayOneShot(
             characterAudioData.GetAudioMovement,
-            position,parameters.GetMaterialParameter,
+            checkerTransform.position,parameters.GetMaterialParameter,
             (int)material);
     }
 }
