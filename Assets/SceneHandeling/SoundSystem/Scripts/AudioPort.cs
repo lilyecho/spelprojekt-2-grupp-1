@@ -8,5 +8,7 @@ using UnityEngine.Events;
 public class AudioPort : ScriptableObject
 {
     public UnityAction<CharacterAudioData,Transform> OnStep = delegate(CharacterAudioData arg0, Transform vector3) {  };
-    
+
+    public UnityAction<string> OnTest = delegate(string a) { };
+
 }

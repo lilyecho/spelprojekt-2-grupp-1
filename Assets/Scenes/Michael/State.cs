@@ -236,4 +236,9 @@ public abstract class State
         //playerBehaviour.transform.rotation = targetRotation;
         return targetRotation;
     }
+
+    protected virtual void SoundChangesOnEnter()
+    {
+        
+    }
 }
