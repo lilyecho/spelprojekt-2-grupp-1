@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 3126435142601314720}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 5, z: -0.6}
+  m_LocalPosition: {x: 0, y: 1.226, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,15 +328,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -25.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 20.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -549,6 +549,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1464900639232854794, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       propertyPath: m_Layer
@@ -768,6 +772,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6218216728613897756}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6309433725292608565}
   m_SourcePrefab: {fileID: 100100000, guid: 0b29e666789b8b649930006bb67152c9, type: 3}
 --- !u!4 &6188812073622524397 stripped
 Transform:
@@ -1098,3 +1105,17 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6309433725292608565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820916478898539351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ef0caec013f6044845b09a095800fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
+  typeOfRegistration: 1

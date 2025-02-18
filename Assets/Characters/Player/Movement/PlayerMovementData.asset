@@ -12,28 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13199af10343e3f40ae07a8837062516, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
-  gravitationMagnitudeUp: 60
-  gravitationMagnitudeDown: 80
+  gravitationMagnitudeUp: 20
+  gravitationMagnitudeDown: 30
   rayCastLength: 0.1
   speedRelated:
     sneak:
-      speed: 5
+      speed: 1
       accTotalTime: 0.5
     walk:
-      speed: 15
+      speed: 4
       accTotalTime: 0.15
     run:
-      speed: 30
+      speed: 9
       accTotalTime: 0.15
   normalJump:
-    jumpHeight: 9
-    keptMomentum: 0.6
+    jumpHeight: 2
+    keptMomentum: 0.5
   megaJump:
     jumpHeight: 18
     keptMomentum: 0.6
   appliableAirForces:
-    airCorrectionMagnitude: 30
-    maximumSpeedInPlane: 40
+    airCorrectionMagnitude: 10
+    maximumSpeedInPlane: 8
   chargeTime: 0.5
   coyoteTime: 0.15
   jumpBufferDuration: 0.2
