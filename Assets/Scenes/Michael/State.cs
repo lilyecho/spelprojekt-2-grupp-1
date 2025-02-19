@@ -99,7 +99,7 @@ public abstract class State
         }
         if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, slopeCheckerLength, ~layerToIgnore))
         {
-            if (Vector3.Angle(Vector3.up, hit1.normal) < maxRotationAngle)
+            if (Vector3.Angle(Vector3.up, hit2.normal) < maxRotationAngle)
             {
                 point2 = hit2.point;
             }
@@ -147,7 +147,7 @@ public abstract class State
         }
         if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, slopeCheckerLength, ~layerToIgnore))
         {
-            if (Vector3.Angle(Vector3.up, hit1.normal) < maxRotationAngle)
+            if (Vector3.Angle(Vector3.up, hit2.normal) < maxRotationAngle)
             {
                 point2 = hit2.point;
             }
@@ -163,14 +163,15 @@ public abstract class State
         }
         else
         {
-            //targetRotation = Quaternion.FromToRotation(playerTransform.up, normal) * playerTransform.rotation;
-            vectorBetweenPoints = Vector3.forward;
+            
+            vectorBetweenPoints = new Vector3(playerTransform.forward.x, 1, playerTransform.forward.z);
         }
-        float targetAngle = MathF.Atan2(vectorBetweenPoints.y, vectorBetweenPoints.z) * Mathf.Rad2Deg;
+        //float targetAngle = Mathf.Atan2(vectorBetweenPoints.y, vectorBetweenPoints.z) * Mathf.Rad2Deg;
+        float targetAngle = Vector3.Angle(playerTransform.forward, vectorBetweenPoints);
 
-        float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+        float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.x, targetAngle, ref currentVelocity, smoothTime);
 
-        
+
         playerTransform.rotation = Quaternion.Euler(angle, playerTransform.eulerAngles.y, playerTransform.eulerAngles.z);
     }
 
