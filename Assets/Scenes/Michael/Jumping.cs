@@ -39,7 +39,7 @@ public class Jumping : State
         //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity,playerBehaviour.smoothTime);
         //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
 
-        UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
+        
 
         if (flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
@@ -49,6 +49,8 @@ public class Jumping : State
 
     public override void FixedUpdate()
     {
+        UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
+        
         ApplyCorrectiveAirForces();
         
         //Gravity
