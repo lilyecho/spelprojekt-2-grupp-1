@@ -16,7 +16,7 @@ public class AbilityData : ScriptableObject
 
      [SerializeField] private Abilities activeAbilities;
 
-     public void SetActiveAbilities(Abilities newAbility)
+     public void ActivateAbilities(Abilities newAbility)
      {
           activeAbilities |= newAbility;
      }
