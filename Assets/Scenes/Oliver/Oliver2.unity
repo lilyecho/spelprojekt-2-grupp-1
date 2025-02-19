@@ -10367,6 +10367,13 @@ GameObject:
   - component: {fileID: 1486993832}
   - component: {fileID: 1486993831}
   - component: {fileID: 1486993830}
+  - component: {fileID: 1486993834}
+  - component: {fileID: 1486993840}
+  - component: {fileID: 1486993839}
+  - component: {fileID: 1486993838}
+  - component: {fileID: 1486993837}
+  - component: {fileID: 1486993836}
+  - component: {fileID: 1486993835}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -10429,8 +10436,12 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 1486993825}
   commandList:
+  - {fileID: 1486993840}
   - {fileID: 1486993829}
   - {fileID: 1486993828}
+  - {fileID: 1486993838}
+  - {fileID: 1486993837}
+  - {fileID: 1486993839}
   suppressAllAutoSelections: 0
 --- !u!114 &1486993827
 MonoBehaviour:
@@ -10445,10 +10456,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -4, y: 2}
+  scrollPos: {x: 145.5, y: 179}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
+  blockViewHeight: 481
   zoom: 1
   scrollViewRect:
     serializedVersion: 2
@@ -10459,7 +10470,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1486993833}
   selectedCommands:
-  - {fileID: 1486993830}
+  - {fileID: 1486993835}
   variables: []
   description: 
   stepPause: 0
@@ -10485,7 +10496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "P\xE5pek vart spelaren m\xE5ste g\xE5"
+  storyText: The forest sure is dense around these parts...
   description: 
   character: {fileID: 853757288}
   portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
@@ -10557,7 +10568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "Ber\xE4ttar om mega jump potion"
+  storyText: This is one of Iduns potions!
   description: 
   character: {fileID: 853757288}
   portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
@@ -10611,12 +10622,251 @@ MonoBehaviour:
   itemId: 3
   blockName: Block #2
   description: 
-  eventHandler: {fileID: 0}
+  eventHandler: {fileID: 1486993834}
   commandList:
   - {fileID: 1486993832}
   - {fileID: 1486993831}
+  - {fileID: 1486993836}
+  - {fileID: 1486993835}
   - {fileID: 1486993830}
   suppressAllAutoSelections: 0
+--- !u!114 &1486993834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000864f8e9e1748a39807861d0e60e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 1486993833}
+  suppressBlockAutoSelect: 0
+  keyPressType: 0
+  keyCode: 282
+--- !u!114 &1486993835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 12
+  indentLevel: 0
+  storyText: 
+  description: 
+  character: {fileID: 853757288}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1486993836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 11
+  indentLevel: 0
+  storyText: How did it get up here? I hope nothing bad happened to her...
+  description: 
+  character: {fileID: 853757288}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1486993837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 10
+  indentLevel: 0
+  storyText: Maybe I can find something that will help me reach?
+  description: 
+  character: {fileID: 853757288}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1486993838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 9
+  indentLevel: 0
+  storyText: I think I see an opening up to my right but I am unsure if I can make
+    it up there.
+  description: 
+  character: {fileID: 853757288}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1486993839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 8
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1486993840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 7
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1487441283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11861,15 +12111,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.66
+      value: -37.369
       objectReference: {fileID: 0}
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.98
+      value: 0.109
       objectReference: {fileID: 0}
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 110.48
+      value: 110.839
       objectReference: {fileID: 0}
     - target: {fileID: 6188812073622524397, guid: 57de60c876aea7d49b25cfcd3e389201, type: 3}
       propertyPath: m_LocalRotation.w
