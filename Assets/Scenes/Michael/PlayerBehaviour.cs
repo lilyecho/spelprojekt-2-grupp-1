@@ -159,7 +159,6 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.LogError("Update"+Time.deltaTime);
         if (!_movementOn) return;
         
         currentState?.Update();
