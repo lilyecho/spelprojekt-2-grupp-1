@@ -202,6 +202,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Space(InputAction.CallbackContext context)
     {
+        if (!_movementOn) return;
         currentState?.OnSpaceBar(context);
         jumpState?.OnSpaceBar(context);
     }
@@ -218,6 +219,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             movementMode = MovementMode.WALK;
         }
+        
+        if (!_movementOn) return;
         currentState?.OnShift(context);
     }
 
@@ -234,6 +237,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             movementMode = MovementMode.WALK;
         }
+        
+        if (!_movementOn) return;
         currentState?.OnCTRL(context);
     }
 
@@ -248,8 +253,8 @@ public class PlayerBehaviour : MonoBehaviour
             moveInput = Vector2.zero;
             accTime = 0;
         }
-
-
+        
+        if (!_movementOn) return;
         currentState?.OnWASD(context);
 
     }
@@ -262,6 +267,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!_movementOn) return;
         currentState?.OnCollision(collision);
     }
 
