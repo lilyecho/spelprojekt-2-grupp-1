@@ -39,7 +39,7 @@ public class Sneaking : State, IAcceleration
 
     public override void Update()
     {
-        playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
+        
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
@@ -80,6 +80,8 @@ public class Sneaking : State, IAcceleration
 
     public override void FixedUpdate()
     {
+        
+        playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
         //playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
 

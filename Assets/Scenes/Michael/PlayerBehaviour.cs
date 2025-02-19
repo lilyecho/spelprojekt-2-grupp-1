@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -277,22 +278,31 @@ public class PlayerBehaviour : MonoBehaviour
     [HideInInspector]public float currentVelocity;
     [HideInInspector]public float smoothTime = 0.1f;
 
+    [SerializeField] private float rotationTotalTime = 0.1f;
+    private float rotationTimer = 0;
+    private float testRot = 1000;
+    
+    
     public void RotateCharacter(Vector3 moveDir)
     {
         if (moveDir != Vector3.zero)
         {
             /*
+            Debug.LogError("Rot"+Time.deltaTime);
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveDir.x, 0, moveDir.z));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed * 40);
-            */
+            float maxDegreeCurrent = (Quaternion.Angle(transform.rotation, targetRotation)/rotationSpeed)*Time.deltaTime;
+            //Debug.LogError("Angles: "+testRot*Time.deltaTime);
+            
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, testRot*Time.fixedDeltaTime);*/
 
             float targetAngle = MathF.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
 
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
 
             transform.rotation = Quaternion.Euler(transform.eulerAngles.x, angle, transform.eulerAngles.z);
-
+            
         }
+        
     }
 
 

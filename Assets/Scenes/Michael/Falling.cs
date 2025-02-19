@@ -49,7 +49,7 @@ public class Falling : State
         //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
         //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
 
-        UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
+        
 
         if (CheckForGround())
         {
@@ -73,11 +73,7 @@ public class Falling : State
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, time);
         */
         
-
         time += 2 * Time.deltaTime;
-
-
-
 
         if(playerBehaviour.intoJump || playerBehaviour.intoChargingJump)
         {
@@ -92,6 +88,8 @@ public class Falling : State
 
     public override void FixedUpdate()
     {
+        UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
+        
         ApplyCorrectiveAirForces();
         
         //Gravity
