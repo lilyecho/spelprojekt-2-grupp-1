@@ -123,16 +123,56 @@ public abstract class State
         }
 
         
-
-
-
-
         //playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, timeCount);
 
         //timeCount = timeCount + 2 * Time.deltaTime;
         return targetRotation;
     }
 
+    protected void AlignToSlope2(Transform[] rayCastPoints, Transform playerTransform, float slopeCheckerLength, float maxRotationAngle, ref float currentVelocity, float smoothTime)
+    {
+        //
+        LayerMask layerToIgnore = (1 << 8) | (1 << 2);
+        Vector3 point1 = Vector3.zero;
+        Vector3 point2 = Vector3.zero;
+        RaycastHit hit1;
+        RaycastHit hit2;
+        if (Physics.Raycast(rayCastPoints[1].position, Vector3.down, out hit1, slopeCheckerLength, ~layerToIgnore))
+        {
+            if (Vector3.Angle(Vector3.up, hit1.normal) < maxRotationAngle)
+            {
+                point1 = hit1.point;
+            }
+
+        }
+        if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, slopeCheckerLength, ~layerToIgnore))
+        {
+            if (Vector3.Angle(Vector3.up, hit1.normal) < maxRotationAngle)
+            {
+                point2 = hit2.point;
+            }
+
+        }
+
+        
+        Vector3 vectorBetweenPoints;
+        if (point1 != Vector3.zero && point2 != Vector3.zero)
+        {
+            vectorBetweenPoints = (point1 - point2).normalized;
+            
+        }
+        else
+        {
+            //targetRotation = Quaternion.FromToRotation(playerTransform.up, normal) * playerTransform.rotation;
+            vectorBetweenPoints = Vector3.forward;
+        }
+        float targetAngle = MathF.Atan2(vectorBetweenPoints.y, vectorBetweenPoints.z) * Mathf.Rad2Deg;
+
+        float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+
+        
+        playerTransform.rotation = Quaternion.Euler(angle, playerTransform.eulerAngles.y, playerTransform.eulerAngles.z);
+    }
 
     public Vector3 GetSurfaceNormal(Transform[] raycastPoints, float rayCastLength)
     {
