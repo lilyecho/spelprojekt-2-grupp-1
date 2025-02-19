@@ -44,7 +44,7 @@ public abstract class JumpState
     {
         playerBehaviour.rb.velocity *= momentumKeptPercentage; 
         playerBehaviour.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        
+        playerBehaviour.JumpParticles();
         playerBehaviour.ChangeState(playerBehaviour.jumping);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
     }

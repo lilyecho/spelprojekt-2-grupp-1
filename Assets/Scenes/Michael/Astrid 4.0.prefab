@@ -404,84 +404,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1001 &100977831112078209
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 39312636168687084}
-    m_Modifications:
-    - target: {fileID: 1259078097192204560, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_Name
-      value: Jump Particle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1259078097192204560, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.18847
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.18847
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.018999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.006
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2994038875534626662, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
---- !u!4 &1530336889957296377 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1466598455782366072, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
-  m_PrefabInstance: {fileID: 100977831112078209}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &504706482222770695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,9 +864,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2406018792531055312}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1530336889957296377}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
@@ -1137,6 +1056,7 @@ MonoBehaviour:
   accTime: 0
   intoJump: 0
   intoChargingJump: 0
+  jumpParticles: {fileID: 2994038875534626662, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   rotationSpeed: 10
   currentVelocity: 0

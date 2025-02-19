@@ -99,6 +99,10 @@ public class PlayerBehaviour : MonoBehaviour
     [HideInInspector]
     public bool intoChargingJump = false;
 
+
+    public ParticleSystem jumpParticles;
+    private ParticleSystem jumpParticlesInstance;
+
     /*
     public Transform leftFontPaw;
     public Transform rightFontPaw;
@@ -307,6 +311,9 @@ public class PlayerBehaviour : MonoBehaviour
 
 
 
-
+    public void JumpParticles()
+    {
+        jumpParticlesInstance = Instantiate(jumpParticles, transform.position, jumpParticles.transform.rotation);
+    }
 
 }
