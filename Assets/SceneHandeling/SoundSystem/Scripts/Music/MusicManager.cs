@@ -27,6 +27,7 @@ public class MusicManager : MonoBehaviour
     private void Awake()
     {
         //InitialSetup();
+        test.Invoke();
     }
 
     private void InitialSetup()
