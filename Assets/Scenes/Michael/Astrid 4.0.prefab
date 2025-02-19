@@ -959,6 +959,7 @@ MonoBehaviour:
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   rotationSpeed: 10
   currentVelocity: 0
+  smoothTime: 0.1
 --- !u!114 &5704581851922697474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,5 +1141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ef0caec013f6044845b09a095800fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  registrationPort: {fileID: 0}
-  typeOfRegistration: 0
+  registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
+  typeOfRegistration: 1
