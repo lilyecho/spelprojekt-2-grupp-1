@@ -138,7 +138,7 @@ public class Falling : State
 
     public bool CheckForGround()
     {
-        LayerMask layerToIgnore = 1 << 8;
+        LayerMask layerToIgnore = (1 << 8) | (1 << 2);
         RaycastHit hit;
         foreach (Transform t in playerBehaviour.rayCastPoints)
         {
