@@ -246,7 +246,11 @@ public abstract class State
 
         float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
 
-        playerTransform.rotation = Quaternion.Euler(playerTransform.eulerAngles.x, angle, playerTransform.eulerAngles.z);
+        if (playerBehaviour.moveInput != Vector2.zero)
+        {
+            playerTransform.rotation = Quaternion.Euler(playerTransform.eulerAngles.x, angle, playerTransform.eulerAngles.z);
+        }
+            
 
     }
 
