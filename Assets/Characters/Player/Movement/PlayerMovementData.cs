@@ -8,6 +8,8 @@ public class PlayerMovementData : ScriptableObject
     [Header("Player Physics")] 
     [SerializeField, Min(0)] private float gravitationMagnitudeUp; 
     [SerializeField, Min(0)] private float gravitationMagnitudeDown;
+    [SerializeField] private float slopeCheckerLength;
+    [SerializeField] private float maxRotationAngle;
 
     [Header("Surface-normal Checker")] 
     [SerializeField, Min(0)] 
@@ -44,6 +46,10 @@ public class PlayerMovementData : ScriptableObject
     public float GetJumpBufferDuration => jumpBufferDuration;
 
     public float GetRotationSpeed => rotationSpeed;
+
+    public float GetSlopeCheckerLength => slopeCheckerLength;
+
+    public float GetMaxRotationAngle => maxRotationAngle;
 
     #endregion
 

@@ -42,7 +42,8 @@ public class Running : State, IAcceleration
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
-        playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal), time);
+        playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
+                                                                playerBehaviour.GetMovementData.GetSlopeCheckerLength, playerBehaviour.GetMovementData.GetMaxRotationAngle), time);
         time = time + Time.deltaTime;
 
 

@@ -81,7 +81,7 @@ public abstract class State
     }
 
 
-    protected Quaternion AlignToSlope(Transform[] rayCastPoints, Transform playerTransform, Vector3 normal)
+    protected Quaternion AlignToSlope(Transform[] rayCastPoints, Transform playerTransform, Vector3 normal, float slopeCheckerLength, float maxRotationAngle)
     {
         //
         LayerMask layerToIgnore = 1 << 8;
@@ -89,17 +89,17 @@ public abstract class State
         Vector3 point2 = Vector3.zero;
         RaycastHit hit1;
         RaycastHit hit2;
-        if (Physics.Raycast(rayCastPoints[1].position, Vector3.down, out hit1, 2f, ~layerToIgnore))
+        if (Physics.Raycast(rayCastPoints[1].position, Vector3.down, out hit1, slopeCheckerLength, ~layerToIgnore))
         {
-            if(Vector3.Angle(Vector3.up, hit1.normal) < 30f)
+            if(Vector3.Angle(Vector3.up, hit1.normal) < maxRotationAngle)
             {
                 point1 = hit1.point;
             }
             
         }
-        if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, 2f, ~layerToIgnore))
+        if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, slopeCheckerLength, ~layerToIgnore))
         {
-            if (Vector3.Angle(Vector3.up, hit1.normal) < 30f)
+            if (Vector3.Angle(Vector3.up, hit1.normal) < maxRotationAngle)
             {
                 point2 = hit2.point;
             }
