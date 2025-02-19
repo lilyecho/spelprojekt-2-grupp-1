@@ -173,6 +173,18 @@ public class AudioHandler : MonoBehaviour
         }
         return false;
     }
+    
+    public void TryChangeGlobalParameter(string parameterName, int value)
+    {
+        try
+        {
+            RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Missing global parameter");
+        }
+    }
 
     private bool TryStopSound(EventReference eventReference)
     {
@@ -180,6 +192,18 @@ public class AudioHandler : MonoBehaviour
         if (dictionaryGuidInstances.ContainsKey(eventGUID))
         {
             dictionaryGuidInstances.Remove(eventGUID);
+            return true;
+        }
+
+        return false;
+    }
+    
+    public bool TryStartSound(EventReference eventReference)
+    {
+        GUID eventGUID = eventReference.Guid;
+        if (dictionaryGuidInstances.ContainsKey(eventGUID))
+        {
+            dictionaryGuidInstances[eventGUID].start();
             return true;
         }
 

@@ -4,6 +4,7 @@ using FMOD.Studio;
 using FMODUnity;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MusicManager : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class MusicManager : MonoBehaviour
     [Header("Behaviour-Related")]
     [SerializeField, ReadOnly] private EnemyManager enemyManager = null;
     [SerializeField] private float closeDistance;
+
+    [Space, Header("MainMusic")] 
+    [SerializeField] private UnityEvent test = new UnityEvent();
     
+    
+    //TODO väldigt temportärt endast för speltest 1
+    private string parameterName = "";
+    private int value;
     private void Awake()
     {
-        InitialSetup();
+        //InitialSetup();
     }
 
     private void InitialSetup()
@@ -26,6 +34,37 @@ public class MusicManager : MonoBehaviour
         audioHandler.TryCreateInstance(musicData.GetMainMusic, out EventInstance mainInstance);
         mainInstance.start();
     }
+
+    public void ChangeParameterName(string newParameter)
+    {
+        parameterName = newParameter;
+    }
+
+    public void ChangeValue(int newValue)
+    {
+        value = newValue;
+    }
+
+    public void CreateMusic()
+    {
+        audioHandler.TryCreateInstance(musicData.GetMainMusic);
+    }
+
+    public void ChangeLocalParameter()
+    {
+        audioHandler.TryChangeLocalParameter(musicData.GetMainMusic, parameterName, value);
+    }
+    
+    public void ChangeGlobalParameter()
+    {
+        audioHandler.TryChangeGlobalParameter(parameterName, value);
+    }
+
+    public void StartMusic()
+    {
+        audioHandler.TryStartSound(musicData.GetMainMusic);
+    }
+    
 
     private void OnEnable()
     {
