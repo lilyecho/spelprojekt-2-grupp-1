@@ -9491,7 +9491,6 @@ GameObject:
   - component: {fileID: 533334202}
   - component: {fileID: 533334201}
   - component: {fileID: 533334200}
-  - component: {fileID: 533334199}
   - component: {fileID: 533334198}
   - component: {fileID: 533334203}
   m_Layer: 0
@@ -9576,7 +9575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 0, y: 0}
+  scrollPos: {x: 153, y: 77}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -9589,7 +9588,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 533334194}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 533334202}
   variables: []
   description: 
   stepPause: 0
@@ -9826,7 +9826,6 @@ MonoBehaviour:
   - {fileID: 533334202}
   - {fileID: 533334195}
   - {fileID: 533334200}
-  - {fileID: 533334199}
   - {fileID: 533334198}
   - {fileID: 533334201}
   suppressAllAutoSelections: 0
@@ -9901,33 +9900,6 @@ MonoBehaviour:
   indentLevel: 0
   storyText: Maybe I can use the tree branches and boulders to make my way after
     Idun?
-  description: 
-  character: {fileID: 123132632}
-  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &533334199
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 533334181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  storyText: ...
   description: 
   character: {fileID: 123132632}
   portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
