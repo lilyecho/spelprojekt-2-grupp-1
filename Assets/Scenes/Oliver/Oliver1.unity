@@ -9630,6 +9630,7 @@ GameObject:
   - component: {fileID: 533334203}
   - component: {fileID: 533334205}
   - component: {fileID: 533334204}
+  - component: {fileID: 533334206}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -9728,7 +9729,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 533334194}
   selectedCommands:
-  - {fileID: 533334201}
+  - {fileID: 533334206}
   variables: []
   description: 
   stepPause: 0
@@ -9964,6 +9965,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 533334202}
   - {fileID: 533334195}
+  - {fileID: 533334206}
   - {fileID: 533334200}
   - {fileID: 533334198}
   - {fileID: 533334201}
@@ -10178,7 +10180,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 227631731}
+      - m_Target: {fileID: 1926285022}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -10317,6 +10319,74 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &533334206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533334181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 19
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 227631731}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1926285022}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   booleanParameter:
     booleanRef: {fileID: 0}
@@ -40723,6 +40793,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6792240922292088899, guid: 4fb0af361f310234890a4dccef9ed4ef, type: 3}
   m_PrefabInstance: {fileID: 365455841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1926285022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5000950017193391192, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
+  m_PrefabInstance: {fileID: 563055689}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1931512999
 PrefabInstance:
