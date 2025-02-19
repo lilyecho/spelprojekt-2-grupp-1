@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8399847710777336900}
   - component: {fileID: 8763276816246570486}
   - component: {fileID: 7878170856506584703}
+  - component: {fileID: 5451424060311494276}
   m_Layer: 0
   m_Name: gren
   m_TagString: Untagged
@@ -117,7 +118,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.35668182, y: 0.15, z: 1.0671616}
   m_Center: {x: -0.010105133, y: 0, z: 0.5335808}
@@ -138,7 +139,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.22401428, y: 0.15, z: 0.8183174}
   m_Center: {x: 0.010818481, y: 0, z: 1.3901024}
@@ -159,7 +160,29 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.12545013, y: 0.15, z: 0.86372375}
   m_Center: {x: 0.020023346, y: 0, z: 2.154148}
+--- !u!64 &5451424060311494276
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431853450203566781}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1484751350641232963, guid: 44532a94a1e21864fb599a1d7cc0b057, type: 3}
