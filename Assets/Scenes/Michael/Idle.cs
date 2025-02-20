@@ -43,6 +43,10 @@ public class Idle : State
                     break;
             }
         }
+        else
+        {
+            playerBehaviour.anim.Play("Astrid_Idle_Anim");
+        }
         Debug.Log("IDLE");
     }
     public override void Exit()

@@ -68,6 +68,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     
     public Rigidbody rb;
+    [HideInInspector] public Animator anim;    
     
 
     [HideInInspector]
@@ -157,7 +158,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         cam = Camera.main;
 
-
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame

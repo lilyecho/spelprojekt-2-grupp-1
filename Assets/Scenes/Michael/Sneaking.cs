@@ -25,6 +25,7 @@ public class Sneaking : State, IAcceleration
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
         Debug.Log("SNEAKING");
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSneakSpeed;
+        playerBehaviour.anim.Play("Astrid_Seak");
     }
     
     public override void Exit()
