@@ -213,7 +213,7 @@ public abstract class State
         return Vector3.zero;
     }
 
-    private float CalculateNextSpeed(float maxSpeed, float time, float totalAccelerationTime)
+    private float CalculateNextSpeed(float maxSpeed, float currentAccTime, float totalAccelerationTime)
     {
         if (playerBehaviour.rb.velocity.magnitude >= maxSpeed)
         {
@@ -221,9 +221,8 @@ public abstract class State
             return maxSpeed;
         }
         
-        float tValue = Mathf.Clamp(time / totalAccelerationTime,0,1);
+        float tValue = Mathf.Clamp(currentAccTime / totalAccelerationTime,0,1);
         return Mathf.Lerp(0, maxSpeed, tValue);
-
     }
 
     protected void ApplyAcceleration(float maxSpeed, float accelerationTotalTime)
@@ -249,16 +248,10 @@ public abstract class State
         //Flaws is the use of vector2 which only use x and y, but keep in mind that x => x and z => y
         Vector3 currentVelocity = playerBehaviour.rb.velocity;
 
-        Vector2 currentXZVelocity = new Vector2(currentVelocity.x,currentVelocity.z);
-        
         //Works as a cap so the player wont move to fast
-        if (currentXZVelocity.magnitude >= playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed)
+        float currentXZSpeed = new Vector2(currentVelocity.x,currentVelocity.z).magnitude;
+        if (currentXZSpeed >= playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed)
         {
-            if (playerBehaviour.moveDir == Vector3.zero)
-            {
-                Debug.Log(playerBehaviour.moveDir);
-            }
-            
             Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z) *
                                 playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed;
             playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);
@@ -266,8 +259,8 @@ public abstract class State
         }
         else
         {
-            
-            playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+            Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
+            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
         }
         
     }
