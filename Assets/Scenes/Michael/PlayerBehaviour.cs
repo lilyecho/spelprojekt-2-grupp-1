@@ -127,6 +127,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void ChangeMovementActivation(bool nextValue)
     {
         _movementOn = nextValue;
+        rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
     public PlayerMovementData GetMovementData => playerMovementData;
