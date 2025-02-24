@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
   gravitationMagnitudeUp: 20
-  gravitationMagnitudeDown: 30
+  gravitationMagnitudeDown: 20
   slopeCheckerLength: 0.3
   maxRotationAngle: 40
   rayCastLength: 0.1
@@ -35,8 +35,8 @@ MonoBehaviour:
     keptMomentum: 0.6
   appliableAirForces:
     airCorrectionMagnitude: 10
-    maximumSpeedInPlane: 8
+    maximumSpeedInPlane: 7
   chargeTime: 0.5
-  coyoteTime: 0.15
+  coyoteTime: 0.2
   jumpBufferDuration: 0.2
   rotationSpeed: 0
