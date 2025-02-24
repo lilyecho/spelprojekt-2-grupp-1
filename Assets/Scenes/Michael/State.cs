@@ -217,7 +217,7 @@ public abstract class State
     {
         if (playerBehaviour.rb.velocity.magnitude >= maxSpeed)
         {
-            Debug.Log("MaxSpeed");
+            //Debug.Log("MaxSpeed");
             return maxSpeed;
         }
         
@@ -244,6 +244,8 @@ public abstract class State
     /// </summary>
     protected void ApplyCorrectiveAirForces()
     {
+        if (playerBehaviour.moveDir == Vector3.zero) return;
+        
         //Flaws is the use of vector2 which only use x and y, but keep in mind that x => x and z => y
         Vector3 currentVelocity = playerBehaviour.rb.velocity;
 
@@ -252,14 +254,19 @@ public abstract class State
         //Works as a cap so the player wont move to fast
         if (currentXZVelocity.magnitude >= playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed)
         {
+            if (playerBehaviour.moveDir == Vector3.zero)
+            {
+                Debug.Log(playerBehaviour.moveDir);
+            }
             
             Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z) *
                                 playerBehaviour.GetMovementData.GetMidAirForces.GetMaximumSpeed;
             playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);
-            Debug.Log("MaxSpeed - In Air");
+            //Debug.Log("MaxSpeed - In Air");
         }
         else
         {
+            
             playerBehaviour.rb.AddForce(playerBehaviour.moveDir.normalized * playerBehaviour.GetMovementData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
         }
         
@@ -283,6 +290,7 @@ public abstract class State
 
     protected void UpdateAirborneRotation2(Rigidbody rb, Transform playerTransform, ref float currentVelocity, float smoothTime)
     {
+        
         float targetAngle = MathF.Atan2(rb.velocity.x, rb.velocity.z) * Mathf.Rad2Deg;
 
         float angle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
@@ -308,5 +316,15 @@ public abstract class State
     protected void OnEnterChangeGlobalActivityParameter(string parameterName , int value)
     {
         playerBehaviour.GetAudioPort.OnChangeGlobalParameter(parameterName, value);
+    }
+
+    /// <summary>
+    /// Transform up-vector is world-direction (0,1,0)
+    /// </summary>
+    protected void ChangeRotationToStandard()
+    {
+        Vector3 forward = new Vector3(playerBehaviour.transform.forward.x, 0, playerBehaviour.transform.forward.z)
+            .normalized;
+        playerBehaviour.transform.rotation = Quaternion.LookRotation(forward, new Vector3(0,1,0));
     }
 }

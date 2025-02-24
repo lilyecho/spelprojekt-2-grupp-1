@@ -88,7 +88,7 @@ public class Running : State, IAcceleration
         ApplyAcceleration(playerBehaviour.GetMovementData.GetSpeedRelated.run.speed,playerBehaviour.GetMovementData.GetSpeedRelated.run.accTotalTime);
         
         //Sound from material
-        Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
+        //Debug.Log(SoundFromMovingOnMaterial.GetObjectMaterial(playerBehaviour.GetCheckerTransform)); 
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)

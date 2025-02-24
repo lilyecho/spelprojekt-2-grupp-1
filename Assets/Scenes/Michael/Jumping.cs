@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class Jumping : State
@@ -24,11 +25,6 @@ public class Jumping : State
         flagAbleToFall = false;
     }
 
-    public override void OnCollision(Collision collision)
-    {
-
-    }
-
     public override void Update()
     {
         /*
@@ -38,9 +34,7 @@ public class Jumping : State
         */
         //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity,playerBehaviour.smoothTime);
         //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
-
         
-
         if (flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
@@ -57,6 +51,7 @@ public class Jumping : State
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeUp, ForceMode.Acceleration);
 
         flagAbleToFall = true;
+        ChangeRotationToStandard();
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -67,24 +62,4 @@ public class Jumping : State
         }
 
     }
-    public override void OnShift(InputAction.CallbackContext context)
-    {
-
-    }
-    public override void OnCTRL(InputAction.CallbackContext context)
-    {
-
-    }
-
-    public override void OnWASD(InputAction.CallbackContext context)
-    {
-        //airActiveCorrectiveForces = 
-    }
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
-
-    }
-
-
-    
 }
