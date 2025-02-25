@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerBehaviour : MonoBehaviour
 {
     #region State Machines
@@ -34,10 +35,9 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     #region Jump States
-    public JumpState ableToJump;
     public JumpState unableToJump;
-    public JumpState chargingJump;
-    public JumpState jumpCharged;
+    public JumpState normalJump;
+    public JumpState megaJump;
     #endregion
 
     
@@ -92,28 +92,23 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     [HideInInspector]public float accTime;
-
-
-
+    
     [HideInInspector]
     public bool intoJump = false;
-    [HideInInspector]
-    public bool intoChargingJump = false;
+    
+    /*[HideInInspector]
+    public bool intoChargingJump = false;*/
 
 
     public ParticleSystem jumpParticles;
     private ParticleSystem jumpParticlesInstance;
-
-    /*
-    public Transform leftFontPaw;
-    public Transform rightFontPaw;
-    public Transform leftBackPaw;
-    public Transform rightBackPaw;
-    */
+    
 
     [SerializeField] private TimeManager timeManager = null;
     private bool _movementOn = true;
 
+    //public bool isShiftActive = false;
+    
     private void OnEnable()
     {
         timeManager.OnMovement += ChangeMovementActivation;
@@ -141,25 +136,25 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Start()
     {
-        ableToJump = new AbleToJump(this);
+        //JumpStates
+        normalJump = new NormalJump(this);
         unableToJump = new UnableToJump(this);
-        chargingJump = new ChargingJump(this);
-        jumpCharged = new JumpCharged(this);
+        megaJump = new MegaJump(this);
 
+        jumpState = normalJump;
+        
+        //MovingStates
         idle = new Idle(this);
         walking = new Walking(this);
         sneaking = new Sneaking(this);
         running = new Running(this);
         jumping = new Jumping(this);
         falling = new Falling(this);
-
-        jumpState = ableToJump;
-        //walkState = walking;
+        
         movementMode = MovementMode.WALK;
         currentState = idle;
 
         cam = Camera.main;
-
         anim = GetComponent<Animator>();
     }
 
@@ -230,6 +225,8 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (!_movementOn) return;
         currentState?.OnShift(context);
+        jumpState?.OnShift(context);
+        
     }
 
     public void CTRL(InputAction.CallbackContext context)

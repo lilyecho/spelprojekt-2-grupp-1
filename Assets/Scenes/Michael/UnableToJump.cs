@@ -14,7 +14,7 @@ public class UnableToJump : JumpState
     }
     public override void Exit()
     {
-
+        
     }
 
     public override void Update()

@@ -30,6 +30,11 @@ public abstract class JumpState
     {
 
     }
+
+    public virtual void OnShift(InputAction.CallbackContext context)
+    {
+        
+    }
     
 
     protected PlayerBehaviour playerBehaviour;

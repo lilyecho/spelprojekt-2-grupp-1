@@ -23,8 +23,7 @@ public class Falling : State
     {
         Debug.Log("FALLING");
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
-        jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
-        time = 0;
+        //jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
     }
     public override void Exit()
     {
@@ -37,7 +36,6 @@ public class Falling : State
     }
 
     Quaternion targetRotation;
-    float time;
 
     public override void Update()
     {
@@ -48,24 +46,11 @@ public class Falling : State
         */
         //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
         //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
-
         
-
         if (CheckForGround())
         {
-            
             playerBehaviour.ChangeState(playerBehaviour.idle);
-
-            if(playerBehaviour.intoChargingJump)
-            {
-                playerBehaviour.ChangeJumpState(playerBehaviour.chargingJump);
-                playerBehaviour.intoChargingJump = false;
-            }
-            else
-            {
-                playerBehaviour.ChangeJumpState(playerBehaviour.ableToJump);
-            }
-            
+            playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
 
         /*
@@ -73,16 +58,13 @@ public class Falling : State
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, time);
         */
         
-        time += 2 * Time.deltaTime;
-
-        if(playerBehaviour.intoJump || playerBehaviour.intoChargingJump)
+        if(playerBehaviour.intoJump)
         {
             jumpBufferTimer -= Time.deltaTime;
         }
         if(jumpBufferTimer <= 0 )
         {
             playerBehaviour.intoJump = false;
-            playerBehaviour.intoChargingJump = false;
         }
     }
 
@@ -101,19 +83,12 @@ public class Falling : State
     {
         if (context.performed)
         {
-            //playerBehaviour.ChangeState(playerBehaviour.gliding);
-
-            playerBehaviour.intoChargingJump = true;
             jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
         }
 
         if (context.canceled)
         {
-            if (playerBehaviour.intoChargingJump)
-            {
-                playerBehaviour.intoJump = true;
-                playerBehaviour.intoChargingJump = false;
-            }
+            playerBehaviour.intoJump = true;
         }
 
     }
