@@ -13,7 +13,8 @@ public class TrollBehaviour : EnemyBehaviour
         Null,
         Patrol,
         Chase,
-        Search
+        Search,
+        Attack
     }
 
     #region DragReferences
@@ -111,8 +112,8 @@ public class TrollBehaviour : EnemyBehaviour
         Gizmos.color = Color.red;
 
         //LeftSide
-        Vector2 valuesForLeftSide = RotateVectorCounter(new Vector2(forward.x,forward.z), trollData.GetSightAngle);
-        Vector3 leftSide = new Vector3(valuesForLeftSide.x, 0, valuesForLeftSide.y)*trollData.GetSightRange;
+        Vector2 valuesForLeftSide = RotateVectorCounter(new Vector2(forward.x,forward.z), trollData.GetSightData.angle);
+        Vector3 leftSide = new Vector3(valuesForLeftSide.x, 0, valuesForLeftSide.y)*trollData.GetSightData.range;
 
         Vector3 currentCubePos = transform.position + leftSide;
         Gizmos.DrawLine(transform.position, currentCubePos);
@@ -121,8 +122,8 @@ public class TrollBehaviour : EnemyBehaviour
         
         //Points on frontline
         //LeftPoint
-        Vector2 values4LeftPoint = RotateVectorCounter(new Vector2(forward.x,forward.z), trollData.GetSightAngle/2);
-        Vector3 leftSidePoint = new Vector3(values4LeftPoint.x, 0, values4LeftPoint.y)*trollData.GetSightRange;
+        Vector2 values4LeftPoint = RotateVectorCounter(new Vector2(forward.x,forward.z), trollData.GetSightData.angle/2);
+        Vector3 leftSidePoint = new Vector3(values4LeftPoint.x, 0, values4LeftPoint.y)*trollData.GetSightData.range;
         currentCubePos = transform.position + leftSidePoint;
         
         Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
@@ -130,14 +131,14 @@ public class TrollBehaviour : EnemyBehaviour
         pastCubePos = currentCubePos;
         
         //CenterPoint
-        currentCubePos = transform.position + transform.forward * trollData.GetSightRange;
+        currentCubePos = transform.position + transform.forward * trollData.GetSightData.range;
         Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
         Gizmos.DrawLine(pastCubePos, currentCubePos);
         pastCubePos = currentCubePos;
         
         //RightPoint
-        Vector2 values4RightPoint = RotateVectorClock(new Vector2(forward.x,forward.z), trollData.GetSightAngle/2);
-        Vector3 rightSidePoint = new Vector3(values4RightPoint.x, 0, values4RightPoint.y)*trollData.GetSightRange;
+        Vector2 values4RightPoint = RotateVectorClock(new Vector2(forward.x,forward.z), trollData.GetSightData.angle/2);
+        Vector3 rightSidePoint = new Vector3(values4RightPoint.x, 0, values4RightPoint.y)*trollData.GetSightData.range;
         
         currentCubePos = transform.position + rightSidePoint;
         Gizmos.DrawCube(currentCubePos, new Vector3(.1f,.1f,.1f));
@@ -145,8 +146,8 @@ public class TrollBehaviour : EnemyBehaviour
         pastCubePos = currentCubePos;
         
         //RightSide
-        Vector2 valuesForRightSide = RotateVectorClock(new Vector2(forward.x,forward.z), trollData.GetSightAngle);
-        Vector3 rightSide = new Vector3(valuesForRightSide.x, 0, valuesForRightSide.y)*trollData.GetSightRange;
+        Vector2 valuesForRightSide = RotateVectorClock(new Vector2(forward.x,forward.z), trollData.GetSightData.angle);
+        Vector3 rightSide = new Vector3(valuesForRightSide.x, 0, valuesForRightSide.y)*trollData.GetSightData.range;
 
         currentCubePos = transform.position + rightSide;
         Gizmos.DrawLine(pastCubePos, currentCubePos);

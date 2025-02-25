@@ -9,8 +9,11 @@ public class ChaseStateTroll : TrollStates
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
+        
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Increase);
+        
+        SetAgentSpeed(TrollBehaviour.GetTrollData.GetSpeeds.chaseSpeed);
     }
 
     public override void Exit()

@@ -8,6 +8,8 @@ public class SearchStateTroll : TrollStates
     public override void Enter()
     {
         TrollBehaviour.activeState = TrollBehaviour.States.Search;
+        
+        SetAgentSpeed(TrollBehaviour.GetTrollData.GetSpeeds.searchSpeed);
     }
 
     public override void FixedUpdate()

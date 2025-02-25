@@ -24,11 +24,16 @@ public class TrollStates
     {
     }
 
+    protected void SetAgentSpeed(float speed)
+    {
+        TrollBehaviour.GetNavMeshAgent.speed = speed;
+    }
+    
     protected bool CheckTargetInRange()
     {
         float distance =
             Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
-        return distance <= TrollBehaviour.GetTrollData.GetSightRange;
+        return distance <= TrollBehaviour.GetTrollData.GetSightData.range;
     }
 
     protected bool CheckTargetWithinAngleOfSight()
@@ -37,7 +42,7 @@ public class TrollStates
             .normalized;
         float angle = Vector3.Angle(TrollBehaviour.transform.forward, directionToPlayer);
         
-        return angle <= TrollBehaviour.GetTrollData.GetSightAngle;
+        return angle <= TrollBehaviour.GetTrollData.GetSightData.angle;
     }
 
     protected bool CheckIfTargetPositionIsWalkable()

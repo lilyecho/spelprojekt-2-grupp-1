@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
 {
-    
+    #region DragRefrences
+
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private RegistrationPort registrationPort = null;
     [SerializeField] protected Transform target = null;
 
+    #endregion
     
     private Transform enemyTransform = null; 
     

@@ -1,21 +1,35 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Troll/TrollData")]
 public class TrollData : ScriptableObject
 {
-    [SerializeField] private float patrolSpeed;
-    [SerializeField] private float chaseSpeed;
-
+    [SerializeField] private TrollSpeeds trollSpeeds;
     
-    [SerializeField] private float hearingRange;
-
-    [Header("Senses")]
+    [Space,Header("Senses")] 
+    [SerializeField] private TrollSight trollSight;
     
-    [Space,Header("Sight")]
-    [SerializeField] private float sightRange;
-    [SerializeField] private float sightAngle;
+    [Space,SerializeField, Min(0)] private float hearingRange;
     
-    public float GetSightRange => sightRange;
-    public float GetSightAngle => sightAngle;
+    public TrollSpeeds GetSpeeds => trollSpeeds;
+    public TrollSight GetSightData => trollSight;
     public float GetHearingRange => hearingRange;
+    
+}
+
+
+
+[Serializable]
+public struct TrollSpeeds
+{
+    [Min(0)]public float patrolSpeed;
+    [Min(0)]public float searchSpeed;
+    [Min(0)]public float chaseSpeed;
+}
+
+[Serializable]
+public struct TrollSight
+{
+    [Min(0.01f)]public float range;
+    [Min(0.01f)]public float angle;
 }
