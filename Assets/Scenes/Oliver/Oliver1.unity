@@ -2724,6 +2724,7 @@ MonoBehaviour:
   nameColor: {r: 0.54147387, g: 0.8651638, b: 0.9811321, a: 1}
   soundEffect: {fileID: 0}
   portraits:
+  - {fileID: 21300000, guid: 693a97ff1ff059f4480d26cbdbc2a003, type: 3}
   - {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
   portraitsFace: 1
   setSayDialog: {fileID: 0}
@@ -10106,7 +10107,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 6
     y: 163
-    width: 99.999985
+    width: 99.1803
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10137,11 +10138,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 284.90536, y: 109.261406}
+  scrollPos: {x: 330.54083, y: 135.39027}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.7000003
+  zoom: 0.6100004
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -10226,7 +10227,7 @@ MonoBehaviour:
   storyText: Idun is hopefully somewhere up ahead.
   description: 
   character: {fileID: 123132632}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -10376,7 +10377,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 131
     y: 164
-    width: 101.42855
+    width: 99.1803
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10409,7 +10410,7 @@ MonoBehaviour:
   storyText: Woah!
   description: 
   character: {fileID: 123132632}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 693a97ff1ff059f4480d26cbdbc2a003, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -10437,7 +10438,7 @@ MonoBehaviour:
     fit underneath them if I duck?'
   description: 
   character: {fileID: 123132632}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -10465,7 +10466,7 @@ MonoBehaviour:
     Idun?
   description: 
   character: {fileID: 123132632}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -10492,7 +10493,7 @@ MonoBehaviour:
   storyText: The forest looks so different from how it usually looks.
   description: 
   character: {fileID: 123132632}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 5f2a00843ebaf2446b1bfe176857f2c1, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -10612,7 +10613,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   booleanParameter:
     booleanRef: {fileID: 0}
@@ -10740,7 +10741,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   booleanParameter:
     booleanRef: {fileID: 0}
@@ -10796,7 +10797,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1926285022}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -38669,7 +38670,9 @@ GameObject:
   - component: {fileID: 1759405910}
   - component: {fileID: 1759405909}
   - component: {fileID: 1759405911}
-  m_Layer: 0
+  - component: {fileID: 1759405913}
+  - component: {fileID: 1759405912}
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -38755,6 +38758,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 743408740}
+--- !u!114 &1759405912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759405907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: f3bae689269b9af46a6f7451f9cac5a6, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &1759405913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759405907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1759405910}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1001 &1759671589
 PrefabInstance:
   m_ObjectHideFlags: 0
