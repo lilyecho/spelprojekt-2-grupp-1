@@ -41,6 +41,7 @@ public class NormalJump : JumpState
     {
         if (context.performed)
         {
+            if (!playerBehaviour.Abilities.HasFlag(AbilityData.Abilities.MegaJump)) return;
             playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
         }
     }
@@ -53,24 +54,4 @@ public class NormalJump : JumpState
             Jump(jumpForce,playerBehaviour.GetMovementData.GetNormalJump.GetKeptMomentumPercentage);
         }
     }
-    
-    
-    
-    /*public override void Update()
-    {
-        TryChargeMegaJump();
-    }
-
-    private void TryChargeMegaJump()
-    {
-        if (!playerBehaviour.Abilities.HasFlag(AbilityData.Abilities.MegaJump)) return;
-
-        chargeTimer -= Time.deltaTime;
-        if (chargeTimer < 0)
-        {
-            playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
-        }
-    }*/
-
-    
 }
