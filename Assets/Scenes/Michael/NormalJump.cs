@@ -17,6 +17,7 @@ public class NormalJump : JumpState
             Jump(jumpForce, playerBehaviour.GetMovementData.GetNormalJump.GetKeptMomentumPercentage);
             playerBehaviour.intoJump = false;
         }
+        //sneak isn't deactivated so change to megaJump-state 
         else if (playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
         {
             playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
@@ -53,11 +54,7 @@ public class NormalJump : JumpState
         }
     }
     
-    private void ActivateSound()
-    {
-        EventReference eventRef = playerBehaviour.GetAudioData.GetAudioJump;
-        playerBehaviour.GetAudioPort.OnCreate(playerBehaviour.GetAudioData.GetAudioJump);
-    }
+    
     
     /*public override void Update()
     {

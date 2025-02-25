@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -54,5 +55,10 @@ public abstract class JumpState
         playerBehaviour.ChangeState(playerBehaviour.jumping);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
     }
-
+    
+    protected void ActivateJumpSound()
+    {
+        EventReference eventRef = playerBehaviour.GetAudioData.GetAudioJump;
+        playerBehaviour.GetAudioPort.OnCreate(playerBehaviour.GetAudioData.GetAudioJump);
+    }
 }
