@@ -9,7 +9,7 @@ public class SearchStateTroll : TrollStates
     {
         TrollBehaviour.activeState = TrollBehaviour.States.Search;
         
-        SetAgentSpeed(TrollBehaviour.GetTrollData.GetSpeeds.searchSpeed);
+        SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetSearch);
     }
 
     public override void FixedUpdate()

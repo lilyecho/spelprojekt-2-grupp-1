@@ -27,7 +27,7 @@ public class PatrolStateTroll : TrollStates
         
         TrollBehaviour.activeState = TrollBehaviour.States.Patrol;
         SetTargetPoint();
-        SetAgentSpeed(TrollBehaviour.GetTrollData.GetSpeeds.patrolSpeed);
+        SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
     }
 
     public override void Exit()

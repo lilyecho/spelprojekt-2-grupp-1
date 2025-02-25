@@ -13,7 +13,7 @@ public class ChaseStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Increase);
         
-        SetAgentSpeed(TrollBehaviour.GetTrollData.GetSpeeds.chaseSpeed);
+        SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetChase);
     }
 
     public override void Exit()

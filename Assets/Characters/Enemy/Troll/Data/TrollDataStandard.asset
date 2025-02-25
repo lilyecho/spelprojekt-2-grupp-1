@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7385c179b34764ba9aec101897337b, type: 3}
   m_Name: TrollDataStandard
   m_EditorClassIdentifier: 
-  trollSpeeds:
-    patrolSpeed: 3
-    searchSpeed: 5
-    chaseSpeed: 10
+  patrolStateMovement:
+    speed: 3
+    angularSpeed: 90
+    acceleration: 120
+  searchStateMovement:
+    speed: 0
+    angularSpeed: 0
+    acceleration: 0
+  chaseStateMovement:
+    speed: 0
+    angularSpeed: 0
+    acceleration: 0
   trollSight:
     range: 9.1
     angle: 26.45

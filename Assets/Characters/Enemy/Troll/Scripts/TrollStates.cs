@@ -24,9 +24,24 @@ public class TrollStates
     {
     }
 
+    protected void SetUpStateValuesInAgent(StateMovementParameters parameterValues)
+    {
+        SetAgentSpeed(parameterValues.speed);
+        SetAgentAngularSpeed(parameterValues.angularSpeed);
+        SetAgentAcceleration(parameterValues.acceleration);
+    }
+    
     protected void SetAgentSpeed(float speed)
     {
         TrollBehaviour.GetNavMeshAgent.speed = speed;
+    }
+    protected void SetAgentAngularSpeed(float speed)
+    {
+        TrollBehaviour.GetNavMeshAgent.angularSpeed = speed;
+    }
+    protected void SetAgentAcceleration(float speed)
+    {
+        TrollBehaviour.GetNavMeshAgent.acceleration = speed;
     }
     
     protected bool CheckTargetInRange()

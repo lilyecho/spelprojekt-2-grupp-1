@@ -1,30 +1,35 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Troll/TrollData")]
 public class TrollData : ScriptableObject
 {
-    [SerializeField] private TrollSpeeds trollSpeeds;
+    [FormerlySerializedAs("patrolState")]
+    [Header("Movements")]
+    [SerializeField] private StateMovementParameters patrolStateMovement;
+    [SerializeField] private StateMovementParameters searchStateMovement;
+    [SerializeField] private StateMovementParameters chaseStateMovement;
     
     [Space,Header("Senses")] 
     [SerializeField] private TrollSight trollSight;
     
     [Space,SerializeField, Min(0)] private float hearingRange;
     
-    public TrollSpeeds GetSpeeds => trollSpeeds;
+    public StateMovementParameters GetPatrol => patrolStateMovement;
+    public StateMovementParameters GetSearch => searchStateMovement;
+    public StateMovementParameters GetChase => chaseStateMovement;
     public TrollSight GetSightData => trollSight;
     public float GetHearingRange => hearingRange;
     
 }
 
-
-
 [Serializable]
-public struct TrollSpeeds
+public struct StateMovementParameters
 {
-    [Min(0)]public float patrolSpeed;
-    [Min(0)]public float searchSpeed;
-    [Min(0)]public float chaseSpeed;
+    [Min(0)]public float speed;
+    [Min(0)]public float angularSpeed;
+    [Min(0)]public float acceleration;
 }
 
 [Serializable]
