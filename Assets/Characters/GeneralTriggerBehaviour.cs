@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +9,8 @@ public class GeneralTriggerBehaviour : MonoBehaviour
     [SerializeField] private UnityEvent onStay;
     [SerializeField] private UnityEvent onExit;
 
+    private List<GameObject> activeUsers = new List<GameObject>();
+    
     private void OnValidate()
     {
         Collider validateCollider = GetComponent<Collider>();
@@ -20,6 +23,7 @@ public class GeneralTriggerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other);
         onEnter.Invoke();
     }
 
@@ -30,6 +34,7 @@ public class GeneralTriggerBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Exit");
         onExit.Invoke();
     }
 }
