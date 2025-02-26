@@ -356,15 +356,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5395021901227707633, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5395021901227707633, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5395021901227707633, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -169.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5395021901227707633, guid: b76f07d65bbfbb541823487253e6b7fd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -564,8 +564,10 @@ MonoBehaviour:
   currentAbilities: 0
   materialCheckerTransform: {fileID: 3104411747239957801}
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  parameterData: {fileID: 0}
   characterAudioData: {fileID: 11400000, guid: 31c613226e0d944458b4e944d8afafd7, type: 2}
   rb: {fileID: 8305957983544821018}
+  anim: {fileID: 0}
   moveInput: {x: 0, y: 0}
   moveDir: {x: 0, y: 0, z: 0}
   moveSpeed: 0
@@ -580,9 +582,12 @@ MonoBehaviour:
   rayCastLength: 0.6
   accTime: 0
   intoJump: 0
-  intoChargingJump: 0
+  jumpParticles: {fileID: 0}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   rotationSpeed: 10
+  currentVelocity: 0
+  smoothTime: 0.1
+  rotationTotalTime: 0.1
 --- !u!114 &2964127906287508943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,6 +752,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f52e135b-1280-4d09-956a-6ba8ce6b533d
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a885b65c-044c-46c7-abe0-105e4c0ec808
+    m_ActionName: Player/ReloadScene[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5ae0e4c2-c7b1-4cf5-bb8a-3ecea112f952
+    m_ActionName: Player/LoadLastScene[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 80ba0341-6d25-4dd0-bbae-ea63aead82e9
+    m_ActionName: Player/LoadNextScene[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
