@@ -13,20 +13,31 @@ public class SfxManager : MonoBehaviour
     private void OnEnable()
     {
         audioPort.OnStep += CreateSound4Step;
+        audioPort.OnJump += CreateSound4Jump;
     }
 
     private void OnDisable()
     {
         audioPort.OnStep -= CreateSound4Step;
+        audioPort.OnJump -= CreateSound4Jump;
+        
     }
 
     private void CreateSound4Step(CharacterAudioData characterAudioData, Transform checkerTransform)
     {
         MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
         
+        Dictionary<string, int> parameternamesAndValues = new Dictionary<string,int>
+            {
+                [parameters.GetMaterialParameter] = (int)material
+            };
+        
         audioHandler.PlayOneShot(
-            characterAudioData.GetAudioMovement,
-            checkerTransform.position,parameters.GetMaterialParameter,
-            (int)material);
+            characterAudioData.GetAudioMovement,checkerTransform.position,parameternamesAndValues);
+    }
+
+    private void CreateSound4Jump(EventReference eventReference, Vector3 jumpPos)
+    {
+        audioHandler.PlayOneShot(eventReference, jumpPos);
     }
 }

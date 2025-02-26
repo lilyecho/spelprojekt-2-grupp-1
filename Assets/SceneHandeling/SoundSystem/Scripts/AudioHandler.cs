@@ -18,7 +18,7 @@ public class AudioHandler : MonoBehaviour
     {
         audioPort.OnChangeGlobalParameter += ChangeGlobalParameter;
         audioPort.OnCreate += CreateInstance;
-        audioPort.onStart += PlayInstance;
+        audioPort.OnStart += PlayInstance;
         audioPort.OnSetParameter += ChangeLocalParameter;
         audioPort.OnRemove += RemoveInstance;
     }
@@ -27,7 +27,7 @@ public class AudioHandler : MonoBehaviour
     {
         audioPort.OnChangeGlobalParameter -= ChangeGlobalParameter;
         audioPort.OnCreate -= CreateInstance;
-        audioPort.onStart -= PlayInstance;
+        audioPort.OnStart -= PlayInstance;
         audioPort.OnSetParameter -= ChangeLocalParameter;
         audioPort.OnRemove -= RemoveInstance;
     }
@@ -102,6 +102,7 @@ public class AudioHandler : MonoBehaviour
         instance.set3DAttributes(placementPos.To3DAttributes());
         instance.start();
         instance.release();
+        Debug.Log(eventReference.Path);
     }
 
     /// <summary>
