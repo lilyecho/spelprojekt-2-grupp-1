@@ -6,19 +6,21 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
 {
     #region DragRefrences
-
+    [Header("EnemyBehaviour")]
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private RegistrationPort registrationPort = null;
-    [SerializeField] protected Transform target = null;
-
-    #endregion
+    [SerializeField] private AudioPort audioPort = null;
+    //[SerializeField] private SceneManagerPort sceneManagerPort = null;
     
+    #endregion
+
+    private Transform target = null;
     private Transform enemyTransform = null; 
     
     public Transform GetTarget => target;
     public EnemyManagerPort GetEnemyManagerPort => enemyManagerPort;
-    
-    
+
+    public AudioPort GetAudioPort => audioPort;
     
     
     protected virtual void OnEnable()

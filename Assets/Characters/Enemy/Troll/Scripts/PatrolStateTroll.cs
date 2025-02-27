@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class PatrolStateTroll : TrollStates
 {
+    [SerializeField] private UnityEvent OnEnter;
+    [SerializeField] private UnityEvent OnExit;
+    
     [SerializeField] private TrollAlertPort trollAlertPort;
     [SerializeField,Tooltip("Parent for all patrolPoints")] private GameObject pointHolder;
     [SerializeField, ReadOnly] private List<Transform> patrolPoints;
@@ -56,7 +60,7 @@ public class PatrolStateTroll : TrollStates
     private void Check4Player()
     {
         if (TrollBehaviour.GetTarget == null) return;
-        if (!CheckTargetInRange()) return;
+        if (!CheckTargetInRange(TrollBehaviour.GetTrollData.GetSightData.range)) return;
         if (!CheckTargetWithinAngleOfSight()) return;
         if (!CheckIfTargetPositionIsWalkable()) return;
 

@@ -18,11 +18,12 @@ public class TrollBehaviour : EnemyBehaviour
     }
 
     #region DragReferences
+    [Space,Header("TrollBehaviour")]
     [SerializeField] private TrollData trollData;
     [SerializeField] private Transform eyes;
     
 
-    [SerializeField] private TrollAudioData trollAudioData;
+    [SerializeField] private CharacterAudio trollAudioData;
     #endregion
     
     private NavMeshAgent navMeshAgent;
@@ -30,9 +31,11 @@ public class TrollBehaviour : EnemyBehaviour
     [ReadOnly] public States activeState = States.Null;
 
     #region States
+    [Space,Header("States")]
     public PatrolStateTroll PatrolState = new PatrolStateTroll();
     public ChaseStateTroll ChaseState = new ChaseStateTroll();
     public SearchStateTroll SearchState = new SearchStateTroll();
+    public AttackStateTroll AttackState = new AttackStateTroll();
     #endregion
     
     private TrollStates currentState = null;
@@ -42,7 +45,7 @@ public class TrollBehaviour : EnemyBehaviour
     
     public Transform GetEyes => eyes;
     public TrollData GetTrollData => trollData;
-    public TrollAudioData GetAudioData => trollAudioData;
+    public CharacterAudio GetAudioData => trollAudioData;
     
     #endregion
 
@@ -73,6 +76,7 @@ public class TrollBehaviour : EnemyBehaviour
         PatrolState.OnValidate(this);
         ChaseState.OnValidate(this);
         SearchState.OnValidate(this);
+        AttackState.OnValidate(this);
     }
 
     private void InstantiateBeginState()

@@ -10,6 +10,9 @@ public class TrollData : ScriptableObject
     [SerializeField] private StateMovementParameters patrolStateMovement;
     [SerializeField] private StateMovementParameters searchStateMovement;
     [SerializeField] private StateMovementParameters chaseStateMovement;
+    [SerializeField] private StateMovementParameters attackStateMovement;
+
+    [SerializeField] private float attackRange = 1;
     
     [Space,Header("Senses")] 
     [SerializeField] private TrollSight trollSight;
@@ -19,6 +22,8 @@ public class TrollData : ScriptableObject
     public StateMovementParameters GetPatrol => patrolStateMovement;
     public StateMovementParameters GetSearch => searchStateMovement;
     public StateMovementParameters GetChase => chaseStateMovement;
+    public StateMovementParameters GetAttack => attackStateMovement;
+    public float GetAttackRange => attackRange;
     public TrollSight GetSightData => trollSight;
     public float GetHearingRange => hearingRange;
     

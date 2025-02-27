@@ -102,7 +102,6 @@ public class AudioHandler : MonoBehaviour
         instance.set3DAttributes(placementPos.To3DAttributes());
         instance.start();
         instance.release();
-        Debug.Log(eventReference.Path);
     }
 
     /// <summary>

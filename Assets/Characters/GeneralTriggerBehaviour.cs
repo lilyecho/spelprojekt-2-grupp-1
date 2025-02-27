@@ -23,7 +23,7 @@ public class GeneralTriggerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
+       
         onEnter.Invoke();
     }
 
@@ -34,7 +34,7 @@ public class GeneralTriggerBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit");
+       
         onExit.Invoke();
     }
 }
