@@ -1,10 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
+[Serializable]
 public class ChaseStateTroll : TrollStates
 {
+    [SerializeField] private UnityEvent OnEnter;
+    [SerializeField] private UnityEvent OnExit;
+    
     public override void Enter()
     {
         //Inspector thing
@@ -19,7 +25,6 @@ public class ChaseStateTroll : TrollStates
     public override void Exit()
     {
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Decrease);
-        AudioManager.Instance.InvokeEventInfo(TrollBehaviour.GetAudioData.GetExitChaseMusicEvent);
     }
 
     public override void FixedUpdate()
@@ -29,13 +34,18 @@ public class ChaseStateTroll : TrollStates
 
     private void Check4Player()
     {
-        NavMeshPath path = new NavMeshPath();
-
-        if (CheckTargetInRange())
+        bool inRangeOfAggression = CheckTargetInRange(TrollBehaviour.GetTrollData.GetSightData.range);
+        if ( inRangeOfAggression && CheckTargetInRange(TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
+        {
+            TrollBehaviour.Transition(TrollBehaviour.AttackState);
+        }
+        else if (inRangeOfAggression)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
             return;
         }
+        
+        NavMeshPath path = new NavMeshPath();
 
         if (!CheckIfTargetPositionIsWalkable(out path))
         {

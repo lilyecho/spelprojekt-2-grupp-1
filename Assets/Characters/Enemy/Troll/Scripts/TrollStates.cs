@@ -44,11 +44,11 @@ public class TrollStates
         TrollBehaviour.GetNavMeshAgent.acceleration = speed;
     }
     
-    protected bool CheckTargetInRange()
+    protected bool CheckTargetInRange(float range)
     {
         float distance =
             Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
-        return distance <= TrollBehaviour.GetTrollData.GetSightData.range;
+        return distance <= range;
     }
 
     protected bool CheckTargetWithinAngleOfSight()
