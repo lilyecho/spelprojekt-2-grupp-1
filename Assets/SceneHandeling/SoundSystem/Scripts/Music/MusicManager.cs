@@ -102,6 +102,8 @@ public class MusicManager : MonoBehaviour
     
     private void CheckEnemyRelatedMusic()
     {
+        if (enemyManager == null) return;
+        
         float distance = enemyManager.GetClosestDistanceToEnemyFromPlayer();
 
         if (distance <= closeDistance)
@@ -114,6 +116,14 @@ public class MusicManager : MonoBehaviour
             audioHandler.TryChangeGlobalParameter("CloseToTroll", 0);
         }
         
+    }
+
+    private void OnValidate()
+    {
+        if (enemyManager == null)
+        {
+            Debug.LogWarning("Missing enemyManager in musicManager");
+        }
     }
 
     /*
