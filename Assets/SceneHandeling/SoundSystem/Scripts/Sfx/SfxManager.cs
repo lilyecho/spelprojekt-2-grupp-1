@@ -27,9 +27,9 @@ public class SfxManager : MonoBehaviour
     {
         MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
         
-        Dictionary<string, int> parameternamesAndValues = new Dictionary<string,int>
+        Dictionary<string, float> parameternamesAndValues = new Dictionary<string,float>
             {
-                [parameters.GetMaterialParameter] = (int)material
+                [parameters.GetMaterialParameter] = (float)material
             };
         
         audioHandler.PlayOneShot(

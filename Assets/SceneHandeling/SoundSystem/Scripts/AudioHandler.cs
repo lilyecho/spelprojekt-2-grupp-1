@@ -32,7 +32,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnRemove -= RemoveInstance;
     }
 
-    private void ChangeGlobalParameter(string parameterName, int value)
+    private void ChangeGlobalParameter(string parameterName, float value)
     {
         RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
     }
@@ -54,7 +54,7 @@ public class AudioHandler : MonoBehaviour
         instance.start();
     }
     
-    private void ChangeLocalParameter(EventReference reference, string parameterName, int value)
+    private void ChangeLocalParameter(EventReference reference, string parameterName, float value)
     {
         if (!dictionaryGuidInstances.ContainsKey(reference.Guid)) return;
         
@@ -107,7 +107,7 @@ public class AudioHandler : MonoBehaviour
     /// <summary>
     /// Change parameter before the sound
     /// </summary>
-    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, string parameterName, int parameterValue)
+    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, string parameterName, float parameterValue)
     {
         //TODO performance-heavy
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);
@@ -122,7 +122,7 @@ public class AudioHandler : MonoBehaviour
     /// <summary>
     /// Change parameters before the sound, but keep in mind the importance of index-relation between parameterNames and parameterValues 
     /// </summary>
-    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, Dictionary<string, int> parameterNamesAndValues)
+    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, Dictionary<string, float> parameterNamesAndValues)
     {
         if (parameterNamesAndValues.Count <= 0) throw new Exception("Elements in parameterNamesAndValues has to exist");
         
@@ -164,7 +164,7 @@ public class AudioHandler : MonoBehaviour
         return true;
     }
 
-    public bool TryChangeLocalParameter(EventReference reference, string parameterName, int value)
+    public bool TryChangeLocalParameter(EventReference reference, string parameterName, float value)
     {
         if (dictionaryGuidInstances.ContainsKey(reference.Guid))
         {
@@ -174,7 +174,7 @@ public class AudioHandler : MonoBehaviour
         return false;
     }
     
-    public void TryChangeGlobalParameter(string parameterName, int value)
+    public void TryChangeGlobalParameter(string parameterName, float value)
     {
         try
         {

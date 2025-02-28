@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
@@ -95,25 +96,27 @@ public class MusicManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //CheckEnemyRelatedMusic();
+        CheckEnemyRelatedMusic();
     }
 
-    /*
+    
     private void CheckEnemyRelatedMusic()
     {
         float distance = enemyManager.GetClosestDistanceToEnemyFromPlayer();
 
         if (distance <= closeDistance)
         {
-            AudioManager.Instance.InvokeEventInfo(CloseToTroll);
+            float interpolationValue = MathF.Abs(distance / closeDistance-1);
+            audioHandler.TryChangeGlobalParameter("CloseToTroll", interpolationValue);
         }
         else
         {
-            AudioManager.Instance.InvokeEventInfo(NotCloseToTroll);
+            audioHandler.TryChangeGlobalParameter("CloseToTroll", 0);
         }
         
     }
 
+    /*
     private void PlayerChasedMusic(bool onOff)
     {
         if (onOff)

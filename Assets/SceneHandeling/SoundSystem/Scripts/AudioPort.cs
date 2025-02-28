@@ -10,7 +10,7 @@ public class AudioPort : ScriptableObject
     //On steps, changes depending on object sending this data
     public UnityAction<CharacterAudioData,Transform> OnStep = delegate(CharacterAudioData arg0, Transform vector3) {  };
     
-    public UnityAction<string, int> OnChangeGlobalParameter = delegate(string arg0, int i) {  };
+    public UnityAction<string, float> OnChangeGlobalParameter = delegate(string arg0, float i) {  };
     
     //For sounds that should loop
     public UnityAction<EventReference> OnCreate = delegate(EventReference reference) {  };
@@ -18,7 +18,7 @@ public class AudioPort : ScriptableObject
     
     public UnityAction<EventReference> OnStart = delegate(EventReference reference) {  };
     
-    public UnityAction<EventReference, string, int> OnSetParameter = delegate(EventReference reference, string parameterName, int value) {  };
+    public UnityAction<EventReference, string, float> OnSetParameter = delegate(EventReference reference, string parameterName, float value) {  };
     
     public UnityAction<EventReference> OnRemove = delegate(EventReference reference) {  };
     

@@ -44,7 +44,6 @@ public class EnemyManager : MonoBehaviour
     public float GetClosestDistanceToEnemyFromPlayer()
     {
         enemies.Sort();
-        
         return enemies[0].GetDistanceToPlayer();
     }
     
