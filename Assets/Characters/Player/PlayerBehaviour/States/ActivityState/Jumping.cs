@@ -17,11 +17,15 @@ public class Jumping : State
     public override void Enter()
     {
         Debug.Log("JUMPING");
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Jump"), true);
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         //playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
+        //playerBehaviour.anim.GetParameter(1).ty
 
     }
     public override void Exit()
     {
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Jump"), false);
         flagAbleToFall = false;
     }
 
