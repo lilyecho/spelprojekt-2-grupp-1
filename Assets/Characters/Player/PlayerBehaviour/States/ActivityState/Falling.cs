@@ -22,7 +22,7 @@ public class Falling : State
     public override void Enter()
     {
         Debug.Log("FALLING");
-        //playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
         //jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
     }

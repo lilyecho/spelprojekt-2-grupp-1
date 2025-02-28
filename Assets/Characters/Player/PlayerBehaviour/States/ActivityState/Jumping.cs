@@ -18,6 +18,7 @@ public class Jumping : State
     {
         Debug.Log("JUMPING");
         playerBehaviour.anim.SetBool(Animator.StringToHash("Jump"), true);
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         //playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
         //playerBehaviour.anim.GetParameter(1).ty
 

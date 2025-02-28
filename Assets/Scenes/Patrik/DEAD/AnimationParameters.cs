@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Animation/AnimationParameters")]
 public class AnimationParameters : ScriptableObject
 {
     [SerializeField] private AnimationParametersCharacters[] parameters;

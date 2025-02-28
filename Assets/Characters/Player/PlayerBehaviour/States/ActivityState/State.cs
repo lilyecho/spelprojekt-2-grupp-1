@@ -78,7 +78,6 @@ public abstract class State
                 
             }
         }
-        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         return false;
     }
 
