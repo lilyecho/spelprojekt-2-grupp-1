@@ -28,8 +28,6 @@ public class PlayerBehaviour : MonoBehaviour
     public State jumping;
     public State falling;
     public State gliding;
-    public State onTree;
-    public State wallJumping;
 
     #endregion
 
@@ -96,18 +94,14 @@ public class PlayerBehaviour : MonoBehaviour
     [HideInInspector]
     public bool intoJump = false;
     
-    /*[HideInInspector]
-    public bool intoChargingJump = false;*/
-
-
     public ParticleSystem jumpParticles;
     private ParticleSystem jumpParticlesInstance;
     
 
+    
+    
     [SerializeField] private TimeManager timeManager = null;
     private bool _movementOn = true;
-
-    //public bool isShiftActive = false;
     
     private void OnEnable()
     {
@@ -150,6 +144,7 @@ public class PlayerBehaviour : MonoBehaviour
         running = new Running(this);
         jumping = new Jumping(this);
         falling = new Falling(this);
+        gliding = new Gliding(this);
         
         movementMode = MovementMode.WALK;
         currentState = idle;
