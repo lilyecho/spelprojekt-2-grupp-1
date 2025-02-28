@@ -24,7 +24,7 @@ public class PressStartButton : MonoBehaviour
         Debug.Log("Before");
 
         // waits here
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.5f);
         
         LoadBehaviour.LoadNextScene();
 
