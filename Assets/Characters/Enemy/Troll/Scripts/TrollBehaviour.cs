@@ -55,6 +55,15 @@ public class TrollBehaviour : EnemyBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        PatrolState.Awake(this);
+        ChaseState.Awake(this);
+        SearchState.Awake(this);
+        AttackState.Awake(this);
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -73,10 +82,10 @@ public class TrollBehaviour : EnemyBehaviour
 
     private void OnValidate()
     {
-        PatrolState.OnValidate(this);
-        ChaseState.OnValidate(this);
-        SearchState.OnValidate(this);
-        AttackState.OnValidate(this);
+        PatrolState.OnValidate();
+        ChaseState.OnValidate();
+        SearchState.OnValidate();
+        AttackState.OnValidate();
     }
 
     private void InstantiateBeginState()

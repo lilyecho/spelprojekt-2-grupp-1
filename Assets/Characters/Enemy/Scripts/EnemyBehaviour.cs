@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
@@ -17,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
     private Transform target = null;
     private Transform enemyTransform = null; 
     
-    public Transform GetTarget => target;
+    [CanBeNull] public Transform GetTarget => target;
     public EnemyManagerPort GetEnemyManagerPort => enemyManagerPort;
 
     public AudioPort GetAudioPort => audioPort;
@@ -40,7 +41,7 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
         target = newTarget.transform;
     }
     
-    private void Awake()
+    protected virtual void Awake()
     {
         enemyTransform = GetComponent<Transform>();
     }

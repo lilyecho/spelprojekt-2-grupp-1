@@ -17,15 +17,18 @@ public class PatrolStateTroll : TrollStates
     [SerializeField] private int patrolPointIndex;
 
     [SerializeField] private bool reCalibrate;
-    
-    public override void Awake()
+
+    public override void Awake(TrollBehaviour trollBehaviour)
     {
+        base.Awake(trollBehaviour);
+        
         GetAllPoints();
         RenamePoints();
     }
 
     public override void Enter()
     {
+        Debug.LogError(TrollBehaviour);
         //Events
         trollAlertPort.OnAlertedPosition += SearchAtAlertPoint;
         
@@ -79,10 +82,8 @@ public class PatrolStateTroll : TrollStates
         }
     }
 
-    public override void OnValidate(TrollBehaviour trollBehaviour)
+    public override void OnValidate()
     {
-        base.OnValidate(trollBehaviour);
-        
         if (reCalibrate)
         {
             GetAllPoints();
