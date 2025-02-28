@@ -18,7 +18,7 @@ public class NormalJump : JumpState
             playerBehaviour.intoJump = false;
         }
         //sneak isn't deactivated so change to megaJump-state 
-        else if (playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
+        else if (playerBehaviour.Abilities.HasFlag(AbilityData.Abilities.MegaJump) && playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
         {
             playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
         }
