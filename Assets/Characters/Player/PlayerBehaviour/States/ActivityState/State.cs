@@ -1,5 +1,6 @@
 using FMODUnity;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,8 +54,8 @@ public abstract class State
 
 
     protected PlayerBehaviour playerBehaviour;
-
-
+    
+    
     public State(PlayerBehaviour playerBehaviour)
     {
         this.playerBehaviour = playerBehaviour;
@@ -238,6 +239,36 @@ public abstract class State
         float tValue = Mathf.InverseLerp(0, maxSpeed, currentSpeed);
         return tValue * totalAccelerationTime;
     }
+
+    #region DeAcceleration
+
+    /*protected void ApplyDeAcceleration(float accelerationTotalTime)
+    {
+        playerBehaviour.accTime += Time.fixedDeltaTime;
+        playerBehaviour.moveSpeed = CalculateNextSpeed(maxSpeed,playerBehaviour.accTime, accelerationTotalTime);
+        playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
+    }
+    
+    private float CalculateNextDeAccelerationSpeed(float lowestSpeed, float currentAccTime, float totalDeAccelerationTime)
+    {
+        if (playerBehaviour.rb.velocity.magnitude <= lowestSpeed)
+        {
+            return lowestSpeed;
+        }
+        
+        float tValue = Mathf.Clamp(currentAccTime / totalDeAccelerationTime,0,1);
+        return Mathf.Lerp(0, maxSpeed, tValue);
+    }*/
+    
+    //TODO use for deacceleration later
+    /*protected float CalculateDeAccelerationTimeFromSpeed(float currentSpeed, float startSpeed, float totalDeAccelerationTime)
+    {
+        float tValue = Mathf.InverseLerp(startSpeed,0, currentSpeed);
+        return tValue * totalDeAccelerationTime;
+    }*/
+
+    #endregion
+    
     
     /// <summary>
     /// Makes it so that only x and z movement matters in air-movement

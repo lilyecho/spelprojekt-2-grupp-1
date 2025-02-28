@@ -20,14 +20,6 @@ public class Idle : State
             playerBehaviour.rb.velocity = Vector3.zero;
         }
         
-        
-        if(playerBehaviour.moveInput != null )
-        {
-            //playerBehaviour.ChangeState(playerBehaviour.walkState);
-
-            
-        }
-
         if (playerBehaviour.moveInput != Vector2.zero)
         {
             switch (playerBehaviour.movementMode)
@@ -51,7 +43,7 @@ public class Idle : State
     }
     public override void Exit()
     {
-
+        //StopDeAcceleration();
     }
 
     public override void OnCollision(Collision collision)
@@ -116,17 +108,26 @@ public class Idle : State
     {
 
     }
-    /*
-    public bool CheckForGround()
+    
+    /*/// <summary>
+    /// Only handle from currentSpeed to zero in idle
+    /// </summary>
+    private void DoDeAcceleration()
     {
-        foreach (Transform t in playerBehaviour.rayCastPoints)
-        {
-            if (Physics.Raycast(t.position, Vector3.down, playerBehaviour.rayCastLength))
-            {
-                return true;
-            }
-        }
-        return false;
+        playerBehaviour.StartCoroutine(DeAccelerate());
     }
-    */
+    private void StopDeAcceleration()
+    {
+        playerBehaviour.StopCoroutine(DeAccelerate());
+    }
+
+    private IEnumerator DeAccelerate()
+    {
+        while (playerBehaviour.rb.velocity.magnitude > 0)
+        {
+            yield return new WaitForSeconds(playerBehaviour.GetMovementData.GetDeAcceleration);
+            break;
+        }
+        playerBehaviour.rb.velocity = Vector3.zero;
+    }*/
 }

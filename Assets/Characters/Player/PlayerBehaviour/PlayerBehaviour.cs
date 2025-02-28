@@ -173,13 +173,13 @@ public class PlayerBehaviour : MonoBehaviour
         cameraRight.Normalize();
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
-
     }
 
     private void FixedUpdate()
     {
         if (!_movementOn) return;
         currentState?.FixedUpdate();
+        anim.SetFloat(Animator.StringToHash("Speed"), rb.velocity.magnitude);
     }
 
     public void ChangeState(State newState)
