@@ -25,12 +25,12 @@ public class Sneaking : State, IAcceleration
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
         Debug.Log("SNEAKING");
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSneakSpeed;
-        playerBehaviour.anim.Play("Astrid_Seak");
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
     }
     
     public override void Exit()
     {
-
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), false);
     }
 
     public override void OnCollision(Collision collision)

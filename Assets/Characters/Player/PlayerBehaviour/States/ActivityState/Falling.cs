@@ -22,6 +22,7 @@ public class Falling : State
     public override void Enter()
     {
         Debug.Log("FALLING");
+        //playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
         //jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
     }
@@ -47,7 +48,7 @@ public class Falling : State
         //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
         //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
         
-        if (CheckForGround())
+        if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength))
         {
             playerBehaviour.ChangeState(playerBehaviour.idle);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
@@ -109,33 +110,4 @@ public class Falling : State
     {
 
     }
-
-
-    public bool CheckForGround()
-    {
-        LayerMask layerToIgnore = (1 << 8) | (1 << 2);
-        RaycastHit hit;
-        foreach (Transform t in playerBehaviour.rayCastPoints)
-        {
-            /*
-            if (Physics.Raycast(t.position, Vector3.down, playerBehaviour.rayCastLength, ~layerToIgnore))
-            {
-                return true;
-            }
-            */
-            if (Physics.Raycast(t.position, Vector3.down, out hit, playerBehaviour.rayCastLength, ~layerToIgnore))
-            {
-                float angle = Vector3.Angle(Vector3.up, hit.normal);
-                //Debug.Log(angle);
-                if (angle < 30f)
-                {
-                    return true;
-                }
-
-            }
-        }
-        return false;
-    }
-
-    
 }

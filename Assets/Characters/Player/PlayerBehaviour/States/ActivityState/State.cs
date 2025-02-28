@@ -72,11 +72,13 @@ public abstract class State
                 
                 if (angle < 30f)
                 {
+                    playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), true);
                     return true;
                 }
                 
             }
         }
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         return false;
     }
 
