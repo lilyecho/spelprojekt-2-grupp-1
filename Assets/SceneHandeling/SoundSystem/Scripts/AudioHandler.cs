@@ -40,10 +40,8 @@ public class AudioHandler : MonoBehaviour
     private void CreateInstance(EventReference eventReference)
     {
         GUID eventGUID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventGUID))
-        {
-            return;
-        }
+        if (dictionaryGuidInstances.ContainsKey(eventGUID)) return;
+        
         dictionaryGuidInstances[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
     }
 

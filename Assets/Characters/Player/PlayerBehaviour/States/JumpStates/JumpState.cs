@@ -51,7 +51,7 @@ public abstract class JumpState
         //Debug.Log(playerBehaviour.rb.velocity);
         playerBehaviour.rb.velocity *= momentumKeptPercentage; 
         playerBehaviour.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        playerBehaviour.JumpParticles();
+        //playerBehaviour.JumpParticles();
         ActivateJumpSound();
         playerBehaviour.ChangeState(playerBehaviour.jumping);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
@@ -61,4 +61,6 @@ public abstract class JumpState
     {
         playerBehaviour.GetAudioPort.OnJump(playerBehaviour.GetAudioData.GetAudioJump, playerBehaviour.transform.position);
     }
+    
+    
 }

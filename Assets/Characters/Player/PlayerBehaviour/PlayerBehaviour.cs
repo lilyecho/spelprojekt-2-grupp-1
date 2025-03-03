@@ -28,6 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
     public State jumping;
     public State falling;
     public State gliding;
+    public State shrink;
 
     #endregion
 
@@ -145,6 +146,9 @@ public class PlayerBehaviour : MonoBehaviour
         jumping = new Jumping(this);
         falling = new Falling(this);
         gliding = new Gliding(this);
+        
+        //TODO make state
+        shrink = new Shrink(this);
         
         movementMode = MovementMode.WALK;
         currentState = idle;
@@ -310,13 +314,6 @@ public class PlayerBehaviour : MonoBehaviour
             
         }
         
-    }
-
-
-
-    public void JumpParticles()
-    {
-        jumpParticlesInstance = Instantiate(jumpParticles, transform.position, jumpParticles.transform.rotation);
     }
 
 }

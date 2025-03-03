@@ -29,7 +29,6 @@ public class Walking : State, IAcceleration
         //playerBehaviour.moveSpeed = playerBehaviour.GetMovementData.GetSpeedRelated.walk.speed;
 
         FixCurrentAccelerationTime();
-        playerBehaviour.anim.Play("Astrid_Fast_Anim");
     }
     
     public override void Exit()
