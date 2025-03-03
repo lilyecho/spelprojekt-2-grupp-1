@@ -176,7 +176,8 @@ public class PlayerBehaviour : MonoBehaviour
         currentState?.FixedUpdate();
         
         //If low enough be zero - Specified request for animation
-        anim.SetFloat(Animator.StringToHash("Speed"), rb.velocity.magnitude <= 0.001f ? 0 : rb.velocity.magnitude );
+        float xzSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
+        anim.SetFloat(Animator.StringToHash("Speed"), xzSpeed <= 0.001f ? 0 : xzSpeed);
     }
 
     public void ChangeState(State newState)
