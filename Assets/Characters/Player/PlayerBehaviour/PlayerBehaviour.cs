@@ -175,6 +175,11 @@ public class PlayerBehaviour : MonoBehaviour
         if (!_movementOn) return;
         currentState?.FixedUpdate();
         
+        SetSpeedParameterAnimation();
+    }
+
+    private void SetSpeedParameterAnimation()
+    {
         //If low enough be zero - Specified request for animation
         float xzSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         anim.SetFloat(Animator.StringToHash("Speed"), xzSpeed <= 0.001f ? 0 : xzSpeed);
