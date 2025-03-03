@@ -174,7 +174,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!_movementOn) return;
         currentState?.FixedUpdate();
-        anim.SetFloat(Animator.StringToHash("Speed"), rb.velocity.magnitude);
+        
+        //If low enough be zero - Specified request for animation
+        anim.SetFloat(Animator.StringToHash("Speed"), rb.velocity.magnitude <= 0.001f ? 0 : rb.velocity.magnitude );
     }
 
     public void ChangeState(State newState)

@@ -37,7 +37,7 @@ public class Idle : State
         }
         else
         {
-            playerBehaviour.anim.Play("Astrid_Idle_Anim");
+            //playerBehaviour.anim.Play("Astrid_Idle_Anim");
         }
         Debug.Log("IDLE");
     }
