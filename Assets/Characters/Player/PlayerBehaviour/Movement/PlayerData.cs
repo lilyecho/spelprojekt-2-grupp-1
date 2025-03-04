@@ -26,6 +26,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float chargeTime;
     [SerializeField] private float coyoteTime;
     [SerializeField] private float jumpBufferDuration;
+    [SerializeField] private float glideMinimumHeight;
+    [SerializeField] private float glideExitHeight;
+    [SerializeField] private float glideFallingSpeed;
 
     [SerializeField] private ShrinkRelated shrinkRelated;
     
@@ -58,6 +61,9 @@ public class PlayerData : ScriptableObject
     public float GetChargeTime => chargeTime;
     public float GetCoyoteTime => coyoteTime;
     public float GetJumpBufferDuration => jumpBufferDuration;
+    public float GetGlideMinimumHeight => glideMinimumHeight;
+    public float GetGlideExitHeight => glideExitHeight;
+    public float GetGlideFallingSpeed => glideFallingSpeed;
 
     public ShrinkRelated GetShrinkParameters => shrinkRelated;
     

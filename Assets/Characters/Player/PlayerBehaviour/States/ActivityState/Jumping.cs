@@ -65,4 +65,15 @@ public class Jumping : State
             playerBehaviour.ChangeState(playerBehaviour.gliding);
         }
     }
+
+    public override void OnSpaceBar(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if (Glide())
+            {
+                playerBehaviour.ChangeState(playerBehaviour.gliding);
+            }
+        }
+    }
 }

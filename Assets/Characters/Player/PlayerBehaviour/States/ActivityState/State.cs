@@ -358,4 +358,23 @@ public abstract class State
             .normalized;
         playerBehaviour.transform.rotation = Quaternion.LookRotation(forward, new Vector3(0,1,0));
     }
+
+
+    protected bool Glide()
+    {
+        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideMinimumHeight))
+        {
+            return true;
+        }
+        return false;
+    }
+    protected bool ExitGlide()
+    {
+        if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideExitHeight))
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

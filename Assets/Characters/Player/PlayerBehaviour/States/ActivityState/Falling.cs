@@ -84,12 +84,22 @@ public class Falling : State
     {
         if (context.performed)
         {
-            jumpBufferTimer = playerBehaviour.PlayerData.GetJumpBufferDuration;
+            if (Glide())
+            {
+                playerBehaviour.ChangeState(playerBehaviour.gliding);
+                playerBehaviour.intoJump = false;
+            }
+            else
+            {
+                jumpBufferTimer = playerBehaviour.PlayerData.GetJumpBufferDuration;
+                playerBehaviour.intoJump = true;
+            }
+            
         }
 
         if (context.canceled)
         {
-            playerBehaviour.intoJump = true;
+            
         }
 
     }
