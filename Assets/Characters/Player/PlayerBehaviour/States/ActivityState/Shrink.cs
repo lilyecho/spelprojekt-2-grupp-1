@@ -29,18 +29,15 @@ public class Shrink : State
         _active = !_active;
         if (_active)
         {
-            playerBehaviour.transform.localScale = new Vector3(0.2f, .2f, .2f);
             playerBehaviour.PlayerData = playerBehaviour.GetShrinkPlayerData;
+            playerBehaviour.transform.localScale = playerBehaviour.PlayerData.CharacterScale;
         }
         else
         {
-            playerBehaviour.transform.localScale = new Vector3(1, 1, 1);
             playerBehaviour.PlayerData = playerBehaviour.GetNormalPlayerData;
+            playerBehaviour.transform.localScale = playerBehaviour.PlayerData.CharacterScale;
+            
         }
-        
-        
-        
-        
     }
 
     private void Particles()

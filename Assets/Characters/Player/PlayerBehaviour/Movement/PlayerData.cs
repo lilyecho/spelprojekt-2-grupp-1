@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Characters/Player/PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    //TODO validation
     [Header("Player Physics")] 
     [SerializeField, Min(0)] private float gravitationMagnitudeUp; 
     [SerializeField, Min(0)] private float gravitationMagnitudeDown;
@@ -30,15 +31,23 @@ public class PlayerData : ScriptableObject
     
     [Space, Header("Rotational")] 
     [SerializeField] private float rotationSpeed;
+
+    [Header("Extra"), Tooltip("Mostly for the use of shrinking")] 
+    [SerializeField, Range(0.01f, 1)] private float factorialValue4Shrink = 1; 
     
     #region Getters & Setters
     
-    public float GetGravityMagnitudeUp => gravitationMagnitudeUp;
-    public float GetGravityMagnitudeDown => gravitationMagnitudeDown;
+    public float GetGravityMagnitudeUp => gravitationMagnitudeUp * factorialValue4Shrink;
+    public float GetGravityMagnitudeDown => gravitationMagnitudeDown * factorialValue4Shrink;
 
-    public float GetRayCastLength => rayCastLength;
+    public float GetRayCastLength => rayCastLength * factorialValue4Shrink;
 
     public SpeedRelated GetSpeedRelated => speedRelated;
+    public float GetSneakSpeed => speedRelated.sneak.speed;
+    public float GetWalkSpeed => speedRelated.walk.speed;
+    public float GetRunSpeed => speedRelated.run.speed;
+    
+    
     
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
@@ -54,6 +63,8 @@ public class PlayerData : ScriptableObject
     public float GetSlopeCheckerLength => slopeCheckerLength;
 
     public float GetMaxRotationAngle => maxRotationAngle;
+
+    public Vector3 CharacterScale => new Vector3(1, 1, 1) * factorialValue4Shrink;
 
     #endregion
 
