@@ -23,7 +23,7 @@ public class Running : State, IAcceleration
     {
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
         Debug.Log("RUNNING");
-        //playerBehaviour.moveSpeed = playerBehaviour.GetData.GetSpeedRelated.run.speed;
+        //playerBehaviour.moveSpeed = playerBehaviour.GetPlayerData.GetSpeedRelated.run.speed;
         
         FixCurrentAccelerationTime();
     }
@@ -43,7 +43,7 @@ public class Running : State, IAcceleration
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-                                                                playerBehaviour.GetData.GetSlopeCheckerLength, playerBehaviour.GetData.GetMaxRotationAngle), time);
+                                                                playerBehaviour.GetPlayerData.GetSlopeCheckerLength, playerBehaviour.GetPlayerData.GetMaxRotationAngle), time);
         time = time + Time.deltaTime;
 
 
@@ -62,7 +62,7 @@ public class Running : State, IAcceleration
             if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
             {
                 coyote = false;
-                coyoteTimer = coyoteTimer = playerBehaviour.GetData.GetCoyoteTime;
+                coyoteTimer = coyoteTimer = playerBehaviour.GetPlayerData.GetCoyoteTime;
             }
             if (coyoteTimer <= 0)
             {
@@ -85,7 +85,7 @@ public class Running : State, IAcceleration
         
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         
-        ApplyAcceleration(playerBehaviour.GetData.GetSpeedRelated.run.speed,playerBehaviour.GetData.GetSpeedRelated.run.accTotalTime);
+        ApplyAcceleration(playerBehaviour.GetPlayerData.GetSpeedRelated.run.speed,playerBehaviour.GetPlayerData.GetSpeedRelated.run.accTotalTime);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -119,8 +119,8 @@ public class Running : State, IAcceleration
     public void FixCurrentAccelerationTime()
     {
         float currentSpeed = playerBehaviour.rb.velocity.magnitude;
-        float maxSpeed = playerBehaviour.GetData.GetSpeedRelated.run.speed;
-        float totalAccelerationTime = playerBehaviour.GetData.GetSpeedRelated.run.accTotalTime;
+        float maxSpeed = playerBehaviour.GetPlayerData.GetSpeedRelated.run.speed;
+        float totalAccelerationTime = playerBehaviour.GetPlayerData.GetSpeedRelated.run.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
     /*

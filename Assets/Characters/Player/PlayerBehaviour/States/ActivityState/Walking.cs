@@ -25,8 +25,8 @@ public class Walking : State, IAcceleration
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
         
         Debug.Log("WALKING");
-        coyoteTimer = playerBehaviour.GetData.GetCoyoteTime;
-        //playerBehaviour.moveSpeed = playerBehaviour.GetData.GetSpeedRelated.walk.speed;
+        coyoteTimer = playerBehaviour.GetPlayerData.GetCoyoteTime;
+        //playerBehaviour.moveSpeed = playerBehaviour.GetPlayerData.GetSpeedRelated.walk.speed;
 
         FixCurrentAccelerationTime();
     }
@@ -47,7 +47,7 @@ public class Walking : State, IAcceleration
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-                                                                playerBehaviour.GetData.GetSlopeCheckerLength, playerBehaviour.GetData.GetMaxRotationAngle), time);
+                                                                playerBehaviour.GetPlayerData.GetSlopeCheckerLength, playerBehaviour.GetPlayerData.GetMaxRotationAngle), time);
         time = time + Time.deltaTime;
 
         if (!coyote && !CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
@@ -63,7 +63,7 @@ public class Walking : State, IAcceleration
             if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
             {
                 coyote = false;
-                coyoteTimer = coyoteTimer = playerBehaviour.GetData.GetCoyoteTime;
+                coyoteTimer = coyoteTimer = playerBehaviour.GetPlayerData.GetCoyoteTime;
             }
             if (coyoteTimer <= 0)
             {
@@ -87,7 +87,7 @@ public class Walking : State, IAcceleration
         
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         
-        ApplyAcceleration(playerBehaviour.GetData.GetSpeedRelated.walk.speed,playerBehaviour.GetData.GetSpeedRelated.walk.accTotalTime);
+        ApplyAcceleration(playerBehaviour.GetPlayerData.GetSpeedRelated.walk.speed,playerBehaviour.GetPlayerData.GetSpeedRelated.walk.accTotalTime);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -124,8 +124,8 @@ public class Walking : State, IAcceleration
     public void FixCurrentAccelerationTime()
     {
         float currentSpeed = playerBehaviour.rb.velocity.magnitude;
-        float maxSpeed = playerBehaviour.GetData.GetSpeedRelated.walk.speed;
-        float totalAccelerationTime = playerBehaviour.GetData.GetSpeedRelated.walk.accTotalTime;
+        float maxSpeed = playerBehaviour.GetPlayerData.GetSpeedRelated.walk.speed;
+        float totalAccelerationTime = playerBehaviour.GetPlayerData.GetSpeedRelated.walk.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
     /*

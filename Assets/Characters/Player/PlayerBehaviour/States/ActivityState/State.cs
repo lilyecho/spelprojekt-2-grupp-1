@@ -288,17 +288,17 @@ public abstract class State
 
         //Works as a cap so the player wont move to fast
         float currentXZSpeed = new Vector2(currentVelocity.x,currentVelocity.z).magnitude;
-        if (currentXZSpeed >= playerBehaviour.GetData.GetMidAirForces.GetMaximumSpeed)
+        if (currentXZSpeed >= playerBehaviour.GetPlayerData.GetMidAirForces.GetMaximumSpeed)
         {
             Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z) *
-                                playerBehaviour.GetData.GetMidAirForces.GetMaximumSpeed;
+                                playerBehaviour.GetPlayerData.GetMidAirForces.GetMaximumSpeed;
             playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);
             //Debug.Log("MaxSpeed - In Air");
         }
         else
         {
             Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
-            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.GetData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.GetPlayerData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
         }
         
     }

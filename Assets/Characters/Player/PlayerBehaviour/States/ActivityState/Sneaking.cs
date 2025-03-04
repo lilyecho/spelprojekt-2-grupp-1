@@ -24,7 +24,7 @@ public class Sneaking : State, IAcceleration
     {
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
         Debug.Log("SNEAKING");
-        //playerBehaviour.moveSpeed = playerBehaviour.GetData.GetSneakSpeed;
+        //playerBehaviour.moveSpeed = playerBehaviour.GetPlayerData.GetSneakSpeed;
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
     }
     
@@ -44,7 +44,7 @@ public class Sneaking : State, IAcceleration
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-                                                                playerBehaviour.GetData.GetSlopeCheckerLength, playerBehaviour.GetData.GetMaxRotationAngle), time);
+                                                                playerBehaviour.GetPlayerData.GetSlopeCheckerLength, playerBehaviour.GetPlayerData.GetMaxRotationAngle), time);
         time = time + Time.deltaTime;
 
 
@@ -62,7 +62,7 @@ public class Sneaking : State, IAcceleration
             if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
             {
                 coyote = false;
-                coyoteTimer = coyoteTimer = playerBehaviour.GetData.GetCoyoteTime;
+                coyoteTimer = coyoteTimer = playerBehaviour.GetPlayerData.GetCoyoteTime;
             }
             if (coyoteTimer <= 0)
             {
@@ -85,7 +85,7 @@ public class Sneaking : State, IAcceleration
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
 
-        ApplyAcceleration(playerBehaviour.GetData.GetSpeedRelated.sneak.speed,playerBehaviour.GetData.GetSpeedRelated.sneak.accTotalTime);
+        ApplyAcceleration(playerBehaviour.GetPlayerData.GetSpeedRelated.sneak.speed,playerBehaviour.GetPlayerData.GetSpeedRelated.sneak.accTotalTime);
         
     }
     
@@ -132,8 +132,8 @@ public class Sneaking : State, IAcceleration
     public void FixCurrentAccelerationTime()
     {
         float currentSpeed = playerBehaviour.rb.velocity.magnitude;
-        float maxSpeed = playerBehaviour.GetData.GetSpeedRelated.sneak.speed;
-        float totalAccelerationTime = playerBehaviour.GetData.GetSpeedRelated.sneak.accTotalTime;
+        float maxSpeed = playerBehaviour.GetPlayerData.GetSpeedRelated.sneak.speed;
+        float totalAccelerationTime = playerBehaviour.GetPlayerData.GetSpeedRelated.sneak.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
 }

@@ -14,8 +14,7 @@ public class Shrink : State
     public override void Enter()
     {
         CreateEffect();
-
-        _active = !_active;
+        
         playerBehaviour.ChangeState(playerBehaviour.idle);
     }
 
@@ -27,7 +26,11 @@ public class Shrink : State
 
     private void ReSize()
     {
-        playerBehaviour.transform.localScale = _active ? new Vector3(1,1,1) : new Vector3(0.2f, .2f, .2f);
+        _active = !_active;
+        playerBehaviour.transform.localScale = _active ? new Vector3(0.2f, .2f, .2f) : new Vector3(1,1,1);
+        
+        
+        
     }
 
     private void Particles()

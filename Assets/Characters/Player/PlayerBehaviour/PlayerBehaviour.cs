@@ -41,7 +41,10 @@ public class PlayerBehaviour : MonoBehaviour
     #endregion
 
     
-    [SerializeField] private PlayerData playerData;
+    [SerializeField] private PlayerData playerDataNormal;
+    [SerializeField] private PlayerData playerDataShrink;
+    private PlayerData _currentPlayerPlayerData;
+    
     //[SerializeField] private AbilityData abilityData;
     [SerializeField] private AbilityData.Abilities currentAbilities;
     //TODO change when we get animations instead of a certain point 
@@ -130,7 +133,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
-    public PlayerData GetData => playerData;
+    public PlayerData GetPlayerData => _currentPlayerPlayerData;
     //public AbilityData GetAbilityData => abilityData;
     public AbilityData.Abilities Abilities
     {
