@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 [Serializable]
 public struct JumpParameters
@@ -33,6 +34,12 @@ public struct SpeedRelated
 [Serializable]
 public struct SpeedParameters
 {
-    [SerializeField, Min(0)] public float speed;
-    [SerializeField, Min(0.001f)] public float accTotalTime;
+    [SerializeField, UnityEngine.Min(0)] public float speed;
+    [SerializeField, UnityEngine.Min(0.001f)] public float accTotalTime;
+}
+
+[Serializable]
+public struct ShrinkRelated
+{
+    [SerializeField, Range(0.01f, 1)] public float shrinkFactor;
 }
