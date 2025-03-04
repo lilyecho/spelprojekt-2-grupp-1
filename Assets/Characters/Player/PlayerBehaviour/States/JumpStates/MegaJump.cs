@@ -12,7 +12,7 @@ public class MegaJump : JumpState
     public override void Enter()
     {
         Debug.Log("Mega Jump state");
-        chargeTimer = playerBehaviour.GetPlayerData.GetChargeTime;
+        chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
     }
 
     public override void Update()
@@ -32,14 +32,14 @@ public class MegaJump : JumpState
     {
         if (context.canceled && chargeTimer <= 0)
         {
-            float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.GetPlayerData.GetMegaJump.GetJumpHeight, 1, playerBehaviour.GetPlayerData.GetGravityMagnitudeUp);
-            Jump(jumpForce, playerBehaviour.GetPlayerData.GetMegaJump.GetKeptMomentumPercentage);
-            chargeTimer = playerBehaviour.GetPlayerData.GetChargeTime;
+            float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetMegaJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
+            Jump(jumpForce, playerBehaviour.PlayerData.GetMegaJump.GetKeptMomentumPercentage);
+            chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
         }
         else if (context.canceled)
         {
-            float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.GetPlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.GetPlayerData.GetGravityMagnitudeUp);
-            Jump(jumpForce, playerBehaviour.GetPlayerData.GetNormalJump.GetKeptMomentumPercentage);
+            float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
+            Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
         }
     }
 

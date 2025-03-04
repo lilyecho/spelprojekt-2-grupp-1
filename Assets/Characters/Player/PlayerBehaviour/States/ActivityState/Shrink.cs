@@ -27,7 +27,17 @@ public class Shrink : State
     private void ReSize()
     {
         _active = !_active;
-        playerBehaviour.transform.localScale = _active ? new Vector3(0.2f, .2f, .2f) : new Vector3(1,1,1);
+        if (_active)
+        {
+            playerBehaviour.transform.localScale = new Vector3(0.2f, .2f, .2f);
+            playerBehaviour.PlayerData = playerBehaviour.GetShrinkPlayerData;
+        }
+        else
+        {
+            playerBehaviour.transform.localScale = new Vector3(1, 1, 1);
+            playerBehaviour.PlayerData = playerBehaviour.GetNormalPlayerData;
+        }
+        
         
         
         

@@ -52,7 +52,7 @@ public class Jumping : State
         ApplyCorrectiveAirForces();
         
         //Gravity
-        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetPlayerData.GetGravityMagnitudeUp, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.PlayerData.GetGravityMagnitudeUp, ForceMode.Acceleration);
 
         flagAbleToFall = true;
         ChangeRotationToStandard();

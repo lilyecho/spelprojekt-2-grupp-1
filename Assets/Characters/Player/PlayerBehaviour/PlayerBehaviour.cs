@@ -126,6 +126,11 @@ public class PlayerBehaviour : MonoBehaviour
         timeManager.OnMovement -= ChangeMovementActivation;
     }
 
+    private void Awake()
+    {
+        _currentPlayerPlayerData = playerDataNormal;
+    }
+
     private void ChangeMovementActivation(bool nextValue)
     {
         _movementOn = nextValue;
@@ -133,7 +138,15 @@ public class PlayerBehaviour : MonoBehaviour
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
-    public PlayerData GetPlayerData => _currentPlayerPlayerData;
+    public PlayerData GetShrinkPlayerData => playerDataShrink;
+    public PlayerData GetNormalPlayerData => playerDataNormal;
+    
+    public PlayerData PlayerData
+    {
+        get => _currentPlayerPlayerData;
+        set => _currentPlayerPlayerData = value;
+    }
+
     //public AbilityData GetAbilityData => abilityData;
     public AbilityData.Abilities Abilities
     {
