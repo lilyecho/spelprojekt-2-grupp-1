@@ -321,5 +321,10 @@ public class PlayerBehaviour : MonoBehaviour
         }
         
     }
+    
+    public void JumpParticles()
+    {
+        jumpParticlesInstance = Instantiate(jumpParticles, transform.position, jumpParticles.transform.rotation);
+    }
 
 }
