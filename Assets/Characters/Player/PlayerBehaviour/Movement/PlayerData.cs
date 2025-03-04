@@ -47,6 +47,9 @@ public class PlayerData : ScriptableObject
     public float GetWalkSpeed => speedRelated.walk.speed;
     public float GetRunSpeed => speedRelated.run.speed;
     
+    public float GetSneakAccelerationTime => speedRelated.sneak.accTotalTime;
+    public float GetWalkAccelerationTime => speedRelated.walk.accTotalTime;
+    public float GetRunAccelerationTime => speedRelated.run.accTotalTime;
     
     
     public JumpParameters GetNormalJump => normalJump;
