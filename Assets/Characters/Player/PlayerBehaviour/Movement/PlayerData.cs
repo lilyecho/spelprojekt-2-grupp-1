@@ -26,6 +26,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float coyoteTime;
     [SerializeField] private float jumpBufferDuration;
 
+    [SerializeField] private ShrinkRelated shrinkRelated;
+    
     [Space, Header("Rotational")] 
     [SerializeField] private float rotationSpeed;
     
@@ -45,6 +47,8 @@ public class PlayerData : ScriptableObject
     public float GetCoyoteTime => coyoteTime;
     public float GetJumpBufferDuration => jumpBufferDuration;
 
+    public ShrinkRelated GetShrinkParameters => shrinkRelated;
+    
     public float GetRotationSpeed => rotationSpeed;
 
     public float GetSlopeCheckerLength => slopeCheckerLength;
