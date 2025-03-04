@@ -57,7 +57,7 @@ public class Idle : State
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-                                                                playerBehaviour.GetMovementData.GetSlopeCheckerLength, playerBehaviour.GetMovementData.GetMaxRotationAngle), time);
+                                                                playerBehaviour.GetData.GetSlopeCheckerLength, playerBehaviour.GetData.GetMaxRotationAngle), time);
         time = time + Time.deltaTime;
         if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
         {
@@ -125,7 +125,7 @@ public class Idle : State
     {
         while (playerBehaviour.rb.velocity.magnitude > 0)
         {
-            yield return new WaitForSeconds(playerBehaviour.GetMovementData.GetDeAcceleration);
+            yield return new WaitForSeconds(playerBehaviour.GetData.GetDeAcceleration);
             break;
         }
         playerBehaviour.rb.velocity = Vector3.zero;

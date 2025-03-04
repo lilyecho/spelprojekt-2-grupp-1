@@ -11,7 +11,8 @@ public class AbilityData : ScriptableObject
      public enum Abilities
      {
           MegaJump = 1,
-          Glide = 2
+          Glide = 2,
+          Shrink = 4
      }
 
      [SerializeField] private Abilities activeAbilities;

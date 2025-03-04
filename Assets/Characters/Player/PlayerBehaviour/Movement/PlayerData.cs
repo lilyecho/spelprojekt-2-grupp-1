@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Characters/Player/PlayerMovementData")]
-public class PlayerMovementData : ScriptableObject
+[CreateAssetMenu(menuName = "Characters/Player/PlayerData")]
+public class PlayerData : ScriptableObject
 {
     [Header("Player Physics")] 
     [SerializeField, Min(0)] private float gravitationMagnitudeUp; 

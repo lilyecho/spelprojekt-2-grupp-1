@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerBehaviour : MonoBehaviour
@@ -40,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
     #endregion
 
     
-    [SerializeField] private PlayerMovementData playerMovementData;
+    [SerializeField] private PlayerData playerData;
     //[SerializeField] private AbilityData abilityData;
     [SerializeField] private AbilityData.Abilities currentAbilities;
     //TODO change when we get animations instead of a certain point 
@@ -121,7 +122,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
-    public PlayerMovementData GetMovementData => playerMovementData;
+    public PlayerData GetData => playerData;
     //public AbilityData GetAbilityData => abilityData;
     public AbilityData.Abilities Abilities
     {

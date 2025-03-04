@@ -24,7 +24,7 @@ public class Falling : State
         Debug.Log("FALLING");
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
-        //jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
+        //jumpBufferTimer = playerBehaviour.GetData.GetJumpBufferDuration;
     }
     public override void Exit()
     {
@@ -76,7 +76,7 @@ public class Falling : State
         ApplyCorrectiveAirForces();
         
         //Gravity
-        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetMovementData.GetGravityMagnitudeDown, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.GetData.GetGravityMagnitudeDown, ForceMode.Acceleration);
         
     }
 
@@ -84,7 +84,7 @@ public class Falling : State
     {
         if (context.performed)
         {
-            jumpBufferTimer = playerBehaviour.GetMovementData.GetJumpBufferDuration;
+            jumpBufferTimer = playerBehaviour.GetData.GetJumpBufferDuration;
         }
 
         if (context.canceled)
