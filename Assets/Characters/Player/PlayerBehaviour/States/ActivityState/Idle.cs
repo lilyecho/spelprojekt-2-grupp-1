@@ -6,10 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Idle : State
 {
-    public Idle(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
+    public Idle(PlayerBehaviour playerBehaviour) : base(playerBehaviour) {}
     float time = 0f;
     Vector3 normal;
 
@@ -41,15 +38,6 @@ public class Idle : State
         }
         Debug.Log("IDLE");
     }
-    public override void Exit()
-    {
-        //StopDeAcceleration();
-    }
-
-    public override void OnCollision(Collision collision)
-    {
-
-    }
 
     public override void Update()
     {
@@ -71,18 +59,7 @@ public class Idle : State
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
     }
 
-    public override void OnSpaceBar(InputAction.CallbackContext context)
-    {
-
-    }
-    public override void OnShift(InputAction.CallbackContext context)
-    {
-    }
-    public override void OnCTRL(InputAction.CallbackContext context)
-    {
-
-    }
-
+    
     public override void OnWASD(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -104,30 +81,4 @@ public class Idle : State
             }
         }
     }
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
-
-    }
-    
-    /*/// <summary>
-    /// Only handle from currentSpeed to zero in idle
-    /// </summary>
-    private void DoDeAcceleration()
-    {
-        playerBehaviour.StartCoroutine(DeAccelerate());
-    }
-    private void StopDeAcceleration()
-    {
-        playerBehaviour.StopCoroutine(DeAccelerate());
-    }
-
-    private IEnumerator DeAccelerate()
-    {
-        while (playerBehaviour.rb.velocity.magnitude > 0)
-        {
-            yield return new WaitForSeconds(playerBehaviour.GetData.GetDeAcceleration);
-            break;
-        }
-        playerBehaviour.rb.velocity = Vector3.zero;
-    }*/
 }

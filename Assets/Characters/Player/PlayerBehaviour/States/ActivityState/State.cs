@@ -47,6 +47,12 @@ public abstract class State
     {
 
     }
+
+    public virtual void OnShrink(InputAction.CallbackContext context)
+    {
+        
+    }
+    
     public virtual void OnMOUSE(InputAction.CallbackContext context)
     {
 

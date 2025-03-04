@@ -274,7 +274,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Shrink(InputAction.CallbackContext context)
     {
-        
+        currentState?.OnShrink(context);
     }
 
     public void Mouse(InputAction.CallbackContext context)
