@@ -1,13 +1,12 @@
 using FMODUnity;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public abstract class State
 {
-
-
     public virtual void Enter()
     {
 
@@ -28,6 +27,11 @@ public abstract class State
     public virtual void FixedUpdate()
     {
 
+    }
+
+    public virtual void OnStateGizmos()
+    {
+        
     }
 
     public virtual void OnSpaceBar(InputAction.CallbackContext context)
