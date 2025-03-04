@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13199af10343e3f40ae07a8837062516, type: 3}
-  m_Name: PlayerMovementData
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
   gravitationMagnitudeUp: 20
   gravitationMagnitudeDown: 20
-  slopeCheckerLength: 0.3
+  slopeCheckerLength: 0.4
   maxRotationAngle: 40
   rayCastLength: 0.1
   speedRelated:
@@ -39,4 +39,6 @@ MonoBehaviour:
   chargeTime: 0.5
   coyoteTime: 0.2
   jumpBufferDuration: 0.2
+  shrinkRelated:
+    shrinkFactor: 0.01
   rotationSpeed: 0

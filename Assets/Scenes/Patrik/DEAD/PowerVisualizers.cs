@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PowerVisualizers : MonoBehaviour
 {
-    [SerializeField] private PlayerMovementData playerMovementData = null;
+    [FormerlySerializedAs("playerMovementData")] [SerializeField] private PlayerData playerData = null;
     [SerializeField] private PlayerQualities visualizePlayerQualities;
     [SerializeField] private SpeedState speedState = SpeedState.Idle;
 
@@ -32,7 +33,7 @@ public class PowerVisualizers : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (playerMovementData == null) return;
+        if (playerData == null) return;
 
         //Jump & MegaJump
         DrawJump();
@@ -44,8 +45,8 @@ public class PowerVisualizers : MonoBehaviour
         if (visualizePlayerQualities.HasFlag(PlayerQualities.Jump))
         {
             Gizmos.color = Color.blue;
-            DrawJumpHeight(playerMovementData.GetNormalJump.GetJumpHeight);
-            FindFurthestPointAccordingToSpeed(playerMovementData.GetNormalJump.GetJumpHeight);
+            DrawJumpHeight(playerData.GetNormalJump.GetJumpHeight);
+            FindFurthestPointAccordingToSpeed(playerData.GetNormalJump.GetJumpHeight);
         }
     }
 
@@ -54,8 +55,8 @@ public class PowerVisualizers : MonoBehaviour
         if (visualizePlayerQualities.HasFlag(PlayerQualities.MegaJump))
         {
             Gizmos.color = Color.red;
-            DrawJumpHeight(playerMovementData.GetMegaJump.GetJumpHeight);
-            FindFurthestPointAccordingToSpeed(playerMovementData.GetMegaJump.GetJumpHeight);
+            DrawJumpHeight(playerData.GetMegaJump.GetJumpHeight);
+            FindFurthestPointAccordingToSpeed(playerData.GetMegaJump.GetJumpHeight);
         }
     }
     
@@ -78,19 +79,19 @@ public class PowerVisualizers : MonoBehaviour
             
             case SpeedState.Sneak:
             {
-                speed = playerMovementData.GetSpeedRelated.sneak.speed;
+                speed = playerData.GetSpeedRelated.sneak.speed;
             }
                 break;
             
             case SpeedState.Walking:
             {
-                speed = playerMovementData.GetSpeedRelated.walk.speed;
+                speed = playerData.GetSpeedRelated.walk.speed;
             }
                 break;
             
             case SpeedState.Running:
             {
-                speed = playerMovementData.GetSpeedRelated.run.speed;
+                speed = playerData.GetSpeedRelated.run.speed;
             }
                 break;
             default:
@@ -104,16 +105,16 @@ public class PowerVisualizers : MonoBehaviour
     private void FindFurthestPointForJumping(Vector3 playerPosition,float jumpHeight,float playerSpeed,int resolution)
     {
         //Setting up. Front is first point on ascending-path
-        float totalMovementSpeed = playerSpeed + playerMovementData.GetMidAirForces.GetAppliedMagnitude;
+        float totalMovementSpeed = playerSpeed + playerData.GetMidAirForces.GetAppliedMagnitude;
         
         Vector3 startDirection = Vector3.forward;
-        float startForce = PhysicsCalculations.ForceToJumpCertainHeight(jumpHeight, rigidB.mass,playerMovementData.GetGravityMagnitudeUp);
+        float startForce = PhysicsCalculations.ForceToJumpCertainHeight(jumpHeight, rigidB.mass,playerData.GetGravityMagnitudeUp);
         Vector3 maxWidthVelocity = startDirection * (totalMovementSpeed)
                                     + Vector3.up * startForce;
 
         float startSpeed = maxWidthVelocity.magnitude;
         float angleOfIncrease = Vector3.Angle(startDirection, maxWidthVelocity.normalized);
-        float realTime = PhysicsCalculations.ProjectileCertainTimeOfMaxHeight(startSpeed, angleOfIncrease, playerMovementData.GetGravityMagnitudeUp);
+        float realTime = PhysicsCalculations.ProjectileCertainTimeOfMaxHeight(startSpeed, angleOfIncrease, playerData.GetGravityMagnitudeUp);
         
         float angleBetweenPoints = 360f / resolution;
 
@@ -147,7 +148,7 @@ public class PowerVisualizers : MonoBehaviour
             
             float startSpeed = finalPoint.magnitude;
         
-            float realTime = PhysicsCalculations.ProjectileCertainTimeOfMaxHeight(startSpeed, angleOfIncrease, playerMovementData.GetGravityMagnitudeUp);
+            float realTime = PhysicsCalculations.ProjectileCertainTimeOfMaxHeight(startSpeed, angleOfIncrease, playerData.GetGravityMagnitudeUp);
             
             float maxDistanceValue =
                 PhysicsCalculations.ProjectileCertainWidthFromRealTime(startSpeed, angleOfIncrease, realTime);
@@ -184,8 +185,8 @@ public class PowerVisualizers : MonoBehaviour
     {
         //Point on descending   
                 
-        float ratio = playerMovementData.GetGravityMagnitudeDown /
-                      playerMovementData.GetMidAirForces.GetAppliedMagnitude;
+        float ratio = playerData.GetGravityMagnitudeDown /
+                      playerData.GetMidAirForces.GetAppliedMagnitude;
         
         float angleOfFall = Mathf.Atan(ratio)*Mathf.Rad2Deg;
         

@@ -6,10 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Idle : State
 {
-    public Idle(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
+    public Idle(PlayerBehaviour playerBehaviour) : base(playerBehaviour) {}
     float time = 0f;
     Vector3 normal;
 
@@ -41,15 +38,6 @@ public class Idle : State
         }
         Debug.Log("IDLE");
     }
-    public override void Exit()
-    {
-        //StopDeAcceleration();
-    }
-
-    public override void OnCollision(Collision collision)
-    {
-
-    }
 
     public override void Update()
     {
@@ -57,7 +45,7 @@ public class Idle : State
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength);
         //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
         playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-                                                                playerBehaviour.GetMovementData.GetSlopeCheckerLength, playerBehaviour.GetMovementData.GetMaxRotationAngle), time);
+                                                                playerBehaviour.GetData.GetSlopeCheckerLength, playerBehaviour.GetData.GetMaxRotationAngle), time);
         time = time + Time.deltaTime;
         if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
         {
@@ -71,18 +59,7 @@ public class Idle : State
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
     }
 
-    public override void OnSpaceBar(InputAction.CallbackContext context)
-    {
-
-    }
-    public override void OnShift(InputAction.CallbackContext context)
-    {
-    }
-    public override void OnCTRL(InputAction.CallbackContext context)
-    {
-
-    }
-
+    
     public override void OnWASD(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -104,30 +81,12 @@ public class Idle : State
             }
         }
     }
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
 
-    }
-    
-    /*/// <summary>
-    /// Only handle from currentSpeed to zero in idle
-    /// </summary>
-    private void DoDeAcceleration()
+    public override void OnShrink(InputAction.CallbackContext context)
     {
-        playerBehaviour.StartCoroutine(DeAccelerate());
-    }
-    private void StopDeAcceleration()
-    {
-        playerBehaviour.StopCoroutine(DeAccelerate());
-    }
-
-    private IEnumerator DeAccelerate()
-    {
-        while (playerBehaviour.rb.velocity.magnitude > 0)
+        if (context.performed)
         {
-            yield return new WaitForSeconds(playerBehaviour.GetMovementData.GetDeAcceleration);
-            break;
+            playerBehaviour.ChangeState(playerBehaviour.shrink);
         }
-        playerBehaviour.rb.velocity = Vector3.zero;
-    }*/
+    }
 }

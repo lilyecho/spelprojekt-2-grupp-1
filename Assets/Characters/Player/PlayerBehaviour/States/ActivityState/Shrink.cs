@@ -11,7 +11,9 @@ public class Shrink : State
 
     public override void Enter()
     {
-        base.Enter();
+        CreateEffect();
+        
+        playerBehaviour.ChangeState(playerBehaviour.idle);
     }
 
     private void CreateEffect()
