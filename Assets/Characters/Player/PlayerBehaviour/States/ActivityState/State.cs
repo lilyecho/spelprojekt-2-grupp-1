@@ -77,7 +77,7 @@ public abstract class State
             {
                 float angle = Vector3.Angle(Vector3.up, hit.normal);
                 
-                if (angle < 30f)
+                if (angle < playerBehaviour.PlayerData.GetMaxRotationAngle)
                 {
                     playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), true);
                     return true;
@@ -192,7 +192,7 @@ public abstract class State
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
 
-            if (angle < 30f)
+            if (angle < playerBehaviour.PlayerData.GetMaxRotationAngle)
             {
                 return hit.normal;
             }
@@ -202,7 +202,7 @@ public abstract class State
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
 
-            if (angle < 30f)
+            if (angle < playerBehaviour.PlayerData.GetMaxRotationAngle)
             {
                 return hit.normal;
             }
@@ -211,7 +211,7 @@ public abstract class State
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
 
-            if (angle < 30f)
+            if (angle < playerBehaviour.PlayerData.GetMaxRotationAngle)
             {
                 return hit.normal;
             }
