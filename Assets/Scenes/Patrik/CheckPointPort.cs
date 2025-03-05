@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+
+[CreateAssetMenu(menuName = "CheckPointPort")]
+public class CheckPointPort : ScriptableObject
+{
+    public UnityAction<CheckPointBehaviour> OnChangeCheckPoint = delegate(CheckPointBehaviour checkPoint){ };
+
+    public void ChangeCheckPoint(CheckPointBehaviour checkPointBehaviour)
+    {
+        OnChangeCheckPoint.Invoke(checkPointBehaviour);
+    }
+}
