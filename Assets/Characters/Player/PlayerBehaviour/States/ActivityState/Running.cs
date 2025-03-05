@@ -116,6 +116,14 @@ public class Running : State, IAcceleration
 
     }
     
+    public override void OnShrink(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            playerBehaviour.ChangeState(playerBehaviour.shrink);
+        }
+    }
+    
     public void FixCurrentAccelerationTime()
     {
         float currentSpeed = playerBehaviour.rb.velocity.magnitude;

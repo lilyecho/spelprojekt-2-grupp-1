@@ -120,6 +120,14 @@ public class Walking : State, IAcceleration
     {
 
     }
+    
+    public override void OnShrink(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            playerBehaviour.ChangeState(playerBehaviour.shrink);
+        }
+    }
 
     public void FixCurrentAccelerationTime()
     {
