@@ -228,7 +228,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         currentState?.Exit();
         currentState = newState;
-        currentState.Enter();
+        currentState?.Enter();
     }
 
     public void ChangeJumpState(JumpState newState)
