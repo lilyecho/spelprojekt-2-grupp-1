@@ -8,6 +8,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 public class CheckPointBehaviour : MonoBehaviour
 {
+    [SerializeField] private RegistrationPort registrationPort = null;
+
+    [SerializeField] private GameObject player;
+    
     public UnityEvent changesOnStart;
 
     [SerializeField] private BoxCollider checkCollider = null;
@@ -15,7 +19,15 @@ public class CheckPointBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        registrationPort.OnRegister += Registration;
+        
         checkCollider = GetComponent<BoxCollider>();
+    }
+
+    private void Registration(RegistrationPort.TypeOfRegistration typeOfRegistration, GameObject gameObject)
+    {
+        if (typeOfRegistration != RegistrationPort.TypeOfRegistration.Player) return;
+        player = gameObject;
     }
 
     private void Start()
