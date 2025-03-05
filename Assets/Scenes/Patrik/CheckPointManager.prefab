@@ -45,19 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkPointPort: {fileID: 11400000, guid: 4e43fc8d7d583f84c958922bf2677053, type: 2}
+  registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
+  playerBehaviour: {fileID: 0}
   latestCheckPoint: {fileID: 0}
-  changesOnAwake:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4997162173217798008}
-        m_TargetAssemblyTypeName: CheckPointManager, Assembly-CSharp
-        m_MethodName: ChangeLatestCheckPoint
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: CheckPointBehaviour, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

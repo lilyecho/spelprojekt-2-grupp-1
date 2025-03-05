@@ -5,21 +5,38 @@ using UnityEngine.Events;
 public class CheckPointManager : MonoBehaviour
 {
     [SerializeField] private CheckPointPort checkPointPort = null;
+    [SerializeField] private RegistrationPort registrationPort = null;
+    [SerializeField]private PlayerBehaviour playerBehaviour = null;
+    
     [SerializeField,ReadOnly] private CheckPointBehaviour latestCheckPoint = null;
-    [SerializeField, ReadOnly] private AbilityData.Abilities latestAbilities;
+    
     private void Awake()
     {
+        registrationPort.OnRegister += Registration;
+        
         checkPointPort.OnChangeCheckPoint += ChangeLatestCheckPoint;
+        checkPointPort.OnRespawn += Respawn;
         //checkPointPort.OnChangeCheckPoint += ChangeLatestAbilities;
     }
 
     private void ChangeLatestCheckPoint(CheckPointBehaviour checkPoint)
     {
         latestCheckPoint = checkPoint;
+        
+        if (playerBehaviour == null) return;
+        latestCheckPoint.Abilities = playerBehaviour.Abilities;
     }
-    private void ChangeLatestAbilities(AbilityData.Abilities currentAbilities)
+    
+    private void Registration(RegistrationPort.TypeOfRegistration typeOfRegistration, GameObject gameObject)
     {
-        latestAbilities = currentAbilities;
+        if (typeOfRegistration != RegistrationPort.TypeOfRegistration.Player) return;
+        if (!gameObject.TryGetComponent(out PlayerBehaviour player)) return;
+        playerBehaviour = player;
+    }
+
+    private void Respawn()
+    {
+        
     }
     
     
