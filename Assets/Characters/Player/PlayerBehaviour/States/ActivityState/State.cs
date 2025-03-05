@@ -83,7 +83,6 @@ public abstract class State
                 
                 if (angle < playerBehaviour.PlayerData.GetMaxRotationAngle)
                 {
-                    playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), true);
                     return true;
                 }
                 
