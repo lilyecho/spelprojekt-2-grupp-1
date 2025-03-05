@@ -46,14 +46,6 @@ public class PlayerData : ScriptableObject
     public float GetRayCastLength => rayCastLength * factorialValue4Shrink;
 
     public SpeedRelated GetSpeedRelated => speedRelated;
-    public float GetSneakSpeed => speedRelated.sneak.speed;
-    public float GetWalkSpeed => speedRelated.walk.speed;
-    public float GetRunSpeed => speedRelated.run.speed;
-    
-    public float GetSneakAccelerationTime => speedRelated.sneak.accTotalTime;
-    public float GetWalkAccelerationTime => speedRelated.walk.accTotalTime;
-    public float GetRunAccelerationTime => speedRelated.run.accTotalTime;
-    
     
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
