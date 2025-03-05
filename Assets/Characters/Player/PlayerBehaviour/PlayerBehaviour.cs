@@ -111,10 +111,8 @@ public class PlayerBehaviour : MonoBehaviour
     #region Shrink
 
     [SerializeField] private ParticleSystem particleSystemOnShrink;
-    [SerializeField] private Transform shrinkTriggerPoint;
     
     public ParticleSystem GetOnShrinkParticleSystem => particleSystemOnShrink;
-    public Transform GetShrinkColliderPoint => shrinkTriggerPoint;
 
     #endregion
     
