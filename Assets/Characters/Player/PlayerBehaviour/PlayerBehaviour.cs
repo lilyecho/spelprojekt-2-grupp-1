@@ -185,13 +185,20 @@ public class PlayerBehaviour : MonoBehaviour
         //TODO make state
         shrink = new Shrink(this);
         
-        movementMode = MovementMode.WALK;
-        currentState = idle;
-
         cam = Camera.main;
         anim = GetComponent<Animator>();
+        
+        movementMode = MovementMode.WALK;
+        StartInvoke(idle);
     }
 
+    private void StartInvoke(State newState)
+    {
+        currentState = newState;
+        currentState.Enter();
+    }
+    
+    
     // Update is called once per frame
     void Update()
     {

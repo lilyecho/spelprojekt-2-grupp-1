@@ -12,6 +12,8 @@ public class Idle : State
 
     public override void Enter()
     {
+        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), true);
+        
         if(playerBehaviour.moveInput == Vector2.zero)
         {
             playerBehaviour.rb.velocity = Vector3.zero;
@@ -31,10 +33,6 @@ public class Idle : State
                     playerBehaviour.ChangeState(playerBehaviour.walking);
                     break;
             }
-        }
-        else
-        {
-            //playerBehaviour.anim.Play("Astrid_Idle_Anim");
         }
         Debug.Log("IDLE");
     }

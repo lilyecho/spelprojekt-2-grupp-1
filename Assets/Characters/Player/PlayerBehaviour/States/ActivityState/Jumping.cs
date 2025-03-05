@@ -57,14 +57,6 @@ public class Jumping : State
         ChangeRotationToStandard();
     }
 
-    public override void OnShift(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            playerBehaviour.ChangeState(playerBehaviour.gliding);
-        }
-    }
-
     public override void OnSpaceBar(InputAction.CallbackContext context)
     {
         if(context.performed)
