@@ -117,37 +117,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 39312636168687084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2634915596935750174
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3311400830644947833}
-  m_Layer: 8
-  m_Name: ShrinkControllPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3311400830644947833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634915596935750174}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.29, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1601732004463591210}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2784889253152729799
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +239,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3311400830644947833}
   - {fileID: 5578013125834052544}
   m_Father: {fileID: 39312636168687084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1208,7 +1176,6 @@ MonoBehaviour:
   jumpParticles: {fileID: 2994038875534626662, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   particleSystemOnShrink: {fileID: 8124358052296443870}
-  shrinkTriggerPoint: {fileID: 3311400830644947833}
   rotationSpeed: 10
   currentVelocity: 0
   smoothTime: 0.1
