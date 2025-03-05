@@ -23,7 +23,7 @@ public class PotionBehaviour : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        player.Abilities = activateAbility;
+        player.ChangeAbilities = activateAbility;
         Destroy(gameObject);
     }
 

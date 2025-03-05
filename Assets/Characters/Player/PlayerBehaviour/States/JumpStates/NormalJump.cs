@@ -18,7 +18,7 @@ public class NormalJump : JumpState
             playerBehaviour.intoJump = false;
         }
         //sneak isn't deactivated so change to megaJump-state 
-        else if (playerBehaviour.Abilities.HasFlag(AbilityData.Abilities.MegaJump) && playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
+        else if (playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.MegaJump) && playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
         {
             playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
         }
@@ -41,7 +41,7 @@ public class NormalJump : JumpState
     {
         if (context.performed)
         {
-            if (!playerBehaviour.Abilities.HasFlag(AbilityData.Abilities.MegaJump)) return;
+            if (!playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.MegaJump)) return;
             playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
         }
     }

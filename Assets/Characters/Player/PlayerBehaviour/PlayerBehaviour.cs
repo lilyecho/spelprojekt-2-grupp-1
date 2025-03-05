@@ -153,9 +153,14 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     //public AbilityData GetAbilityData => abilityData;
-    public AbilityData.Abilities Abilities
+    public AbilityData.Abilities GetAbilities => currentAbilities;
+    public AbilityData.Abilities ResetAbilities
     {
-        get => currentAbilities;
+        set => currentAbilities = value;
+    }
+    
+    public AbilityData.Abilities ChangeAbilities
+    {
         set => currentAbilities |= value;
     }
 

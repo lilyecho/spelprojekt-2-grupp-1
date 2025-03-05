@@ -24,7 +24,7 @@ public class CheckPointManager : MonoBehaviour
         latestCheckPoint = checkPoint;
         
         if (playerBehaviour == null) return;
-        latestCheckPoint.Abilities = playerBehaviour.Abilities;
+        latestCheckPoint.Abilities = playerBehaviour.GetAbilities;
     }
     
     private void Registration(RegistrationPort.TypeOfRegistration typeOfRegistration, GameObject gameObject)
@@ -36,7 +36,8 @@ public class CheckPointManager : MonoBehaviour
 
     private void Respawn()
     {
-        
+        playerBehaviour.transform.position = latestCheckPoint.SpawnPoint;
+        playerBehaviour.ResetAbilities = latestCheckPoint.Abilities;
     }
     
     
