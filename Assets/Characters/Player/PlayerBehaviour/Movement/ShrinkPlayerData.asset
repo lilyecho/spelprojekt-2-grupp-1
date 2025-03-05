@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13199af10343e3f40ae07a8837062516, type: 3}
   m_Name: ShrinkPlayerData
   m_EditorClassIdentifier: 
-  gravitationMagnitudeUp: 20
-  gravitationMagnitudeDown: 20
+  gravitationMagnitudeUp: 60
+  gravitationMagnitudeDown: 60
   slopeCheckerLength: 0.4
   maxRotationAngle: 40
   rayCastLength: 0.1
@@ -28,10 +28,10 @@ MonoBehaviour:
       speed: 3.5
       accTotalTime: 1
   normalJump:
-    jumpHeight: 2
+    jumpHeight: 1
     keptMomentum: 0.5
   megaJump:
-    jumpHeight: 3.6
+    jumpHeight: 1.8
     keptMomentum: 0.6
   appliableAirForces:
     airCorrectionMagnitude: 10
