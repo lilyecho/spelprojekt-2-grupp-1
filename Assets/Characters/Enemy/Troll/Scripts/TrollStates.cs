@@ -42,18 +42,23 @@ public class TrollStates
     
     protected bool CheckTargetInRange(float range)
     {
-        float distance =
-            Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.GetEyes.position);
+        float distance = Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.GetEyes.position);
         return distance <= range;
     }
 
+    /// <summary>
+    /// Main axis comes from eyes forward. Matf.abs for only the differance in angles. will calculate according to a rotation axis Vector.up, so the other values only use x and z 
+    /// </summary>
+    /// <returns></returns>
     protected bool CheckTargetWithinAngleOfSight()
     {
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.GetEyes.position)
+        Vector3 trollPos = TrollBehaviour.GetEyes.position;
+        Vector3 targetPos = TrollBehaviour.GetTarget.position;
+        Vector3 directionToPlayer = (new Vector3(targetPos.x,0,targetPos.z) - new Vector3(trollPos.x,0,trollPos.z))
             .normalized;
-        float angle = Vector3.Angle(TrollBehaviour.GetEyes.forward, directionToPlayer);
+        float angle = Vector3.SignedAngle(TrollBehaviour.GetEyes.forward, directionToPlayer, Vector3.up);
         
-        return angle <= TrollBehaviour.GetTrollData.GetSightData.angle;
+        return MathF.Abs(angle) <= TrollBehaviour.GetTrollData.GetSightData.angle;
     }
 
     protected bool CheckIfTargetPositionIsWalkable()
@@ -76,9 +81,10 @@ public class TrollStates
 
     protected bool CheckIfRaycastHit()
     {
+        LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment");
         Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.GetEyes.position).normalized;
-        Physics.Raycast(TrollBehaviour.GetEyes.position,directionToPlayer ,out RaycastHit hit);
-
+        Physics.Raycast(TrollBehaviour.GetEyes.position,directionToPlayer ,out RaycastHit hit,TrollBehaviour.GetTrollData.GetSightData.range,layerMask);
+        
         return hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>();
     }
 }
