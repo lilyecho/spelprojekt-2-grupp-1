@@ -517,11 +517,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.793
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.541
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1031,6 +1031,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8668035086652529963}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2462111452130258512}
   m_SourcePrefab: {fileID: 100100000, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
 --- !u!4 &39312636168687084 stripped
 Transform:
@@ -1196,6 +1199,7 @@ MonoBehaviour:
   jumpParticles: {fileID: 2994038875534626662, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   particleSystemOnShrink: {fileID: 8124358052296443870}
+  debugStates: 0
   rotationSpeed: 10
   currentVelocity: 0
   smoothTime: 0.1
@@ -1457,6 +1461,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd905b5b3d4ec624f9f3182cd6efbd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2462111452130258512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846810934666368854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74e834d618f7c14dba8ae6eb4e5b152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1646367767551677566

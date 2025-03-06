@@ -87,6 +87,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7066962405342261517}
   m_SourcePrefab: {fileID: 100100000, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+--- !u!4 &1654748548045270301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6517467960745464112, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+  m_PrefabInstance: {fileID: 5513650169317293101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4631110317963788668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
@@ -130,7 +135,8 @@ MonoBehaviour:
   registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   trollData: {fileID: 11400000, guid: f453caf20b27e2640aa536dbd17d9ed0, type: 2}
-  eyes: {fileID: 6620002508344033237}
+  eyes: {fileID: 1654748548045270301}
+  lamp: {fileID: 8851927683187498260}
   trollAudioData: {fileID: 11400000, guid: 6f2437bc6fa7ada4d9a48a83f696ac41, type: 2}
   activeState: 0
   PatrolState:
@@ -166,8 +172,8 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
---- !u!4 &6620002508344033237 stripped
+--- !u!4 &8851927683187498260 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -7540553372338256904, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3917066016046948665, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
   m_PrefabInstance: {fileID: 5513650169317293101}
   m_PrefabAsset: {fileID: 0}
