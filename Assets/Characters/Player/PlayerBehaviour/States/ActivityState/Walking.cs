@@ -24,9 +24,7 @@ public class Walking : State, IAcceleration
     {
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
         
-        Debug.Log("WALKING");
         coyoteTimer = playerBehaviour.PlayerData.GetCoyoteTime;
-        //playerBehaviour.moveSpeed = playerBehaviour.PlayerData.GetSpeedRelated.walk.speed;
 
         FixCurrentAccelerationTime();
     }

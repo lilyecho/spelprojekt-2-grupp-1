@@ -11,7 +11,6 @@ public class MegaJump : JumpState
     
     public override void Enter()
     {
-        Debug.Log("Mega Jump state");
         chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
     }
 

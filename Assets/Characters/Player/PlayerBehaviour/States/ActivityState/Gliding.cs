@@ -12,11 +12,6 @@ public class Gliding : State
         
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         if (ExitGlide())

@@ -34,7 +34,6 @@ public class Idle : State
                     break;
             }
         }
-        Debug.Log("IDLE");
     }
 
     public override void Update()

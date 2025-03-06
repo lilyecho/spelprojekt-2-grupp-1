@@ -23,8 +23,7 @@ public class Sneaking : State, IAcceleration
     public override void Enter()
     {
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
-        Debug.Log("SNEAKING");
-        //playerBehaviour.moveSpeed = playerBehaviour.PlayerData.GetSneakSpeed;
+        
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
     }
     

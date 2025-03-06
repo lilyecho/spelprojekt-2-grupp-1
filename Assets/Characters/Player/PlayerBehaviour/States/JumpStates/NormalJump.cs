@@ -10,7 +10,6 @@ public class NormalJump : JumpState
     
     public override void Enter()
     {
-        Debug.Log("Normal Jump State");
         if (playerBehaviour.intoJump)
         {
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);

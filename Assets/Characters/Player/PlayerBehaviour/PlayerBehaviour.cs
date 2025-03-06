@@ -115,6 +115,8 @@ public class PlayerBehaviour : MonoBehaviour
     public ParticleSystem GetOnShrinkParticleSystem => particleSystemOnShrink;
 
     #endregion
+
+    public bool debugStates;
     
     private void OnEnable()
     {
@@ -194,6 +196,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void StartInvoke(State newState)
     {
+        if (debugStates)
+        {
+            Debug.Log(newState);
+        }
         currentState = newState;
         currentState.Enter();
     }
@@ -233,6 +239,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void ChangeState(State newState)
     {
+        if (debugStates)
+        {
+            string t = "States";
+            t += "\n PreState: "+currentState;
+            t += "\n NextState: "+newState;
+            Debug.Log(t);
+        }
         currentState?.Exit();
         currentState = newState;
         currentState?.Enter();

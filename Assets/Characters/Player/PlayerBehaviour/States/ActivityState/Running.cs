@@ -22,8 +22,6 @@ public class Running : State, IAcceleration
     public override void Enter()
     {
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
-        Debug.Log("RUNNING");
-        //playerBehaviour.moveSpeed = playerBehaviour.PlayerData.GetSpeedRelated.run.speed;
         
         FixCurrentAccelerationTime();
     }

@@ -28,7 +28,6 @@ public class PatrolStateTroll : TrollStates
 
     public override void Enter()
     {
-        Debug.LogError(TrollBehaviour);
         //Events
         trollAlertPort.OnAlertedPosition += SearchAtAlertPoint;
         
