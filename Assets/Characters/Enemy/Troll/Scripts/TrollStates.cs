@@ -43,15 +43,15 @@ public class TrollStates
     protected bool CheckTargetInRange(float range)
     {
         float distance =
-            Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.gameObject.transform.position);
+            Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.GetEyes.position);
         return distance <= range;
     }
 
     protected bool CheckTargetWithinAngleOfSight()
     {
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position)
+        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.GetEyes.position)
             .normalized;
-        float angle = Vector3.Angle(TrollBehaviour.transform.forward, directionToPlayer);
+        float angle = Vector3.Angle(TrollBehaviour.GetEyes.forward, directionToPlayer);
         
         return angle <= TrollBehaviour.GetTrollData.GetSightData.angle;
     }
@@ -76,8 +76,8 @@ public class TrollStates
 
     protected bool CheckIfRaycastHit()
     {
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.gameObject.transform.position).normalized;
-        Physics.Raycast(TrollBehaviour.gameObject.transform.position,directionToPlayer ,out RaycastHit hit);
+        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.GetEyes.position).normalized;
+        Physics.Raycast(TrollBehaviour.GetEyes.position,directionToPlayer ,out RaycastHit hit);
 
         return hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>();
     }
