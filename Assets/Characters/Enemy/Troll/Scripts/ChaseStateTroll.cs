@@ -39,7 +39,7 @@ public class ChaseStateTroll : TrollStates
 
     private void Check4Player()
     {
-        bool inRangeOfAggression = CheckTargetInRange(TrollBehaviour.GetTrollData.GetSightData.range);
+        bool inRangeOfAggression = CheckTargetInRange(TrollBehaviour.GetTrollData.GetTrollSight.range);
         if ( inRangeOfAggression && CheckTargetInRange(TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
         {
             TrollBehaviour.Transition(TrollBehaviour.AttackState);

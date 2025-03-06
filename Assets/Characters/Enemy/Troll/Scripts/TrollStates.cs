@@ -58,7 +58,7 @@ public class TrollStates
             .normalized;
         float angle = Vector3.SignedAngle(TrollBehaviour.GetEyes.forward, directionToPlayer, Vector3.up);
         
-        return MathF.Abs(angle) <= TrollBehaviour.GetTrollData.GetSightData.angle;
+        return MathF.Abs(angle) <= TrollBehaviour.GetTrollData.GetTrollSight.angle;
     }
 
     protected bool CheckIfTargetPositionIsWalkable()
@@ -83,7 +83,7 @@ public class TrollStates
     {
         LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment");
         Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.GetEyes.position).normalized;
-        Physics.Raycast(TrollBehaviour.GetEyes.position,directionToPlayer ,out RaycastHit hit,TrollBehaviour.GetTrollData.GetSightData.range,layerMask);
+        Physics.Raycast(TrollBehaviour.GetEyes.position,directionToPlayer ,out RaycastHit hit,TrollBehaviour.GetTrollData.GetTrollSight.range,layerMask);
         
         return hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>();
     }

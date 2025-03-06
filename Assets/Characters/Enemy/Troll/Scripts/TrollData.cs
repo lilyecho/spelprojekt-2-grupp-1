@@ -14,8 +14,10 @@ public class TrollData : ScriptableObject
 
     [SerializeField] private float attackRange = 1;
     
+    [FormerlySerializedAs("trollSight")]
     [Space,Header("Senses")] 
-    [SerializeField] private TrollSight trollSight;
+    [SerializeField] private Sight trollTrollSight;
+    [SerializeField] private Sight lampSight;
     
     [Space,SerializeField, Min(0)] private float hearingRange;
     
@@ -24,7 +26,8 @@ public class TrollData : ScriptableObject
     public StateParameters GetChase => chaseStateMovement;
     public StateParameters GetAttack => attackStateMovement;
     public float GetAttackRange => attackRange;
-    public TrollSight GetSightData => trollSight;
+    public Sight GetTrollSight => trollTrollSight;
+    public Sight GetLampSight => lampSight;
     public float GetHearingRange => hearingRange;
     
 }
@@ -42,7 +45,7 @@ public struct StateParameters
 }
 
 [Serializable]
-public struct TrollSight
+public struct Sight
 {
     [Min(0.01f)]public float range;
     [Min(0.01f)]public float angle;

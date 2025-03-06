@@ -38,6 +38,8 @@ public class PatrolStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetPatrol.statePriority;
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         
+        //Animation
+        TrollBehaviour.Animator.SetBool("Moving", true);
         
         SetTargetPoint();
         SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
@@ -69,7 +71,7 @@ public class PatrolStateTroll : TrollStates
     private void Check4Player()
     {
         if (TrollBehaviour.GetTarget == null) return;
-        if (!CheckTargetInRange(TrollBehaviour.GetTrollData.GetSightData.range)) return;
+        if (!CheckTargetInRange(TrollBehaviour.GetTrollData.GetTrollSight.range)) return;
         if (!CheckTargetWithinAngleOfSight()) return;
         if (!CheckIfTargetPositionIsWalkable()) return;
 
