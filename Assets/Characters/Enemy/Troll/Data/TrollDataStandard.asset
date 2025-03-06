@@ -16,18 +16,22 @@ MonoBehaviour:
     speed: 3
     angularSpeed: 90
     acceleration: 120
+    statePriority: 0
   searchStateMovement:
     speed: 5
     angularSpeed: 180
     acceleration: 120
+    statePriority: 10
   chaseStateMovement:
     speed: 10
     angularSpeed: 60
     acceleration: 120
+    statePriority: 20
   attackStateMovement:
     speed: 10
     angularSpeed: 60
     acceleration: 120
+    statePriority: 30
   attackRange: 1
   trollSight:
     range: 9.1

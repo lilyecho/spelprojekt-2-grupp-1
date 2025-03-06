@@ -53,6 +53,7 @@ public class TrollBehaviour : EnemyBehaviour
     {
         base.OnEnable();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        //navMeshAgent.ob
     }
 
     protected override void Awake()

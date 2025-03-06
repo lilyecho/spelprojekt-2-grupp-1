@@ -41,10 +41,18 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    public float GetClosestDistanceToEnemyFromPlayer()
+    public bool GetClosestDistanceToEnemyFromPlayer( out float? closestDistance)
     {
-        enemies.Sort();
-        return enemies[0].GetDistanceToPlayer();
+        closestDistance = null;
+        foreach (var enemyBehaviour in enemies)
+        {
+            if (!enemyBehaviour.GetDistanceToPlayer(out float? distance)) continue;
+            
+            if (closestDistance == null || closestDistance > distance) closestDistance = distance;
+        }
+
+        if (closestDistance == null) return false;
+        return true;
     }
     
     /// <summary>

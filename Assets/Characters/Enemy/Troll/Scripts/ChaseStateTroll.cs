@@ -16,6 +16,11 @@ public class ChaseStateTroll : TrollStates
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
         
+        //Change pathfinding system so that trolls will get run over by more aggressive trolls - Attack
+        TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetChase.statePriority;
+        TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        
+        
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Increase);
         

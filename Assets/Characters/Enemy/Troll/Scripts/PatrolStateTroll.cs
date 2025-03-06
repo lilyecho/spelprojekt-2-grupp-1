@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 [Serializable]
 public class PatrolStateTroll : TrollStates
 {
-    [SerializeField] private UnityEvent OnEnter;
-    [SerializeField] private UnityEvent OnExit;
-    
     [SerializeField] private TrollAlertPort trollAlertPort;
     [SerializeField,Tooltip("Parent for all patrolPoints")] private GameObject pointHolder;
     [SerializeField, ReadOnly] private List<Transform> patrolPoints;
-    [SerializeField] private int patrolPointIndex;
+    [SerializeField, ReadOnly] private int patrolPointIndex;
 
     [SerializeField] private bool reCalibrate;
 
+    [SerializeField] private UnityEvent OnEnter;
+    [SerializeField] private UnityEvent OnExit;
+    
     public override void Awake(TrollBehaviour trollBehaviour)
     {
         base.Awake(trollBehaviour);
@@ -32,10 +33,16 @@ public class PatrolStateTroll : TrollStates
         trollAlertPort.OnAlertedPosition += SearchAtAlertPoint;
         
         TrollBehaviour.activeState = TrollBehaviour.States.Patrol;
+        
+        //Change pathfinding system so that trolls wont get stuck on the way to patrols
+        TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetPatrol.statePriority;
+        TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        
+        
         SetTargetPoint();
         SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
     }
-
+    
     public override void Exit()
     {
         //Events

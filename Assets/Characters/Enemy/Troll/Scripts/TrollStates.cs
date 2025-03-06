@@ -20,7 +20,7 @@ public class TrollStates
     public virtual void OnValidate() { }
     public virtual void OnDrawGizmos() { }
 
-    protected void SetUpStateValuesInAgent(StateMovementParameters parameterValues)
+    protected void SetUpStateValuesInAgent(StateParameters parameterValues)
     {
         SetAgentSpeed(parameterValues.speed);
         SetAgentAngularSpeed(parameterValues.angularSpeed);

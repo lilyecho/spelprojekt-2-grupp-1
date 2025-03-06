@@ -7,10 +7,10 @@ public class TrollData : ScriptableObject
 {
     [FormerlySerializedAs("patrolState")]
     [Header("Movements")]
-    [SerializeField] private StateMovementParameters patrolStateMovement;
-    [SerializeField] private StateMovementParameters searchStateMovement;
-    [SerializeField] private StateMovementParameters chaseStateMovement;
-    [SerializeField] private StateMovementParameters attackStateMovement;
+    [SerializeField] private StateParameters patrolStateMovement;
+    [SerializeField] private StateParameters searchStateMovement;
+    [SerializeField] private StateParameters chaseStateMovement;
+    [SerializeField] private StateParameters attackStateMovement;
 
     [SerializeField] private float attackRange = 1;
     
@@ -19,10 +19,10 @@ public class TrollData : ScriptableObject
     
     [Space,SerializeField, Min(0)] private float hearingRange;
     
-    public StateMovementParameters GetPatrol => patrolStateMovement;
-    public StateMovementParameters GetSearch => searchStateMovement;
-    public StateMovementParameters GetChase => chaseStateMovement;
-    public StateMovementParameters GetAttack => attackStateMovement;
+    public StateParameters GetPatrol => patrolStateMovement;
+    public StateParameters GetSearch => searchStateMovement;
+    public StateParameters GetChase => chaseStateMovement;
+    public StateParameters GetAttack => attackStateMovement;
     public float GetAttackRange => attackRange;
     public TrollSight GetSightData => trollSight;
     public float GetHearingRange => hearingRange;
@@ -30,11 +30,15 @@ public class TrollData : ScriptableObject
 }
 
 [Serializable]
-public struct StateMovementParameters
+public struct StateParameters
 {
+    [Header("Movement")]
     [Min(0)]public float speed;
     [Min(0)]public float angularSpeed;
     [Min(0)]public float acceleration;
+    
+    [Space]
+    [Range(0,99)] public int statePriority;
 }
 
 [Serializable]

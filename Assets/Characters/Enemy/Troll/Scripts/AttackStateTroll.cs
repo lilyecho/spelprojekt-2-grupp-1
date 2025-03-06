@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,11 @@ public class AttackStateTroll : TrollStates
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Attack;
+        
+        //Change pathfinding system so that other trolls will get run over by this troll and fight with others of the same for space
+        TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetAttack.statePriority;
+        TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
         
         StopPlayerMovement();

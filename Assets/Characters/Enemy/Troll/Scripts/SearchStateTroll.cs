@@ -15,6 +15,10 @@ public class SearchStateTroll : TrollStates
     {
         TrollBehaviour.activeState = TrollBehaviour.States.Search;
         
+        //Change pathfinding system so that trolls will get run over by more aggressive trolls - Chase or attack
+        TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetSearch.statePriority;
+        TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        
         SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetSearch);
     }
 

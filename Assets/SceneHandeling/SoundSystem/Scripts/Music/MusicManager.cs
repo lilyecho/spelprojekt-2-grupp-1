@@ -103,9 +103,10 @@ public class MusicManager : MonoBehaviour
     private void CheckEnemyRelatedMusic()
     {
         if (enemyManager == null) return;
+        if (!enemyManager.GetClosestDistanceToEnemyFromPlayer(out float? possibleDistance)) return;
         
-        float distance = enemyManager.GetClosestDistanceToEnemyFromPlayer();
-
+        float distance = (float)possibleDistance;
+        
         if (distance <= closeDistance)
         {
             float interpolationValue = MathF.Abs(distance / closeDistance-1);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
+public class EnemyBehaviour : MonoBehaviour
 {
     #region DragRefrences
     [Header("EnemyBehaviour")]
@@ -51,13 +51,21 @@ public class EnemyBehaviour : MonoBehaviour, IComparable<EnemyBehaviour>
         enemyManagerPort.OnRegister(RegistrationPort.TypeOfRegistration.Enemy, gameObject);
     }
 
-    public float GetDistanceToPlayer()
-    {
-        return Vector3.Distance(enemyTransform.position, target.position);
-    }
     
-    public int CompareTo(EnemyBehaviour other)
+    /// <summary>
+    /// Will return float.Max if not existing target
+    /// </summary>
+    /// <returns></returns>
+    public bool GetDistanceToPlayer(out float? distance)
     {
-        return GetDistanceToPlayer().CompareTo(other.GetDistanceToPlayer());
+        distance = null;
+        if (target == null)
+        {
+            Debug.Log("Missing target");
+            return false;
+        }
+
+        distance = Vector3.Distance(enemyTransform.position, target.position);
+        return true;
     }
 }
