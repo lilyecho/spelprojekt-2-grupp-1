@@ -8,6 +8,7 @@ public class FmodParameterData : ScriptableObject
     [SerializeField] private string closeToTrollParameter;
     [SerializeField] private string trollChasingParameter;
     [SerializeField] private string weaIntensity;
+    [SerializeField] private string timeOfDay;
     
     [Header("Local")]
     [SerializeField] private string materialParameter;
@@ -17,8 +18,8 @@ public class FmodParameterData : ScriptableObject
     [SerializeField] private string catSneak;
     [SerializeField] private string elevation;
     [SerializeField] private string vegetation;
-    
 
+    public string GetTimeOfDay => timeOfDay;
     public string GetMaterialParameter => materialParameter;
     
     public string GetCatLoopingVo => catLoopingVo;
