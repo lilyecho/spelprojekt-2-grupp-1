@@ -952,6 +952,7 @@ GameObject:
   - component: {fileID: 4570516468649866059}
   - component: {fileID: 5988020332158788639}
   - component: {fileID: 7978906437985192737}
+  - component: {fileID: 3969757299212668470}
   m_Layer: 5
   m_Name: Astrid Neutral
   m_TagString: Untagged
@@ -1037,6 +1038,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3969757299212668470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704694691720081844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 361263809
+      Data2: 1091709889
+      Data3: 1444659082
+      Data4: 949921255
+    Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Emote
+  Event: 
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: CatEmote
+    Value: 1
+  - Name: CatLoopingVO
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &754084083559632774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1085,7 @@ GameObject:
   - component: {fileID: 3720494073917199720}
   - component: {fileID: 8210995389336495718}
   - component: {fileID: 3752670616150791541}
+  - component: {fileID: 8068944946309524565}
   m_Layer: 5
   m_Name: Astrid Surprised
   m_TagString: Untagged
@@ -1134,6 +1171,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8068944946309524565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754084083559632774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 361263809
+      Data2: 1091709889
+      Data3: 1444659082
+      Data4: 949921255
+    Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Emote
+  Event: 
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: CatEmote
+    Value: 2
+  - Name: CatLoopingVO
+    Value: 1
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &857290487232114266
 GameObject:
   m_ObjectHideFlags: 0
