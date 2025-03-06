@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5945022788654678692
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7766640156773880302}
-  m_Layer: 0
-  m_Name: Eyes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7766640156773880302
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5945022788654678692}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.425, z: 0.4315}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5408492065041456070}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5513650169317293101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 929cfd1ff55d11f4d90cd08b729bd878, type: 2}
     - target: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       propertyPath: m_Name
-      value: Troll_Lantern
+      value: Troll - 2.0
       objectReference: {fileID: 0}
     - target: {fileID: 4894506782229265764, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -109,10 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0023beb3c4fe34d48ba761079162f19f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7766640156773880302}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       insertIndex: -1
@@ -164,26 +130,21 @@ MonoBehaviour:
   registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   trollData: {fileID: 11400000, guid: f453caf20b27e2640aa536dbd17d9ed0, type: 2}
-  eyes: {fileID: 7766640156773880302}
+  eyes: {fileID: 6620002508344033237}
   trollAudioData: {fileID: 11400000, guid: 6f2437bc6fa7ada4d9a48a83f696ac41, type: 2}
   activeState: 0
   PatrolState:
+    trollAlertPort: {fileID: 11400000, guid: b4945f8df470b114f9d7ef77d1d3a000, type: 2}
+    pointHolder: {fileID: 0}
+    patrolPoints: []
+    patrolPointIndex: 0
+    reCalibrate: 0
     OnEnter:
       m_PersistentCalls:
         m_Calls: []
     OnExit:
       m_PersistentCalls:
         m_Calls: []
-    trollAlertPort: {fileID: 11400000, guid: b4945f8df470b114f9d7ef77d1d3a000, type: 2}
-    pointHolder: {fileID: 0}
-    patrolPoints:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    patrolPointIndex: 0
-    reCalibrate: 0
   ChaseState:
     OnEnter:
       m_PersistentCalls:
@@ -205,8 +166,8 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
---- !u!4 &5408492065041456070 stripped
+--- !u!4 &6620002508344033237 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7540553372338256904, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
   m_PrefabInstance: {fileID: 5513650169317293101}
   m_PrefabAsset: {fileID: 0}
