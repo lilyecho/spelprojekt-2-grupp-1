@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1293016617083123176}
   - component: {fileID: 4984749851936226227}
   - component: {fileID: 7351304530465699928}
+  - component: {fileID: 4281293048262042046}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -80,6 +81,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4281293048262042046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2452869318218802390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1677780860
+      Data2: 1168280131
+      Data3: 760648382
+      Data4: -694904309
+    Path: event:/Sound/RuneSFX
+  Event: 
+  PlayEvent: 11
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2753186514715418770
 GameObject:
   m_ObjectHideFlags: 0
