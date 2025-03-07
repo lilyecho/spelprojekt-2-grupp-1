@@ -14,7 +14,7 @@ public abstract class State
     
     public UnityEvent OnExit;
 
-    protected const int InternalGravity = 50;
+    protected const float InternalGravity = 9.82f;
 
     public virtual void Awake(PlayerBehaviour player)
     {
