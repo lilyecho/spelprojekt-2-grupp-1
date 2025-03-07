@@ -227,7 +227,20 @@ public abstract class State
         float currentXZSpeed = new Vector2(currentVelocity.x,currentVelocity.z).magnitude;
         if (currentXZSpeed >= playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed)
         {
-            Vector3 primaryVelocity = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized * playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
+            Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z) *
+                                       playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
+            playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);
+            //Debug.Log("MaxSpeed - In Air");
+            
+            
+        }
+        else
+        {
+            Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
+            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.PlayerData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+        }
+        
+        /*Vector3 primaryVelocity = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized * playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
 
             Vector3 correctedVelocity = new Vector3(0, playerBehaviour.rb.velocity.y, 0);
             if (!(playerBehaviour.rb.velocity.x < 0 && primaryVelocity.x < 0 ))
@@ -239,15 +252,7 @@ public abstract class State
                 correctedVelocity.z = primaryVelocity.z;
             }
 
-            playerBehaviour.rb.velocity = correctedVelocity;
-
-        }
-        else
-        {
-            Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
-            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.PlayerData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
-        }
-        
+            playerBehaviour.rb.velocity = correctedVelocity;*/
     }
 
 
