@@ -3,11 +3,16 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public abstract class State
 {
     protected PlayerBehaviour playerBehaviour;
+
+    public UnityEvent OnEnter;
+    public UnityEvent OnExit;
+    
 
     public virtual void Awake(PlayerBehaviour player)
     {

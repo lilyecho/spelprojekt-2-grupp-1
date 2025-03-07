@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+[Serializable]
 public class Running : State, IAcceleration
 {
     private float timeStep = .5f;

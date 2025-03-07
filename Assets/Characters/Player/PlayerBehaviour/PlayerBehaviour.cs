@@ -18,22 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     #endregion
-
-
-    #region Behaviour States
-
-    public Idle idle = new Idle();
-    public Walking walking = new Walking();
-    public Sneaking sneaking = new Sneaking();
-    public Running running = new Running();
-    public Jumping jumping = new Jumping();
-    public Falling falling = new Falling();
-    public Gliding gliding = new Gliding();
-    public Shrink shrink = new Shrink();
-
-    #endregion
-
-
+    
     #region Jump States
     public JumpState unableToJump;
     public JumpState normalJump;
@@ -106,6 +91,21 @@ public class PlayerBehaviour : MonoBehaviour
 
     #endregion
 
+    #region Behaviour States
+
+    [Header("States")]
+    public Idle idle = new Idle();
+    public Walking walking = new Walking();
+    public Sneaking sneaking = new Sneaking();
+    public Running running = new Running();
+    public Jumping jumping = new Jumping();
+    public Falling falling = new Falling();
+    public Gliding gliding = new Gliding();
+    public Shrink shrink = new Shrink();
+
+    #endregion
+    
+    [Space]
     public bool debugStates;
     
     private void OnEnable()
