@@ -37,7 +37,7 @@ public abstract class State
     
     protected bool CheckForGround(Transform[] raycastPoints, float rayCastLength)
     {
-        LayerMask layerToIgnore = (1 << 8) | (1 << 2);
+        LayerMask layerToIgnore = (1 << 8) | (1 << 2) | (1 << 10);
         RaycastHit hit;
         foreach (Transform t in raycastPoints)
         {
