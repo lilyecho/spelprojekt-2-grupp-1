@@ -5,11 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Sneaking : State, IAcceleration
 {
-    public Sneaking(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
-    
     private float timeStep = .5f;
     private float currentTime = 0;
     

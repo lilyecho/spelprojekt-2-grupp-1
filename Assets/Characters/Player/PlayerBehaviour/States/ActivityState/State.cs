@@ -7,30 +7,27 @@ using UnityEngine.InputSystem;
 
 public abstract class State
 {
+    protected PlayerBehaviour playerBehaviour;
+
+    public virtual void Awake(PlayerBehaviour player)
+    {
+        playerBehaviour = player;
+    }
     public virtual void Enter() {}
     public virtual void Exit() {}
     public virtual void OnCollision(Collision collision) {}
     public virtual void Update() {}
     public virtual void FixedUpdate() {}
-    public virtual void OnDrawGizmos() {}
-    public virtual void OnDrawGizmosSelected() {}
+    public virtual void OnDrawGizmos(PlayerBehaviour player) {}
+    public virtual void OnDrawGizmosSelected(PlayerBehaviour player) {}
     public virtual void OnSpaceBar(InputAction.CallbackContext context) {}
     public virtual void OnShift(InputAction.CallbackContext context) {}
     public virtual void OnCTRL(InputAction.CallbackContext context) {}
     public virtual void OnWASD(InputAction.CallbackContext context) {}
     public virtual void OnShrink(InputAction.CallbackContext context) {}
     public virtual void OnMOUSE(InputAction.CallbackContext context) {}
-    public virtual void OnValidate() {}
-
-
-    protected PlayerBehaviour playerBehaviour;
+    public virtual void OnValidate(PlayerBehaviour player) {}
     
-    
-    public State(PlayerBehaviour playerBehaviour)
-    {
-        this.playerBehaviour = playerBehaviour;
-    }
-
     protected bool CheckForGround(Transform[] raycastPoints, float rayCastLength)
     {
         LayerMask layerToIgnore = (1 << 8) | (1 << 2);

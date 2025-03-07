@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 
 public class Idle : State
 {
-    public Idle(PlayerBehaviour playerBehaviour) : base(playerBehaviour) {}
     float time = 0f;
     Vector3 normal;
 
+    
+    
     public override void Enter()
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), true);

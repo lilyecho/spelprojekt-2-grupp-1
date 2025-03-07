@@ -88,7 +88,7 @@ public class TrollBehaviour : EnemyBehaviour
 
     private void OnValidate()
     {
-        
+        ValidateTrollBehaviour();
         
         PatrolState.OnValidate();
         ChaseState.OnValidate();

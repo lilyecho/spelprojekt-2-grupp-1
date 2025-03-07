@@ -5,13 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Gliding : State
 {
-    public Gliding(PlayerBehaviour playerBehaviour) : base(playerBehaviour) {}
-
-    public override void Enter()
-    {
-        
-    }
-
     public override void Update()
     {
         if (ExitGlide())

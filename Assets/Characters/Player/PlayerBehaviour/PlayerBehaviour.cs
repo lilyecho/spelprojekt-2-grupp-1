@@ -22,14 +22,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     #region Behaviour States
 
-    public State idle;
-    public State walking;
-    public State sneaking;
-    public State running;
-    public State jumping;
-    public State falling;
-    public State gliding;
-    public State shrink;
+    public Idle idle = new Idle();
+    public Walking walking = new Walking();
+    public Sneaking sneaking = new Sneaking();
+    public Running running = new Running();
+    public Jumping jumping = new Jumping();
+    public Falling falling = new Falling();
+    public Gliding gliding = new Gliding();
+    public Shrink shrink = new Shrink();
 
     #endregion
 
@@ -69,31 +69,24 @@ public class PlayerBehaviour : MonoBehaviour
     #endregion
     [Space]
     
-    
     public Rigidbody rb;
     [HideInInspector] public Animator anim;    
     
-
     [HideInInspector]
     public Vector2 moveInput;
     [HideInInspector]
     public Vector3 moveDir;
-
     
-
     Camera cam;
     Vector3 cameraForward;
     Vector3 cameraRight;
-
 
     [HideInInspector]
     public float moveSpeed;
     
     public Transform[] rayCastPoints = new Transform[4];
     public float rayCastLength;
-
-
-
+    
     [HideInInspector]public float accTime;
     
     [HideInInspector]
@@ -101,9 +94,6 @@ public class PlayerBehaviour : MonoBehaviour
     
     public ParticleSystem jumpParticles;
     private ParticleSystem jumpParticlesInstance;
-    
-
-    
     
     [SerializeField] private TimeManager timeManager = null;
     private bool _movementOn = true;
@@ -131,15 +121,24 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         _currentPlayerPlayerData = playerDataNormal;
+        falling.Awake(this);
+        gliding.Awake(this);
+        idle.Awake(this);
+        jumping.Awake(this);
+        running.Awake(this);
+        shrink.Awake(this);
+        sneaking.Awake(this);
+        walking.Awake(this);
+        
     }
 
     private void OnDrawGizmos()
     {
-        shrink?.OnDrawGizmos();
+        shrink.OnDrawGizmos(this);
     }
     private void OnDrawGizmosSelected()
     {
-        shrink?.OnDrawGizmosSelected();
+        shrink.OnDrawGizmosSelected(this);
     }
 
     private void ChangeMovementActivation(bool nextValue)
@@ -178,18 +177,6 @@ public class PlayerBehaviour : MonoBehaviour
         megaJump = new MegaJump(this);
 
         jumpState = normalJump;
-        
-        //MovingStates
-        idle = new Idle(this);
-        walking = new Walking(this);
-        sneaking = new Sneaking(this);
-        running = new Running(this);
-        jumping = new Jumping(this);
-        falling = new Falling(this);
-        gliding = new Gliding(this);
-        
-        //TODO make state
-        shrink = new Shrink(this);
         
         cam = Camera.main;
         anim = GetComponent<Animator>();
@@ -349,14 +336,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnValidate()
     {
-        idle?.OnValidate();
-        walking?.OnValidate();
-        sneaking?.OnValidate();
-        running?.OnValidate();
-        jumping?.OnValidate();
-        falling?.OnValidate();
-        gliding?.OnValidate();
-        shrink?.OnValidate();
+        idle?.OnValidate(this);
+        walking?.OnValidate(this);
+        sneaking?.OnValidate(this);
+        running?.OnValidate(this);
+        jumping?.OnValidate(this);
+        falling?.OnValidate(this);
+        gliding?.OnValidate(this);
+        shrink?.OnValidate(this);
     }
 
 

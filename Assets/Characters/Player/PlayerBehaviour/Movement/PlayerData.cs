@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,8 +39,6 @@ public class PlayerData : ScriptableObject
 
     [Header("Extra"), Tooltip("Mostly for the use of shrinking")] 
     [SerializeField, Range(0.01f, 1)] private float factorialValue4Shrink = 1;
-
-    [SerializeField] private Vector3 shrinkPositionChange;
     
     #region Getters & Setters
     
@@ -61,9 +60,13 @@ public class PlayerData : ScriptableObject
     public float GetSlopeCheckerLength => slopeCheckerLength;
     public float GetMaxRotationAngle => maxRotationAngle;
     public Vector3 CharacterScale => new Vector3(1, 1, 1) * factorialValue4Shrink;
-    public Vector3 ShrinkPositionChange => shrinkPositionChange;
 
     #endregion
 
+    private void OnValidate() {}
 
+    public void CalledOnValidate(PlayerBehaviour player)
+    {
+        
+    }
 }

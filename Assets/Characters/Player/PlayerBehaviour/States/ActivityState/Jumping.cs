@@ -7,11 +7,6 @@ using UnityEngine.UIElements;
 
 public class Jumping : State
 {
-    public Jumping(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
-
     private bool flagAbleToFall;
     
     public override void Enter()

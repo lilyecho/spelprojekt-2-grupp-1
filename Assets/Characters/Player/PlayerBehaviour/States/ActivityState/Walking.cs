@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 
 public class Walking : State, IAcceleration
 {
-    public Walking(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
-
     private float timeStep = .5f;
     private float currentTime = 0;
     
@@ -22,21 +17,12 @@ public class Walking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
+        Debug.Log(playerBehaviour);
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
         
         coyoteTimer = playerBehaviour.PlayerData.GetCoyoteTime;
 
         FixCurrentAccelerationTime();
-    }
-    
-    public override void Exit()
-    {
-
-    }
-
-    public override void OnCollision(Collision collision)
-    {
-
     }
 
     public override void Update()

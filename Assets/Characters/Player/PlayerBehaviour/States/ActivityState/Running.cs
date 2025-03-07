@@ -5,11 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Running : State, IAcceleration
 {
-    public Running(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
-    
     private float timeStep = .5f;
     private float currentTime = 0;
     

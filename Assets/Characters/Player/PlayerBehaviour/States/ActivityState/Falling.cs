@@ -6,33 +6,18 @@ using UnityEngine.InputSystem.HID;
 
 public class Falling : State
 {
-    public Falling(PlayerBehaviour playerBehaviour) : base(playerBehaviour)
-    {
-
-    }
-
-    /*
-    bool intoJump = false;
-    bool intoChargingJump = false;
-    */
-
     float jumpBufferTimer;
 
+    public override void Awake(PlayerBehaviour player)
+    {
+        base.Awake(player);
+    }
 
     public override void Enter()
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
         //jumpBufferTimer = playerBehaviour.PlayerData.GetJumpBufferDuration;
-    }
-    public override void Exit()
-    {
-
-    }
-
-    public override void OnCollision(Collision collision)
-    {
-
     }
 
     Quaternion targetRotation;
