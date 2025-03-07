@@ -13,7 +13,8 @@ public abstract class State
     public UnityEvent OnEnter;
     
     public UnityEvent OnExit;
-    
+
+    protected const int InternalGravity = 50;
 
     public virtual void Awake(PlayerBehaviour player)
     {

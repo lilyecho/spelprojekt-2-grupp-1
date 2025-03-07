@@ -72,6 +72,8 @@ public class Walking : State, IAcceleration
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
         
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
+        //Gravity
+        playerBehaviour.rb.AddForce(Vector3.down * InternalGravity, ForceMode.Acceleration);
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.walk.speed,playerBehaviour.PlayerData.GetSpeedRelated.walk.accTotalTime);
     }

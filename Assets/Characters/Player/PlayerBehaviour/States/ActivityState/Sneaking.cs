@@ -81,6 +81,9 @@ public class Sneaking : State, IAcceleration
         playerBehaviour.RotateCharacter(playerBehaviour.moveDir);
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
 
+        //Gravity
+        playerBehaviour.rb.AddForce(Vector3.down * InternalGravity, ForceMode.Acceleration);
+        
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.sneak.speed,playerBehaviour.PlayerData.GetSpeedRelated.sneak.accTotalTime);
         
     }
