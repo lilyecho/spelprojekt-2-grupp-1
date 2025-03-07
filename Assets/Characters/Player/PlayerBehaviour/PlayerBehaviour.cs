@@ -15,16 +15,8 @@ public class PlayerBehaviour : MonoBehaviour
     //public State walkState;
     public enum MovementMode { WALK, SNEAK, RUN};
     public MovementMode movementMode; 
-
-
-    #endregion
     
-    #region Jump States
-    public UnableToJump unableToJump = new UnableToJump();
-    public NormalJump normalJump = new NormalJump();
-    public MegaJump megaJump = new MegaJump();
     #endregion
-
     
     [SerializeField] private PlayerData playerDataNormal;
     [SerializeField] private PlayerData playerDataShrink;
@@ -93,7 +85,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     #region Behaviour States
 
-    [Header("States")]
+    [Header("Activity-states")]
     public Idle idle = new Idle();
     public Walking walking = new Walking();
     public Sneaking sneaking = new Sneaking();
@@ -103,6 +95,13 @@ public class PlayerBehaviour : MonoBehaviour
     public Gliding gliding = new Gliding();
     public Shrink shrink = new Shrink();
 
+    #endregion
+    
+    #region Jump States
+    [Header("Jump-states")]
+    public UnableToJump unableToJump = new UnableToJump();
+    public NormalJump normalJump = new NormalJump();
+    public MegaJump megaJump = new MegaJump();
     #endregion
     
     [Space]

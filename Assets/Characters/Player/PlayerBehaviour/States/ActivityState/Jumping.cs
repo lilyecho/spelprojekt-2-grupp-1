@@ -65,11 +65,3 @@ public class Jumping : State
         }
     }
 }
-
-[Serializable]
-public struct JumpSoundValue
-{
-    public EventInfo charged;
-    public EventInfo test2;
-    public EventInfo test3;
-}

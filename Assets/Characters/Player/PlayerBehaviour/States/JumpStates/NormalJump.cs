@@ -54,3 +54,11 @@ public class NormalJump : JumpState
         }
     }
 }
+
+[Serializable]
+public struct JumpSoundValue
+{
+    public EventInfo charged;
+    public EventInfo test2;
+    public EventInfo test3;
+}
