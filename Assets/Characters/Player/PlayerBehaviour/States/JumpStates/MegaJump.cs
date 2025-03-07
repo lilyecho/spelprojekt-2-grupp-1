@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class MegaJump : JumpState
 {
-    public UnityEvent onCharged;
-    
+    [SerializeField] private MegaJumpsSoundInfos SoundInformations;
+        
     private float chargeTimer;
     
     public override void Enter()
@@ -44,7 +44,11 @@ public class MegaJump : JumpState
             Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
         }
     }
+}
 
-    
-    
+[Serializable]
+public struct MegaJumpsSoundInfos
+{
+    public SoundInfo OnCharged;
+    public SoundInfo OnJump;
 }

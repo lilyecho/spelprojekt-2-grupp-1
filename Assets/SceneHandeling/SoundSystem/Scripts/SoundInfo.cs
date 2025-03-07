@@ -13,13 +13,11 @@ public struct SoundInfo
 [Flags]
 public enum SoundAction
 {
-    Create,
-    ChangeParameter,
-    Attach,
-    Play,
-    Remove,
-    Release,
-        
+    Create = 1,
+    ChangeParameter = 2,
+    Attach = 4,
+    Play = 8,
+    Remove = 16
 }
 
 

@@ -5,6 +5,7 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[Serializable]
 public abstract class JumpState
 {
     protected PlayerBehaviour playerBehaviour;
