@@ -227,12 +227,20 @@ public abstract class State
         float currentXZSpeed = new Vector2(currentVelocity.x,currentVelocity.z).magnitude;
         if (currentXZSpeed >= playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed)
         {
-            Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z) *
+            Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
+            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.PlayerData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+
+            Vector3 newVelocity = new Vector3(playerBehaviour.rb.velocity.x, 0,playerBehaviour.rb.velocity.z).normalized*playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
+            newVelocity.y = playerBehaviour.rb.velocity.y;
+            playerBehaviour.rb.velocity = newVelocity;
+
+
+            /*
+            Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z).normalized *
                                        playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
-            playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);
+
+            playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);*/
             //Debug.Log("MaxSpeed - In Air");
-            
-            
         }
         else
         {
