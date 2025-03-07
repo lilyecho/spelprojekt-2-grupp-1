@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 public class Jumping : State
 {
     private bool flagAbleToFall;
+    [SerializeField] private JumpSoundValue JumpSoundValue;
     
     public override void Enter()
     {
@@ -63,4 +64,12 @@ public class Jumping : State
             }
         }
     }
+}
+
+[Serializable]
+public struct JumpSoundValue
+{
+    public EventInfo charged;
+    public EventInfo test2;
+    public EventInfo test3;
 }

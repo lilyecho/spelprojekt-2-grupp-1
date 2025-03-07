@@ -11,6 +11,7 @@ public abstract class State
     protected PlayerBehaviour playerBehaviour;
 
     public UnityEvent OnEnter;
+    
     public UnityEvent OnExit;
     
 
