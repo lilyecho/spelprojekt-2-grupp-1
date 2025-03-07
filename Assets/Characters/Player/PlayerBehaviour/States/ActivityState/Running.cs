@@ -79,7 +79,7 @@ public class Running : State, IAcceleration
         
         playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
         //Gravity
-        playerBehaviour.rb.AddForce(Vector3.down * InternalGravity, ForceMode.Acceleration);
+        playerBehaviour.rb.AddForce(-normal * InternalGravity, ForceMode.Acceleration);
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.run.speed,playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime);
     }

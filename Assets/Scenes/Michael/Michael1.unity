@@ -521,13 +521,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementMode: 0
-  playerMovementData: {fileID: 0}
+  playerDataNormal: {fileID: 0}
+  playerDataShrink: {fileID: 0}
   currentAbilities: 0
   materialCheckerTransform: {fileID: 0}
   audioPort: {fileID: 0}
   parameterData: {fileID: 0}
   characterAudioData: {fileID: 0}
   rb: {fileID: 437572087}
+  anim: {fileID: 0}
   moveInput: {x: 0, y: 0}
   moveDir: {x: 0, y: 0, z: 0}
   moveSpeed: 0
@@ -539,9 +541,115 @@ MonoBehaviour:
   rayCastLength: 0
   accTime: 0
   intoJump: 0
-  intoChargingJump: 0
   jumpParticles: {fileID: 0}
   timeManager: {fileID: 0}
+  particleSystemOnShrink: {fileID: 0}
+  idle:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+  walking:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+  sneaking:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+  running:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+  jumping:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+    JumpSoundValue:
+      charged:
+        eventReference:
+          Guid:
+            Data1: 0
+            Data2: 0
+            Data3: 0
+            Data4: 0
+          Path: 
+        action: 0
+        stopMode: 0
+        attachedInstance: 0
+        attachedOneShot: 0
+        audioSource: {fileID: 0}
+        paramName: 
+        ignoreSeekSpeed: 0
+      test2:
+        eventReference:
+          Guid:
+            Data1: 0
+            Data2: 0
+            Data3: 0
+            Data4: 0
+          Path: 
+        action: 0
+        stopMode: 0
+        attachedInstance: 0
+        attachedOneShot: 0
+        audioSource: {fileID: 0}
+        paramName: 
+        ignoreSeekSpeed: 0
+      test3:
+        eventReference:
+          Guid:
+            Data1: 0
+            Data2: 0
+            Data3: 0
+            Data4: 0
+          Path: 
+        action: 0
+        stopMode: 0
+        attachedInstance: 0
+        attachedOneShot: 0
+        audioSource: {fileID: 0}
+        paramName: 
+        ignoreSeekSpeed: 0
+  falling:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+  gliding:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+  shrink:
+    OnEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExit:
+      m_PersistentCalls:
+        m_Calls: []
+    shrinkPositionChange: {x: 0, y: 0, z: 0}
+    growPositionChange: {x: 0, y: 0, z: 0}
+    growcolliderOffset: 0
+  debugStates: 0
   rotationSpeed: 10
   currentVelocity: 0
   smoothTime: 0.1
@@ -1914,15 +2022,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.59
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 18.24
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.96
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1958,6 +2066,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      propertyPath: debugStates
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
