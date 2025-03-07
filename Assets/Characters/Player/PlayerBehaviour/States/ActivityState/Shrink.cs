@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Shrink : State
@@ -46,9 +47,43 @@ public class Shrink : State
         playerBehaviour.GetOnShrinkParticleSystem.Play();
     }
 
-    public override void OnStateGizmos()
+    private void ShrinkNewPosition(Vector3 positionChange)
+    {
+        playerBehaviour.transform.position += positionChange;
+    }
+
+    public override void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(playerBehaviour.transform.position + playerBehaviour.transform.up*0.3f, new Vector3(.2f,.5f,.7f));
+    }
+
+    public override void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        if (_active)
+        {
+            Gizmos.DrawCube(playerBehaviour.transform.position + playerBehaviour.PlayerData.ShrinkPositionChange, new Vector3(0.1f,.1f,.1f));
+        }
+        else
+        {
+            Gizmos.DrawCube(playerBehaviour.transform.position + playerBehaviour.GetShrinkPlayerData.ShrinkPositionChange, new Vector3(0.1f,.1f,.1f));
+        }
+        
+    }
+
+    public override void OnValidate()
+    {
+        //Shrinking
+        if (Vector3.Dot(playerBehaviour.PlayerData.ShrinkPositionChange, playerBehaviour.transform.up) <= 0)
+        {
+            Debug.LogWarning("Risk of clipping through floors and walls");
+        }
+        
+        //Growing
+        if (Vector3.Dot(playerBehaviour.GetShrinkPlayerData.ShrinkPositionChange, playerBehaviour.transform.up) <= 0)
+        {
+            Debug.LogWarning("Risk of clipping through floors and walls");
+        }
     }
 }

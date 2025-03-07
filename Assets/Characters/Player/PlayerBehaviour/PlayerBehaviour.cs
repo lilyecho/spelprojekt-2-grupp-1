@@ -135,7 +135,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        shrink?.OnStateGizmos();
+        shrink?.OnDrawGizmos();
+    }
+    private void OnDrawGizmosSelected()
+    {
+        shrink?.OnDrawGizmosSelected();
     }
 
     private void ChangeMovementActivation(bool nextValue)
@@ -341,6 +345,18 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!_movementOn) return;
         currentState?.OnCollision(collision);
+    }
+
+    private void OnValidate()
+    {
+        idle?.OnValidate();
+        walking?.OnValidate();
+        sneaking?.OnValidate();
+        running?.OnValidate();
+        jumping?.OnValidate();
+        falling?.OnValidate();
+        gliding?.OnValidate();
+        shrink?.OnValidate();
     }
 
 

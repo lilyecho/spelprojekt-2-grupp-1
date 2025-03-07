@@ -7,60 +7,20 @@ using UnityEngine.InputSystem;
 
 public abstract class State
 {
-    public virtual void Enter()
-    {
-
-    }
-    public virtual void Exit()
-    {
-
-    }
-    public virtual void OnCollision(Collision collision)
-    {
-
-    }
-
-    public virtual void Update()
-    {
-
-    }
-    public virtual void FixedUpdate()
-    {
-
-    }
-
-    public virtual void OnStateGizmos()
-    {
-        
-    }
-
-    public virtual void OnSpaceBar(InputAction.CallbackContext context)
-    {
-
-    }
-    public virtual void OnShift(InputAction.CallbackContext context)
-    {
-
-    }
-    public virtual void OnCTRL(InputAction.CallbackContext context)
-    {
-
-    }
-
-    public virtual void OnWASD(InputAction.CallbackContext context)
-    {
-
-    }
-
-    public virtual void OnShrink(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    public virtual void OnMOUSE(InputAction.CallbackContext context)
-    {
-
-    }
+    public virtual void Enter() {}
+    public virtual void Exit() {}
+    public virtual void OnCollision(Collision collision) {}
+    public virtual void Update() {}
+    public virtual void FixedUpdate() {}
+    public virtual void OnDrawGizmos() {}
+    public virtual void OnDrawGizmosSelected() {}
+    public virtual void OnSpaceBar(InputAction.CallbackContext context) {}
+    public virtual void OnShift(InputAction.CallbackContext context) {}
+    public virtual void OnCTRL(InputAction.CallbackContext context) {}
+    public virtual void OnWASD(InputAction.CallbackContext context) {}
+    public virtual void OnShrink(InputAction.CallbackContext context) {}
+    public virtual void OnMOUSE(InputAction.CallbackContext context) {}
+    public virtual void OnValidate() {}
 
 
     protected PlayerBehaviour playerBehaviour;
@@ -248,36 +208,6 @@ public abstract class State
         float tValue = Mathf.InverseLerp(0, maxSpeed, currentSpeed);
         return tValue * totalAccelerationTime;
     }
-
-    #region DeAcceleration
-
-    /*protected void ApplyDeAcceleration(float accelerationTotalTime)
-    {
-        playerBehaviour.accTime += Time.fixedDeltaTime;
-        playerBehaviour.moveSpeed = CalculateNextSpeed(maxSpeed,playerBehaviour.accTime, accelerationTotalTime);
-        playerBehaviour.rb.velocity = playerBehaviour.moveDir.normalized * playerBehaviour.moveSpeed;
-    }
-    
-    private float CalculateNextDeAccelerationSpeed(float lowestSpeed, float currentAccTime, float totalDeAccelerationTime)
-    {
-        if (playerBehaviour.rb.velocity.magnitude <= lowestSpeed)
-        {
-            return lowestSpeed;
-        }
-        
-        float tValue = Mathf.Clamp(currentAccTime / totalDeAccelerationTime,0,1);
-        return Mathf.Lerp(0, maxSpeed, tValue);
-    }*/
-    
-    //TODO use for deacceleration later
-    /*protected float CalculateDeAccelerationTimeFromSpeed(float currentSpeed, float startSpeed, float totalDeAccelerationTime)
-    {
-        float tValue = Mathf.InverseLerp(startSpeed,0, currentSpeed);
-        return tValue * totalDeAccelerationTime;
-    }*/
-
-    #endregion
-    
     
     /// <summary>
     /// Makes it so that only x and z movement matters in air-movement
@@ -371,6 +301,7 @@ public abstract class State
         }
         return false;
     }
+    
     protected bool ExitGlide()
     {
         if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideExitHeight))

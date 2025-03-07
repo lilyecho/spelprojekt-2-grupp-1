@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Characters/Player/PlayerData")]
 public class PlayerData : ScriptableObject
@@ -36,17 +37,16 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float rotationSpeed;
 
     [Header("Extra"), Tooltip("Mostly for the use of shrinking")] 
-    [SerializeField, Range(0.01f, 1)] private float factorialValue4Shrink = 1; 
+    [SerializeField, Range(0.01f, 1)] private float factorialValue4Shrink = 1;
+
+    [SerializeField] private Vector3 shrinkPositionChange;
     
     #region Getters & Setters
     
     public float GetGravityMagnitudeUp => gravitationMagnitudeUp * factorialValue4Shrink;
     public float GetGravityMagnitudeDown => gravitationMagnitudeDown * factorialValue4Shrink;
-
     public float GetRayCastLength => rayCastLength * factorialValue4Shrink;
-
     public SpeedRelated GetSpeedRelated => speedRelated;
-    
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
     public MidAirForces GetMidAirForces => appliableAirForces;
@@ -56,16 +56,12 @@ public class PlayerData : ScriptableObject
     public float GetGlideMinimumHeight => glideMinimumHeight;
     public float GetGlideExitHeight => glideExitHeight;
     public float GetGlideFallingSpeed => glideFallingSpeed;
-
     public ShrinkRelated GetShrinkParameters => shrinkRelated;
-    
     public float GetRotationSpeed => rotationSpeed;
-
     public float GetSlopeCheckerLength => slopeCheckerLength;
-
     public float GetMaxRotationAngle => maxRotationAngle;
-
     public Vector3 CharacterScale => new Vector3(1, 1, 1) * factorialValue4Shrink;
+    public Vector3 ShrinkPositionChange => shrinkPositionChange;
 
     #endregion
 
