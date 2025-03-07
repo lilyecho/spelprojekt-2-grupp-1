@@ -9806,6 +9806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4964451811266107741}
   - component: {fileID: 4392561309049591802}
+  - component: {fileID: 6411948486626549399}
   - component: {fileID: 587585015942401801}
   m_Layer: 0
   m_Name: PowerUpEffect
@@ -14621,6 +14622,26 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &6411948486626549399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507256942662250837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcbf55aa62737ae4cb3bd6cb0d9852a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 4392561309049591802}
+  audio:
+    Guid:
+      Data1: 1356090148
+      Data2: 1330319792
+      Data3: 675978428
+      Data4: 1513483444
+    Path: event:/Sound/PotionSFX
 --- !u!199 &587585015942401801
 ParticleSystemRenderer:
   serializedVersion: 6
