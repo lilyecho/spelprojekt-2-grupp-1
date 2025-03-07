@@ -1,13 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[Serializable]
 public class NormalJump : JumpState
 {
-    public NormalJump(PlayerBehaviour playerBehaviour) : base(playerBehaviour) { }
-    
     public override void Enter()
     {
         if (playerBehaviour.intoJump)

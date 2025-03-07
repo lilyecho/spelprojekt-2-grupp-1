@@ -19,7 +19,6 @@ public class Walking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
-        Debug.Log(playerBehaviour);
         OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
         
         coyoteTimer = playerBehaviour.PlayerData.GetCoyoteTime;

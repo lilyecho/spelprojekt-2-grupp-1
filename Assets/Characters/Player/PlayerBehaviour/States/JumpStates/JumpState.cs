@@ -7,7 +7,12 @@ using UnityEngine.InputSystem;
 
 public abstract class JumpState
 {
+    protected PlayerBehaviour playerBehaviour;
 
+    public virtual void Awake(PlayerBehaviour player)
+    {
+        playerBehaviour = player;
+    }
 
     public virtual void Enter()
     {
@@ -38,13 +43,8 @@ public abstract class JumpState
     }
     
 
-    protected PlayerBehaviour playerBehaviour;
-
-
-    public JumpState(PlayerBehaviour playerBehaviour)
-    {
-        this.playerBehaviour = playerBehaviour;
-    }
+    
+    
 
     protected void Jump(float jumpForce, float momentumKeptPercentage)
     {

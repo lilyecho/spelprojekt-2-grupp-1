@@ -20,9 +20,9 @@ public class PlayerBehaviour : MonoBehaviour
     #endregion
     
     #region Jump States
-    public JumpState unableToJump;
-    public JumpState normalJump;
-    public JumpState megaJump;
+    public UnableToJump unableToJump = new UnableToJump();
+    public NormalJump normalJump = new NormalJump();
+    public MegaJump megaJump = new MegaJump();
     #endregion
 
     
@@ -121,6 +121,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         _currentPlayerPlayerData = playerDataNormal;
+        
         falling.Awake(this);
         gliding.Awake(this);
         idle.Awake(this);
@@ -130,6 +131,10 @@ public class PlayerBehaviour : MonoBehaviour
         sneaking.Awake(this);
         walking.Awake(this);
         
+        //Jumps
+        normalJump.Awake(this);
+        megaJump.Awake(this);
+        unableToJump.Awake(this);
     }
 
     private void OnDrawGizmos()
@@ -171,11 +176,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Start()
     {
-        //JumpStates
-        normalJump = new NormalJump(this);
-        unableToJump = new UnableToJump(this);
-        megaJump = new MegaJump(this);
-
         jumpState = normalJump;
         
         cam = Camera.main;
@@ -244,6 +244,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void ChangeJumpState(JumpState newState)
     {
+        if (debugStates)
+        {
+            string t = "JumpState";
+            t += "\n PreState: "+jumpState;
+            t += "\n NextState: "+newState;
+            Debug.Log(t);
+        }
+        
         jumpState?.Exit();
         jumpState = newState;
         jumpState.Enter();
