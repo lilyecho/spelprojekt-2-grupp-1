@@ -11,6 +11,7 @@ namespace SceneHandling.SoundSystem.Scripts
     [Serializable]
     public struct SoundInfo
     {
+        public string soundImplementationName;
         public SoundAction action;
         public EventReference eventReference;
 
@@ -24,7 +25,7 @@ namespace SceneHandling.SoundSystem.Scripts
         public Transform locationTransform;
 
         public StopMode stopMode;
-    
+        
         public enum SoundLocality
         {
             Local,

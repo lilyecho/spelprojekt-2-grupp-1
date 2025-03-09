@@ -9,6 +9,7 @@ namespace Editor
     [CustomPropertyDrawer(typeof(SoundInfo))]
     public class CustomSoundDrawer : PropertyDrawer
     {
+        private SerializedProperty soundImplementationName;
         private SerializedProperty action;
         private SerializedProperty eventReference;
         
@@ -36,7 +37,7 @@ namespace Editor
 
         //private FlagProperties implementedFlagProperties;
 
-        private int linesSizeAction;
+        private int linesSizeBase;
         private int lineSizeEventRef;
         private int lineSizePlay;
         private int lineSizeLocationRelated;
@@ -52,7 +53,7 @@ namespace Editor
             if (property.isExpanded)
             {
                 //Todo sizing depending on different types of functionality. EventReference is needed for all when used for example. Shouldn't be recreated nor counted as for multiple lines
-                amountOfLines += linesSizeAction;
+                amountOfLines += linesSizeBase;
                 
                 SoundInfo.SoundAction soundAction = (SoundInfo.SoundAction) action.enumValueFlag;
                 if (soundAction != 0)
@@ -95,7 +96,7 @@ namespace Editor
 
             if (property.isExpanded)
             {
-                DrawActionRelated(position, ref currentAmountOfLines);
+                DrawBaseRelated(position, ref currentAmountOfLines);
                 
                 SoundInfo.SoundAction soundAction = (SoundInfo.SoundAction) action.enumValueFlag;
                 if (soundAction != 0)
@@ -127,6 +128,7 @@ namespace Editor
 
         private void FindAllProperties(SerializedProperty property)
         {
+            soundImplementationName = property.FindPropertyRelative("soundImplementationName");
             action = property.FindPropertyRelative("action");
             eventReference = property.FindPropertyRelative("eventReference");
             
@@ -144,9 +146,9 @@ namespace Editor
             
         }
         
-        private void DrawActionRelated(Rect position, ref int startLineIndex)
+        private void DrawBaseRelated(Rect position, ref int startLineIndex)
         {
-            linesSizeAction = 0;
+            linesSizeBase = 0;
             int sectionAmountOfLines = 0;
             
             float xPos = position.xMin;
@@ -155,11 +157,17 @@ namespace Editor
             float height = EditorGUIUtility.singleLineHeight;
             Rect drawArea = new Rect(xPos, yPos, width, height);
             
+            EditorGUI.PropertyField(drawArea, soundImplementationName,new GUIContent("Implementation-Name"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(xPos, yPos, width, height);
             EditorGUI.PropertyField(drawArea, action,new GUIContent("Action"));
             //Extra padding, 1+1
             startLineIndex += 2;
             sectionAmountOfLines += 2;
-            linesSizeAction = sectionAmountOfLines;
+            linesSizeBase = sectionAmountOfLines;
         }
         
         private void DrawLocationRelated(Rect position, ref int startLineIndex)
