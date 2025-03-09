@@ -1,0 +1,296 @@
+using System;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
+
+namespace Editor
+{
+    [CustomPropertyDrawer(typeof(SoundInfo))]
+    public class CustomSoundDrawer : PropertyDrawer
+    {
+        private SerializedProperty action;
+        private SerializedProperty eventReference;
+        
+        private SerializedProperty locality;
+        private SerializedProperty parameterName;
+        private SerializedProperty parameterValue;
+        
+        private SerializedProperty playVariant;
+        
+        private SerializedProperty locationVariant;
+        private SerializedProperty locationTransform;
+
+        private SerializedProperty stopMode;
+        
+        
+        
+        /*[Flags]
+        private enum FlagProperties
+        {
+            ActionProperty = 1,
+            EventReference = 2,
+            Parameter = 4,
+            
+        }*/
+
+        //private FlagProperties implementedFlagProperties;
+
+        private int linesSizeAction;
+        private int lineSizeEventRef;
+        private int lineSizePlay;
+        private int lineSizeLocationRelated;
+        private int lineSizeRemove;
+        private int lineSizeParameter;
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            FindAllProperties(property);
+            
+            int amountOfLines = 1;
+            
+            //Fold-outs
+            if (property.isExpanded)
+            {
+                //Todo sizing depending on different types of functionality. EventReference is needed for all when used for example. Shouldn't be recreated nor counted as for multiple lines
+                amountOfLines += linesSizeAction;
+                
+                SoundInfo.SoundAction soundAction = (SoundInfo.SoundAction) action.enumValueFlag;
+                if (soundAction != 0)
+                {
+                    amountOfLines += lineSizeEventRef;
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Location))
+                {
+                    amountOfLines += lineSizeLocationRelated;
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.ChangeParameter))
+                {
+                    amountOfLines += lineSizeParameter;
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Play))
+                {
+                    amountOfLines += lineSizePlay;
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Remove))
+                {
+                    amountOfLines += lineSizeRemove;
+                }
+            }
+            
+            return EditorGUIUtility.singleLineHeight * amountOfLines;
+        }
+        
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            //Reset of implemented
+            //implementedFlagProperties = 0;
+            int currentAmountOfLines = 1;
+            
+            FindAllProperties(property);
+            
+            EditorGUI.BeginProperty(position, label, property);
+            
+            Rect foldOutBox = new Rect(position.xMin, position.yMin, position.size.x, EditorGUIUtility.singleLineHeight);
+            property.isExpanded = EditorGUI.Foldout(foldOutBox, property.isExpanded, label);
+
+            if (property.isExpanded)
+            {
+                DrawActionRelated(position, ref currentAmountOfLines);
+                
+                SoundInfo.SoundAction soundAction = (SoundInfo.SoundAction) action.enumValueFlag;
+                if (soundAction != 0)
+                {
+                    DrawEventReferenceRelated(position, ref currentAmountOfLines);
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.ChangeParameter))
+                {
+                    DrawParameterRelated(position, ref currentAmountOfLines);
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Location))
+                {
+                    DrawLocationRelated(position, ref currentAmountOfLines);
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Play))
+                {
+                    DrawPlayRelated(position, ref currentAmountOfLines);
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Remove))
+                {
+                    DrawRemoveRelated(position, ref currentAmountOfLines);
+                }
+                
+                
+            }
+            
+            EditorGUI.EndProperty();
+        }
+
+        private void FindAllProperties(SerializedProperty property)
+        {
+            action = property.FindPropertyRelative("action");
+            eventReference = property.FindPropertyRelative("eventReference");
+            
+            locality = property.FindPropertyRelative("locality");
+            parameterName = property.FindPropertyRelative("parameterName");
+            parameterValue = property.FindPropertyRelative("parameterValue");
+            
+            playVariant = property.FindPropertyRelative("playVariant");
+            
+            locationVariant = property.FindPropertyRelative("locationVariant");
+            locationTransform = property.FindPropertyRelative("locationTransform");
+
+            stopMode = property.FindPropertyRelative("stopMode");
+            
+            
+        }
+        
+        private void DrawActionRelated(Rect position, ref int startLineIndex)
+        {
+            linesSizeAction = 0;
+            int sectionAmountOfLines = 0;
+            
+            float xPos = position.xMin;
+            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight;
+            Rect drawArea = new Rect(xPos, yPos, width, height);
+            
+            EditorGUI.PropertyField(drawArea, action,new GUIContent("Action"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            linesSizeAction = sectionAmountOfLines;
+        }
+        
+        private void DrawLocationRelated(Rect position, ref int startLineIndex)
+        {
+            lineSizeLocationRelated = 0;
+            int sectionAmountOfLines = 0;
+            
+            //Type of location-handling for audioHandler
+            float xPos = position.xMin;
+            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight;
+            Rect drawArea = new Rect(xPos, yPos, width, height);
+            
+            //Header
+            EditorGUI.LabelField(drawArea,"Location");
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            //Enum
+            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(xPos, yPos, width, height);
+            EditorGUI.PropertyField(drawArea, locationVariant,new GUIContent("LocationTypes"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            //Transform-property
+            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(xPos, yPos, width, height);
+            EditorGUI.PropertyField(drawArea, locationTransform,new GUIContent("Location Transform"));
+            //1+1 for extra padding
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
+            lineSizeLocationRelated = sectionAmountOfLines;
+        }
+        
+        private void DrawPlayRelated(Rect position, ref int startLineIndex)
+        {
+            lineSizePlay = 0;
+            int sectionAmountOfLines = 0;
+            
+            float xPos = position.xMin;
+            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight;
+            Rect drawArea = new Rect(xPos, yPos, width, height);
+            
+            EditorGUI.PropertyField(drawArea, playVariant ,new GUIContent("Play-Type"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            lineSizePlay = sectionAmountOfLines;
+        }
+        
+        private void DrawRemoveRelated(Rect position, ref int startLineIndex)
+        {
+            lineSizeRemove = 0;
+            int sectionAmountOfLines = 0;
+            
+            float xPos = position.xMin;
+            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight;
+            Rect drawArea = new Rect(xPos, yPos, width, height);
+            
+            EditorGUI.PropertyField(drawArea, stopMode ,new GUIContent("Stop-Mode"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            lineSizeRemove = sectionAmountOfLines;
+        }
+        
+        private void DrawEventReferenceRelated(Rect position,ref int startLineIndex)
+        {
+            lineSizeEventRef = 0;
+            int sectionAmountOfLines = 0;
+            
+            float x = position.xMin;
+            float y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight * 2;
+            Rect drawArea = new Rect(x, y, width, height);
+            
+            EditorGUI.PropertyField(drawArea, eventReference,new GUIContent("EventReference"));
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
+            lineSizeEventRef = sectionAmountOfLines;
+        }
+        
+        /// <summary>
+        /// Name, valueChange (float), global or not
+        /// </summary>
+        /// <param name="position"></param>
+        private void DrawParameterRelated(Rect position, ref int startLineIndex)
+        {
+            lineSizeParameter = 0;
+            int sectionAmountOfLines = 0;
+            
+            float x = position.xMin;
+            float y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight;
+            Rect drawArea = new Rect(x, y, width, height);
+            
+            EditorGUI.LabelField(drawArea, "Parameters");
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            //Locality
+            y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(x, y, width, height);
+            EditorGUI.PropertyField(drawArea, locality,new GUIContent("Locality"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            //ParameterName
+            y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(x, y, width, height);
+            EditorGUI.PropertyField(drawArea, parameterName,new GUIContent("Name"));
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            //ParameterValue
+            y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(x, y, width, height);
+            EditorGUI.PropertyField(drawArea, parameterValue,new GUIContent("Value"));
+            
+            //Extra padding 1+1
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
+            lineSizeParameter = sectionAmountOfLines;
+
+        }
+        
+        
+        
+    }
+}

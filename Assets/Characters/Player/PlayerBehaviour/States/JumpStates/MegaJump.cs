@@ -49,6 +49,6 @@ public class MegaJump : JumpState
 [Serializable]
 public struct MegaJumpsSoundInfos
 {
-    public SoundInfo OnCharged;
-    public SoundInfo OnJump;
+    public SoundInfo[] OnCharged;
+    public SoundInfo[] OnJump;
 }
