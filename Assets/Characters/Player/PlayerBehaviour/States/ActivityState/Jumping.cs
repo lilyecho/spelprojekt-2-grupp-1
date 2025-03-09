@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,10 +11,11 @@ using UnityEngine.UIElements;
 public class Jumping : State
 {
     private bool flagAbleToFall;
-    [SerializeField] private JumpSoundValue JumpSoundValue;
+    [SerializeField] private SoundInfos soundInfos;
     
     public override void Enter()
     {
+        playerBehaviour.GetAudioPort.OnSoundInfo(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
         //playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
         //playerBehaviour.anim.GetParameter(1).ty
@@ -63,5 +65,11 @@ public class Jumping : State
                 playerBehaviour.ChangeState(playerBehaviour.gliding);
             }
         }
+    }
+    
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo onEnter;
     }
 }

@@ -53,12 +53,14 @@ public class NormalJump : JumpState
             Jump(jumpForce,playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
         }
     }
+    
+    [Serializable]
+    private struct SoundInfos
+    {
+        public EventInfo charged;
+        public EventInfo test2;
+        public EventInfo test3;
+    }
 }
 
-[Serializable]
-public struct JumpSoundValue
-{
-    public EventInfo charged;
-    public EventInfo test2;
-    public EventInfo test3;
-}
+

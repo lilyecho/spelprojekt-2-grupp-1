@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using FMOD;
 using FMOD.Studio;
 using FMODUnity;
+using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
@@ -16,6 +17,8 @@ public class AudioHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        audioPort.OnSoundInfo += HandleSoundInfo;
+        
         audioPort.OnChangeGlobalParameter += ChangeGlobalParameter;
         audioPort.OnCreate += CreateInstance;
         audioPort.OnStart += PlayInstance;
@@ -25,6 +28,8 @@ public class AudioHandler : MonoBehaviour
 
     private void OnDisable()
     {
+        audioPort.OnSoundInfo -= HandleSoundInfo;
+        
         audioPort.OnChangeGlobalParameter -= ChangeGlobalParameter;
         audioPort.OnCreate -= CreateInstance;
         audioPort.OnStart -= PlayInstance;
@@ -32,6 +37,97 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnRemove -= RemoveInstance;
     }
 
+    private void HandleSoundInfo(SoundInfo soundInfo)
+    {
+        if (soundInfo.action == 0) return;
+        Debug.Log("Entering sound");
+        
+        //TODO depending on if existic instance or created one
+        HandleCreate(soundInfo);
+        HandleParameterChange(soundInfo);
+        HandleLocation(soundInfo);
+        HandlePlay(soundInfo);
+    }
+
+    private void HandleCreate(SoundInfo soundInfo)
+    {
+        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Create)) return;
+        
+        Debug.Log("Creating sound");
+        CreateInstance(soundInfo.eventReference);
+    }
+
+    private void HandleParameterChange(SoundInfo soundInfo)
+    {
+        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.ChangeParameter)) return;
+        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
+        
+        Debug.Log("Parameter sound");
+        if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
+        {
+            TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);
+        }
+        else
+        {
+            NewTryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
+        }
+    }
+    
+    private void NewTryChangeLocalParameter(EventInstance instance, string parameterName, float value)
+    {
+        instance.setParameterByName(parameterName, value);
+    }
+    
+    private void HandleLocation(SoundInfo soundInfo)
+    {
+        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
+        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
+        
+        Debug.Log("Location sound");
+        if (soundInfo.locationVariant.HasFlag(SoundInfo.LocationVariant.Attached))
+        {
+            AttachInstanceToObject(instance, soundInfo.locationTransform);
+        }
+        else
+        {
+            PlaceInstanceOnPosition(instance, soundInfo.locationTransform.position);
+        }
+    }
+    
+    private void HandlePlay(SoundInfo soundInfo)
+    {
+        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Play)) return;
+
+        Debug.Log("Playing sound");
+        if (soundInfo.playVariant.HasFlag(SoundInfo.PlayVariant.OneShot))
+        {
+            NewPlayOneShot(soundInfo.eventReference);
+        }
+        else
+        {
+            PlayInstance(soundInfo.eventReference);
+        }
+    }
+    
+    private void NewPlayOneShot(EventReference eventReference)
+    {
+        if (!TryGetInstance(eventReference, out EventInstance instance)) return;
+        instance.start();
+        GUID eventGUID = eventReference.Guid;
+        dictionaryGuidInstances.Remove(eventGUID);
+        instance.release();
+    }
+
+    private void AttachInstanceToObject(EventInstance instance, Transform objectTransform)
+    {
+        RuntimeManager.AttachInstanceToGameObject(instance, objectTransform);
+    }
+
+    private void PlaceInstanceOnPosition(EventInstance instance, Vector3 placementPos)
+    {
+        instance.set3DAttributes(placementPos.To3DAttributes());
+    }
+    
     private void ChangeGlobalParameter(string parameterName, float value)
     {
         RuntimeManager.StudioSystem.setParameterByName(parameterName, value);

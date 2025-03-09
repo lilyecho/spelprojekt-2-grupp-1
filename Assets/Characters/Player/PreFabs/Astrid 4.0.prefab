@@ -1234,52 +1234,24 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
-    JumpSoundValue:
-      charged:
+    soundInfos:
+      onEnter:
+        soundImplementationName: Jumping
+        action: 15
         eventReference:
           Guid:
-            Data1: 0
-            Data2: 0
-            Data3: 0
-            Data4: 0
-          Path: 
-        action: 0
+            Data1: 1410284054
+            Data2: 1229434782
+            Data3: 1386002601
+            Data4: 1363115021
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Jumping
+        locality: 0
+        parameterName: CatBellMovement
+        parameterValue: 1
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 39312636168687084}
         stopMode: 0
-        attachedInstance: 0
-        attachedOneShot: 0
-        audioSource: {fileID: 0}
-        paramName: 
-        ignoreSeekSpeed: 0
-      test2:
-        eventReference:
-          Guid:
-            Data1: 0
-            Data2: 0
-            Data3: 0
-            Data4: 0
-          Path: 
-        action: 0
-        stopMode: 0
-        attachedInstance: 0
-        attachedOneShot: 0
-        audioSource: {fileID: 0}
-        paramName: 
-        ignoreSeekSpeed: 0
-      test3:
-        eventReference:
-          Guid:
-            Data1: 0
-            Data2: 0
-            Data3: 0
-            Data4: 0
-          Path: 
-        action: 0
-        stopMode: 0
-        attachedInstance: 0
-        attachedOneShot: 0
-        audioSource: {fileID: 0}
-        paramName: 
-        ignoreSeekSpeed: 0
   falling:
     OnEnter:
       m_PersistentCalls:
@@ -1306,23 +1278,9 @@ MonoBehaviour:
     growcolliderOffset: 0
   megaJump:
     SoundInformations:
-      OnCharged:
-      - action: -1
-        eventReference:
-          Guid:
-            Data1: 0
-            Data2: 0
-            Data3: 0
-            Data4: 0
-          Path: 
-        locality: 0
-        parameterName: 
-        parameterValue: 0
-        playVariant: 0
-        locationVariant: 1
-        locationTransform: {fileID: 0}
-        stopMode: 0
-      OnJump: []
+      onEnter: []
+      onCharged: []
+      onJump: []
   debugStates: 1
   rotationSpeed: 10
   currentVelocity: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
+using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,5 +25,11 @@ public class AudioPort : ScriptableObject
     
     //SFX focus
     public UnityAction<EventReference,Vector3> OnJump = delegate(EventReference reference, Vector3 arg1) {  };
+    
+    
+    
+    //Holy grail of this audioSystem
+    public UnityAction<SoundInfo> OnSoundInfo = delegate(SoundInfo soundInfo) {  };
+
         
 }

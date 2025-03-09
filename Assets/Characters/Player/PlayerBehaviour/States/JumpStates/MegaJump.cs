@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class MegaJump : JumpState
 {
-    [SerializeField] private MegaJumpsSoundInfos SoundInformations;
+    [SerializeField] private JumpsSoundInfos SoundInformations;
         
     private float chargeTimer;
     
@@ -45,11 +45,15 @@ public class MegaJump : JumpState
             Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
         }
     }
+    
+    [Serializable]
+    private struct JumpsSoundInfos
+    {
+        public SoundInfo[] onEnter;
+        public SoundInfo[] onCharged;
+        public SoundInfo[] onJump;
+        //public SoundInfo[] onExit;
+    }
 }
 
-[Serializable]
-public struct MegaJumpsSoundInfos
-{
-    public SoundInfo[] OnCharged;
-    public SoundInfo[] OnJump;
-}
+
