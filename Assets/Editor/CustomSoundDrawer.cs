@@ -1,4 +1,5 @@
 using System;
+using SceneHandling.SoundSystem.Scripts;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -155,8 +156,9 @@ namespace Editor
             Rect drawArea = new Rect(xPos, yPos, width, height);
             
             EditorGUI.PropertyField(drawArea, action,new GUIContent("Action"));
-            startLineIndex += 1;
-            sectionAmountOfLines += 1;
+            //Extra padding, 1+1
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
             linesSizeAction = sectionAmountOfLines;
         }
         
@@ -173,7 +175,7 @@ namespace Editor
             Rect drawArea = new Rect(xPos, yPos, width, height);
             
             //Header
-            EditorGUI.LabelField(drawArea,"Location");
+            EditorGUI.LabelField(drawArea,"Location", EditorStyles.boldLabel);
             startLineIndex += 1;
             sectionAmountOfLines += 1;
             
@@ -205,9 +207,17 @@ namespace Editor
             float height = EditorGUIUtility.singleLineHeight;
             Rect drawArea = new Rect(xPos, yPos, width, height);
             
-            EditorGUI.PropertyField(drawArea, playVariant ,new GUIContent("Play-Type"));
+            //Header
+            EditorGUI.LabelField(drawArea,"Play", EditorStyles.boldLabel);
             startLineIndex += 1;
             sectionAmountOfLines += 1;
+            
+            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(xPos, yPos, width, height);
+            EditorGUI.PropertyField(drawArea, playVariant ,new GUIContent("Play-Type"));
+            //Extra padding, 1+1
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
             lineSizePlay = sectionAmountOfLines;
         }
         
@@ -222,9 +232,18 @@ namespace Editor
             float height = EditorGUIUtility.singleLineHeight;
             Rect drawArea = new Rect(xPos, yPos, width, height);
             
-            EditorGUI.PropertyField(drawArea, stopMode ,new GUIContent("Stop-Mode"));
+            
+            //Header
+            EditorGUI.LabelField(drawArea,"Remove", EditorStyles.boldLabel);
             startLineIndex += 1;
             sectionAmountOfLines += 1;
+            
+            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(xPos, yPos, width, height);
+            EditorGUI.PropertyField(drawArea, stopMode ,new GUIContent("Stop-Mode"));
+            //Extra padding, 1+1
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
             lineSizeRemove = sectionAmountOfLines;
         }
         
@@ -260,7 +279,8 @@ namespace Editor
             float height = EditorGUIUtility.singleLineHeight;
             Rect drawArea = new Rect(x, y, width, height);
             
-            EditorGUI.LabelField(drawArea, "Parameters");
+            //Header
+            EditorGUI.LabelField(drawArea, "Parameters", EditorStyles.boldLabel);
             startLineIndex += 1;
             sectionAmountOfLines += 1;
             
@@ -271,18 +291,20 @@ namespace Editor
             startLineIndex += 1;
             sectionAmountOfLines += 1;
             
+            //same line
             //ParameterName
+            x = position.xMin;
             y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
-            drawArea = new Rect(x, y, width, height);
+            drawArea = new Rect(x, y, width/2f, height);
+            EditorGUIUtility.labelWidth = 50;
             EditorGUI.PropertyField(drawArea, parameterName,new GUIContent("Name"));
-            startLineIndex += 1;
-            sectionAmountOfLines += 1;
             
             //ParameterValue
+            x = width/2f;
             y = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
-            drawArea = new Rect(x, y, width, height);
+            drawArea = new Rect(x, y, width/2f, height);
             EditorGUI.PropertyField(drawArea, parameterValue,new GUIContent("Value"));
-            
+            EditorGUIUtility.labelWidth = default;
             //Extra padding 1+1
             startLineIndex += 2;
             sectionAmountOfLines += 2;
