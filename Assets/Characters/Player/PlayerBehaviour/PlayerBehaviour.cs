@@ -202,14 +202,13 @@ public class PlayerBehaviour : MonoBehaviour
         jumpState?.Update();
         //moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
 
+        
         cameraForward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
         cameraRight = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
         cameraForward.Normalize();
         cameraRight.Normalize();
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
-        
-        Debug.Log(rb.velocity.magnitude);
     }
 
     private void FixedUpdate()
