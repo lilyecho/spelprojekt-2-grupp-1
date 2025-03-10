@@ -3,33 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public class SoundToAnimation : MonoBehaviour
 {
-    [SerializeField] private AudioPort audioPort;
-    [SerializeField] private SoundInfo soundInfo;
-    [SerializeField] private string curveName;
-    [SerializeField, Range(0,1)] private float activationValue;
+    [SerializeField] protected AudioPort audioPort;
+    [SerializeField] protected SoundInfo soundInfo;
+    [SerializeField] protected string curveName;
+    [SerializeField, Range(0,1)] protected float activationValue;
     
-    private Animator animator;
-    private int hashedCurveName;
-    private void Awake()
+    protected Animator animator;
+    protected int hashedCurveName;
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         hashedCurveName = Animator.StringToHash(curveName);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         CheckPlaySound();
     }
 
-    private void CheckPlaySound()
+    protected virtual void CheckPlaySound()
     {
         if (animator.GetFloat(hashedCurveName) >= activationValue)
         {
             audioPort.OnSoundInfo(soundInfo);
+            Debug.Log("Stepsound");
         }
     }
 }

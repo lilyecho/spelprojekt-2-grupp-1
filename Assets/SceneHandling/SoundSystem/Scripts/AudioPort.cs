@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class AudioPort : ScriptableObject
 {
     //On steps, changes depending on object sending this data
-    public UnityAction<CharacterAudioData,Transform> OnStep = delegate(CharacterAudioData arg0, Transform vector3) {  };
+    public UnityAction<SoundInfo,Transform> OnStep = delegate(SoundInfo soundInfo, Transform vector3) {  };
     
     public UnityAction<string, float> OnChangeGlobalParameter = delegate(string arg0, float i) {  };
     
@@ -30,6 +30,5 @@ public class AudioPort : ScriptableObject
     
     //Holy grail of this audioSystem
     public UnityAction<SoundInfo> OnSoundInfo = delegate(SoundInfo soundInfo) {  };
-
-        
+    public UnityAction<SoundInfo[]> OnSoundInfos = delegate(SoundInfo[] soundInfos) {  };
 }

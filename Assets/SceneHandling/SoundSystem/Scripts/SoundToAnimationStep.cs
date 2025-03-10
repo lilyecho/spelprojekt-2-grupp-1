@@ -1,0 +1,18 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using SceneHandling.SoundSystem.Scripts;
+using UnityEngine;
+using UnityEngine.Events;
+
+[RequireComponent(typeof(Animator))]
+public class SoundToAnimationStep : SoundToAnimation
+{
+    protected override void CheckPlaySound()
+    {
+        if (animator.GetFloat(hashedCurveName) >= activationValue)
+        {
+            audioPort.OnStep(soundInfo, transform);
+        }
+    }
+}

@@ -19,7 +19,7 @@ public class Sneaking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
-        OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
+        //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
         
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
     }
@@ -64,14 +64,6 @@ public class Sneaking : State, IAcceleration
             {
                 playerBehaviour.ChangeState(playerBehaviour.falling);
             }
-        }
-        
-        //TODO Sound temporary
-        currentTime += Time.deltaTime;
-        if (currentTime >= timeStep)
-        {
-            TakeStep();
-            currentTime = 0;
         }
     }
 
