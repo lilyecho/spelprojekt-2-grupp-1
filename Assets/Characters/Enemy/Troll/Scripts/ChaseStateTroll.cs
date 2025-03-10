@@ -34,20 +34,30 @@ public class ChaseStateTroll : TrollStates
 
     public override void FixedUpdate()
     {
-        Check4Player();
+        //Troll
+        if(Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range)) return;
+        //Lamp
+        if(Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range)) return;
     }
 
-    private void Check4Player()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="eyes"></param>
+    /// <param name="range"></param>
+    /// <returns>true if swap state</returns>
+    private bool Check4Player(Transform eyes, float range)
     {
-        bool inRangeOfAggression = CheckTargetInRange(TrollBehaviour.GetTrollData.GetTrollSight.range);
-        if ( inRangeOfAggression && CheckTargetInRange(TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
+        bool inRangeOfAggression = CheckTargetInRange(eyes,range);
+        if ( inRangeOfAggression && CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
         {
             TrollBehaviour.Transition(TrollBehaviour.AttackState);
+            return true;
         }
-        else if (inRangeOfAggression)
+        if (inRangeOfAggression)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
-            return;
+            return false;
         }
         
         NavMeshPath path = new NavMeshPath();
@@ -55,16 +65,17 @@ public class ChaseStateTroll : TrollStates
         if (!CheckIfTargetPositionIsWalkable(out path))
         {
             TrollBehaviour.Transition(TrollBehaviour.SearchState);
-            return;
+            return true;
         }
 
-        if (!CheckIfRaycastHit())
+        if (!CheckIfRaycastHit(eyes,range))
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
             TrollBehaviour.Transition(TrollBehaviour.SearchState);
-            return;
+            return true;
         }
             
         TrollBehaviour.GetNavMeshAgent.path = path;
+        return false;
     }
 }

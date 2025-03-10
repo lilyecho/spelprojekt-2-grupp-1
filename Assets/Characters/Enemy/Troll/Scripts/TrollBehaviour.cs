@@ -46,6 +46,7 @@ public class TrollBehaviour : EnemyBehaviour
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
     
     public Transform GetEyes => eyes;
+    public Transform GetLamp => lamp;
     public TrollData GetTrollData => trollData;
     public CharacterAudio GetAudioData => trollAudioData;
 
@@ -145,7 +146,7 @@ public class TrollBehaviour : EnemyBehaviour
     private void VisualiseAlert()
     {
         Gizmos.color = new Color(0f, 1f, 1f, .7f);
-        Gizmos.DrawSphere(transform.position,trollData.GetHearingRange);
+        //Gizmos.DrawSphere(transform.position,trollData.GetHearingRange);
     }
     private void VisualiseSight(Vector3 sightPoint, Sight sightData) //Shame
     {

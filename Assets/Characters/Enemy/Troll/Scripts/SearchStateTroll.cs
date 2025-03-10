@@ -29,18 +29,24 @@ public class SearchStateTroll : TrollStates
             TrollBehaviour.Transition(TrollBehaviour.PatrolState);
         }
         
-        Check4Player();
+        //TrollEyes
+        if(Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,TrollBehaviour.GetTrollData.GetTrollSight.angle)) return; 
+        //Lampeyes
+        if(Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,TrollBehaviour.GetTrollData.GetLampSight.angle)) return; 
     }
     
-    private void Check4Player()
+    private bool Check4Player(Transform eyes, float range, float angle)
     {
-        if (TrollBehaviour.GetTarget == null) return;
-        if (CheckIfTargetPositionIsWalkable()) return;
-        if (!CheckTargetWithinAngleOfSight()) return;
+        if (TrollBehaviour.GetTarget == null) return false;
+        if (CheckIfTargetPositionIsWalkable()) return false;
+        if (!CheckTargetWithinAngleOfSight(eyes, angle)) return false;
 
-        if (CheckIfRaycastHit())
+        if (CheckIfRaycastHit(eyes, range))
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
+            return true;
         }
+
+        return false;
     }
 }

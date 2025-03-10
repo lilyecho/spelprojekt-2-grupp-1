@@ -58,7 +58,10 @@ public class PatrolStateTroll : TrollStates
     
     public override void Update()
     {
-        Check4Player();
+        //TrollEyes
+        if (Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,TrollBehaviour.GetTrollData.GetTrollSight.angle)) return;
+        //LampEyes
+        if(Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,TrollBehaviour.GetTrollData.GetLampSight.angle)) return;
         CheckSwapPatrolPoint();
     }
 
@@ -68,17 +71,27 @@ public class PatrolStateTroll : TrollStates
         TrollBehaviour.Transition(TrollBehaviour.SearchState);
     }
     
-    private void Check4Player()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="eyes"></param>
+    /// <param name="range"></param>
+    /// <param name="angle"></param>
+    /// <returns>true if swap state</returns>
+    private bool Check4Player(Transform eyes, float range, float angle)
     {
-        if (TrollBehaviour.GetTarget == null) return;
-        if (!CheckTargetInRange(TrollBehaviour.GetTrollData.GetTrollSight.range)) return;
-        if (!CheckTargetWithinAngleOfSight()) return;
-        if (!CheckIfTargetPositionIsWalkable()) return;
+        if (TrollBehaviour.GetTarget == null) return false;
+        if (!CheckTargetInRange(eyes,range)) return false;
+        if (!CheckTargetWithinAngleOfSight(eyes,angle)) return false;
+        if (!CheckIfTargetPositionIsWalkable()) return false;
 
-        if (CheckIfRaycastHit())
+        if (CheckIfRaycastHit(eyes,range))
         {
             TrollBehaviour.Transition(TrollBehaviour.ChaseState);
+            return true;
         }
+
+        return false;
     }
     
     private void CheckSwapPatrolPoint()

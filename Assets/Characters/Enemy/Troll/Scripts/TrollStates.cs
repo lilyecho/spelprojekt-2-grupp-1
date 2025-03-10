@@ -40,9 +40,9 @@ public class TrollStates
         TrollBehaviour.GetNavMeshAgent.acceleration = speed;
     }
     
-    protected bool CheckTargetInRange(float range)
+    protected bool CheckTargetInRange(Transform eyes,float range)
     {
-        float distance = Vector3.Distance(TrollBehaviour.GetTarget.position, TrollBehaviour.GetEyes.position);
+        float distance = Vector3.Distance(TrollBehaviour.GetTarget.position, eyes.position);
         return distance <= range;
     }
 
@@ -50,15 +50,15 @@ public class TrollStates
     /// Main axis comes from eyes forward. Matf.abs for only the differance in angles. will calculate according to a rotation axis Vector.up, so the other values only use x and z 
     /// </summary>
     /// <returns></returns>
-    protected bool CheckTargetWithinAngleOfSight()
+    protected bool CheckTargetWithinAngleOfSight(Transform eyes, float angleOneSide)
     {
-        Vector3 trollPos = TrollBehaviour.GetEyes.position;
+        Vector3 trollPos = eyes.position;
         Vector3 targetPos = TrollBehaviour.GetTarget.position;
         Vector3 directionToPlayer = (new Vector3(targetPos.x,0,targetPos.z) - new Vector3(trollPos.x,0,trollPos.z))
             .normalized;
-        float angle = Vector3.SignedAngle(TrollBehaviour.GetEyes.forward, directionToPlayer, Vector3.up);
+        float angle = Vector3.SignedAngle(eyes.forward, directionToPlayer, Vector3.up);
         
-        return MathF.Abs(angle) <= TrollBehaviour.GetTrollData.GetTrollSight.angle;
+        return MathF.Abs(angle) <= angleOneSide;
     }
 
     protected bool CheckIfTargetPositionIsWalkable()
@@ -79,11 +79,11 @@ public class TrollStates
         return isWalkable;
     }
 
-    protected bool CheckIfRaycastHit()
+    protected bool CheckIfRaycastHit(Transform eyes,float range)
     {
         LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment");
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - TrollBehaviour.GetEyes.position).normalized;
-        Physics.Raycast(TrollBehaviour.GetEyes.position,directionToPlayer ,out RaycastHit hit,TrollBehaviour.GetTrollData.GetTrollSight.range,layerMask);
+        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - eyes.position).normalized;
+        Physics.Raycast(eyes.position,directionToPlayer ,out RaycastHit hit,range,layerMask);
         
         return hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>();
     }

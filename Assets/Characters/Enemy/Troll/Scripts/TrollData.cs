@@ -19,7 +19,7 @@ public class TrollData : ScriptableObject
     [SerializeField] private Sight trollTrollSight;
     [SerializeField] private Sight lampSight;
     
-    [Space,SerializeField, Min(0)] private float hearingRange;
+    [Space,SerializeField, Min(0)] private float aggressionRange;
     
     public StateParameters GetPatrol => patrolStateMovement;
     public StateParameters GetSearch => searchStateMovement;
@@ -28,8 +28,15 @@ public class TrollData : ScriptableObject
     public float GetAttackRange => attackRange;
     public Sight GetTrollSight => trollTrollSight;
     public Sight GetLampSight => lampSight;
-    public float GetHearingRange => hearingRange;
-    
+    public float GetLossOfAggressionRange => aggressionRange;
+
+    private void OnValidate()
+    {
+        if (aggressionRange == 0)
+        {
+            Debug.Log("AggressionRange is zero will lose all aggression immediately");
+        }
+    }
 }
 
 [Serializable]
