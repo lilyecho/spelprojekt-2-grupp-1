@@ -1176,7 +1176,6 @@ MonoBehaviour:
   playerDataNormal: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
   playerDataShrink: {fileID: 11400000, guid: a1e5c9cf0d179504c9945db078813ce0, type: 2}
   currentAbilities: -1
-  materialCheckerTransform: {fileID: 5507138246113534189}
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   parameterData: {fileID: 11400000, guid: 94143429f0fd9974b9efa3cc6f799cbb, type: 2}
   characterAudioData: {fileID: 11400000, guid: 31c613226e0d944458b4e944d8afafd7, type: 2}
@@ -1184,6 +1183,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   moveInput: {x: 0, y: 0}
   moveDir: {x: 0, y: 0, z: 0}
+  kameraPrototyp: {fileID: 5704581851922697474}
   moveSpeed: 0
   rayCastPoints:
   - {fileID: 1852606070181343388}
@@ -1213,6 +1213,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundInfos: []
   sneaking:
     OnEnter:
       m_PersistentCalls:
@@ -1299,9 +1300,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraData: {fileID: 11400000, guid: f8b3ee763cda46542b413bcc6f133ea2, type: 2}
+  normalCameraData: {fileID: 11400000, guid: f8b3ee763cda46542b413bcc6f133ea2, type: 2}
+  shrinkedCameraData: {fileID: 11400000, guid: 4a9edb195f801da4b9e9db61e36686a9, type: 2}
   target: {fileID: 1363670296506501439}
   heightOffset: {x: 0, y: 0.8, z: 0}
   smoothTime: 0.1
+  angleH: 0
+  angleP: 0
   audioListener: {fileID: 3859104225618325799}
 --- !u!114 &3896539017512460211
 MonoBehaviour:
