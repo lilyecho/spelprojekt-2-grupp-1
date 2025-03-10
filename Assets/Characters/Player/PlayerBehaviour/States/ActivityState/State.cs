@@ -70,15 +70,14 @@ public abstract class State
             {
                 point1 = hit1.point;
             }
-            
         }
+        
         if (Physics.Raycast(rayCastPoints[2].position, Vector3.down, out hit2, slopeCheckerLength, ~layerToIgnore))
         {
             if (Vector3.Angle(Vector3.up, hit2.normal) < maxRotationAngle)
             {
                 point2 = hit2.point;
             }
-            
         }
 
         //bool point1hit = Physics.Raycast(playerBehaviour.rayCastPoints[1].position, Vector3.down, out hit1, 2f, ~layerToIgnore);
