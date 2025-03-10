@@ -8609,7 +8609,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 743408741}
   m_SourcePrefab: {fileID: 100100000, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
 --- !u!4 &528246062 stripped
 Transform:
@@ -14074,6 +14077,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
   m_PrefabInstance: {fileID: 528246061}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &743408741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743408740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deef048229d414a41921371b0c6c7bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: step
+    action: 9
+    eventReference:
+      Guid:
+        Data1: 128342943
+        Data2: 1296806260
+        Data3: 944847771
+        Data4: -1043102824
+      Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Runing
+    locality: 0
+    parameterName: 
+    parameterValue: 0
+    playVariant: 0
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
+  curveName: sfxAstridStep
+  activationValue: 1
 --- !u!4 &748312235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4109338874080856844, guid: 352a53a97833581438cf905eccf148e4, type: 3}
