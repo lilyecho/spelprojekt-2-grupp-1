@@ -28,7 +28,7 @@ public class TrollData : ScriptableObject
     public float GetAttackRange => attackRange;
     public Sight GetTrollSight => trollTrollSight;
     public Sight GetLampSight => lampSight;
-    public float GetLossOfAggressionRange => aggressionRange;
+    public float GetAggressionRange => aggressionRange;
 
     private void OnValidate()
     {

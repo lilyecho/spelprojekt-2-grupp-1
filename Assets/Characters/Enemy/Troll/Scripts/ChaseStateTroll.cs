@@ -15,6 +15,7 @@ public class ChaseStateTroll : TrollStates
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
+        TrollBehaviour.stateColor = Color.red;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Attack
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetChase.statePriority;
@@ -48,7 +49,7 @@ public class ChaseStateTroll : TrollStates
     /// <returns>true if swap state</returns>
     private bool Check4Player(Transform eyes, float range)
     {
-        bool inRangeOfAggression = CheckTargetInRange(eyes,range);
+        bool inRangeOfAggression = CheckTargetInRange(eyes,TrollBehaviour.GetTrollData.GetAggressionRange);
         if ( inRangeOfAggression && CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
         {
             TrollBehaviour.Transition(TrollBehaviour.AttackState);

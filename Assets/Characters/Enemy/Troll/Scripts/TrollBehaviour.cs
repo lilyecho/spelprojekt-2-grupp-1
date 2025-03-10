@@ -41,6 +41,8 @@ public class TrollBehaviour : EnemyBehaviour
     private TrollStates currentState = null;
 
     private Animator animator = null;
+
+    public Color stateColor = Color.black;
     
     #region Getters & Setters
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
@@ -140,20 +142,20 @@ public class TrollBehaviour : EnemyBehaviour
     private void OnDrawGizmosSelected()
     {
         ChaseState.OnDrawGizmos();
-        VisualiseAlert();
+        VisualiseAggressionRange();
     }
 
-    private void VisualiseAlert()
+    private void VisualiseAggressionRange()
     {
         Gizmos.color = new Color(0f, 1f, 1f, .7f);
-        //Gizmos.DrawSphere(transform.position,trollData.GetHearingRange);
+        Gizmos.DrawSphere(eyes.position,trollData.GetAggressionRange);
     }
     private void VisualiseSight(Vector3 sightPoint, Sight sightData) //Shame
     {
         //Only need x, z
         Vector3 worldPos = sightPoint;
         Vector3 forward = transform.forward;
-        Gizmos.color = Color.red;
+        Gizmos.color = stateColor;
 
         //LeftSide
         Vector2 valuesForLeftSide = RotateVectorCounter(new Vector2(forward.x,forward.z), sightData.angle);

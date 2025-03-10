@@ -14,6 +14,7 @@ public class SearchStateTroll : TrollStates
     public override void Enter()
     {
         TrollBehaviour.activeState = TrollBehaviour.States.Search;
+        TrollBehaviour.stateColor = Color.yellow;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Chase or attack
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetSearch.statePriority;
@@ -30,9 +31,19 @@ public class SearchStateTroll : TrollStates
         }
         
         //TrollEyes
-        if(Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,TrollBehaviour.GetTrollData.GetTrollSight.angle)) return; 
+        if (Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
+                TrollBehaviour.GetTrollData.GetTrollSight.angle))
+        {
+            Debug.Log("Jagar");
+            return;
+        } 
         //Lampeyes
-        if(Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,TrollBehaviour.GetTrollData.GetLampSight.angle)) return; 
+        if (Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,
+                TrollBehaviour.GetTrollData.GetLampSight.angle))
+        {
+            Debug.Log("Jagar");
+            return;
+        } 
     }
     
     private bool Check4Player(Transform eyes, float range, float angle)

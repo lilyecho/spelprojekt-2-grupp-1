@@ -16,6 +16,7 @@ public class AttackStateTroll : TrollStates
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Attack;
+        TrollBehaviour.stateColor = Color.green;
         
         //Change pathfinding system so that other trolls will get run over by this troll and fight with others of the same for space
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetAttack.statePriority;

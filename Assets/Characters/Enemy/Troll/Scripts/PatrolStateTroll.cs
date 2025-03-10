@@ -33,6 +33,7 @@ public class PatrolStateTroll : TrollStates
         trollAlertPort.OnAlertedPosition += SearchAtAlertPoint;
         
         TrollBehaviour.activeState = TrollBehaviour.States.Patrol;
+        TrollBehaviour.stateColor = Color.blue;
         
         //Change pathfinding system so that trolls wont get stuck on the way to patrols
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetPatrol.statePriority;
