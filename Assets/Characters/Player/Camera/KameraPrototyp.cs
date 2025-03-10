@@ -31,6 +31,12 @@ public class KameraPrototyp : MonoBehaviour
 
     public Transform target;
 
+    private GameObject targetPoint;
+    private Transform target2;
+    public Vector3 heightOffset;
+    public float smoothTime;
+    private Vector3 velocity = Vector3.zero;
+
     private float speedMultiplier;
     private float angleH;
     private float angleP;
@@ -55,6 +61,8 @@ public class KameraPrototyp : MonoBehaviour
         rotateSpeedH = GetCameraData.GetRotateSpeedH;
         rotateSpeedP = GetCameraData.GetRotateSpeedP;
         */
+
+        targetPoint = new GameObject();
     }
 
     // Update is called once per frame
@@ -62,9 +70,10 @@ public class KameraPrototyp : MonoBehaviour
     {
         UpdateRotation(speedMultiplier);
         RotateAudioListener();
-        
+
 
         //audioListener.localRotation
+        targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, transform.position + heightOffset, ref velocity, smoothTime);
     }
 
     public void LookAround(InputAction.CallbackContext context)
@@ -102,11 +111,12 @@ public class KameraPrototyp : MonoBehaviour
 
         Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
         Quaternion rotation = Quaternion.Euler(angleP, angleH, 0);
-        cam.transform.position = target.position + rotation * offset;
+        //cam.transform.position = target.position + rotation * offset;
+        cam.transform.position = targetPoint.transform.position + rotation * offset;
 
 
 
-        cam.transform.LookAt(target.position);
+        cam.transform.LookAt(targetPoint.transform.position);
     }
 
     public void RotateAudioListener()
