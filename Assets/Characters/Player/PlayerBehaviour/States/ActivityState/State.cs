@@ -99,7 +99,7 @@ public abstract class State
         else
         {
             //targetRotation = Quaternion.FromToRotation(playerTransform.up, normal) * playerTransform.rotation;
-            targetRotation = Quaternion.FromToRotation(playerTransform.up, Vector3.up) * playerTransform.rotation;
+            targetRotation = Quaternion.FromToRotation(playerTransform.up, Vector3.up)/* * playerTransform.rotation*/;
         }
 
         
