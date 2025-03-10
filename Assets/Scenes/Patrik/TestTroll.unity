@@ -541,7 +541,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
   m_PrefabInstance: {fileID: 1096266299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &654993282
+--- !u!114 &654993254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -550,20 +550,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 654993253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deef048229d414a41921371b0c6c7bf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eb1a393838506a4eb386f12716f0fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   soundInfo:
-    soundImplementationName: 
-    action: 0
+    soundImplementationName: Step
+    action: 1
     eventReference:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -100562422
+        Data2: 1090797294
+        Data3: 1425202863
+        Data4: -364203833
+      Path: event:/Sound/Characters/Surface
     locality: 0
     parameterName: 
     parameterValue: 0
@@ -571,8 +571,8 @@ MonoBehaviour:
     locationVariant: 0
     locationTransform: {fileID: 0}
     stopMode: 0
-  curveName: SFXAstridStep
-  activationValue: 0
+  curveName: sfxAstridStep
+  activationValue: 1
 --- !u!1001 &1096266299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 654993282}
+      addedObject: {fileID: 654993254}
   m_SourcePrefab: {fileID: 100100000, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
 --- !u!1001 &1175840485
 PrefabInstance:
@@ -713,6 +713,14 @@ PrefabInstance:
       propertyPath: cameraPort
       value: 
       objectReference: {fileID: 11400000, guid: 8a6e13f451123b941b1cfefaa71bb5a1, type: 2}
+    - target: {fileID: 6390175507927598712, guid: 710155d38977f994ead9fe4713800255, type: 3}
+      propertyPath: PatrolState.reCalibrate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390175507927598712, guid: 710155d38977f994ead9fe4713800255, type: 3}
+      propertyPath: PatrolState.patrolPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6390175507927598712, guid: 710155d38977f994ead9fe4713800255, type: 3}
       propertyPath: PatrolState.patrolPoints.Array.data[0]
       value: 
@@ -800,6 +808,7 @@ GameObject:
   - component: {fileID: 1254106302}
   - component: {fileID: 1254106301}
   - component: {fileID: 1254106300}
+  - component: {fileID: 1254106305}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -925,6 +934,19 @@ Transform:
   - {fileID: 347899123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254106305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254106299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6383333ab18304682449b0e92d0c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialType: 2
 --- !u!4 &1436052742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 173710127514144622, guid: 710155d38977f994ead9fe4713800255, type: 3}
@@ -977,6 +999,10 @@ PrefabInstance:
       propertyPath: closeDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3008122371558187139, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: fmodParameterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 94143429f0fd9974b9efa3cc6f799cbb, type: 2}
     - target: {fileID: 6188481562169791002, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: m_Name
       value: AudioHandler

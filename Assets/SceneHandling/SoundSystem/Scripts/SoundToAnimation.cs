@@ -31,7 +31,6 @@ public class SoundToAnimation : MonoBehaviour
         if (animator.GetFloat(hashedCurveName) >= activationValue)
         {
             audioPort.OnSoundInfo(soundInfo);
-            Debug.Log("Stepsound");
         }
     }
 }

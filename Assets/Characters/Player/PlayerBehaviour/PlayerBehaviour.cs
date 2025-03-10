@@ -96,6 +96,13 @@ public class PlayerBehaviour : MonoBehaviour
     
     [Space]
     public bool debugStates;
+
+
+    #region Steps
+
+    
+
+    #endregion
     
     private void OnEnable()
     {

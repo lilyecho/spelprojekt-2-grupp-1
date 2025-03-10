@@ -10,8 +10,9 @@ public class SoundToAnimationStep : SoundToAnimation
 {
     protected override void CheckPlaySound()
     {
-        if (animator.GetFloat(hashedCurveName) >= activationValue)
+        if (Math.Abs(animator.GetFloat(hashedCurveName) - activationValue) < 0.1)
         {
+            Debug.Log("Stepsound");
             audioPort.OnStep(soundInfo, transform);
         }
     }
