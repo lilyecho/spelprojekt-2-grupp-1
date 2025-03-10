@@ -8,15 +8,6 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 public class TrollBehaviour : EnemyBehaviour
 {
-    public enum States
-    {
-        Null,
-        Patrol,
-        Chase,
-        Search,
-        Attack
-    }
-
     #region DragReferences
     [Space,Header("TrollBehaviour")]
     [SerializeField] private TrollData trollData;
@@ -24,6 +15,8 @@ public class TrollBehaviour : EnemyBehaviour
     [SerializeField] private Transform lamp;
     
     [SerializeField] private CharacterAudio trollAudioData;
+
+    [SerializeField] private CameraPort cameraPort;
     #endregion
     
     private NavMeshAgent navMeshAgent;
@@ -51,11 +44,20 @@ public class TrollBehaviour : EnemyBehaviour
     public Transform GetLamp => lamp;
     public TrollData GetTrollData => trollData;
     public CharacterAudio GetAudioData => trollAudioData;
-
+    public CameraPort CameraPort => cameraPort;
     public Animator Animator => animator;
     
     #endregion
 
+    public enum States
+    {
+        Null,
+        Patrol,
+        Chase,
+        Search,
+        Attack
+    }
+    
     protected override void OnEnable()
     {
         base.OnEnable();

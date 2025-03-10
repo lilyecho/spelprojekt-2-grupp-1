@@ -18,6 +18,9 @@ public class AttackStateTroll : TrollStates
         TrollBehaviour.activeState = TrollBehaviour.States.Attack;
         TrollBehaviour.stateColor = Color.green;
         
+        //Update camera
+        TrollBehaviour.CameraPort.OnTarget(TrollBehaviour.GetEyes);
+        
         //Change pathfinding system so that other trolls will get run over by this troll and fight with others of the same for space
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetAttack.statePriority;
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
