@@ -30,3 +30,14 @@ public struct DeviceSpeedMultiplier
     [Tooltip("Multiplier for ratation speed when using mouse")]
     public float mouseSpeedMultiplier;
 }
+
+[Serializable]
+public struct OffsetOptions
+{
+    [Tooltip("Adjusts the camera focus point above the player")]
+    public Vector3 heightOffset;
+
+    [Tooltip("Adjust how fast the camera snaps into place")]
+    public float smoothTime;
+}
+
