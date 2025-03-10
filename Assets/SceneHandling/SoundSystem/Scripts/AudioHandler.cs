@@ -15,6 +15,11 @@ public class AudioHandler : MonoBehaviour
     [SerializeField] private FmodParameterData parameterData = null;
     private Dictionary<GUID,EventInstance> dictionaryGuidInstances = new Dictionary<GUID, EventInstance>();
 
+
+    [SerializeField] private bool debugMode;
+    
+    
+    
     private void OnEnable()
     {
         audioPort.OnSoundInfo += HandleSoundInfo;
@@ -37,6 +42,14 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnStart -= PlayInstance;
         audioPort.OnSetParameter -= ChangeLocalParameter;
         audioPort.OnRemove -= RemoveInstance;
+    }
+
+    private void Update()
+    {
+        if (debugMode)
+        {
+            Debug.Log("Amount of instances: "+dictionaryGuidInstances.Count);
+        }
     }
 
     public void HandleSoundInfos(SoundInfo[] soundInfos)
@@ -90,7 +103,6 @@ public class AudioHandler : MonoBehaviour
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
         if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
         
-        Debug.Log("Location sound");
         if (soundInfo.locationVariant.HasFlag(SoundInfo.LocationVariant.Attached))
         {
             AttachInstanceToObject(instance, soundInfo.locationTransform);
@@ -104,8 +116,7 @@ public class AudioHandler : MonoBehaviour
     private void HandlePlay(SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Play)) return;
-
-        Debug.Log("Playing sound");
+        
         if (soundInfo.playVariant.HasFlag(SoundInfo.PlayVariant.OneShot))
         {
             NewPlayOneShot(soundInfo.eventReference);

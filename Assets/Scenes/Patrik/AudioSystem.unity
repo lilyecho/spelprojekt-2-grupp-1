@@ -174,16 +174,60 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astrid 4.0
       objectReference: {fileID: 0}
+    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      propertyPath: jumping.soundInfos.onEnter.Array.data[0].soundImplementationName
+      value: JumpSound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 81369145}
   m_SourcePrefab: {fileID: 100100000, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
 --- !u!1 &81369131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
   m_PrefabInstance: {fileID: 81369130}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &81369144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+  m_PrefabInstance: {fileID: 81369130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &81369145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81369131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb1a393838506a4eb386f12716f0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: MaterialStepSound
+    action: 13
+    eventReference:
+      Guid:
+        Data1: -100562422
+        Data2: 1090797294
+        Data3: 1425202863
+        Data4: -364203833
+      Path: event:/Sound/Characters/Surface
+    locality: 0
+    parameterName: 
+    parameterValue: 0
+    playVariant: 0
+    locationVariant: 0
+    locationTransform: {fileID: 81369144}
+    stopMode: 0
+  curveName: sfxAstridStep
+  activationValue: 0.9
 --- !u!1 &985346004
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +337,7 @@ GameObject:
   - component: {fileID: 1015388982}
   - component: {fileID: 1015388981}
   - component: {fileID: 1015388980}
+  - component: {fileID: 1015388984}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -387,6 +432,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015388984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015388979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6383333ab18304682449b0e92d0c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialType: 1
 --- !u!1 &1277675853
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +549,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3008122371558187139, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: fmodParameterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 94143429f0fd9974b9efa3cc6f799cbb, type: 2}
+    - target: {fileID: 4622681810738750721, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: debugMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6188481562169791002, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}

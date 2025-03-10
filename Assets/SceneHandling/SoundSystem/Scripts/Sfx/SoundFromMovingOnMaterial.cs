@@ -13,8 +13,8 @@ public class SoundFromMovingOnMaterial
     /// <returns></returns>
     public static MaterialComposition GetObjectMaterial(Transform materialCheckerTransform)
     {
-        Vector3 directionToMaterial = materialCheckerTransform.up * -1;
-        if (!Physics.Raycast(materialCheckerTransform.position, directionToMaterial, out RaycastHit hit, 1))
+        Vector3 directionToMaterial = -materialCheckerTransform.up;
+        if (!Physics.Raycast(materialCheckerTransform.position+materialCheckerTransform.up*0.1f, directionToMaterial, out RaycastHit hit, 2))
         {
             Debug.Log("Missed");
             return MaterialComposition.None;

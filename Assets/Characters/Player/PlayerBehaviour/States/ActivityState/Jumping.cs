@@ -15,10 +15,8 @@ public class Jumping : State
     
     public override void Enter()
     {
-        playerBehaviour.GetAudioPort.OnSoundInfo(soundInfos.onEnter);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
-        //playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
-        //playerBehaviour.anim.GetParameter(1).ty
 
     }
     public override void Exit()
@@ -29,14 +27,6 @@ public class Jumping : State
 
     public override void Update()
     {
-        /*
-        playerBehaviour.transform.rotation = Quaternion.Lerp(playerBehaviour.transform.rotation, 
-                                                        UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb), 
-                                                        playerBehaviour.rotationSpeed * Time.deltaTime);
-        */
-        //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity,playerBehaviour.smoothTime);
-        //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
-        
         if (flagAbleToFall && playerBehaviour.rb.velocity.normalized.y <= 0)
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
@@ -70,6 +60,6 @@ public class Jumping : State
     [Serializable]
     private struct SoundInfos
     {   
-        public SoundInfo onEnter;
+        public SoundInfo[] onEnter;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FMODUnity;
 using SceneHandling.SoundSystem.Scripts;
@@ -12,6 +13,8 @@ public class SfxManager : MonoBehaviour
     [Header("Sfx-Related")]
     [SerializeField] private AudioHandler audioHandler = null;
 
+    private Transform test = null;
+    
     private void OnEnable()
     {
         audioPort.OnStep += CreateSound4Step;
@@ -27,6 +30,7 @@ public class SfxManager : MonoBehaviour
 
     private void CreateSound4Step(SoundInfo soundInfo, Transform checkerTransform)
     {
+        test = checkerTransform;
         MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
 
         soundInfo.action |= SoundInfo.SoundAction.ChangeParameter;
@@ -40,4 +44,5 @@ public class SfxManager : MonoBehaviour
     {
         audioHandler.PlayOneShot(eventReference, jumpPos);
     }
+    
 }

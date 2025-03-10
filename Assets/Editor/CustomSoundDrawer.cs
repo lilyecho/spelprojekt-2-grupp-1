@@ -23,19 +23,6 @@ namespace Editor
         private SerializedProperty locationTransform;
 
         private SerializedProperty stopMode;
-        
-        
-        
-        /*[Flags]
-        private enum FlagProperties
-        {
-            ActionProperty = 1,
-            EventReference = 2,
-            Parameter = 4,
-            
-        }*/
-
-        //private FlagProperties implementedFlagProperties;
 
         private int linesSizeBase;
         private int lineSizeEventRef;
@@ -45,6 +32,7 @@ namespace Editor
         private int lineSizeParameter;
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            
             FindAllProperties(property);
             
             int amountOfLines = 1;
@@ -129,19 +117,34 @@ namespace Editor
         private void FindAllProperties(SerializedProperty property)
         {
             soundImplementationName = property.FindPropertyRelative("soundImplementationName");
+            if (soundImplementationName == null) Debug.LogWarning("soundImplementationName is null in PropertyDrawer.");
+
             action = property.FindPropertyRelative("action");
+            if (action == null) Debug.LogWarning("action is null in PropertyDrawer.");
+
             eventReference = property.FindPropertyRelative("eventReference");
-            
+            if (eventReference == null) Debug.LogWarning("eventReference is null in PropertyDrawer.");
+
             locality = property.FindPropertyRelative("locality");
+            if (locality == null) Debug.LogWarning("locality is null in PropertyDrawer.");
+
             parameterName = property.FindPropertyRelative("parameterName");
+            if (parameterName == null) Debug.LogWarning("parameterName is null in PropertyDrawer.");
+
             parameterValue = property.FindPropertyRelative("parameterValue");
-            
+            if (parameterValue == null) Debug.LogWarning("parameterValue is null in PropertyDrawer.");
+
             playVariant = property.FindPropertyRelative("playVariant");
-            
+            if (playVariant == null) Debug.LogWarning("playVariant is null in PropertyDrawer.");
+
             locationVariant = property.FindPropertyRelative("locationVariant");
+            if (locationVariant == null) Debug.LogWarning("locationVariant is null in PropertyDrawer.");
+
             locationTransform = property.FindPropertyRelative("locationTransform");
+            if (locationTransform == null) Debug.LogWarning("locationTransform is null in PropertyDrawer.");
 
             stopMode = property.FindPropertyRelative("stopMode");
+            if (stopMode == null) Debug.LogWarning("stopMode is null in PropertyDrawer.");
             
             
         }
