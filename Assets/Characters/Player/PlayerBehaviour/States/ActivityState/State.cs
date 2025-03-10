@@ -322,7 +322,7 @@ public abstract class State
 
     protected bool Glide()
     {
-        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideMinimumHeight))
+        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideMinimumHeight) && playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.Glide))
         {
             return true;
         }
