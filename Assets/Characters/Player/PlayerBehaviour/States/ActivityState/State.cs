@@ -83,13 +83,18 @@ public abstract class State
 
         //bool point1hit = Physics.Raycast(playerBehaviour.rayCastPoints[1].position, Vector3.down, out hit1, 2f, ~layerToIgnore);
         //bool point2hit = Physics.Raycast(playerBehaviour.rayCastPoints[2].position, Vector3.down, out hit2, 2f, ~layerToIgnore);
-
+        float targetXAngle = 0f;
+        //float smoothedXAngle = Mathf.SmoothDampAngle(playerTransform.eulerAngles.x, targetXAngle, ref currentXVelocity, 0.1f);
         Quaternion targetRotation;
         Vector3 vectorBetweenPoints;
         if (point1 != Vector3.zero && point2 != Vector3.zero)
         {
             vectorBetweenPoints = (point1 - point2).normalized;
-            targetRotation = Quaternion.FromToRotation(playerTransform.forward, vectorBetweenPoints) * playerTransform.rotation;
+
+            targetXAngle = Vector3.SignedAngle(new Vector3(playerBehaviour.transform.forward.x, 0, playerBehaviour.transform.forward.z).normalized , vectorBetweenPoints, playerTransform.right);
+            //targetRotation = Quaternion.FromToRotation(playerTransform.forward, vectorBetweenPoints) * playerTransform.rotation;
+
+            targetRotation = Quaternion.Euler(targetXAngle, 0, 0);
         }
         else
         {

@@ -364,7 +364,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float testRot = 1000;
     
     
-    public void RotateCharacter(Vector3 moveDir)
+    public Quaternion RotateCharacter(Vector3 moveDir)
     {
         if (moveDir != Vector3.zero)
         {
@@ -380,10 +380,13 @@ public class PlayerBehaviour : MonoBehaviour
 
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
 
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, angle, transform.eulerAngles.z);
-            
+            //transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+
+            return targetRotation;
         }
-        
+        return transform.rotation;
     }
     
     public void JumpParticles()
