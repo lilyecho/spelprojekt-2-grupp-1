@@ -17,7 +17,7 @@ public class Running : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
-        OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
+        //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
         
         FixCurrentAccelerationTime();
     }
@@ -62,14 +62,6 @@ public class Running : State, IAcceleration
             {
                 playerBehaviour.ChangeState(playerBehaviour.falling);
             }
-        }
-        
-        //TODO Sound temporary
-        currentTime += Time.deltaTime;
-        if (currentTime >= timeStep)
-        {
-            TakeStep();
-            currentTime = 0;
         }
     }
 

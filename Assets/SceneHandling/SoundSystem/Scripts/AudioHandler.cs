@@ -18,6 +18,7 @@ public class AudioHandler : MonoBehaviour
     private void OnEnable()
     {
         audioPort.OnSoundInfo += HandleSoundInfo;
+        audioPort.OnSoundInfos += HandleSoundInfos;
         
         audioPort.OnChangeGlobalParameter += ChangeGlobalParameter;
         audioPort.OnCreate += CreateInstance;
@@ -29,6 +30,7 @@ public class AudioHandler : MonoBehaviour
     private void OnDisable()
     {
         audioPort.OnSoundInfo -= HandleSoundInfo;
+        audioPort.OnSoundInfos -= HandleSoundInfos;
         
         audioPort.OnChangeGlobalParameter -= ChangeGlobalParameter;
         audioPort.OnCreate -= CreateInstance;
@@ -37,10 +39,17 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnRemove -= RemoveInstance;
     }
 
-    private void HandleSoundInfo(SoundInfo soundInfo)
+    public void HandleSoundInfos(SoundInfo[] soundInfos)
+    {
+        foreach (SoundInfo soundInfo in soundInfos)
+        {
+            HandleSoundInfo(soundInfo);
+        }
+    }
+    
+    public void HandleSoundInfo(SoundInfo soundInfo)
     {
         if (soundInfo.action == 0) return;
-        Debug.Log("Entering sound");
         
         //TODO depending on if existic instance or created one
         HandleCreate(soundInfo);
@@ -53,7 +62,6 @@ public class AudioHandler : MonoBehaviour
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Create)) return;
         
-        Debug.Log("Creating sound");
         CreateInstance(soundInfo.eventReference);
     }
 
@@ -62,7 +70,6 @@ public class AudioHandler : MonoBehaviour
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.ChangeParameter)) return;
         if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
         
-        Debug.Log("Parameter sound");
         if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
         {
             TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);

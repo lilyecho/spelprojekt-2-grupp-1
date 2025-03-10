@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using FMODUnity;
+using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 
 public class SfxManager : MonoBehaviour
 {
+    [SerializeField] private FmodParameterData fmodParameterData = null;
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private FmodParameterData parameters = null;
     
@@ -23,17 +25,15 @@ public class SfxManager : MonoBehaviour
         
     }
 
-    private void CreateSound4Step(CharacterAudioData characterAudioData, Transform checkerTransform)
+    private void CreateSound4Step(SoundInfo soundInfo, Transform checkerTransform)
     {
         MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
+
+        soundInfo.action |= SoundInfo.SoundAction.ChangeParameter;
+        soundInfo.parameterName = fmodParameterData.GetMaterialParameter;
+        soundInfo.parameterValue = (float)material;
         
-        Dictionary<string, float> parameternamesAndValues = new Dictionary<string,float>
-            {
-                [parameters.GetMaterialParameter] = (float)material
-            };
-        
-        audioHandler.PlayOneShot(
-            characterAudioData.GetAudioMovement,checkerTransform.position,parameternamesAndValues);
+        audioHandler.HandleSoundInfo(soundInfo);
     }
 
     private void CreateSound4Jump(EventReference eventReference, Vector3 jumpPos)

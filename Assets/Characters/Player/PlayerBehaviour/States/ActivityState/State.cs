@@ -299,12 +299,12 @@ public abstract class State
 
     }
 
-    protected void TakeStep()
+    /*protected void TakeStep()
     {
         playerBehaviour.GetAudioPort.OnStep(
             playerBehaviour.GetAudioData,
             playerBehaviour.GetCheckerTransform);
-    }
+    }*/
     
     /// <summary>
     /// Only capable 4 now to change global parameters (Won't search for a suitable change in any local parameters)

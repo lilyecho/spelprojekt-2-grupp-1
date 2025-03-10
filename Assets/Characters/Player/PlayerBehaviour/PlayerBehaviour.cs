@@ -8,8 +8,7 @@ using UnityEngine.Serialization;
 public class PlayerBehaviour : MonoBehaviour
 {
     #region State Machines
-
-
+    
     public State currentState;
     public JumpState jumpState;
     //public State walkState;
@@ -24,15 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     //[SerializeField] private AbilityData abilityData;
     [SerializeField] private AbilityData.Abilities currentAbilities;
-    //TODO change when we get animations instead of a certain point 
     
-    #region MaterialChecker
-
-    [SerializeField] private Transform materialCheckerTransform = null;
-    public Transform GetCheckerTransform => materialCheckerTransform;
-
-    #endregion
-
     #region Audio
 
     [Header("Audio-Stuff")]
@@ -40,8 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private FmodParameterData parameterData;
     [SerializeField] private CharacterAudioData characterAudioData;
     public AudioPort GetAudioPort => audioPort;
-    public FmodParameterData GetParameterData => parameterData;
-    public CharacterAudioData GetAudioData => characterAudioData;
+    //public CharacterAudioData GetAudioData => characterAudioData;
 
     #endregion
     [Space]

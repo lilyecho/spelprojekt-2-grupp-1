@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,9 +19,11 @@ public class Walking : State, IAcceleration
     bool coyote = false;
     float coyoteTimer;
 
+    [SerializeField] private SoundInfo[] soundInfos;
+    
     public override void Enter()
     {
-        OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
+        //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
 
         coyoteTimer = playerBehaviour.PlayerData.GetCoyoteTime;
 
@@ -57,15 +60,6 @@ public class Walking : State, IAcceleration
                 playerBehaviour.ChangeState(playerBehaviour.falling);
             }
         }
-
-        //TODO Sound temporary
-        currentTime += Time.deltaTime;
-        if (currentTime >= timeStep)
-        {
-            TakeStep();
-            currentTime = 0;
-        }
-
     }
 
     public override void FixedUpdate()

@@ -31,16 +31,8 @@ public abstract class JumpState
         playerBehaviour.rb.velocity *= momentumKeptPercentage; 
         playerBehaviour.rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         playerBehaviour.JumpParticles();
-        ActivateJumpSound();
         playerBehaviour.anim.SetBool(Animator.StringToHash("Jump"), true);
         playerBehaviour.ChangeState(playerBehaviour.jumping);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
     }
-    
-    private void ActivateJumpSound()
-    {
-        playerBehaviour.GetAudioPort.OnJump(playerBehaviour.GetAudioData.GetAudioJump, playerBehaviour.transform.position);
-    }
-    
-    
 }
