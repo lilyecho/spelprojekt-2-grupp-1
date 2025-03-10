@@ -119,7 +119,7 @@ public class Sneaking : State, IAcceleration
     
     public override void OnShrink(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.Shrink))
         {
             playerBehaviour.ChangeState(playerBehaviour.shrink);
         }
