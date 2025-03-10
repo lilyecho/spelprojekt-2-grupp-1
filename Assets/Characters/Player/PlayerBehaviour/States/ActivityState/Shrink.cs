@@ -34,6 +34,8 @@ public class Shrink : State
             Particles();
             playerBehaviour.PlayerData = playerBehaviour.GetNormalPlayerData;
             playerBehaviour.transform.localScale = playerBehaviour.PlayerData.CharacterScale;
+
+            playerBehaviour.kameraPrototyp.cameraData = playerBehaviour.kameraPrototyp.normalCameraData;
             
         }
         else if( !_active)
@@ -42,6 +44,8 @@ public class Shrink : State
             Particles();
             playerBehaviour.PlayerData = playerBehaviour.GetShrinkPlayerData;
             playerBehaviour.transform.localScale = playerBehaviour.PlayerData.CharacterScale;
+
+            playerBehaviour.kameraPrototyp.cameraData = playerBehaviour.kameraPrototyp.shrinkedCameraData;
         }
     }
 
