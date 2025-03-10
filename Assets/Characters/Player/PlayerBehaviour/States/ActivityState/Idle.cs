@@ -55,12 +55,15 @@ public class Idle : State
 
     public override void FixedUpdate()
     {
+        /*
         playerBehaviour.transform.rotation = playerBehaviour.RotateCharacter(playerBehaviour.moveDir) * AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
                                              playerBehaviour.PlayerData.GetSlopeCheckerLength, playerBehaviour.PlayerData.GetMaxRotationAngle);
+        */
+        playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
 
 
         playerBehaviour.rb.AddForce(-normal * 9.81f, ForceMode.Acceleration);
-        playerBehaviour.moveDir = Vector3.ProjectOnPlane(playerBehaviour.moveDir, normal).normalized;
+        
     }
 
     
