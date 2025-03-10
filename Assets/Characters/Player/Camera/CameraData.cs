@@ -16,8 +16,10 @@ public class CameraData : ScriptableObject
     [SerializeField] private CameraRotationalSpeed cameraRotationalSpeedSettings;
 
     [SerializeField] private DeviceSpeedMultiplier deviceSettings;
-    
-    
+
+    [SerializeField] private OffsetOptions offsetOptions;
+
+
     public float GetRadius
     {
         get { return radius; }
@@ -55,5 +57,15 @@ public class CameraData : ScriptableObject
     public float GetMouseSpeedMultiplier
     {
         get { return deviceSettings.mouseSpeedMultiplier; }
+    }
+
+    public Vector3 GetHeightOffset
+    {
+        get { return offsetOptions.heightOffset; }
+    }
+
+    public float GetSmoothTime
+    {
+        get { return offsetOptions.smoothTime; }
     }
 }

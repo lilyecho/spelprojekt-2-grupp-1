@@ -38,8 +38,8 @@ public class KameraPrototyp : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
     private float speedMultiplier;
-    private float angleH;
-    private float angleP;
+    public float angleH;
+    public float angleP;
 
     public Transform audioListener;
     private Vector2 camXandZ;
@@ -73,7 +73,7 @@ public class KameraPrototyp : MonoBehaviour
 
 
         //audioListener.localRotation
-        targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, transform.position + heightOffset, ref velocity, smoothTime);
+        targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, transform.position + GetCameraData.GetHeightOffset, ref velocity, GetCameraData.GetSmoothTime);
     }
 
     public void LookAround(InputAction.CallbackContext context)

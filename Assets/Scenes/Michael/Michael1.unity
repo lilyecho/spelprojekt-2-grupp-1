@@ -566,6 +566,8 @@ MonoBehaviour:
   target: {fileID: 1782986491}
   heightOffset: {x: 0, y: 0, z: 0}
   smoothTime: 0
+  angleH: 0
+  angleP: 0
   audioListener: {fileID: 0}
 --- !u!114 &437572084
 MonoBehaviour:
@@ -583,7 +585,6 @@ MonoBehaviour:
   playerDataNormal: {fileID: 0}
   playerDataShrink: {fileID: 0}
   currentAbilities: 0
-  materialCheckerTransform: {fileID: 0}
   audioPort: {fileID: 0}
   parameterData: {fileID: 0}
   characterAudioData: {fileID: 0}
@@ -617,6 +618,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundInfos: []
   sneaking:
     OnEnter:
       m_PersistentCalls:
@@ -2164,6 +2166,14 @@ PrefabInstance:
     - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: debugStates
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704581851922697474, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      propertyPath: angleH
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704581851922697474, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      propertyPath: angleP
+      value: 130
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
