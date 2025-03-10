@@ -34,14 +34,11 @@ public class Walking : State, IAcceleration
     {
 
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
-        //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
-        //playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-        //                                                        playerBehaviour.PlayerData.GetSlopeCheckerLength, playerBehaviour.PlayerData.GetMaxRotationAngle), time);
+        
         time = time + Time.deltaTime;
 
         if (!coyote && !CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
         {
-            //playerBehaviour.ChangeState(playerBehaviour.falling);
             coyote = true;
         }
 
@@ -76,11 +73,6 @@ public class Walking : State, IAcceleration
             playerBehaviour.PlayerData.GetSpeedRelated.walk.accTotalTime);
     }
 
-    public override void OnSpaceBar(InputAction.CallbackContext context)
-    {
-
-    }
-
     public override void OnShift(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -103,11 +95,6 @@ public class Walking : State, IAcceleration
         {
             playerBehaviour.ChangeState(playerBehaviour.idle);
         }
-    }
-
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
-
     }
 
     public override void OnShrink(InputAction.CallbackContext context)

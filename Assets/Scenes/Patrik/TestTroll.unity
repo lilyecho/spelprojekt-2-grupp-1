@@ -541,38 +541,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
   m_PrefabInstance: {fileID: 1096266299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &654993254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654993253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb1a393838506a4eb386f12716f0fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
-  soundInfo:
-    soundImplementationName: Step
-    action: 1
-    eventReference:
-      Guid:
-        Data1: -100562422
-        Data2: 1090797294
-        Data3: 1425202863
-        Data4: -364203833
-      Path: event:/Sound/Characters/Surface
-    locality: 0
-    parameterName: 
-    parameterValue: 0
-    playVariant: 0
-    locationVariant: 0
-    locationTransform: {fileID: 0}
-    stopMode: 0
-  curveName: sfxAstridStep
-  activationValue: 1
 --- !u!1001 &1096266299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -688,10 +656,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 654993254}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
 --- !u!1001 &1175840485
 PrefabInstance:
