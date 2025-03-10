@@ -13,22 +13,7 @@ public class KameraPrototyp : MonoBehaviour
     {
         get { return cameraData;}
     }
-    /*
-    private float radius;
-    private float height;
-
-
     
-    private float pMax;
-    private float pMin;
-
-    private float gamepadSpeedMultiplier;
-    private float mouseSpeedMultiplier;
-    
-
-    private float rotateSpeedH;
-    private float rotateSpeedP;
-    */
     Camera cam;
 
     public Transform target;
@@ -50,20 +35,8 @@ public class KameraPrototyp : MonoBehaviour
 
     void Start()
     {
-        //target = gameObject.transform;
         cam = Camera.main;
-
-        /*
-        radius = GetCameraData.GetRadius;
-        height = GetCameraData.GetHeight;
-        pMax = GetCameraData.GetPMax;
-        pMin = GetCameraData.GetPMin;
-        gamepadSpeedMultiplier = GetCameraData.GetGamepadSpeedMultiplier;
-        mouseSpeedMultiplier = GetCameraData.GetMouseSpeedMultiplier;
-        rotateSpeedH = GetCameraData.GetRotateSpeedH;
-        rotateSpeedP = GetCameraData.GetRotateSpeedP;
-        */
-
+        
         targetPoint = new GameObject();
     }
 
@@ -71,9 +44,7 @@ public class KameraPrototyp : MonoBehaviour
     void Update()
     {
         UpdateRotation(speedMultiplier);
-        RotateAudioListener();
-
-
+        
         //audioListener.localRotation
         targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, transform.position + GetCameraData.GetHeightOffset, ref velocity, GetCameraData.GetSmoothTime);
     }
@@ -93,14 +64,12 @@ public class KameraPrototyp : MonoBehaviour
             {
                 speedMultiplier = GetCameraData.GetMouseSpeedMultiplier;
             }
-
         }
 
         if(context.canceled)
         {
             delta = Vector2.zero; 
         }
-        
     }
 
     public void UpdateRotation(float multi)
@@ -109,23 +78,12 @@ public class KameraPrototyp : MonoBehaviour
 
         angleP += delta.y * GetCameraData.GetRotateSpeedP * multi * Time.deltaTime;
         angleP = Mathf.Clamp(angleP, GetCameraData.GetPMax, GetCameraData.GetPMin);
-
-
+        
         Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
         Quaternion rotation = Quaternion.Euler(angleP, angleH, 0);
         //cam.transform.position = target.position + rotation * offset;
         cam.transform.position = targetPoint.transform.position + rotation * offset;
-
-
-
+        
         cam.transform.LookAt(targetPoint.transform.position);
-    }
-
-    public void RotateAudioListener()
-    {
-        camXandZ.x = cam.transform.forward.x;
-        camXandZ.y = cam.transform.forward.z;
-        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(camXandZ.x, 0, camXandZ.y)).normalized;
-        audioListener.rotation = targetRotation;
     }
 }

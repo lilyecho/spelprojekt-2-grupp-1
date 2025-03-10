@@ -208,6 +208,8 @@ public class PlayerBehaviour : MonoBehaviour
         cameraRight.Normalize();
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
+        
+        Debug.Log(rb.velocity.magnitude);
     }
 
     private void FixedUpdate()
