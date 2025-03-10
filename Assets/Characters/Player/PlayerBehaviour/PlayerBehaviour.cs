@@ -47,6 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
     Camera cam;
     Vector3 cameraForward;
     Vector3 cameraRight;
+    public KameraPrototyp kameraPrototyp;
 
     [HideInInspector]
     public float moveSpeed;

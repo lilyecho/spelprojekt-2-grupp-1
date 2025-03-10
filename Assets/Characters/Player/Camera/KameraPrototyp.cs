@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class KameraPrototyp : MonoBehaviour
 {
-    [SerializeField] private CameraData cameraData;
+    [SerializeField] public CameraData cameraData;
+    [SerializeField] public CameraData normalCameraData;
+    [SerializeField] public CameraData shrinkedCameraData;
     public CameraData GetCameraData
     {
         get { return cameraData;}

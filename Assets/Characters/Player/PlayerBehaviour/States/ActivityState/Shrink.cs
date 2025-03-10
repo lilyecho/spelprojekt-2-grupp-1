@@ -19,6 +19,8 @@ public class Shrink : State
         ReSize();
         
         playerBehaviour.ChangeState(playerBehaviour.idle);
+
+        
     }
     
 
