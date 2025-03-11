@@ -68,7 +68,7 @@ public class FireFlies : MonoBehaviour
 
             if(Vector3.Distance(transform.position, points[index].transform.position) <  0.2f)
             {
-                if (points[index].isStop)
+                if (points[index].isStop || index == points.Length - 1)
                 {
                     moving = false;
                 }
