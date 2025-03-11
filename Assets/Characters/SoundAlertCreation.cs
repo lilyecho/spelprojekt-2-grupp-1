@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,9 @@ public static class SoundAlertCreation
     }
 }
 
+[Serializable]
 public struct SoundAlertInfo
 {
-    public Vector3 Point;
-    [Min(0)]public float SoundRange;
+    public Vector3 point;
+    [Min(0)]public float soundRange;
 }

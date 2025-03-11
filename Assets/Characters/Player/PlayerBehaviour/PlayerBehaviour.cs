@@ -16,8 +16,10 @@ public class PlayerBehaviour : MonoBehaviour
     public MovementMode movementMode; 
     
     #endregion
+
+    [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     
-    [SerializeField] private PlayerData playerDataNormal;
+    [Space,SerializeField] private PlayerData playerDataNormal;
     [SerializeField] private PlayerData playerDataShrink;
     private PlayerData _currentPlayerPlayerData;
     
@@ -150,6 +152,8 @@ public class PlayerBehaviour : MonoBehaviour
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
+    public EnemyManagerPort EnemyManagerPort => enemyManagerPort;
+    
     public PlayerData GetShrinkPlayerData => playerDataShrink;
     public PlayerData GetNormalPlayerData => playerDataNormal;
     

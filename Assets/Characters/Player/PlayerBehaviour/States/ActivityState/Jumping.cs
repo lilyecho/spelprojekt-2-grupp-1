@@ -11,14 +11,19 @@ using UnityEngine.UIElements;
 public class Jumping : State
 {
     private bool flagAbleToFall;
+    [Space, SerializeField,Min(0)] private float soundAlertRange;
     [SerializeField] private SoundInfos soundInfos;
-    [Space, SerializeField] private SoundAlertInfo soundAlert;
+    
     public override void Enter()
     {
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
+
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo();
+        soundAlertInfo.soundRange = soundAlertRange;
+        soundAlertInfo.point = playerBehaviour.transform.position;
         
-        //SoundAlertCreation.CreateAlertPoint();
+        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
 
     }
     public override void Exit()
