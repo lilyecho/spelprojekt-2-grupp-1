@@ -34,6 +34,8 @@ public class EnemyBehaviour : MonoBehaviour
         registrationPort.OnRegister -= RegisterTarget;
     }
 
+    public virtual void Alerted(Vector3 alertPoint) {}
+
     private void RegisterTarget(RegistrationPort.TypeOfRegistration type ,GameObject newTarget)
     {
         if (type != RegistrationPort.TypeOfRegistration.Player) return;

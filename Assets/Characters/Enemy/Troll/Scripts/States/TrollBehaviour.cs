@@ -229,4 +229,12 @@ public class TrollBehaviour : EnemyBehaviour
 
         return new Vector2(vectorX, vectorY);
     }
+
+    public override void Alerted(Vector3 alertPoint)
+    {
+        if (activeState == States.Attack || activeState == States.Chase) return;
+        
+        navMeshAgent.SetDestination(alertPoint);
+        Transition(ChaseState);
+    }
 }

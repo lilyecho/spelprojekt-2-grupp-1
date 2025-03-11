@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -40,7 +37,31 @@ public class EnemyManager : MonoBehaviour
         newEnemy.name = "Troll: "+enemies.Count;
     }
 
+    private void ActivateSearchForAlert(SoundAlertInfo soundAlertInfo)
+    {
+        EnemyBehaviour[] alertedEnemies = FindAllEnemiesInRange(soundAlertInfo);
 
+        foreach (EnemyBehaviour enemy in alertedEnemies)
+        {
+            
+        }
+    }
+    
+    
+    private EnemyBehaviour[] FindAllEnemiesInRange(SoundAlertInfo soundAlertInfo)
+    {
+        List<EnemyBehaviour> enemiesInRange = new List<EnemyBehaviour>();
+        foreach (EnemyBehaviour enemy in enemies)
+        {
+            if (Vector3.Distance(soundAlertInfo.point,enemy.transform.position) < soundAlertInfo.soundRange)
+            {
+                enemiesInRange.Add(enemy);
+            }
+        }
+
+        return enemiesInRange.ToArray();
+    }
+    
     public bool GetClosestDistanceToEnemyFromPlayer( out float? closestDistance)
     {
         closestDistance = null;
