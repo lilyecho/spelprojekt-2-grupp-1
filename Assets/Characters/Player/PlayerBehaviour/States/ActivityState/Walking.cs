@@ -72,6 +72,8 @@ public class Walking : State, IAcceleration
 
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.walk.speed,
             playerBehaviour.PlayerData.GetSpeedRelated.walk.accTotalTime);
+        
+        CreateSoundAlert();
     }
 
     public override void OnShift(InputAction.CallbackContext context)
@@ -110,7 +112,7 @@ public class Walking : State, IAcceleration
     {
         if (gizmos)
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.walk);
             Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.walk);
         }
@@ -122,5 +124,15 @@ public class Walking : State, IAcceleration
         float maxSpeed = playerBehaviour.PlayerData.GetSpeedRelated.walk.speed;
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.walk.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed, maxSpeed, totalAccelerationTime);
+    }
+    protected override void CreateSoundAlert()
+    {
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
+        {
+            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.walk,
+            point = playerBehaviour.transform.position
+        };
+            
+        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
 }

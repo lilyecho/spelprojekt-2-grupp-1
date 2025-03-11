@@ -47,6 +47,7 @@ public abstract class State
                 
                 if (angle < playerBehaviour.PlayerData.GetMaxRotationAngle)
                 {
+                    
                     return true;
                 }
                 
@@ -342,5 +343,7 @@ public abstract class State
         }
         return false;
     }
+    
+    protected virtual void CreateSoundAlert(){}
 
 }

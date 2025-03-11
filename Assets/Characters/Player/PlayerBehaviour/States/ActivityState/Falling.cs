@@ -9,11 +9,7 @@ using UnityEngine.InputSystem.HID;
 public class Falling : State
 {
     float jumpBufferTimer;
-
-    public override void Awake(PlayerBehaviour player)
-    {
-        base.Awake(player);
-    }
+    [SerializeField] private bool gizmos;
 
     public override void Enter()
     {
@@ -26,24 +22,12 @@ public class Falling : State
 
     public override void Update()
     {
-        /*
-        playerBehaviour.transform.rotation = Quaternion.Lerp(playerBehaviour.transform.rotation,
-                                                        UpdateAirborneRotation(playerBehaviour.moveInput, playerBehaviour.transform, playerBehaviour.rb),
-                                                        playerBehaviour.rotationSpeed * Time.deltaTime);
-        */
-        //float angle = UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
-        //playerBehaviour.transform.rotation = Quaternion.Euler(playerBehaviour.transform.eulerAngles.x, angle, playerBehaviour.transform.eulerAngles.z);
-        
         if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength))
         {
+            CreateSoundAlert();
             playerBehaviour.ChangeState(playerBehaviour.idle);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
-
-        /*
-        targetRotation = Quaternion.FromToRotation(playerBehaviour.transform.up, Vector3.up) * playerBehaviour.transform.rotation;
-        playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, targetRotation, time);
-        */
         
         if(playerBehaviour.intoJump)
         {
@@ -53,6 +37,17 @@ public class Falling : State
         {
             playerBehaviour.intoJump = false;
         }
+    }
+
+    protected override void CreateSoundAlert()
+    {
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
+        {
+            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.landing,
+            point = playerBehaviour.transform.position
+        };
+            
+        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
 
     public override void FixedUpdate()
@@ -80,14 +75,7 @@ public class Falling : State
                 jumpBufferTimer = playerBehaviour.PlayerData.GetJumpBufferDuration;
                 playerBehaviour.intoJump = true;
             }
-            
         }
-
-        if (context.canceled)
-        {
-            
-        }
-
     }
     public override void OnShift(InputAction.CallbackContext context)
     {
@@ -95,19 +83,15 @@ public class Falling : State
         {
             playerBehaviour.ChangeState(playerBehaviour.gliding);
         }
-
     }
-    public override void OnCTRL(InputAction.CallbackContext context)
+    
+    public override void OnDrawGizmos(PlayerBehaviour player)
     {
-
-    }
-
-    public override void OnWASD(InputAction.CallbackContext context)
-    {
-
-    }
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
-
+        if (gizmos)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.landing);
+            Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.landing);
+        }
     }
 }

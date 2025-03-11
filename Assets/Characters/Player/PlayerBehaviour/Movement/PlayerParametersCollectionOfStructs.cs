@@ -50,5 +50,5 @@ public struct SoundAlertingRanges
     public float sneak;
     public float walk;
     public float run;
-    public float jump;
+    public float landing;
 }

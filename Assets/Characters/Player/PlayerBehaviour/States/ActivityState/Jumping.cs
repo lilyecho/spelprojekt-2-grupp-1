@@ -12,20 +12,10 @@ public class Jumping : State
 {
     private bool flagAbleToFall;
     [SerializeField] private SoundInfos soundInfos;
-    [SerializeField] private bool gizmos;
     public override void Enter()
     {
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
-
-        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
-        {
-            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.jump,
-            point = playerBehaviour.transform.position
-        };
-
-        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
-
     }
     public override void Exit()
     {
@@ -62,16 +52,6 @@ public class Jumping : State
             {
                 playerBehaviour.ChangeState(playerBehaviour.gliding);
             }
-        }
-    }
-
-    public override void OnDrawGizmos(PlayerBehaviour player)
-    {
-        if (gizmos)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.jump);
-            Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.jump);
         }
     }
 

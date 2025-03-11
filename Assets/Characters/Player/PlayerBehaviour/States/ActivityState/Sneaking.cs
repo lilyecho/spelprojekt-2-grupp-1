@@ -72,6 +72,7 @@ public class Sneaking : State, IAcceleration
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.sneak.speed,playerBehaviour.PlayerData.GetSpeedRelated.sneak.accTotalTime);
         
+        CreateSoundAlert();
     }
     
     public override void OnShift(InputAction.CallbackContext context)
@@ -102,7 +103,7 @@ public class Sneaking : State, IAcceleration
     {
         if (gizmos)
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.sneak);
             Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.sneak);
         }
@@ -114,6 +115,16 @@ public class Sneaking : State, IAcceleration
         float maxSpeed = playerBehaviour.PlayerData.GetSpeedRelated.sneak.speed;
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.sneak.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
+    }
+    protected override void CreateSoundAlert()
+    {
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
+        {
+            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.sneak,
+            point = playerBehaviour.transform.position
+        };
+            
+        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
     
 }

@@ -76,6 +76,8 @@ public class Running : State, IAcceleration
         playerBehaviour.rb.AddForce(-normal * InternalGravity, ForceMode.Acceleration);
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.run.speed,playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime);
+        
+        CreateSoundAlert();
     }
     
     public override void OnCTRL(InputAction.CallbackContext context)
@@ -118,6 +120,17 @@ public class Running : State, IAcceleration
         float maxSpeed = playerBehaviour.PlayerData.GetSpeedRelated.run.speed;
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
+    }
+    
+    protected override void CreateSoundAlert()
+    {
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
+        {
+            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.run,
+            point = playerBehaviour.transform.position
+        };
+            
+        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
     
 }
