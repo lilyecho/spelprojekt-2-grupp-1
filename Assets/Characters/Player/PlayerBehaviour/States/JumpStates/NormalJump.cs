@@ -38,7 +38,7 @@ public class NormalJump : JumpState
 
     public override void OnShift(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
         {
             if (!playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.MegaJump)) return;
             playerBehaviour.ChangeJumpState(playerBehaviour.megaJump);
