@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public TimeManager timeManager;
 
 
+    public float cameraSensitivity = 1;
+    public Slider cameraSensitivitySlider;
+
     void Awake()
     {
         if (instance != null)
@@ -43,7 +46,17 @@ public class GameManager : MonoBehaviour
         timeManager.Movement(false);
         pauseMenu.gameObject.SetActive(true);
         defaultButton.Select();
+        
+        
     }
-    
+    public void UnpauseGame()
+    {
+        pauseMenu.gameObject.SetActive(false);
+        timeManager.Movement(true);
+    }
 
+    public void UpdateCameraSense()
+    {
+        cameraSensitivity = cameraSensitivitySlider.value;
+    }
 }

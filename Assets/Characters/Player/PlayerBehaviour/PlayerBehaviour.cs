@@ -405,4 +405,11 @@ public class PlayerBehaviour : MonoBehaviour
         jumpParticlesInstance = Instantiate(jumpParticles, transform.position, jumpParticles.transform.rotation);
     }
 
+    public void PauseGame(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.instance?.PauseGame();
+        }
+    }
 }
