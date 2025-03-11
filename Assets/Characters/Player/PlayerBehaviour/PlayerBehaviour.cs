@@ -139,10 +139,18 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnDrawGizmos()
     {
         shrink.OnDrawGizmos(this);
+        sneaking.OnDrawGizmos(this);
+        walking.OnDrawGizmos(this);
+        running.OnDrawGizmos(this);
+        jumping.OnDrawGizmos(this);
     }
     private void OnDrawGizmosSelected()
     {
         shrink.OnDrawGizmosSelected(this);
+        sneaking.OnDrawGizmosSelected(this);
+        walking.OnDrawGizmosSelected(this);
+        running.OnDrawGizmosSelected(this);
+        jumping.OnDrawGizmosSelected(this);
     }
 
     private void ChangeMovementActivation(bool nextValue)

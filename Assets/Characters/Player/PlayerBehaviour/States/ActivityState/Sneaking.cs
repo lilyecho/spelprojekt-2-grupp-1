@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class Sneaking : State, IAcceleration
 {
+    [SerializeField] private bool gizmos;
+    
     private float timeStep = .5f;
     private float currentTime = 0;
     
-    
     float time = 0f;
     Vector3 normal;
-
-
+    
     bool coyote = false;
     float coyoteTimer;
     public override void Enter()
@@ -27,11 +27,6 @@ public class Sneaking : State, IAcceleration
     public override void Exit()
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), false);
-    }
-
-    public override void OnCollision(Collision collision)
-    {
-
     }
 
     public override void Update()
@@ -49,9 +44,7 @@ public class Sneaking : State, IAcceleration
             //playerBehaviour.ChangeState(playerBehaviour.falling);
             coyote = true;
         }
-
-
-
+        
         if (coyote)
         {
             coyoteTimer -= Time.deltaTime;
@@ -81,20 +74,12 @@ public class Sneaking : State, IAcceleration
         
     }
     
-    public override void OnSpaceBar(InputAction.CallbackContext context)
-    {
-
-    }
     public override void OnShift(InputAction.CallbackContext context)
     {
         if (context.canceled)
         {
             playerBehaviour.ChangeState(playerBehaviour.walking);
         }
-    }
-    public override void OnCTRL(InputAction.CallbackContext context)
-    {
-
     }
 
     public override void OnWASD(InputAction.CallbackContext context)
@@ -104,10 +89,6 @@ public class Sneaking : State, IAcceleration
             playerBehaviour.ChangeState(playerBehaviour.idle);
         }
     }
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
-
-    }
     
     public override void OnShrink(InputAction.CallbackContext context)
     {
@@ -116,19 +97,17 @@ public class Sneaking : State, IAcceleration
             playerBehaviour.ChangeState(playerBehaviour.shrink);
         }
     }
-    /*
-    public bool CheckForGround()
+    
+    public override void OnDrawGizmos(PlayerBehaviour player)
     {
-        foreach (Transform t in playerBehaviour.rayCastPoints)
+        if (gizmos)
         {
-            if (Physics.Raycast(t.position, Vector3.down, playerBehaviour.rayCastLength))
-            {
-                return true;
-            }
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.sneak);
+            Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.sneak);
         }
-        return false;
     }
-    */
+    
     public void FixCurrentAccelerationTime()
     {
         float currentSpeed = playerBehaviour.rb.velocity.magnitude;
@@ -136,4 +115,5 @@ public class Sneaking : State, IAcceleration
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.sneak.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
+    
 }

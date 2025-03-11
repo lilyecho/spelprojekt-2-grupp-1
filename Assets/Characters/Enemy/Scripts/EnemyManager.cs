@@ -22,11 +22,13 @@ public class EnemyManager : MonoBehaviour
     {
         enemyManagerPort.OnRegister += RegisterEnemy;
         enemyManagerPort.OnChaseChange += UpdateChaseUnitValue;
+        enemyManagerPort.OnSoundAlert += ActivateSearchForAlert;
     }
     private void OnDisable()
     {
         enemyManagerPort.OnRegister -= RegisterEnemy;
         enemyManagerPort.OnChaseChange -= UpdateChaseUnitValue;
+        enemyManagerPort.OnSoundAlert -= ActivateSearchForAlert;
     }
 
     private void RegisterEnemy(RegistrationPort.TypeOfRegistration type,GameObject newEnemy)
@@ -43,7 +45,7 @@ public class EnemyManager : MonoBehaviour
 
         foreach (EnemyBehaviour enemy in alertedEnemies)
         {
-            
+            enemy.Alerted(soundAlertInfo.point);
         }
     }
     

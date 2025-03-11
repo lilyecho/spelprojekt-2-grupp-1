@@ -232,7 +232,7 @@ public class TrollBehaviour : EnemyBehaviour
 
     public override void Alerted(Vector3 alertPoint)
     {
-        if (activeState == States.Attack || activeState == States.Chase) return;
+        if (activeState.HasFlag(States.Attack) || activeState.HasFlag(States.Chase)) return;
         
         navMeshAgent.SetDestination(alertPoint);
         Transition(ChaseState);

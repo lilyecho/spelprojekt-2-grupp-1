@@ -11,9 +11,8 @@ using UnityEngine.UIElements;
 public class Jumping : State
 {
     private bool flagAbleToFall;
-    [Space, SerializeField,Min(0)] private float soundAlertRange;
     [SerializeField] private SoundInfos soundInfos;
-    
+    [SerializeField] private bool gizmos;
     public override void Enter()
     {
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
@@ -21,7 +20,7 @@ public class Jumping : State
 
         SoundAlertInfo soundAlertInfo = new SoundAlertInfo
         {
-            soundRange = soundAlertRange,
+            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.jump,
             point = playerBehaviour.transform.position
         };
 
@@ -65,7 +64,17 @@ public class Jumping : State
             }
         }
     }
-    
+
+    public override void OnDrawGizmos(PlayerBehaviour player)
+    {
+        if (gizmos)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.jump);
+            Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.jump);
+        }
+    }
+
     [Serializable]
     private struct SoundInfos
     {   

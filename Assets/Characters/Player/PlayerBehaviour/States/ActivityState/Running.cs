@@ -6,13 +6,14 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class Running : State, IAcceleration
 {
+    [SerializeField] private bool gizmos;
+    
     private float timeStep = .5f;
     private float currentTime = 0;
     
     float time = 0f;
     Vector3 normal;
-
-
+    
     bool coyote = false;
     float coyoteTimer;
     public override void Enter()
@@ -98,6 +99,16 @@ public class Running : State, IAcceleration
         if (context.performed && playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.Shrink))
         {
             playerBehaviour.ChangeState(playerBehaviour.shrink);
+        }
+    }
+    
+    public override void OnDrawGizmos(PlayerBehaviour player)
+    {
+        if (gizmos)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(player.transform.position, player.GetNormalPlayerData.GetAlertingRanges.run);
+            Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.run);
         }
     }
     

@@ -43,3 +43,12 @@ public struct ShrinkRelated
 {
     [SerializeField, Range(0.01f, 1)] public float shrinkFactor;
 }
+
+[Serializable]
+public struct SoundAlertingRanges
+{
+    public float sneak;
+    public float walk;
+    public float run;
+    public float jump;
+}
