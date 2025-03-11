@@ -1034,6 +1034,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2462111452130258512}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8295930903367655619}
   m_SourcePrefab: {fileID: 100100000, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
 --- !u!4 &39312636168687084 stripped
 Transform:
@@ -1237,7 +1240,7 @@ MonoBehaviour:
         m_Calls: []
     soundInfos:
       onEnter:
-      - soundImplementationName: 
+      - soundImplementationName: JumpSound
         action: 15
         eventReference:
           Guid:
@@ -1274,9 +1277,9 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
-    shrinkPositionChange: {x: 0, y: 0, z: 0}
-    growPositionChange: {x: 0, y: 0, z: 0}
-    growcolliderOffset: 0
+    shrinkPositionChange: {x: 0, y: 0.22, z: 0}
+    growPositionChange: {x: 0, y: 1, z: 0}
+    growColliderOffset: 0.27
   megaJump:
     SoundInformations:
       onEnter: []
@@ -1564,6 +1567,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74e834d618f7c14dba8ae6eb4e5b152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8295930903367655619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846810934666368854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb1a393838506a4eb386f12716f0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: MaterialStepSound
+    action: 13
+    eventReference:
+      Guid:
+        Data1: -100562422
+        Data2: 1090797294
+        Data3: 1425202863
+        Data4: -364203833
+      Path: event:/Sound/Characters/Surface
+    locality: 0
+    parameterName: 
+    parameterValue: 0
+    playVariant: 0
+    locationVariant: 0
+    locationTransform: {fileID: 39312636168687084}
+    stopMode: 0
+  curveName: sfxAstridStep
+  activationValue: 0.9
 --- !u!1001 &1646367767551677566
 PrefabInstance:
   m_ObjectHideFlags: 0
