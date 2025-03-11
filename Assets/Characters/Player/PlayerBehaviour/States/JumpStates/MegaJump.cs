@@ -35,6 +35,7 @@ public class MegaJump : JumpState
     {
         if (context.canceled || playerBehaviour.movementMode != PlayerBehaviour.MovementMode.SNEAK)
         {
+            playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
     }
@@ -51,6 +52,7 @@ public class MegaJump : JumpState
         }
         else if (context.canceled)
         {
+            playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
             Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
         }

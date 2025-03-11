@@ -11,9 +11,17 @@ public class Falling : State
     float jumpBufferTimer;
     [SerializeField] private bool gizmos;
 
+    #region AnimationParameters
+
+    private int animationGrounded = Animator.StringToHash("Grounded");
+    private int animationSuperJumpActivate = Animator.StringToHash("SuperJumpActivate");
+
+    #endregion
+    
     public override void Enter()
     {
-        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
+        playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
+        playerBehaviour.anim.SetBool(animationGrounded, false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
         //jumpBufferTimer = playerBehaviour.PlayerData.GetJumpBufferDuration;
     }
