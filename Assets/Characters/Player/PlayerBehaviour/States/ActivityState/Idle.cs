@@ -55,6 +55,15 @@ public class Idle : State
 
     public override void FixedUpdate()
     {
+        if (playerBehaviour.movementMode == PlayerBehaviour.MovementMode.SNEAK)
+        {
+            playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
+        }
+        else
+        {
+            playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), false);
+        }
+        
         /*
         playerBehaviour.transform.rotation = playerBehaviour.RotateCharacter(playerBehaviour.moveDir) * AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
                                              playerBehaviour.PlayerData.GetSlopeCheckerLength, playerBehaviour.PlayerData.GetMaxRotationAngle);

@@ -85,13 +85,6 @@ public class Falling : State
             }
         }
     }
-    public override void OnShift(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            playerBehaviour.ChangeState(playerBehaviour.gliding);
-        }
-    }
     
     public override void OnDrawGizmos(PlayerBehaviour player)
     {
