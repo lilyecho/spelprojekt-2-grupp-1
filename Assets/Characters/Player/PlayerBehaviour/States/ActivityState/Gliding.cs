@@ -7,6 +7,23 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class Gliding : State
 {
+    
+    #region AnimationParameters
+
+    private int animationGlide = Animator.StringToHash("Gliding");
+
+    #endregion
+
+    public override void Enter()
+    {
+        playerBehaviour.anim.SetBool(animationGlide, true);
+    }
+
+    public override void Exit()
+    {
+        playerBehaviour.anim.SetBool(animationGlide, false);
+    }
+
     public override void Update()
     {
         if (ExitGlide())

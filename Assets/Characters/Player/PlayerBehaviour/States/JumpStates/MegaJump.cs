@@ -12,10 +12,18 @@ public class MegaJump : JumpState
     [SerializeField] private JumpsSoundInfos SoundInformations;
         
     private float chargeTimer;
+
+    #region AnimationParameters
+
+    private int animationSuperJumpActivate = Animator.StringToHash("SuperJumpActivate");
+    private int animationSuperJumpRelease = Animator.StringToHash("SuperJumpRelease");
+
+    #endregion
     
     public override void Enter()
     {
         chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
+        playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
     }
 
     public override void Update()
@@ -35,6 +43,8 @@ public class MegaJump : JumpState
     {
         if (context.canceled && chargeTimer <= 0)
         {
+            playerBehaviour.anim.SetBool(animationSuperJumpRelease, true);
+            
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetMegaJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
             Jump(jumpForce, playerBehaviour.PlayerData.GetMegaJump.GetKeptMomentumPercentage);
             chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
