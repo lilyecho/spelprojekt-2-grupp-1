@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject paused;
     public GameObject settings;
     public GameObject controls;
-
+    public Button defaultButton;
 
     public TimeManager timeManager;
 
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        pauseMenu.gameObject.SetActive(true);
+        PauseGame();
     }
 
     
@@ -39,8 +40,9 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        timeManager.OnMovement(false);
+        timeManager.Movement(false);
         pauseMenu.gameObject.SetActive(true);
+        defaultButton.Select();
     }
     
 
