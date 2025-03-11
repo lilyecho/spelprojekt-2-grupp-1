@@ -19,10 +19,12 @@ public class Jumping : State
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
 
-        SoundAlertInfo soundAlertInfo = new SoundAlertInfo();
-        soundAlertInfo.soundRange = soundAlertRange;
-        soundAlertInfo.point = playerBehaviour.transform.position;
-        
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
+        {
+            soundRange = soundAlertRange,
+            point = playerBehaviour.transform.position
+        };
+
         SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
 
     }
