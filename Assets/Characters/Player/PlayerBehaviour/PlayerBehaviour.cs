@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerBehaviour : MonoBehaviour
@@ -156,8 +154,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void ChangeMovementActivation(bool nextValue)
     {
         _movementOn = nextValue;
-        //Fungerar som en stopper
-        rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
     public EnemyManagerPort EnemyManagerPort => enemyManagerPort;
