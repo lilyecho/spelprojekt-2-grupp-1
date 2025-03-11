@@ -696,12 +696,24 @@ PrefabInstance:
 '
       objectReference: {fileID: 0}
     - target: {fileID: 6592046800069162680, guid: e5035840f39b77248aee7c0b072f37b1, type: 3}
+      propertyPath: m_margin.x
+      value: 12.233452
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592046800069162680, guid: e5035840f39b77248aee7c0b072f37b1, type: 3}
+      propertyPath: m_margin.z
+      value: 14.585114
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592046800069162680, guid: e5035840f39b77248aee7c0b072f37b1, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: bacd6618dcb979940837908949c66467, type: 2}
     - target: {fileID: 6592046800069162680, guid: e5035840f39b77248aee7c0b072f37b1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6933217291326626764, guid: bacd6618dcb979940837908949c66467, type: 2}
+    - target: {fileID: 6592046800069162680, guid: e5035840f39b77248aee7c0b072f37b1, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8794165411767110294, guid: e5035840f39b77248aee7c0b072f37b1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2295,7 +2307,7 @@ MonoBehaviour:
   m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bacd6618dcb979940837908949c66467, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 6933217291326626764, guid: bacd6618dcb979940837908949c66467, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
