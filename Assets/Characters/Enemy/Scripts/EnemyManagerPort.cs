@@ -7,4 +7,6 @@ using UnityEngine.Events;
 public class EnemyManagerPort : RegistrationPort
 {
     public UnityAction<ChangeValue> OnChaseChange = delegate {};
+    
+    public UnityAction<SoundAlertInfo> OnSoundAlert = delegate(SoundAlertInfo info) {  };
 }

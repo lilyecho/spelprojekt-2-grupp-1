@@ -62,11 +62,5 @@ public class PlayerData : ScriptableObject
     public Vector3 CharacterScale => new Vector3(1, 1, 1) * factorialValue4Shrink;
 
     #endregion
-
-    private void OnValidate() {}
-
-    public void CalledOnValidate(PlayerBehaviour player)
-    {
-        
-    }
+    
 }

@@ -8,12 +8,11 @@ public class SfxManager : MonoBehaviour
 {
     [SerializeField] private FmodParameterData fmodParameterData = null;
     [SerializeField] private AudioPort audioPort = null;
-    [SerializeField] private FmodParameterData parameters = null;
     
     [Header("Sfx-Related")]
     [SerializeField] private AudioHandler audioHandler = null;
 
-    private Transform test = null;
+    
     
     private void OnEnable()
     {
@@ -30,7 +29,6 @@ public class SfxManager : MonoBehaviour
 
     private void CreateSound4Step(SoundInfo soundInfo, Transform checkerTransform)
     {
-        test = checkerTransform;
         MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
 
         soundInfo.action |= SoundInfo.SoundAction.ChangeParameter;

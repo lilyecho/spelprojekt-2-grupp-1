@@ -12,11 +12,13 @@ public class Jumping : State
 {
     private bool flagAbleToFall;
     [SerializeField] private SoundInfos soundInfos;
-    
+    [Space, SerializeField] private SoundAlertInfo soundAlert;
     public override void Enter()
     {
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
+        
+        //SoundAlertCreation.CreateAlertPoint();
 
     }
     public override void Exit()
