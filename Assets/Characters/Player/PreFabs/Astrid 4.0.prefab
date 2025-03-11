@@ -1176,6 +1176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementMode: 0
+  enemyManagerPort: {fileID: 11400000, guid: bd24d7fe86c5b72449515210c88381f3, type: 2}
   playerDataNormal: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
   playerDataShrink: {fileID: 11400000, guid: a1e5c9cf0d179504c9945db078813ce0, type: 2}
   currentAbilities: -1
@@ -1238,6 +1239,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundAlertRange: 0
     soundInfos:
       onEnter:
       - soundImplementationName: JumpSound
