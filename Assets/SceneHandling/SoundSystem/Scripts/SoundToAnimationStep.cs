@@ -24,12 +24,6 @@ public class SoundToAnimationStep : SoundToAnimation
         {
             activeSound = false;
         }
-        
-        
-
-        
-        
-        
     }
     
    

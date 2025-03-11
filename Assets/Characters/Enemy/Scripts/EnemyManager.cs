@@ -77,7 +77,6 @@ public class EnemyManager : MonoBehaviour
         //Increase from preAmount --> only check if value is one
         else if (diff > 0 && amountOfChaseUnits == 1)
         {
-            Debug.Log("Yes");
             audioManagerPort.OnChased(true);
         }
     }
