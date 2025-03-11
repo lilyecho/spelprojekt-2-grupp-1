@@ -1033,9 +1033,6 @@ PrefabInstance:
       addedObject: {fileID: -8668035086652529963}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2462111452130258512}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8295930903367655619}
   m_SourcePrefab: {fileID: 100100000, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
 --- !u!4 &39312636168687084 stripped
@@ -1217,6 +1214,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    gizmos: 0
     soundInfos: []
   sneaking:
     OnEnter:
@@ -1225,6 +1223,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    gizmos: 0
   running:
     OnEnter:
       m_PersistentCalls:
@@ -1232,6 +1231,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    gizmos: 0
   jumping:
     OnEnter:
       m_PersistentCalls:
@@ -1239,7 +1239,6 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
-    soundAlertRange: 0
     soundInfos:
       onEnter:
       - soundImplementationName: JumpSound
@@ -1265,6 +1264,7 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    gizmos: 0
   gliding:
     OnEnter:
       m_PersistentCalls:
@@ -1555,18 +1555,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd905b5b3d4ec624f9f3182cd6efbd6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2462111452130258512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846810934666368854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74e834d618f7c14dba8ae6eb4e5b152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8295930903367655619

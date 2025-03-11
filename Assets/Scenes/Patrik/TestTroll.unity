@@ -514,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: currentAbilities
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: enemyManagerPort
@@ -588,7 +588,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2462111452130258512, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
