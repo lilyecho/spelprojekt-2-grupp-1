@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     public float cameraSensitivity = 1;
     public Slider cameraSensitivitySlider;
+
+    public UnityEvent onPause;
+    public UnityEvent unPause;
 
 
 
@@ -66,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        onPause.Invoke();
+        
         timeManager.Movement(false);
         pauseMenu.gameObject.SetActive(true);
         defaultButton.Select();
@@ -74,6 +80,8 @@ public class GameManager : MonoBehaviour
     }
     public void UnpauseGame()
     {
+        unPause.Invoke();
+        
         pauseMenu.gameObject.SetActive(false);
         timeManager.Movement(true);
     }
