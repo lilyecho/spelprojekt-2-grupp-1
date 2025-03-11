@@ -16,8 +16,10 @@ public class TrollBehaviour : EnemyBehaviour
     
     [SerializeField] private CharacterAudio trollAudioData;
 
-    [SerializeField] private CameraPort cameraPort;
+    [SerializeField] private CameraPort cameraPort = null;
+    [SerializeField] private TimeManager timeManager = null;
     #endregion
+    private bool _movementOn = true;
     
     private NavMeshAgent navMeshAgent;
 
@@ -83,11 +85,13 @@ public class TrollBehaviour : EnemyBehaviour
 
     private void Update()
     {
+        if (!_movementOn) return;
         currentState.Update();
     }
 
     private void FixedUpdate()
     {
+        if (!_movementOn) return;
         currentState.FixedUpdate();
     }
 

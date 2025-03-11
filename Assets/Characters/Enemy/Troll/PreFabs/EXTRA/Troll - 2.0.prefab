@@ -86,6 +86,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7066962405342261517}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4956265900739180017}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6272491010677768094}
   m_SourcePrefab: {fileID: 100100000, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
 --- !u!4 &1654748548045270301 stripped
 Transform:
@@ -138,6 +144,8 @@ MonoBehaviour:
   eyes: {fileID: 1654748548045270301}
   lamp: {fileID: 8851927683187498260}
   trollAudioData: {fileID: 11400000, guid: 6f2437bc6fa7ada4d9a48a83f696ac41, type: 2}
+  cameraPort: {fileID: 0}
+  timeManager: {fileID: 0}
   activeState: 0
   PatrolState:
     trollAlertPort: {fileID: 11400000, guid: b4945f8df470b114f9d7ef77d1d3a000, type: 2}
@@ -172,6 +180,47 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+  stateColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!54 &4956265900739180017
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4631110317963788668}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6272491010677768094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4631110317963788668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd66c84467f36c94b9f51ce656ea8a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
 --- !u!4 &8851927683187498260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3917066016046948665, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}

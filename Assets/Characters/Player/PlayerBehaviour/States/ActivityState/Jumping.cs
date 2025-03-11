@@ -17,7 +17,7 @@ public class Jumping : State
 
     private int animationSuperJumpActivate = Animator.StringToHash("SuperJumpActivate");
     private int animationGrounded = Animator.StringToHash("Grounded");
-    private int animationJump = Animator.StringToHash("Grounded");
+    private int animationJump = Animator.StringToHash("Jump");
 
     #endregion
     
