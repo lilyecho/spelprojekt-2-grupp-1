@@ -17,21 +17,13 @@ public class SoundToAnimationStep : SoundToAnimation
         
         if (!activeSound && currentValue >= activationValue)
         {
-            Debug.Log("Step");
             activeSound = true;
             audioPort.OnStep(soundInfo, transform);
         }
         else if (currentValue < activationValue)
         {
-            Debug.Log("No sound anymore");
             activeSound = false;
         }
-        
-        
-
-        
-        
-        
     }
     
    

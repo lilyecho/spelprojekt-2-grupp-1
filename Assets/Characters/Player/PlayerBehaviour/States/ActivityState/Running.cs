@@ -76,15 +76,7 @@ public class Running : State, IAcceleration
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.run.speed,playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime);
     }
-
-    public override void OnSpaceBar(InputAction.CallbackContext context)
-    {
-
-    }
-    public override void OnShift(InputAction.CallbackContext context)
-    {
-
-    }
+    
     public override void OnCTRL(InputAction.CallbackContext context)
     {
         if (context.canceled)
@@ -99,10 +91,6 @@ public class Running : State, IAcceleration
         {
             playerBehaviour.ChangeState(playerBehaviour.idle);
         }
-    }
-    public override void OnMOUSE(InputAction.CallbackContext context)
-    {
-
     }
     
     public override void OnShrink(InputAction.CallbackContext context)
@@ -120,18 +108,5 @@ public class Running : State, IAcceleration
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
-    /*
-    public bool CheckForGround()
-    {
-        foreach (Transform t in playerBehaviour.rayCastPoints)
-        {
-            if (Physics.Raycast(t.position, Vector3.down, playerBehaviour.rayCastLength))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    */
     
 }
