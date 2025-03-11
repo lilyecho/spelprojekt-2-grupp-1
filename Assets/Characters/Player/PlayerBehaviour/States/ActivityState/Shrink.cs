@@ -10,17 +10,16 @@ public class Shrink : State
 {
     [SerializeField] private Vector3 shrinkPositionChange;
     [SerializeField] private Vector3 growPositionChange;
-    [SerializeField] private float growcolliderOffset;
+    [SerializeField] private float growColliderOffset;
     private bool _active = false;
     private Vector3 standardSize;
 
+    
     public override void Enter()
     {
         ReSize();
         
         playerBehaviour.ChangeState(playerBehaviour.idle);
-
-        
     }
     
 
@@ -62,7 +61,7 @@ public class Shrink : State
     public override void OnDrawGizmos(PlayerBehaviour player)
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(player.transform.position + growPositionChange.normalized * growcolliderOffset, new Vector3(.2f,.5f,.7f));
+        Gizmos.DrawWireCube(player.transform.position + growPositionChange.normalized * growColliderOffset, new Vector3(.2f,.5f,.7f));
     }
 
     public override void OnDrawGizmosSelected(PlayerBehaviour player)
@@ -77,24 +76,6 @@ public class Shrink : State
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawCube(player.transform.position + shrinkPositionChange, new Vector3(0.1f,.1f,.1f));
-        }
-        
-
-        
-    }
-
-    public override void OnValidate(PlayerBehaviour player)
-    {
-        //Shrinking
-        if (Vector3.Dot(shrinkPositionChange, player.transform.up) <= 0)
-        {
-            Debug.LogWarning("Risk of clipping through floors and walls");
-        }
-        
-        //Growing
-        if (Vector3.Dot(growPositionChange, player.transform.up) <= 0)
-        {
-            Debug.LogWarning("Risk of clipping through floors and walls");
         }
     }
 }
