@@ -38,6 +38,7 @@ public class KameraPrototyp : MonoBehaviour
         cam = Camera.main;
         
         targetPoint = new GameObject();
+        targetPoint.transform.position = transform.position + heightOffset;
     }
 
     // Update is called once per frame
@@ -74,9 +75,9 @@ public class KameraPrototyp : MonoBehaviour
 
     public void UpdateRotation(float multi)
     {
-        angleH += delta.x * GetCameraData.GetRotateSpeedH * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
+        angleH += delta.x * GetCameraData.GetRotateSpeedH * multi * /* GameManager.instance.cameraSensitivity * */ Time.deltaTime;
 
-        angleP += delta.y * GetCameraData.GetRotateSpeedP * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
+        angleP += delta.y * GetCameraData.GetRotateSpeedP * multi * /* GameManager.instance.cameraSensitivity * */ Time.deltaTime;
         angleP = Mathf.Clamp(angleP, GetCameraData.GetPMax, GetCameraData.GetPMin);
         
         Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -19,6 +21,27 @@ public class GameManager : MonoBehaviour
     public float cameraSensitivity = 1;
     public Slider cameraSensitivitySlider;
 
+
+
+
+
+
+    public static GameManager _Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                GameObject singletonObject = new GameObject("GameManager");
+                instance = singletonObject.AddComponent<GameManager>();
+
+                DontDestroyOnLoad(singletonObject);
+            }
+            return instance;
+        }
+    }
+
+
     void Awake()
     {
         if (instance != null)
@@ -34,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PauseGame();
+        
     }
 
     
@@ -58,5 +81,10 @@ public class GameManager : MonoBehaviour
     public void UpdateCameraSense()
     {
         cameraSensitivity = cameraSensitivitySlider.value;
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

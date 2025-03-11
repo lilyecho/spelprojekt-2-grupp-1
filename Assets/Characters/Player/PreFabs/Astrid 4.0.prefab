@@ -1034,6 +1034,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8295930903367655619}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9086869793131741822}
   m_SourcePrefab: {fileID: 100100000, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
 --- !u!4 &39312636168687084 stripped
 Transform:
@@ -1526,6 +1529,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a8d17126-573b-4c13-a9fa-88f4f7e9a38d
     m_ActionName: Player/Shrink[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2502285214404553260}
+        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: baeeba09-f1bb-4f5b-855b-ea6f876879f4
+    m_ActionName: Player/Pause[/Keyboard/escape,/DualSenseGamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1589,6 +1608,19 @@ MonoBehaviour:
     stopMode: 0
   curveName: sfxAstridStep
   activationValue: 0.9
+--- !u!114 &9086869793131741822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846810934666368854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd66c84467f36c94b9f51ce656ea8a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
 --- !u!1001 &1646367767551677566
 PrefabInstance:
   m_ObjectHideFlags: 0
