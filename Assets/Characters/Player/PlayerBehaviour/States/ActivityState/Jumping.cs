@@ -12,14 +12,24 @@ public class Jumping : State
 {
     private bool flagAbleToFall;
     [SerializeField] private SoundInfos soundInfos;
+    
+    #region AnimationParameters
+
+    private int animationSuperJumpActivate = Animator.StringToHash("SuperJumpActivate");
+    private int animationGrounded = Animator.StringToHash("Grounded");
+    private int animationJump = Animator.StringToHash("Grounded");
+
+    #endregion
+    
     public override void Enter()
     {
+        playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
-        playerBehaviour.anim.SetBool(Animator.StringToHash("Grounded"), false);
+        playerBehaviour.anim.SetBool(animationGrounded, false);
     }
     public override void Exit()
     {
-        playerBehaviour.anim.SetBool(Animator.StringToHash("Jump"), false);
+        playerBehaviour.anim.SetBool(animationJump, false);
         flagAbleToFall = false;
     }
 
