@@ -25,7 +25,7 @@ public class MegaJump : JumpState
 
     public override void OnShift(InputAction.CallbackContext context)
     {
-        if (context.canceled)
+        if (context.canceled || playerBehaviour.movementMode != PlayerBehaviour.MovementMode.SNEAK)
         {
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
