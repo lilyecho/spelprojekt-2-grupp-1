@@ -14,12 +14,9 @@ public class AudioHandler : MonoBehaviour
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private FmodParameterData parameterData = null;
     private Dictionary<GUID,EventInstance> dictionaryGuidInstances = new Dictionary<GUID, EventInstance>();
-
-
+    
     [SerializeField] private bool debugMode;
-    
-    
-    
+
     private void OnEnable()
     {
         audioPort.OnSoundInfo += HandleSoundInfo;
@@ -83,7 +80,7 @@ public class AudioHandler : MonoBehaviour
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.ChangeParameter)) return;
         
-        if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
+        if (soundInfo.locality == SoundInfo.SoundLocality.Global)
         {
             TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);
             return;
@@ -103,7 +100,7 @@ public class AudioHandler : MonoBehaviour
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
         if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
         
-        if (soundInfo.locationVariant.HasFlag(SoundInfo.LocationVariant.Attached))
+        if (soundInfo.locationVariant == SoundInfo.LocationVariant.Attached)
         {
             AttachInstanceToObject(instance, soundInfo.locationTransform);
         }
@@ -117,7 +114,7 @@ public class AudioHandler : MonoBehaviour
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Play)) return;
         
-        if (soundInfo.playVariant.HasFlag(SoundInfo.PlayVariant.OneShot))
+        if (soundInfo.playVariant == SoundInfo.PlayVariant.OneShot)
         {
             NewPlayOneShot(soundInfo.eventReference);
         }
