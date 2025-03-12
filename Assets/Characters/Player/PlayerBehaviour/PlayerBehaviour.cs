@@ -65,7 +65,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     [SerializeField] private TimeManager timeManager = null;
     private bool _movementOn = true;
-
+    
     #region Shrink
 
     [SerializeField] private ParticleSystem particleSystemOnShrink;
