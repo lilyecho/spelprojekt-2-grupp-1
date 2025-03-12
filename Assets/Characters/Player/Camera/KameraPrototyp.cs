@@ -14,12 +14,16 @@ public class KameraPrototyp : MonoBehaviour
         get { return cameraData;}
     }
     
+    public enum State { MOVING, CAUGHT};
+    public State state = State.MOVING;
+    public CameraTrollPort cameraTrollPort;
+
     Camera cam;
 
     public Transform target;
 
     private GameObject targetPoint;
-    private Transform target2;
+    
     public Vector3 heightOffset;
     public float smoothTime;
     private Vector3 velocity = Vector3.zero;
@@ -33,6 +37,13 @@ public class KameraPrototyp : MonoBehaviour
 
     private Vector2 delta;
 
+
+
+
+    private Transform trollPos;
+    public Transform camPosWhenCaught;
+
+
     void Start()
     {
         cam = Camera.main;
@@ -44,10 +55,21 @@ public class KameraPrototyp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateRotation(speedMultiplier);
-        
-        //audioListener.localRotation
-        targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, transform.position + GetCameraData.GetHeightOffset, ref velocity, GetCameraData.GetSmoothTime);
+        switch(state)
+            {
+                case State.MOVING:
+                    UpdateRotation(speedMultiplier);
+                    targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, 
+                                                     transform.position + GetCameraData.GetHeightOffset, ref velocity, GetCameraData.GetSmoothTime);
+                break;
+                case State.CAUGHT:
+                targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, trollPos.transform.position, ref velocity, 0.03f);
+                cam.transform.position = Vector3.SmoothDamp(cam.transform.position, camPosWhenCaught.position, ref velocity, 0.03f);
+                cam.transform.LookAt(targetPoint.transform.position);
+                break;
+            }
+        //UpdateRotation(speedMultiplier);
+        //targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, transform.position + GetCameraData.GetHeightOffset, ref velocity, GetCameraData.GetSmoothTime);
     }
 
     public void LookAround(InputAction.CallbackContext context)
@@ -87,4 +109,34 @@ public class KameraPrototyp : MonoBehaviour
         
         cam.transform.LookAt(targetPoint.transform.position);
     }
+
+
+
+    public void OnAstridCaught(CameraTrollPort cameraTrollPort, Transform troll, Transform cameraPos)
+    {
+
+        /*
+        targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, troll.position + GetCameraData.GetHeightOffset, ref velocity, GetCameraData.GetSmoothTime);
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, cameraPos.position, ref velocity, GetCameraData.GetSmoothTime);
+        cam.transform.LookAt(targetPoint.transform.position);
+        */
+        state = State.CAUGHT;
+        trollPos = troll;
+        camPosWhenCaught = cameraPos;
+        angleH = 0;
+        angleP = 0;
+        
+    }
+
+
+    private void OnEnable()
+    {
+        cameraTrollPort.OnAstridGettingCaught += OnAstridCaught;
+    }
+
+    private void OnDisable()
+    {
+        cameraTrollPort.OnAstridGettingCaught -= OnAstridCaught;
+    }
+
 }
