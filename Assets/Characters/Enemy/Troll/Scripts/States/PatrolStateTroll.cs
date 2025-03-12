@@ -97,6 +97,11 @@ public class PatrolStateTroll : TrollStates
     
     private void CheckSwapPatrolPoint()
     {
+        if (patrolPoints.Count <= 0)
+        {
+            Debug.Log("Missing patrolpoints :"+TrollBehaviour.name);
+            return;
+        }
         if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
         {
             patrolPointIndex = (patrolPointIndex+1)%patrolPoints.Count;

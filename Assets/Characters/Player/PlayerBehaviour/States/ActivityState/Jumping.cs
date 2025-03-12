@@ -16,7 +16,6 @@ public class Jumping : State
     #region AnimationParameters
 
     private int animationSuperJumpActivate = Animator.StringToHash("SuperJumpActivate");
-    private int animationSuperJumpRelease = Animator.StringToHash("SuperJumpRelease");
     private int animationGrounded = Animator.StringToHash("Grounded");
     private int animationJump = Animator.StringToHash("Jump");
 
@@ -25,7 +24,6 @@ public class Jumping : State
     public override void Enter()
     {
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
-        playerBehaviour.anim.SetBool(animationSuperJumpRelease, false);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(animationGrounded, false);
     }

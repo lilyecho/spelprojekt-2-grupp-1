@@ -17,6 +17,7 @@ public class Falling : State
 
     private int animationGrounded = Animator.StringToHash("Grounded");
     private int animationSuperJumpActivate = Animator.StringToHash("SuperJumpActivate");
+    private int animationSuperJumpRelease = Animator.StringToHash("SuperJumpRelease");
 
     #endregion
     
@@ -25,7 +26,7 @@ public class Falling : State
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
         playerBehaviour.anim.SetBool(animationGrounded, false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
-        //jumpBufferTimer = playerBehaviour.PlayerData.GetJumpBufferDuration;
+        
     }
 
     Quaternion targetRotation;
@@ -34,6 +35,7 @@ public class Falling : State
     {
         if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength))
         {
+            playerBehaviour.anim.SetBool(animationSuperJumpRelease, false);
             CreateSoundAlert();
             playerBehaviour.ChangeState(playerBehaviour.idle);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
