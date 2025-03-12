@@ -32,6 +32,7 @@ public class SfxManager : MonoBehaviour
         MaterialComposition material = SoundFromMovingOnMaterial.GetObjectMaterial(checkerTransform);
 
         soundInfo.action |= SoundInfo.SoundAction.ChangeParameter;
+        //Todo flera parametrar 
         soundInfo.parameterName = fmodParameterData.GetMaterialParameter;
         soundInfo.parameterValue = (float)material;
         

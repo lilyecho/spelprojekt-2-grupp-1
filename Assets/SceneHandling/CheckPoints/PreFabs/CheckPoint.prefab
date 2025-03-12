@@ -10,8 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1123038567400271382, guid: b01da2628066a5c45b374ae42ac02e31, type: 3}
       propertyPath: m_Name
-      value: StructureCheckPoint (1) Variant
+      value: CheckPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 4690862969117113954, guid: b01da2628066a5c45b374ae42ac02e31, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3710015391709246583}
     - target: {fileID: 9011521595383557251, guid: b01da2628066a5c45b374ae42ac02e31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -57,3 +61,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b01da2628066a5c45b374ae42ac02e31, type: 3}
+--- !u!114 &3710015391709246583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2326280197131823915, guid: b01da2628066a5c45b374ae42ac02e31, type: 3}
+  m_PrefabInstance: {fileID: 1383736294091186012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3db4a624df8b384291f7329f900a499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

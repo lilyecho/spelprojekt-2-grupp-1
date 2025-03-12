@@ -13,8 +13,6 @@ public class TrollBehaviour : EnemyBehaviour
     [SerializeField] private TrollData trollData;
     [SerializeField] private Transform eyes;
     [SerializeField] private Transform lamp;
-    
-    [SerializeField] private CharacterAudio trollAudioData;
 
     [SerializeField] private CameraPort cameraPort = null;
     [SerializeField] private TimeManager timeManager = null;
@@ -46,7 +44,6 @@ public class TrollBehaviour : EnemyBehaviour
     public Transform GetEyes => eyes;
     public Transform GetLamp => lamp;
     public TrollData GetTrollData => trollData;
-    public CharacterAudio GetAudioData => trollAudioData;
     public CameraPort CameraPort => cameraPort;
     public CheckPointPort CheckPointPort => checkPointPort;
     public Animator Animator => animator;
@@ -120,10 +117,6 @@ public class TrollBehaviour : EnemyBehaviour
         if (lamp == null)
         {
             Debug.LogWarning("Missing lamp");
-        }
-        if (trollAudioData == null)
-        {
-            Debug.LogWarning("Missing trollAudioData");
         }
     }
 
