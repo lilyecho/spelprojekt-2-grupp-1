@@ -1177,6 +1177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementMode: 0
   enemyManagerPort: {fileID: 11400000, guid: bd24d7fe86c5b72449515210c88381f3, type: 2}
+  checkPointPort: {fileID: 11400000, guid: 4e43fc8d7d583f84c958922bf2677053, type: 2}
   playerDataNormal: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
   playerDataShrink: {fileID: 11400000, guid: a1e5c9cf0d179504c9945db078813ce0, type: 2}
   currentAbilities: -1
@@ -1615,6 +1616,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: baeeba09-f1bb-4f5b-855b-ea6f876879f4
     m_ActionName: Player/Pause[/Keyboard/escape,/DualSenseGamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2502285214404553260}
+        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ff789b7e-f4b7-4381-beb2-a569a54d3c24
+    m_ActionName: Player/Respawn[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -87,6 +87,7 @@ public class AudioHandler : MonoBehaviour
         if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
         {
             TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);
+            //Debug.Log();
         }
         else
         {
