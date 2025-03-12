@@ -31,7 +31,7 @@ MonoBehaviour:
     sneak: 1
     walk: 2
     run: 3
-    jump: 3
+    landing: 0
   normalJump:
     jumpHeight: 1
     keptMomentum: 0.5
@@ -49,5 +49,6 @@ MonoBehaviour:
   glideFallingSpeed: 0
   shrinkRelated:
     shrinkFactor: 0.2
+    animatorController: {fileID: 9100000, guid: 6b96c53c77ef80a41847bc9780fbb8b6, type: 2}
   rotationSpeed: 0
   factorialValue4Shrink: 0.2

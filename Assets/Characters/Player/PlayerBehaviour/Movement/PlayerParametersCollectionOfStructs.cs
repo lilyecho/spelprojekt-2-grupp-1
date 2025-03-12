@@ -42,6 +42,7 @@ public struct SpeedParameters
 public struct ShrinkRelated
 {
     [SerializeField, Range(0.01f, 1)] public float shrinkFactor;
+    public RuntimeAnimatorController animatorController;
 }
 
 [Serializable]
