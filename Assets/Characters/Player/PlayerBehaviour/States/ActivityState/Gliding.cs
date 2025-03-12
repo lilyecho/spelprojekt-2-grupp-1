@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using SceneHandling.SoundSystem.Scripts;
 
 [Serializable]
 public class Gliding : State
@@ -13,15 +14,18 @@ public class Gliding : State
     private int animationGlide = Animator.StringToHash("Gliding");
 
     #endregion
-
+    // Audio parameters
+    [SerializeField] private SoundInfos soundInfos;
     public override void Enter()
     {
         playerBehaviour.anim.SetBool(animationGlide, true);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
     }
 
     public override void Exit()
     {
         playerBehaviour.anim.SetBool(animationGlide, false);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onExit);
     }
 
     public override void Update()
@@ -45,5 +49,11 @@ public class Gliding : State
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
         }
+    }
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo[] onEnter;
+        public SoundInfo[] onExit;
     }
 }
