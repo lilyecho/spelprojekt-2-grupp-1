@@ -128,15 +128,24 @@ public class KameraPrototyp : MonoBehaviour
         
     }
 
+    public void CameraAfterRespawn(CameraTrollPort cameraTrollPort)
+    {
+        state = State.MOVING;
+        targetPoint.transform.position = transform.position + heightOffset;
+    }
+
+
 
     private void OnEnable()
     {
         cameraTrollPort.OnAstridGettingCaught += OnAstridCaught;
+        cameraTrollPort.CameraAfterRespawn += CameraAfterRespawn;
     }
 
     private void OnDisable()
     {
         cameraTrollPort.OnAstridGettingCaught -= OnAstridCaught;
+        cameraTrollPort.CameraAfterRespawn -= CameraAfterRespawn;
     }
 
 }
