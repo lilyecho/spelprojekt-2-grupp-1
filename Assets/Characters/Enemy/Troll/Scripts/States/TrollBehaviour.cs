@@ -37,6 +37,17 @@ public class TrollBehaviour : EnemyBehaviour
     private Animator animator = null;
 
     public Color stateColor = Color.black;
+
+    #region AnimationParameters
+
+    //public int speedAP = Animator.StringToHash("Speed");
+    public int chasingAP = Animator.StringToHash("Chasing");
+    //public int patrollingAP = Animator.StringToHash("Patrol");
+    public int grabbingAP = Animator.StringToHash("Grabbing");
+    public int lookAroundAP = Animator.StringToHash("Look Around");
+    public int searchingAP = Animator.StringToHash("Searching");
+
+    #endregion
     
     #region Getters & Setters
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
@@ -135,21 +146,23 @@ public class TrollBehaviour : EnemyBehaviour
 
     private void OnDrawGizmos()
     {
-        PatrolState.OnDrawGizmos();
+        PatrolState.OnDrawGizmos(this);
+        ChaseState.OnDrawGizmos(this);
+        AttackState.OnDrawGizmos(this);
         VisualiseSight(eyes.position, trollData.GetTrollSight);
         VisualiseSight(lamp.position, trollData.GetLampSight);
     }
 
     private void OnDrawGizmosSelected()
     {
-        ChaseState.OnDrawGizmos();
+        ChaseState.OnDrawGizmos(this);
         VisualiseAggressionRange();
     }
 
     private void VisualiseAggressionRange()
     {
         Gizmos.color = new Color(0f, 1f, 1f, .7f);
-        Gizmos.DrawSphere(eyes.position,trollData.GetAggressionRange);
+        Gizmos.DrawWireSphere(eyes.position,trollData.GetAggressionRange);
     }
     private void VisualiseSight(Vector3 sightPoint, Sight sightData) //Shame
     {

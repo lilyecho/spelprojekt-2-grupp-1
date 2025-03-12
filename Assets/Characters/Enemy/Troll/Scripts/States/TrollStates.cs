@@ -18,7 +18,7 @@ public class TrollStates
     public virtual void Update(){}
     public virtual void FixedUpdate(){}
     public virtual void OnValidate() { }
-    public virtual void OnDrawGizmos() { }
+    public virtual void OnDrawGizmos(TrollBehaviour troll) { }
 
     protected void SetUpStateValuesInAgent(StateParameters parameterValues)
     {
@@ -30,6 +30,7 @@ public class TrollStates
     protected void SetAgentSpeed(float speed)
     {
         TrollBehaviour.GetNavMeshAgent.speed = speed;
+        //TrollBehaviour.Animator.SetFloat(TrollBehaviour.speedAP, speed);
     }
     protected void SetAgentAngularSpeed(float speed)
     {

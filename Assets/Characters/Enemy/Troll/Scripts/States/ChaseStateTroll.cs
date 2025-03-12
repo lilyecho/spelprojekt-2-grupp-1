@@ -15,6 +15,7 @@ public class ChaseStateTroll : TrollStates
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
+        TrollBehaviour.Animator.SetBool(TrollBehaviour.chasingAP, true);
         TrollBehaviour.stateColor = Color.red;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Attack
@@ -31,6 +32,7 @@ public class ChaseStateTroll : TrollStates
     public override void Exit()
     {
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Decrease);
+        TrollBehaviour.Animator.SetBool(TrollBehaviour.chasingAP, false);
     }
 
     public override void FixedUpdate()
@@ -78,5 +80,11 @@ public class ChaseStateTroll : TrollStates
             
         TrollBehaviour.GetNavMeshAgent.path = path;
         return false;
+    }
+    
+    public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(trollBehaviour.transform.position,trollBehaviour.GetTrollData.GetAttackRange);
     }
 }
