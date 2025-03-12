@@ -12,6 +12,7 @@ public class SoundToAnimationStep : SoundToAnimation
     protected override void CheckPlaySound()
     {
         float currentValue = animator.GetFloat(hashedCurveName);
+        
         if (currentValue == 0) return;
         
         if (!activeSound && currentValue >= activationValue)

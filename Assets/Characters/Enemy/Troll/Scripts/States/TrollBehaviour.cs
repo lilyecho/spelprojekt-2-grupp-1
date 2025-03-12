@@ -79,6 +79,12 @@ public class TrollBehaviour : EnemyBehaviour
         timeManager.OnMovement += ChangeMovementActivation;
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        timeManager.OnMovement -= ChangeMovementActivation;
+    }
+
     protected override void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -258,6 +264,35 @@ public class TrollBehaviour : EnemyBehaviour
     {
         _movementOn = nextValue;
         animator.speed = nextValue ? 1 : 0;
+
+        if (nextValue)
+        {
+            switch (activeState)
+            {
+                case States.Patrol:
+                    navMeshAgent.speed = trollData.GetPatrol.speed;
+                    break;
+                case States.Search:
+                    navMeshAgent.speed = trollData.GetSearch.speed;
+                    break;
+                case States.Chase:
+                    navMeshAgent.speed = trollData.GetChase.speed;
+                    break;
+                case States.Attack:
+                    navMeshAgent.speed = trollData.GetAttack.speed;
+                    break;
+            
+                default:
+                    Debug.Log("Missing state speed on movementUnpause");
+                    break;
+            }
+        }
+        else
+        {
+            navMeshAgent.speed = 0;
+        }
+        
+        
         
     }
 }

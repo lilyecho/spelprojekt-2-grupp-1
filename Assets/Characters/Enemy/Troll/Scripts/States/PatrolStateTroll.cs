@@ -40,9 +40,6 @@ public class PatrolStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetPatrol.statePriority;
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         
-        //Animation
-        TrollBehaviour.Animator.SetBool("Moving", true);
-        
         SetTargetPoint();
         SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
     }
