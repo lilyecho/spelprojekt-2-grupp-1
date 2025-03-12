@@ -81,13 +81,10 @@ public class AudioHandler : MonoBehaviour
 
     private void HandleParameterChange(SoundInfo soundInfo)
     {
-        Debug.Log("Kommer in");
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.ChangeParameter)) return;
-        Debug.Log("Har flagga");
         
         if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
         {
-            Debug.Log("Noterar att det är global iaf");
             TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);
             return;
         }
