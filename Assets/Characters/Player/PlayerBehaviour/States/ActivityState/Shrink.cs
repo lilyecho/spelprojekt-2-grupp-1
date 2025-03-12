@@ -34,7 +34,9 @@ public class Shrink : State
             _active = false;
             Particles();
             playerBehaviour.PlayerData = playerBehaviour.GetNormalPlayerData;
+            playerBehaviour.anim.runtimeAnimatorController = playerBehaviour.PlayerData.GetShrinkParameters.animatorController;
             playerBehaviour.transform.localScale = playerBehaviour.PlayerData.CharacterScale;
+            
 
             playerBehaviour.kameraPrototyp.cameraData = playerBehaviour.kameraPrototyp.normalCameraData;
             
@@ -44,6 +46,7 @@ public class Shrink : State
             _active = true;
             Particles();
             playerBehaviour.PlayerData = playerBehaviour.GetShrinkPlayerData;
+            playerBehaviour.anim.runtimeAnimatorController = playerBehaviour.PlayerData.GetShrinkParameters.animatorController;
             playerBehaviour.transform.localScale = playerBehaviour.PlayerData.CharacterScale;
 
             playerBehaviour.kameraPrototyp.cameraData = playerBehaviour.kameraPrototyp.shrinkedCameraData;

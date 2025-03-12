@@ -161,7 +161,6 @@ public class PlayerBehaviour : MonoBehaviour
     
     public PlayerData GetShrinkPlayerData => playerDataShrink;
     public PlayerData GetNormalPlayerData => playerDataNormal;
-    
     public PlayerData PlayerData
     {
         get => _currentPlayerPlayerData;
