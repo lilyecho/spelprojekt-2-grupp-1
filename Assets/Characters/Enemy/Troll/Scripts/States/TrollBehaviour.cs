@@ -18,6 +18,7 @@ public class TrollBehaviour : EnemyBehaviour
     [SerializeField] private TimeManager timeManager = null;
     [SerializeField] private CheckPointPort checkPointPort = null;
     #endregion
+    
     private bool _movementOn = true;
     
     private NavMeshAgent navMeshAgent;
@@ -61,6 +62,8 @@ public class TrollBehaviour : EnemyBehaviour
     
     #endregion
 
+    
+    
     public enum States
     {
         Null,
@@ -73,11 +76,12 @@ public class TrollBehaviour : EnemyBehaviour
     protected override void OnEnable()
     {
         base.OnEnable();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        timeManager.OnMovement += ChangeMovementActivation;
     }
 
     protected override void Awake()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
         base.Awake();
@@ -248,5 +252,12 @@ public class TrollBehaviour : EnemyBehaviour
         
         navMeshAgent.SetDestination(alertPoint);
         Transition(ChaseState);
+    }
+    
+    private void ChangeMovementActivation(bool nextValue)
+    {
+        _movementOn = nextValue;
+        animator.speed = nextValue ? 1 : 0;
+        
     }
 }
