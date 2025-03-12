@@ -11,7 +11,7 @@ public class SoundTrigger : MonoBehaviour
     
     public void OnInvoke()
     {
-
+        Debug.Log("activate soundInfo: " + soundInfo.ToString());
         audioPort.OnSoundInfo(soundInfo);
 
     }
