@@ -1353,9 +1353,10 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
-    shrinkPositionChange: {x: 0, y: 0.22, z: 0}
-    growPositionChange: {x: 0, y: 1, z: 0}
-    growColliderOffset: 0.27
+    shrinkPositionChange: {x: 0, y: 0.23, z: 0}
+    growPositionChange: {x: 0, y: 0.23, z: 0}
+    growColliderOffset: {x: 0, y: 0.05, z: 0.04}
+    colliderSize: {x: 0.18, y: 0.55, z: 0.55}
   megaJump:
     SoundInformations:
       onEnter:
@@ -1375,40 +1376,8 @@ MonoBehaviour:
         locationVariant: 1
         locationTransform: {fileID: 39312636168687084}
         stopMode: 0
-      onCharged:
-      - soundImplementationName: OnChargedMegaJump
-        action: 2
-        eventReference:
-          Guid:
-            Data1: 377131813
-            Data2: 1079919229
-            Data3: 214603939
-            Data4: 1475062927
-          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
-        locality: 0
-        parameterName: IsPowerActive
-        parameterValue: 1
-        playVariant: 0
-        locationVariant: 0
-        locationTransform: {fileID: 0}
-        stopMode: 0
-      onJump:
-      - soundImplementationName: OnChargedMegaJump
-        action: 18
-        eventReference:
-          Guid:
-            Data1: 377131813
-            Data2: 1079919229
-            Data3: 214603939
-            Data4: 1475062927
-          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
-        locality: 0
-        parameterName: IsPowerActive
-        parameterValue: 0
-        playVariant: 0
-        locationVariant: 0
-        locationTransform: {fileID: 0}
-        stopMode: 0
+      onMegaJump: []
+      onNormalJump: []
   debugStates: 1
   rotationSpeed: 10
   currentVelocity: 0
