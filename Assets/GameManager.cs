@@ -30,22 +30,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    public static GameManager _Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                GameObject singletonObject = new GameObject("GameManager");
-                instance = singletonObject.AddComponent<GameManager>();
-
-                DontDestroyOnLoad(singletonObject);
-            }
-            return instance;
-        }
-    }
-
-
     void Awake()
     {
         if (instance != null)
