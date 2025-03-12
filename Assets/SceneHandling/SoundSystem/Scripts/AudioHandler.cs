@@ -81,18 +81,19 @@ public class AudioHandler : MonoBehaviour
 
     private void HandleParameterChange(SoundInfo soundInfo)
     {
+        Debug.Log("Kommer in");
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.ChangeParameter)) return;
-        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance) && soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Local)) return;
+        Debug.Log("Har flagga");
         
         if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
         {
             Debug.Log("Noterar att det är global iaf");
             TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);
+            return;
         }
-        else
-        {
-            NewTryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
-        }
+        
+        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
+        NewTryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
     }
     
     private void NewTryChangeLocalParameter(EventInstance instance, string parameterName, float value)
@@ -309,7 +310,6 @@ public class AudioHandler : MonoBehaviour
     {
         try
         {
-            Debug.Log("Försöker iaf");
             RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
         }
         catch (Exception e)

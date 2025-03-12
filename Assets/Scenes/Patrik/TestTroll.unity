@@ -498,17 +498,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
   m_PrefabInstance: {fileID: 1096266299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &654993289 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-  m_PrefabInstance: {fileID: 1096266299}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654993253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597e6ef9f464ebc44ba27cc3beceef0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1096266299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -589,10 +578,6 @@ PrefabInstance:
       propertyPath: currentAbilities
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: enemyManagerPort
-      value: 
-      objectReference: {fileID: 11400000, guid: bd24d7fe86c5b72449515210c88381f3, type: 2}
     - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: jumping.soundAlertRange
       value: 10
@@ -696,46 +681,6 @@ PrefabInstance:
     - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: megaJump.SoundInformations.onEnter.Array.data[2].soundImplementationName
       value: ChangeParameter
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_ActionId
-      value: ff789b7e-f4b7-4381-beb2-a569a54d3c24
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_ActionName
-      value: Player/Respawn[/Keyboard/r]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 654993289}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Respawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerBehaviour, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896539017512460211, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5704581851922697474, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: cameraPort
@@ -1184,6 +1129,10 @@ PrefabInstance:
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: closeDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3008122371558187139, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: fmodParameterData
