@@ -811,7 +811,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7505968155159973295}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4631110317963788668, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5636465961894320699}
   m_SourcePrefab: {fileID: 100100000, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
 --- !u!4 &207925823833654550 stripped
 Transform:
@@ -828,3 +831,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
   m_PrefabInstance: {fileID: 4232418386180192117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8861272437530752521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4631110317963788668, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+  m_PrefabInstance: {fileID: 4232418386180192117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5636465961894320699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861272437530752521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb1a393838506a4eb386f12716f0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: 
+    action: 0
+    eventReference:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    locality: 0
+    parameterName: 
+    parameterValue: 0
+    playVariant: 0
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
+  curveName: sfxTrollStep
+  activationValue: 0.9
