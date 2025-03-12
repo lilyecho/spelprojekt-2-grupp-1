@@ -25,16 +25,10 @@ public class MusicManager : MonoBehaviour
     //TODO väldigt temportärt endast för speltest 1
     private string parameterName = "";
     private int value;
-    private void Awake()
+    private void Start()
     {
         //InitialSetup();
         test.Invoke();
-    }
-
-    private void InitialSetup()
-    {
-        audioHandler.TryCreateInstance(musicData.GetMainMusic, out EventInstance mainInstance);
-        mainInstance.start();
     }
 
     public void ChangeParameterName(string newParameter)
@@ -66,7 +60,6 @@ public class MusicManager : MonoBehaviour
     {
         audioHandler.TryStartSound(musicData.GetMainMusic);
     }
-    
 
     private void OnEnable()
     {
