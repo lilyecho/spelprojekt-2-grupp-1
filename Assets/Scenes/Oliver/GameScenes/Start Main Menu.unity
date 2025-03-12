@@ -397,16 +397,48 @@ PrefabInstance:
     m_TransformParent: {fileID: 275313135}
     m_Modifications:
     - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 307430153}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: FMODUnity.StudioEventEmitter, FMODUnity
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206661293670482388, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1731644684051484533, guid: 07ef1da3f0641e64fb90fc63232bcd53, type: 3}
       propertyPath: m_text
@@ -769,6 +801,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vcaName: Cutscenes
+--- !u!1 &307430152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307430154}
+  - component: {fileID: 307430153}
+  m_Layer: 0
+  m_Name: Main Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &307430153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307430152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fe9364583e5d64cb97f28d1445cf68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &307430154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307430152}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 910.698, y: 509.69977, z: -486.73456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &325958056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6413,3 +6489,4 @@ SceneRoots:
   - {fileID: 1791334219}
   - {fileID: 481064502}
   - {fileID: 1650910533}
+  - {fileID: 307430154}

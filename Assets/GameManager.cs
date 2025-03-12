@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent unPause;
 
 
-
+    public bool runOnCTRL = true;
 
 
 
@@ -77,5 +77,22 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+
+
+    public void RunOnCTRL()
+    {
+        runOnCTRL = true;
+    }
+
+    public void RunOnShift()
+    {
+        runOnCTRL = false;
     }
 }
