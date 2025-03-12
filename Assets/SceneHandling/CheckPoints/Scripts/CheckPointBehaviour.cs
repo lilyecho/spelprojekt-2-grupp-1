@@ -37,7 +37,7 @@ public class CheckPointBehaviour : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = visualizerColor;
-        Gizmos.DrawCube(checkCollider.transform.position, checkCollider.size);
+        Gizmos.DrawWireCube(checkCollider.transform.position, checkCollider.size);
         
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(transform.position + spawnPoint, new Vector3(.1f,.1f,.1f));
