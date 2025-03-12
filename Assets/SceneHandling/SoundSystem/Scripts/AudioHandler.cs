@@ -86,8 +86,8 @@ public class AudioHandler : MonoBehaviour
         
         if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
         {
+            Debug.Log("Noterar att det är global iaf");
             TryChangeGlobalParameter(soundInfo.parameterName, soundInfo.parameterValue);
-            //Debug.Log();
         }
         else
         {
@@ -309,6 +309,7 @@ public class AudioHandler : MonoBehaviour
     {
         try
         {
+            Debug.Log("Försöker iaf");
             RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
         }
         catch (Exception e)
