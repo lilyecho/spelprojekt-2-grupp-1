@@ -1227,6 +1227,41 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     gizmos: 0
+    soundInfos:
+      onEnter:
+      - soundImplementationName: onEnterSneak
+        action: 2
+        eventReference:
+          Guid:
+            Data1: -99017354
+            Data2: 1115391521
+            Data3: 1226343332
+            Data4: -1244855710
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
+        locality: 1
+        parameterName: CatSneak
+        parameterValue: 1
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
+      onExit:
+      - soundImplementationName: onExitSneak
+        action: 2
+        eventReference:
+          Guid:
+            Data1: -99017354
+            Data2: 1115391521
+            Data3: 1226343332
+            Data4: -1244855710
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
+        locality: 1
+        parameterName: CatSneak
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   running:
     OnEnter:
       m_PersistentCalls:
@@ -1275,6 +1310,41 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundInfos:
+      onEnter:
+      - soundImplementationName: 
+        action: 15
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        playVariant: 1
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
+      onExit:
+      - soundImplementationName: 
+        action: 0
+        eventReference:
+          Guid:
+            Data1: 0
+            Data2: 0
+            Data3: 0
+            Data4: 0
+          Path: 
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   shrink:
     OnEnter:
       m_PersistentCalls:

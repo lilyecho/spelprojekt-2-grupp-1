@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
 
+
 [Serializable]
 public class Falling : State
 {
     float jumpBufferTimer;
     [SerializeField] private bool gizmos;
+
 
     #region AnimationParameters
 
@@ -95,4 +97,5 @@ public class Falling : State
             Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.landing);
         }
     }
+ 
 }

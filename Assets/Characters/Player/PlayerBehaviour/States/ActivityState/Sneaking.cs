@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using SceneHandling.SoundSystem.Scripts;
 
 [Serializable]
 public class Sneaking : State, IAcceleration
 {
     [SerializeField] private bool gizmos;
+    [SerializeField] private SoundInfos soundInfos;
     
     private float timeStep = .5f;
     private float currentTime = 0;
@@ -22,11 +24,15 @@ public class Sneaking : State, IAcceleration
         //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
         
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
+        Debug.Log("Sneaking: " + soundInfos.onEnter);
     }
     
     public override void Exit()
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), false);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onExit);
+        Debug.Log("Sneaking: " + soundInfos.onExit);
     }
 
     public override void Update()
@@ -125,5 +131,10 @@ public class Sneaking : State, IAcceleration
             
         SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
-    
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo[] onEnter;
+        public SoundInfo[] onExit;
+    }
 }

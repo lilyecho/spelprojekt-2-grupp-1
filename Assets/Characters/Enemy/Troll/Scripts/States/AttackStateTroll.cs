@@ -26,11 +26,23 @@ public class AttackStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+        //TrollBehaviour.GetNavMeshAgent.
         
-        StopPlayerMovement();
-        TrollBehaviour.StartCoroutine(WaitAndDie(3));
+        CatchPlayer();
+        TrollBehaviour.Transition(TrollBehaviour.PatrolState);
     }
 
+    private void CatchPlayer()
+    {
+        //StopPlayerMovement();
+        RespawnPlayer();
+    }
+
+    private void RespawnPlayer()
+    {
+        TrollBehaviour.CheckPointPort.Respawn();
+    }
+    
     private void StopPlayerMovement()
     {
         if (!TrollBehaviour.GetTarget.gameObject.TryGetComponent<Rigidbody>(out Rigidbody targetComp))
@@ -38,11 +50,4 @@ public class AttackStateTroll : TrollStates
 
         targetComp.constraints = RigidbodyConstraints.FreezeAll;
     }
-
-    private static IEnumerator WaitAndDie(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    
 }

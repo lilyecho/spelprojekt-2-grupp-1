@@ -18,6 +18,7 @@ public class TrollBehaviour : EnemyBehaviour
 
     [SerializeField] private CameraPort cameraPort = null;
     [SerializeField] private TimeManager timeManager = null;
+    [SerializeField] private CheckPointPort checkPointPort = null;
     #endregion
     private bool _movementOn = true;
     
@@ -47,6 +48,7 @@ public class TrollBehaviour : EnemyBehaviour
     public TrollData GetTrollData => trollData;
     public CharacterAudio GetAudioData => trollAudioData;
     public CameraPort CameraPort => cameraPort;
+    public CheckPointPort CheckPointPort => checkPointPort;
     public Animator Animator => animator;
     
     #endregion
