@@ -38,7 +38,6 @@ public class CheckPointManager : MonoBehaviour
     {
         playerBehaviour.transform.position = latestCheckPoint.SpawnPoint;
         playerBehaviour.ResetAbilities = latestCheckPoint.Abilities;
+        Debug.Log(playerBehaviour.transform.position +" : "+ latestCheckPoint.SpawnPoint);
     }
-    
-    
 }
