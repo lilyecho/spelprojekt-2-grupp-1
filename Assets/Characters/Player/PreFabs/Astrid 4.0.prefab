@@ -1313,7 +1313,7 @@ MonoBehaviour:
         m_Calls: []
     soundInfos:
       onEnter:
-      - soundImplementationName: 
+      - soundImplementationName: OnEnterGlide
         action: 15
         eventReference:
           Guid:
@@ -1323,24 +1323,24 @@ MonoBehaviour:
             Data4: 1475062927
           Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
         locality: 0
-        parameterName: 
-        parameterValue: 0
+        parameterName: CatPowers
+        parameterValue: 1
         playVariant: 1
         locationVariant: 0
         locationTransform: {fileID: 39312636168687084}
         stopMode: 0
       onExit:
-      - soundImplementationName: 
-        action: 0
+      - soundImplementationName: OnExitGlide
+        action: 18
         eventReference:
           Guid:
-            Data1: 0
-            Data2: 0
-            Data3: 0
-            Data4: 0
-          Path: 
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
         locality: 0
-        parameterName: 
+        parameterName: IsPowerActive
         parameterValue: 0
         playVariant: 0
         locationVariant: 0
@@ -1358,9 +1358,57 @@ MonoBehaviour:
     growColliderOffset: 0.27
   megaJump:
     SoundInformations:
-      onEnter: []
-      onCharged: []
-      onJump: []
+      onEnter:
+      - soundImplementationName: OnEnterMegaJump
+        action: 13
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 1
+        locationTransform: {fileID: 39312636168687084}
+        stopMode: 0
+      onCharged:
+      - soundImplementationName: OnChargedMegaJump
+        action: 2
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: IsPowerActive
+        parameterValue: 1
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
+      onJump:
+      - soundImplementationName: OnChargedMegaJump
+        action: 18
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: IsPowerActive
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   debugStates: 1
   rotationSpeed: 10
   currentVelocity: 0
@@ -1681,11 +1729,11 @@ MonoBehaviour:
     action: 13
     eventReference:
       Guid:
-        Data1: -100562422
-        Data2: 1090797294
-        Data3: 1425202863
-        Data4: -364203833
-      Path: event:/Sound/Characters/Surface
+        Data1: 128342943
+        Data2: 1296806260
+        Data3: 944847771
+        Data4: -1043102824
+      Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Runing
     locality: 0
     parameterName: 
     parameterValue: 0
