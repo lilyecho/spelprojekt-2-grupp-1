@@ -28785,6 +28785,9 @@ GameObject:
   - component: {fileID: 1486993851}
   - component: {fileID: 1486993859}
   - component: {fileID: 1486993858}
+  - component: {fileID: 1486993862}
+  - component: {fileID: 1486993861}
+  - component: {fileID: 1486993860}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -28838,7 +28841,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 135.07692
     y: 62
-    width: 101.923035
+    width: 98.65979
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -28872,11 +28875,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 371.51035, y: 249.36807}
+  scrollPos: {x: 295.78513, y: 11.775669}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 528
-  zoom: 0.5200004
+  zoom: 0.97
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -28886,7 +28889,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1486993833}
   selectedCommands:
-  - {fileID: 1486993842}
+  - {fileID: 1486993830}
   variables: []
   description: 
   stepPause: 0
@@ -28986,7 +28989,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 246.92308
     y: 68.76922
-    width: 103.846115
+    width: 99.48453
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -29004,6 +29007,9 @@ MonoBehaviour:
   - {fileID: 1486993841}
   - {fileID: 1486993853}
   - {fileID: 1486993835}
+  - {fileID: 1486993862}
+  - {fileID: 1486993861}
+  - {fileID: 1486993860}
   - {fileID: 1486993845}
   - {fileID: 1486993852}
   - {fileID: 1486993851}
@@ -29041,8 +29047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: I remember tasting one of these when I was still a kitten and being
-    able to jump super high! Maybe that will help me clear the obstacles I saw earlier?
+  storyText: "No. She\u2019s okay. She probably just dropped it or something. Focus. "
   description: 
   character: {fileID: 853757288}
   portrait: {fileID: 0}
@@ -29069,7 +29074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: But why is it here? I hope nothing bad happened to her.
+  storyText: But why is it here? I hope nothing bad happened to her...
   description: 
   character: {fileID: 853757288}
   portrait: {fileID: 0}
@@ -29586,7 +29591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 23
   indentLevel: 0
-  storyText: This is one of Iduns potions!
+  storyText: Oh no! This is Iduns potion!
   description: 
   character: {fileID: 853757288}
   portrait: {fileID: 0}
@@ -30111,6 +30116,121 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1486993860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 36
+  indentLevel: 0
+  storyText: I remember tasting one of these when I was still a kitten and being
+    able to jump super high! Maybe I'll be able to clear the obstacles I saw earlier
+    now?
+  description: 
+  character: {fileID: 853757288}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1486993861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 35
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1762577789}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1303077276}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SpriteBounce
+          m_BoolArgument: 1
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1486993862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486993823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 34
+  indentLevel: 0
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 1
+  durationOLD: 0
 --- !u!1001 &1489597974
 PrefabInstance:
   m_ObjectHideFlags: 0
