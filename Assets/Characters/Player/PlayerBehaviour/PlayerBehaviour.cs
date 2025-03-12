@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     #endregion
 
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
+    [SerializeField] private CheckPointPort checkPointPort = null;
     
     [Space,SerializeField] private PlayerData playerDataNormal;
     [SerializeField] private PlayerData playerDataShrink;
@@ -336,9 +337,12 @@ public class PlayerBehaviour : MonoBehaviour
         currentState?.OnShrink(context);
     }
 
-    public void Mouse(InputAction.CallbackContext context)
+    public void Respawn(InputAction.CallbackContext context)
     {
-        //currentState?.OnSpaceBar(context);
+        if (context.performed)
+        {
+            checkPointPort.Respawn();
+        }
     }
 
 

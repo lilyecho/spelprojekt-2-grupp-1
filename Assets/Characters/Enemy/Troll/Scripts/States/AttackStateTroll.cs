@@ -29,6 +29,7 @@ public class AttackStateTroll : TrollStates
         //TrollBehaviour.GetNavMeshAgent.
         
         CatchPlayer();
+        TrollBehaviour.Transition(TrollBehaviour.PatrolState);
     }
 
     private void CatchPlayer()
