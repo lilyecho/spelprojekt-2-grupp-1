@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
         
         timeManager.Movement(false);
         pauseMenu.gameObject.SetActive(true);
-        defaultButton.Select();
         
         
     }

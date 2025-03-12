@@ -121,6 +121,12 @@ MonoBehaviour:
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   cameraSensitivity: 1
   cameraSensitivitySlider: {fileID: 2575488149034241839}
+  onPause:
+    m_PersistentCalls:
+      m_Calls: []
+  unPause:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &5328329590518498572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,6 +135,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7648943167004602414}
     m_Modifications:
+    - target: {fileID: 243485972728401418, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 870104056385011984, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -144,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 917307414416918448, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1067851257871387394, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1701102022284508729, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -419,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6798200087511509275, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6798200087511509275, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -460,6 +474,10 @@ PrefabInstance:
     - target: {fileID: 7025086531108221978, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253520833833291835, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7660622259088050723, guid: 37110eddff9497d4d825219f0786f28d, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
