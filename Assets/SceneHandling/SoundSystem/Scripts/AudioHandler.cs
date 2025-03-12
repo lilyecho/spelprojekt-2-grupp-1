@@ -82,7 +82,7 @@ public class AudioHandler : MonoBehaviour
     private void HandleParameterChange(SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.ChangeParameter)) return;
-        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
+        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance) && soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Local)) return;
         
         if (soundInfo.locality.HasFlag(SoundInfo.SoundLocality.Global))
         {
