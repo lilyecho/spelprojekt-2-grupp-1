@@ -8360,6 +8360,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9318aa5b5c9ff4a498c7d6e813fb9dad, type: 3}
+--- !u!1 &464334252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6954541472647687148, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+  m_PrefabInstance: {fileID: 1171299052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &464334255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464334252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722affbf7e20347e9bbda71de9ce0402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: Level4
+    action: 11
+    eventReference:
+      Guid:
+        Data1: -1211369258
+        Data2: 1298399030
+        Data3: -922918270
+        Data4: 418594966
+      Path: event:/Music/Loops/Level3-5
+    locality: 0
+    parameterName: Level
+    parameterValue: 4
+    playVariant: 1
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
 --- !u!4 &470507419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 59615149175501986, guid: 9ea968d49d284224daf1d27f6a0e8024, type: 3}
@@ -19691,7 +19726,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: cc639073fb416694b8eaf6939ff9c7b7, type: 2}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -19700,6 +19739,18 @@ PrefabInstance:
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 464334255}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInvoke
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -19712,6 +19763,14 @@ PrefabInstance:
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: StartMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6188481562169791002, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: m_Name
@@ -19764,6 +19823,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6188481562169791002, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1171299054}
+    - targetCorrespondingSourceObject: {fileID: 6954541472647687148, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 464334255}
   m_SourcePrefab: {fileID: 100100000, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
 --- !u!1 &1171299053 stripped
 GameObject:
