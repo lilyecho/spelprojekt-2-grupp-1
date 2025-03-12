@@ -17,13 +17,18 @@ public class TrollBehaviour : EnemyBehaviour
     [SerializeField] private CameraPort cameraPort = null;
     [SerializeField] private TimeManager timeManager = null;
     [SerializeField] private CheckPointPort checkPointPort = null;
+    public CameraTrollPort cameraTrollPort;
+    public Transform cameraPosDuringAttack;
     #endregion
-    
+
     private bool _movementOn = true;
     
     private NavMeshAgent navMeshAgent;
 
     [ReadOnly] public States activeState = States.Null;
+
+    
+
 
     #region States
     [Space,Header("States")]

@@ -65,7 +65,7 @@ public class KameraPrototyp : MonoBehaviour
                 case State.CAUGHT:
                 targetPoint.transform.position = Vector3.SmoothDamp(targetPoint.transform.position, trollPos.transform.position, ref velocity, 0.03f);
                 cam.transform.position = Vector3.SmoothDamp(cam.transform.position, camPosWhenCaught.position, ref velocity, 0.03f);
-                cam.transform.LookAt(targetPoint.transform.position);
+                cam.transform.LookAt(targetPoint.transform.position + heightOffset);
                 break;
             }
         //UpdateRotation(speedMultiplier);

@@ -301,6 +301,37 @@ Transform:
   - {fileID: 173710127514144622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6605634429751429117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2194589607174929248}
+  m_Layer: 2
+  m_Name: CameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2194589607174929248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6605634429751429117}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.47, z: -4.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8192682113054190771}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6867033740636652369
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +752,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e683218596188f84b99b50ad741b244d, type: 2}
     - target: {fileID: 7066962405342261517, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+      propertyPath: cameraTrollPort
+      value: 
+      objectReference: {fileID: 11400000, guid: 63d2624bce536494bb81e02d14df7e95, type: 2}
+    - target: {fileID: 7066962405342261517, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+      propertyPath: cameraPosDuringAttack
+      value: 
+      objectReference: {fileID: 2194589607174929248}
+    - target: {fileID: 7066962405342261517, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       propertyPath: PatrolState.pointHolder
       value: 
       objectReference: {fileID: 777031692463043453}
@@ -818,6 +857,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8477003276928349232}
+    - targetCorrespondingSourceObject: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2194589607174929248}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4631110317963788668, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       insertIndex: -1

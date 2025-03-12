@@ -27,7 +27,7 @@ public class AttackStateTroll : TrollStates
         
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
         //TrollBehaviour.GetNavMeshAgent.
-        
+        TrollBehaviour.cameraTrollPort.AstridCaught(TrollBehaviour.transform, TrollBehaviour.cameraPosDuringAttack);
         CatchPlayer();
         TrollBehaviour.Transition(TrollBehaviour.PatrolState);
     }
