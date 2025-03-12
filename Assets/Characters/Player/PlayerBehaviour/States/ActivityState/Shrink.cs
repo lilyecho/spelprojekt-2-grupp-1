@@ -10,7 +10,9 @@ public class Shrink : State
 {
     [SerializeField] private Vector3 shrinkPositionChange;
     [SerializeField] private Vector3 growPositionChange;
-    [SerializeField] private float growColliderOffset;
+    [SerializeField] private Vector3 growColliderOffset;
+    
+    [Space,SerializeField] private Vector3 colliderSize;
     private bool _active = false;
     private Vector3 standardSize;
 
@@ -27,7 +29,7 @@ public class Shrink : State
     {
         //Physics.OverlapBox(playerBehaviour.transform.position + playerBehaviour.transform.up*0.3f ,new Vector3(.2f,.5f,.7f)/2f,playerBehaviour.transform.rotation,layerMask).Length <= 0
         LayerMask layerMask = ~LayerMask.GetMask("Player", "InteractiveEnvironment");
-        if (_active && Physics.OverlapBox(playerBehaviour.transform.position + playerBehaviour.transform.up*0.3f ,new Vector3(.2f,.5f,.7f)/2f,playerBehaviour.transform.rotation,layerMask).Length <= 0)
+        if (_active && Physics.OverlapBox(playerBehaviour.transform.position + growPositionChange + growColliderOffset ,colliderSize/2f,playerBehaviour.transform.rotation,layerMask).Length <= 0)
         {
             _active = false;
             Particles();
@@ -61,7 +63,7 @@ public class Shrink : State
     public override void OnDrawGizmos(PlayerBehaviour player)
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(player.transform.position + growPositionChange.normalized * growColliderOffset, new Vector3(.2f,.5f,.7f));
+        Gizmos.DrawWireCube(player.transform.position + growPositionChange + growColliderOffset, colliderSize);
     }
 
     public override void OnDrawGizmosSelected(PlayerBehaviour player)

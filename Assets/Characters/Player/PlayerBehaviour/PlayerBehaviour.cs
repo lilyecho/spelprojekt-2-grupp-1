@@ -282,18 +282,40 @@ public class PlayerBehaviour : MonoBehaviour
     {
         
         //walkState?.OnShift(context);
-        if(context.performed)
+
+        if(GameManager.instance.runOnCTRL)
         {
-            movementMode = MovementMode.SNEAK;
+            if (context.performed)
+            {
+                movementMode = MovementMode.SNEAK;
+            }
+            if (context.canceled)
+            {
+                movementMode = MovementMode.WALK;
+            }
+
+            if (!_movementOn) return;
+            currentState?.OnShift(context);
+            jumpState?.OnShift(context);
         }
-        if (context.canceled)
+
+        else
         {
-            movementMode = MovementMode.WALK;
+            if (context.performed)
+            {
+                movementMode = MovementMode.RUN;
+
+            }
+            if (context.canceled)
+            {
+                movementMode = MovementMode.WALK;
+            }
+
+            if (!_movementOn) return;
+            currentState?.OnCTRL(context);
         }
+
         
-        if (!_movementOn) return;
-        currentState?.OnShift(context);
-        jumpState?.OnShift(context);
         
     }
 
@@ -301,18 +323,38 @@ public class PlayerBehaviour : MonoBehaviour
     {
         
         //walkState?.OnCTRL(context);
-        if (context.performed)
+        if(GameManager.instance.runOnCTRL)
         {
-            movementMode = MovementMode.RUN;
+            if (context.performed)
+            {
+                movementMode = MovementMode.RUN;
 
+            }
+            if (context.canceled)
+            {
+                movementMode = MovementMode.WALK;
+            }
+
+            if (!_movementOn) return;
+            currentState?.OnCTRL(context);
         }
-        if (context.canceled)
+
+        else
         {
-            movementMode = MovementMode.WALK;
+            if (context.performed)
+            {
+                movementMode = MovementMode.SNEAK;
+            }
+            if (context.canceled)
+            {
+                movementMode = MovementMode.WALK;
+            }
+
+            if (!_movementOn) return;
+            currentState?.OnShift(context);
+            jumpState?.OnShift(context);
         }
         
-        if (!_movementOn) return;
-        currentState?.OnCTRL(context);
     }
 
     public void WASD(InputAction.CallbackContext context)
