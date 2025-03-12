@@ -24,6 +24,7 @@ public class MegaJump : JumpState
     {
         chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
+        playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onEnter);
     }
 
     public override void Update()
@@ -45,6 +46,7 @@ public class MegaJump : JumpState
         if (context.canceled && chargeTimer <= 0)
         {
             playerBehaviour.anim.SetBool(animationSuperJumpRelease, true);
+            playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onMegaJump);
             
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetMegaJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
             Jump(jumpForce, playerBehaviour.PlayerData.GetMegaJump.GetKeptMomentumPercentage);
@@ -53,6 +55,8 @@ public class MegaJump : JumpState
         else if (context.canceled)
         {
             playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
+            playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onNormalJump);
+            
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
             Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
         }
@@ -62,9 +66,8 @@ public class MegaJump : JumpState
     private struct JumpsSoundInfos
     {
         public SoundInfo[] onEnter;
-        public SoundInfo[] onCharged;
-        public SoundInfo[] onJump;
-        //public SoundInfo[] onExit;
+        public SoundInfo[] onMegaJump;
+        public SoundInfo[] onNormalJump;
     }
 }
 

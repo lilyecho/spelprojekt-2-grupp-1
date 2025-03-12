@@ -137,7 +137,11 @@ public class AudioHandler : MonoBehaviour
         
         GUID eventGUID = soundInfo.eventReference.Guid;
         dictionaryGuidInstances.Remove(eventGUID);
-        instance.stop(soundInfo.stopMode.HasFlag(SoundInfo.StopMode.Immediate) ? STOP_MODE.IMMEDIATE : STOP_MODE.ALLOWFADEOUT);
+        
+        if (soundInfo.stopMode != SoundInfo.StopMode.None) 
+        {
+            instance.stop(soundInfo.stopMode== SoundInfo.StopMode.Immediate ? STOP_MODE.IMMEDIATE : STOP_MODE.ALLOWFADEOUT);
+        }
         instance.release();
     }
     

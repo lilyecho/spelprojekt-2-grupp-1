@@ -34,6 +34,7 @@ namespace SceneHandling.SoundSystem.Scripts
     
         public enum StopMode
         {
+            None,
             AllowFadeout,
             Immediate
         }
