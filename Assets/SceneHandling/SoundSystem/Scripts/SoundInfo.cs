@@ -57,7 +57,7 @@ namespace SceneHandling.SoundSystem.Scripts
             ChangeParameter = 2,
             Location = 4,
             Play = 8,
-            Remove = 16
+            Stop = 16
         }
     }
 }

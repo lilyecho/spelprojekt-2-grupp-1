@@ -69,6 +69,7 @@ public class AudioHandler : MonoBehaviour
         HandleParameterChange(soundInfo);
         HandleLocation(soundInfo);
         HandlePlay(soundInfo);
+        HandleStop(soundInfo);
     }
 
     private void HandleCreate(SoundInfo soundInfo)
@@ -125,6 +126,23 @@ public class AudioHandler : MonoBehaviour
         {
             PlayInstance(soundInfo.eventReference);
         }
+    }
+
+    private void HandleStop(SoundInfo soundInfo)
+    {
+        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Stop)) return;
+        
+        TryStopInstance(soundInfo);
+    }
+
+    private void TryStopInstance(SoundInfo soundInfo)
+    {
+        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
+        
+        GUID eventGUID = soundInfo.eventReference.Guid;
+        dictionaryGuidInstances.Remove(eventGUID);
+        instance.stop(soundInfo.stopMode.HasFlag(SoundInfo.StopMode.Immediate) ? STOP_MODE.IMMEDIATE : STOP_MODE.ALLOWFADEOUT);
+        instance.release();
     }
     
     private void NewPlayOneShot(EventReference eventReference)

@@ -8,7 +8,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class SoundToAnimationStep : SoundToAnimation
 {
-    private float testValue = 0.5f;
     private bool activeSound = false;
     protected override void CheckPlaySound()
     {

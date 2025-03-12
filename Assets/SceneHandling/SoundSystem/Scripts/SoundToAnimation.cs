@@ -10,6 +10,8 @@ public class SoundToAnimation : MonoBehaviour
 {
     [SerializeField] protected AudioPort audioPort;
     [SerializeField] protected SoundInfo soundInfo;
+    
+    [Space,Header("Curve-Related")]
     [SerializeField] protected string curveName;
     [SerializeField, Range(0,1)] protected float activationValue;
     

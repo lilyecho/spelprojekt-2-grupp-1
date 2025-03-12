@@ -60,7 +60,7 @@ namespace Editor
                 {
                     amountOfLines += lineSizePlay;
                 }
-                if (soundAction.HasFlag(SoundInfo.SoundAction.Remove))
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Stop))
                 {
                     amountOfLines += lineSizeRemove;
                 }
@@ -103,7 +103,7 @@ namespace Editor
                 {
                     DrawPlayRelated(position, ref currentAmountOfLines);
                 }
-                if (soundAction.HasFlag(SoundInfo.SoundAction.Remove))
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Stop))
                 {
                     DrawRemoveRelated(position, ref currentAmountOfLines);
                 }
