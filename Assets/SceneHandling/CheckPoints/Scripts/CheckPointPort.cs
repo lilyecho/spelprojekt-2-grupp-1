@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class CheckPointPort : ScriptableObject
 {
     public UnityAction<CheckPointBehaviour> OnChangeCheckPoint = delegate(CheckPointBehaviour checkPoint){ };
-    public UnityAction OnRespawn = delegate{ };
+    public UnityAction OnRespawn = delegate(){};
 
     public void ChangeCheckPoint(CheckPointBehaviour checkPointBehaviour)
     {

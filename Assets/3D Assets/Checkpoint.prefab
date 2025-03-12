@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2507356545106181972}
   - component: {fileID: 7459228494246226262}
   - component: {fileID: 534008005666395541}
+  - component: {fileID: 5220449081057251994}
   m_Layer: 0
   m_Name: stor_sten (1)
   m_TagString: Untagged
@@ -107,6 +108,37 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8091047118980167770, guid: 2bd2c8cbf55e7f945a684f4404459c47, type: 3}
+--- !u!114 &5220449081057251994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338371244333004819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1356090148
+      Data2: 1330319792
+      Data3: 675978428
+      Data4: 1513483444
+    Path: event:/Sound/PotionSFX
+  Event: 
+  PlayEvent: 11
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7462204504603918371
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +374,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8524188912450455018}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 8524188912450455018}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
