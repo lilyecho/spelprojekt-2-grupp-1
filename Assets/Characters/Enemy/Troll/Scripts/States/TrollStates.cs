@@ -30,7 +30,7 @@ public class TrollStates
     protected void SetAgentSpeed(float speed)
     {
         TrollBehaviour.GetNavMeshAgent.speed = speed;
-        //TrollBehaviour.Animator.SetFloat(TrollBehaviour.speedAP, speed);
+        TrollBehaviour.Animator.SetFloat(TrollBehaviour.speedAP, speed);
     }
     protected void SetAgentAngularSpeed(float speed)
     {

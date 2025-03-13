@@ -46,9 +46,9 @@ public class TrollBehaviour : EnemyBehaviour
 
     #region AnimationParameters
 
-    //public int speedAP = Animator.StringToHash("Speed");
+    public int speedAP = Animator.StringToHash("Speed");
     public int chasingAP = Animator.StringToHash("Chasing");
-    //public int patrollingAP = Animator.StringToHash("Patrol");
+    public int patrollingAP = Animator.StringToHash("Patrol");
     public int grabbingAP = Animator.StringToHash("Grabbing");
     public int lookAroundAP = Animator.StringToHash("Look Around");
     public int searchingAP = Animator.StringToHash("Searching");
