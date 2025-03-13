@@ -82,7 +82,7 @@ public class TrollStates
 
     protected bool CheckIfRaycastHit(Transform eyes,float range)
     {
-        LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment");
+        LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment", "Ignore Raycast");
         Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - eyes.position).normalized;
         Physics.Raycast(eyes.position,directionToPlayer ,out RaycastHit hit,range,layerMask);
         
