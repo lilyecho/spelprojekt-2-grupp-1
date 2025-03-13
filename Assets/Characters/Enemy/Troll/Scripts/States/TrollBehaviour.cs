@@ -262,7 +262,7 @@ public class TrollBehaviour : EnemyBehaviour
         if (activeState.HasFlag(States.Attack) || activeState.HasFlag(States.Chase)) return;
         
         navMeshAgent.SetDestination(alertPoint);
-        Transition(ChaseState);
+        Transition(SearchState);
     }
     
     private void ChangeMovementActivation(bool nextValue)

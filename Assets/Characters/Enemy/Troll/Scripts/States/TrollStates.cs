@@ -57,7 +57,7 @@ public class TrollStates
         Vector3 targetPos = TrollBehaviour.GetTarget.position;
         Vector3 directionToPlayer = (new Vector3(targetPos.x,0,targetPos.z) - new Vector3(trollPos.x,0,trollPos.z))
             .normalized;
-        float angle = Vector3.SignedAngle(eyes.forward, directionToPlayer, Vector3.up);
+        float angle = Vector3.Angle(eyes.forward, directionToPlayer);
         
         return MathF.Abs(angle) <= angleOneSide;
     }
