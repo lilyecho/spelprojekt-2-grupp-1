@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TrollDataStandard
   m_EditorClassIdentifier: 
   patrolStateMovement:
-    speed: 1
+    speed: 1.5
     angularSpeed: 90
     acceleration: 120
     statePriority: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     acceleration: 120
     statePriority: 10
   chaseStateMovement:
-    speed: 10
+    speed: 8.5
     angularSpeed: 60
     acceleration: 120
     statePriority: 20
@@ -34,9 +34,9 @@ MonoBehaviour:
     statePriority: 30
   attackRange: 2
   trollTrollSight:
-    range: 4.5
-    angle: 65
+    range: 10
+    angle: 60
   lampSight:
-    range: 8
+    range: 15
     angle: 25
   aggressionRange: 16.01
