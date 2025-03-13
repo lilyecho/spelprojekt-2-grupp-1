@@ -10,13 +10,16 @@ public class ChaseStateTroll : TrollStates
 {
     [SerializeField] private UnityEvent OnEnter;
     [SerializeField] private UnityEvent OnExit;
-    
+
+    private const float totalTime = 4;
+    private float currentTimer;
     public override void Enter()
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
         TrollBehaviour.Animator.SetBool(TrollBehaviour.chasingAP, true);
         TrollBehaviour.stateColor = Color.red;
+        currentTimer = totalTime;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Attack
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetChase.statePriority;
@@ -37,6 +40,13 @@ public class ChaseStateTroll : TrollStates
 
     public override void FixedUpdate()
     {
+        currentTimer -= Time.fixedDeltaTime;
+        if (currentTimer <= 0)
+        {
+            TrollBehaviour.Transition(TrollBehaviour.PatrolState);
+            return;
+        }
+        
         //Troll
         if(Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range)) return;
         //Lamp
