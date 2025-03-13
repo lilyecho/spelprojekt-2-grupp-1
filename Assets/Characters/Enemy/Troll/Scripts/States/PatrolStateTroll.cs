@@ -33,7 +33,7 @@ public class PatrolStateTroll : TrollStates
         trollAlertPort.OnAlertedPosition += SearchAtAlertPoint;
         
         TrollBehaviour.activeState = TrollBehaviour.States.Patrol;
-        //TrollBehaviour.Animator.SetBool(TrollBehaviour.pat, true);
+        TrollBehaviour.Animator.SetBool(TrollBehaviour.patrollingAP, true);
         TrollBehaviour.stateColor = Color.blue;
         
         //Change pathfinding system so that trolls wont get stuck on the way to patrols
@@ -48,6 +48,7 @@ public class PatrolStateTroll : TrollStates
     {
         //Events
         trollAlertPort.OnAlertedPosition -= SearchAtAlertPoint;
+        TrollBehaviour.Animator.SetBool(TrollBehaviour.patrollingAP, false);
     }
 
     private void SetTargetPoint()

@@ -14,6 +14,7 @@ public class SearchStateTroll : TrollStates
     public override void Enter()
     {
         TrollBehaviour.activeState = TrollBehaviour.States.Search;
+        TrollBehaviour.Animator.SetBool(TrollBehaviour.searchingAP, true);
         TrollBehaviour.stateColor = Color.yellow;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Chase or attack
@@ -21,6 +22,11 @@ public class SearchStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         
         SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetSearch);
+    }
+
+    public override void Exit()
+    {
+        TrollBehaviour.Animator.SetBool(TrollBehaviour.searchingAP, false);
     }
 
     public override void FixedUpdate()
