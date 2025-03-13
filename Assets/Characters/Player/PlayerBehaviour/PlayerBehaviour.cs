@@ -73,6 +73,9 @@ public class PlayerBehaviour : MonoBehaviour
     
     public ParticleSystem GetOnShrinkParticleSystem => particleSystemOnShrink;
 
+    [HideInInspector] public float shrinkCooldown = 1f;
+    [HideInInspector] public float shrinkCooldownTimer = 1f;
+
     #endregion
 
     #region Behaviour States
@@ -133,6 +136,8 @@ public class PlayerBehaviour : MonoBehaviour
         normalJump.Awake(this);
         megaJump.Awake(this);
         unableToJump.Awake(this);
+
+        shrinkCooldownTimer = 0f;
     }
 
     private void OnDrawGizmos()
@@ -219,6 +224,8 @@ public class PlayerBehaviour : MonoBehaviour
         cameraRight.Normalize();
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
+
+        shrinkCooldownTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
