@@ -28,7 +28,7 @@ public class Shrink : State
     private void ReSize()
     {
         //Physics.OverlapBox(playerBehaviour.transform.position + playerBehaviour.transform.up*0.3f ,new Vector3(.2f,.5f,.7f)/2f,playerBehaviour.transform.rotation,layerMask).Length <= 0
-        LayerMask layerMask = ~LayerMask.GetMask("Player", "InteractiveEnvironment");
+        LayerMask layerMask = ~LayerMask.GetMask("Player", "InteractiveEnvironment", "Ignore Raycast");
         if (_active && Physics.OverlapBox(playerBehaviour.transform.position + growPositionChange + growColliderOffset ,colliderSize/2f,playerBehaviour.transform.rotation,layerMask).Length <= 0)
         {
             _active = false;
