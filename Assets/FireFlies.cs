@@ -56,7 +56,7 @@ public class FireFlies : MonoBehaviour
 
         if(player != null)
         {
-            distance = Vector3.Distance(transform.position, player.position);
+            distance = Vector3.Distance(fireFliesParent.transform.position, player.position);
         }
         
 
@@ -110,7 +110,7 @@ public class FireFlies : MonoBehaviour
         Gizmos.color = Color.white;
         if (points.Length > 0)
         {
-            Gizmos.DrawLine(transform.position, points[0].gameObject.transform.position);
+            Gizmos.DrawLine(fireFliesParent.transform.position, points[0].gameObject.transform.position);
 
             if(points.Length > 1)
             {
