@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class FireFlies : MonoBehaviour
 {
     public float speed;
@@ -11,28 +12,30 @@ public class FireFlies : MonoBehaviour
     public float height;
     private float time;
 
-
+    public GameObject fireFliesParent;
     public GameObject fireFlies;
     Vector3 startPosition;
+
+    Vector3 startPositionWorld;
 
     private Transform player;
     private float distance;
 
 
     private bool moving = false;
+    [HideInInspector]public bool hasReachedEndOfPath;
 
     void Start()
     {
         startPosition = fireFlies.transform.localPosition;
+        startPositionWorld = fireFliesParent.transform.position;
         player = GameObject.FindWithTag("Player")?.transform;
-        
-        
-
     }
     
 
 
     public FireFliesPoint[] points;
+    public GameObject pointsParentObject;
     private int index = 0;
     public float moveSpeed;
 
@@ -48,10 +51,14 @@ public class FireFlies : MonoBehaviour
 
         fireFlies.transform.localPosition = startPosition + new Vector3(x, y, 0);
         
-        transform.Rotate(rotation * Time.deltaTime);
+        //transform.Rotate(rotation * Time.deltaTime);
+        fireFlies.transform.Rotate(rotation * Time.deltaTime);
 
-
-        distance = Vector3.Distance(transform.position, player.position);
+        if(player != null)
+        {
+            distance = Vector3.Distance(transform.position, player.position);
+        }
+        
 
         if (!moving && distance < 3 && index < points.Length)
         {
@@ -62,10 +69,11 @@ public class FireFlies : MonoBehaviour
         {
             if (index < points.Length)
             {
-                transform.position = Vector3.MoveTowards(transform.position, points[index].transform.position, moveSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, points[index].transform.position, moveSpeed * Time.deltaTime);
+                fireFliesParent.transform.position = Vector3.MoveTowards(fireFliesParent.transform.position, points[index].transform.position, moveSpeed * Time.deltaTime);
             }
             
-
+            /*
             if(Vector3.Distance(transform.position, points[index].transform.position) <  0.2f)
             {
                 if (points[index].isStop || index == points.Length - 1)
@@ -75,28 +83,62 @@ public class FireFlies : MonoBehaviour
                 index++;
                 
             }
+            */
+            if (Vector3.Distance(fireFliesParent.transform.position, points[index].transform.position) < 0.2f)
+            {
+                if (points[index].isStop || index == points.Length - 1)
+                {
+                    moving = false;
+                }
+                index++;
+
+            }
         }
     }
 
     private void OnValidate()
     {
-        
+        points = new FireFliesPoint[pointsParentObject.transform.childCount];
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = pointsParentObject.transform.GetChild(i).GetComponent<FireFliesPoint>();
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        if (points.Length > 1)
+        if (points.Length > 0)
         {
             Gizmos.DrawLine(transform.position, points[0].gameObject.transform.position);
-            for (int i = 0; i < points.Length -1; i++)
+
+            if(points.Length > 1)
             {
-                Gizmos.DrawLine(points[i].gameObject.transform.position, points[i + 1].gameObject.transform.position);
+                for (int i = 0; i < points.Length - 1; i++)
+                {
+                    Gizmos.DrawLine(points[i].gameObject.transform.position, points[i + 1].gameObject.transform.position);
+                }
             }
+            
 
             
         }
     }
+
+    private void OnTransformChildrenChanged()
+    {
+        
+        OnValidate();
+    }
+
+    
+    public void ResetPosition()
+    {
+        moving = false;
+        index = 0;
+        fireFliesParent.transform.position = startPositionWorld;
+    }
+
 
 
 }
