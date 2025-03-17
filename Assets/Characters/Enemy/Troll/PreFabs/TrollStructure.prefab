@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &173710127514144622
 Transform:
   m_ObjectHideFlags: 0
@@ -641,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -649,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: 5408492065041456070, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -767,6 +767,14 @@ PrefabInstance:
       propertyPath: PatrolState.pointHolder
       value: 
       objectReference: {fileID: 777031692463043453}
+    - target: {fileID: 7066962405342261517, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+      propertyPath: PatrolState.patrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066962405342261517, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
+      propertyPath: PatrolState.patrolPoints.Array.data[0].y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7157118878078679563, guid: ce7e550c34920a14aae0a5a41d69851c, type: 3}
       propertyPath: m_Mesh
       value: 

@@ -1,23 +1,25 @@
 using UnityEditor;
 using UnityEngine;
 
-
-[CustomEditor(typeof(CheckPointBehaviour))]
-public class CheckPointPositionHandleEditor : UnityEditor.Editor
+namespace Editor
 {
-    private void OnSceneGUI()
+    [CustomEditor(typeof(CheckPointBehaviour))]
+    public class CheckPointPositionHandleEditor : UnityEditor.Editor
     {
-        CheckPointBehaviour checkPointBehaviour = (CheckPointBehaviour)target;
-        
-        EditorGUI.BeginChangeCheck();
-        
-        Vector3 newSpawnPoint = Handles.PositionHandle(checkPointBehaviour.SpawnPoint, Quaternion.identity);
-        
-        if (EditorGUI.EndChangeCheck())
+        private void OnSceneGUI()
         {
-            Undo.RecordObject(checkPointBehaviour, "Change spawnPoint's position");
-            checkPointBehaviour.SpawnPoint = newSpawnPoint;
+            CheckPointBehaviour checkPointBehaviour = (CheckPointBehaviour)target;
+        
+            EditorGUI.BeginChangeCheck();
+        
+            Vector3 newSpawnPoint = Handles.PositionHandle(checkPointBehaviour.SpawnPoint, Quaternion.identity);
+        
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(checkPointBehaviour, "Change spawnPoint's position");
+                checkPointBehaviour.SpawnPoint = newSpawnPoint;
 
+            }
         }
     }
 }

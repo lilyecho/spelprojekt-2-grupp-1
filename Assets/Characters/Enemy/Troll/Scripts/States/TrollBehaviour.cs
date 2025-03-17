@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Characters.Enemy.Troll.Scripts.States;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,9 +29,8 @@ public class TrollBehaviour : EnemyBehaviour
 
     [ReadOnly] public States activeState = States.Null;
 
+    [Space, SerializeField] private Vector3[] patrolPoints;
     
-
-
     #region States
     [Space,Header("States")]
     public PatrolStateTroll PatrolState = new PatrolStateTroll();
@@ -62,12 +63,12 @@ public class TrollBehaviour : EnemyBehaviour
     public Transform GetLamp => lamp;
     public TrollData GetTrollData => trollData;
     public CameraPort CameraPort => cameraPort;
+    public ref Vector3[] GetPatrolPoints => ref patrolPoints;
+    
     public CheckPointPort CheckPointPort => checkPointPort;
     public Animator Animator => animator;
     
     #endregion
-
-    
     
     public enum States
     {
@@ -124,10 +125,10 @@ public class TrollBehaviour : EnemyBehaviour
     {
         ValidateTrollBehaviour();
         
-        PatrolState.OnValidate();
-        ChaseState.OnValidate();
-        SearchState.OnValidate();
-        AttackState.OnValidate();
+        PatrolState.OnValidate(this);
+        ChaseState.OnValidate(this);
+        SearchState.OnValidate(this);
+        AttackState.OnValidate(this);
     }
 
     private void ValidateTrollBehaviour()
@@ -296,8 +297,5 @@ public class TrollBehaviour : EnemyBehaviour
         {
             navMeshAgent.speed = 0;
         }
-        
-        
-        
     }
 }

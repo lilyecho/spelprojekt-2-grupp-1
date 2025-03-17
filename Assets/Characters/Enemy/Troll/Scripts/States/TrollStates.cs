@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class TrollStates
 {
     protected TrollBehaviour TrollBehaviour = null;
-
+    
     public virtual void Awake(TrollBehaviour trollBehaviour)
     {
         TrollBehaviour = trollBehaviour;
@@ -17,7 +17,11 @@ public class TrollStates
     public virtual void Exit(){}
     public virtual void Update(){}
     public virtual void FixedUpdate(){}
-    public virtual void OnValidate() { }
+
+    public virtual void OnValidate(TrollBehaviour trollBehaviour)
+    {
+        TrollBehaviour = trollBehaviour;
+    }
     public virtual void OnDrawGizmos(TrollBehaviour troll) { }
 
     protected void SetUpStateValuesInAgent(StateParameters parameterValues)

@@ -143,15 +143,15 @@ MonoBehaviour:
   cameraPort: {fileID: 11400000, guid: 8a6e13f451123b941b1cfefaa71bb5a1, type: 2}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   checkPointPort: {fileID: 11400000, guid: 4e43fc8d7d583f84c958922bf2677053, type: 2}
-  cameraTrollPort: {fileID: 0}
+  cameraTrollPort: {fileID: 11400000, guid: 63d2624bce536494bb81e02d14df7e95, type: 2}
   cameraPosDuringAttack: {fileID: 0}
   activeState: 0
   PatrolState:
     trollAlertPort: {fileID: 11400000, guid: b4945f8df470b114f9d7ef77d1d3a000, type: 2}
-    pointHolder: {fileID: 0}
-    patrolPoints: []
+    patrolPoints:
+    - {x: 0, y: 1, z: 0}
+    - {x: 0, y: 3, z: 2}
     patrolPointIndex: 0
-    reCalibrate: 0
     OnEnter:
       m_PersistentCalls:
         m_Calls: []
