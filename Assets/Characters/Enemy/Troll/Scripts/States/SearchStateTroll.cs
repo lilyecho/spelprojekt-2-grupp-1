@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characters.Enemy.Troll.Scripts.States;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -33,19 +34,29 @@ public class SearchStateTroll : TrollStates
     {
         if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
         {
-            TrollBehaviour.Transition(TrollBehaviour.PatrolState);
+            TrollBehaviour.Transition(TrollBehaviour.lookAroundState);
         }
         
         //TrollEyes
         if (Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
-                TrollBehaviour.GetTrollData.GetTrollSight.angle)) return;
+                TrollBehaviour.GetTrollData.GetTrollSight.angle))
+        {
+            Debug.Log("Search till chase - Troll");
+            TrollBehaviour.Transition(TrollBehaviour.chaseState);
+            return;
+        }
         
         //Lampeyes
         if (Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,
-                TrollBehaviour.GetTrollData.GetLampSight.angle)) return;
+                TrollBehaviour.GetTrollData.GetLampSight.angle))
+        {
+            Debug.Log("Search till chase - Lamp");
+            TrollBehaviour.Transition(TrollBehaviour.chaseState);
+            return;
+        }
     }
     
-    private bool Check4Player(Transform eyes, float range, float angle)
+    protected bool Check4Player(Transform eyes, float range, float angle)
     {
         if (TrollBehaviour.GetTarget == null){
             return false;
@@ -58,13 +69,7 @@ public class SearchStateTroll : TrollStates
         if (!CheckTargetWithinAngleOfSight(eyes, angle)){
             return false;
         }
-
-        if (CheckIfRaycastHit(eyes, range))
-        {
-            TrollBehaviour.Transition(TrollBehaviour.ChaseState);
-            return true;
-        }
         
-        return false;
+        return CheckIfRaycastHit(eyes, range);
     }
 }

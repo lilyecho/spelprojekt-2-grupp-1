@@ -1175,6 +1175,7 @@ MonoBehaviour:
   movementMode: 0
   enemyManagerPort: {fileID: 11400000, guid: bd24d7fe86c5b72449515210c88381f3, type: 2}
   checkPointPort: {fileID: 11400000, guid: 4e43fc8d7d583f84c958922bf2677053, type: 2}
+  hidePort: {fileID: 11400000, guid: a18cd4de09a134744ad07b48c71305f3, type: 2}
   playerDataNormal: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
   playerDataShrink: {fileID: 11400000, guid: a1e5c9cf0d179504c9945db078813ce0, type: 2}
   currentAbilities: -1
@@ -1201,6 +1202,8 @@ MonoBehaviour:
   jumpParticles: {fileID: 2994038875534626662, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   particleSystemOnShrink: {fileID: 8124358052296443870}
+  shrinkCooldown: 1
+  shrinkCooldownTimer: 1
   idle:
     OnEnter:
       m_PersistentCalls:

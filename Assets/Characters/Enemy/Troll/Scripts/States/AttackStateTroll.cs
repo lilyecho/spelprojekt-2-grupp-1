@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characters.Enemy.Troll.Scripts.States;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -29,7 +30,7 @@ public class AttackStateTroll : TrollStates
         //TrollBehaviour.GetNavMeshAgent.
         TrollBehaviour.cameraTrollPort.AstridCaught(TrollBehaviour.transform, TrollBehaviour.cameraPosDuringAttack);
         CatchPlayer();
-        TrollBehaviour.Transition(TrollBehaviour.PatrolState);
+        TrollBehaviour.Transition(TrollBehaviour.patrolState);
     }
 
     private void CatchPlayer()

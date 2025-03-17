@@ -55,6 +55,8 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         public override void Update()
         {
+            //Debug.Log("Walkable: "+CheckIfTargetPositionIsWalkable());
+            
             //TrollEyes
             if (Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,TrollBehaviour.GetTrollData.GetTrollSight.angle)) return;
             //LampEyes
@@ -65,7 +67,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         private void SearchAtAlertPoint(Vector3 alertSourcePosition)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(alertSourcePosition);
-            TrollBehaviour.Transition(TrollBehaviour.SearchState);
+            TrollBehaviour.Transition(TrollBehaviour.searchState);
         }
     
         /// <summary>
@@ -84,7 +86,7 @@ namespace Characters.Enemy.Troll.Scripts.States
 
             if (CheckIfRaycastHit(eyes,range))
             {
-                TrollBehaviour.Transition(TrollBehaviour.ChaseState);
+                TrollBehaviour.Transition(TrollBehaviour.chaseState);
                 return true;
             }
 

@@ -1,4 +1,5 @@
 using System;
+using Characters.Player.PlayerBehaviour;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private CheckPointPort checkPointPort = null;
+    [SerializeField] private HidePort hidePort = null;
     
     [Space,SerializeField] private PlayerData playerDataNormal;
     [SerializeField] private PlayerData playerDataShrink;
@@ -67,6 +69,10 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private TimeManager timeManager = null;
     private bool _movementOn = true;
     
+    
+    //Hidden
+    private bool hidden;
+    
     #region Shrink
 
     [SerializeField] private ParticleSystem particleSystemOnShrink;
@@ -112,11 +118,13 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnEnable()
     {
         timeManager.OnMovement += ChangeMovementActivation;
+        hidePort.OnHidden += ChangeHidden;
     }
 
     private void OnDisable()
     {
         timeManager.OnMovement -= ChangeMovementActivation;
+        hidePort.OnHidden -= ChangeHidden;
     }
 
     private void Awake()
@@ -461,5 +469,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             GameManager.instance?.PauseGame();
         }
+    }
+
+    public bool Hidden => hidden;
+    
+    private void ChangeHidden(bool newValue)
+    {
+        hidden = newValue;
     }
 }

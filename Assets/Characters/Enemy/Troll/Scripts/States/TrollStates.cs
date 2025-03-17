@@ -1,4 +1,5 @@
 using System;
+using Characters.Enemy.Troll.Scripts.States;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -71,7 +72,7 @@ public class TrollStates
         NavMeshPath path = new NavMeshPath();
         bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
             TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
-
+        
         return isWalkable;
     }
     
@@ -80,16 +81,27 @@ public class TrollStates
         path = new NavMeshPath();
         bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
             TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
-
+        
         return isWalkable;
     }
 
+    /// <summary>
+    /// If true the it has hit the player
+    /// </summary>
+    /// <param name="eyes"></param>
+    /// <param name="range"></param>
+    /// <returns></returns>
     protected bool CheckIfRaycastHit(Transform eyes,float range)
     {
         LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment", "Ignore Raycast");
         Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - eyes.position).normalized;
         Physics.Raycast(eyes.position,directionToPlayer ,out RaycastHit hit,range,layerMask);
-        
-        return hit.collider == TrollBehaviour.GetTarget.GetComponent<Collider>();
+
+        foreach (var playerCollider in TrollBehaviour.GetTarget.GetComponents<Collider>())
+        {
+            return hit.collider == playerCollider;
+        }
+
+        return false;
     }
 }

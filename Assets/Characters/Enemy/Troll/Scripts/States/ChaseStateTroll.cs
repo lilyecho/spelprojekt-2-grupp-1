@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characters.Enemy.Troll.Scripts.States;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -40,56 +41,58 @@ public class ChaseStateTroll : TrollStates
 
     public override void FixedUpdate()
     {
-        currentTimer -= Time.fixedDeltaTime;
+        /*currentTimer -= Time.fixedDeltaTime;
         if (currentTimer <= 0)
         {
-            TrollBehaviour.Transition(TrollBehaviour.PatrolState);
+            TrollBehaviour.Transition(TrollBehaviour.patrolState);
+            return;
+        }*/
+        
+        //Troll
+        TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range);
+        if (newState == this);
+        else
+        {
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+            TrollBehaviour.Transition(newState);
             return;
         }
         
-        //Troll
-        if(Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range)) return;
-        //Lamp
-        if(Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range)) return;
+        newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range);
+        if (newState == this);
+        else
+        {
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+            TrollBehaviour.Transition(newState);
+            return;
+        }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="eyes"></param>
-    /// <param name="range"></param>
-    /// <returns>true if swap state</returns>
-    private bool Check4Player(Transform eyes, float range)
+    
+    private TrollStates Check4Player(Transform eyes, float range)
     {
         bool inRangeOfAggression = CheckTargetInRange(eyes,TrollBehaviour.GetTrollData.GetAggressionRange);
-        if ( inRangeOfAggression && CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
+        if (!inRangeOfAggression) return TrollBehaviour.patrolState;
+        
+        if (!CheckIfTargetPositionIsWalkable())
         {
-            TrollBehaviour.Transition(TrollBehaviour.AttackState);
-            return true;
-        }
-        if (inRangeOfAggression)
-        {
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
-            return false;
+            Debug.Log("not walkable - chase");
+            return TrollBehaviour.searchState;
         }
         
-        NavMeshPath path = new NavMeshPath();
-
-        if (!CheckIfTargetPositionIsWalkable(out path))
-        {
-            TrollBehaviour.Transition(TrollBehaviour.SearchState);
-            return true;
-        }
-
         if (!CheckIfRaycastHit(eyes,range))
         {
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
-            TrollBehaviour.Transition(TrollBehaviour.SearchState);
-            return true;
+            Debug.Log("not in raycast - chase");
+            return TrollBehaviour.searchState;
         }
-            
-        TrollBehaviour.GetNavMeshAgent.path = path;
-        return false;
+        
+        if (CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
+        {
+            Debug.Log("Close for attack - chase");
+            return TrollBehaviour.attackState;
+        }
+        
+        Debug.Log("default false - chase");
+        return TrollBehaviour.chaseState;
     }
     
     public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
