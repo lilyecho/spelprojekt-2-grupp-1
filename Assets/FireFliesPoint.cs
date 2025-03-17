@@ -6,4 +6,7 @@ public class FireFliesPoint : MonoBehaviour
 {
     public bool isStop;
 
+    public float distanceToTrigger;
+
+
 }

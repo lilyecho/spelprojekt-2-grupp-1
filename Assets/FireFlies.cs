@@ -21,12 +21,15 @@ public class FireFlies : MonoBehaviour
     private Transform player;
     private float distance;
 
+    public float triggerRadius;
+
 
     private bool moving = false;
     [HideInInspector]public bool hasReachedEndOfPath;
 
     void Start()
     {
+        fireFlies.transform.localPosition = Vector3.zero;
         startPosition = fireFlies.transform.localPosition;
         startPositionWorld = fireFliesParent.transform.position;
         player = GameObject.FindWithTag("Player")?.transform;
@@ -60,9 +63,10 @@ public class FireFlies : MonoBehaviour
         }
         
 
-        if (!moving && distance < 3 && index < points.Length)
+        if (!moving && distance < triggerRadius && index < points.Length)
         {
             moving = true;
+            
             
         }
         if (moving)
@@ -88,6 +92,7 @@ public class FireFlies : MonoBehaviour
             {
                 if (points[index].isStop || index == points.Length - 1)
                 {
+                    triggerRadius = points[index].distanceToTrigger;
                     moving = false;
                 }
                 index++;
@@ -117,6 +122,11 @@ public class FireFlies : MonoBehaviour
                 for (int i = 0; i < points.Length - 1; i++)
                 {
                     Gizmos.DrawLine(points[i].gameObject.transform.position, points[i + 1].gameObject.transform.position);
+                    Gizmos.DrawWireSphere(fireFliesParent.transform.position, triggerRadius);
+                    if (points[i].isStop)
+                    {
+                        Gizmos.DrawWireSphere(points[i].gameObject.transform.position, points[i].distanceToTrigger);
+                    }
                 }
             }
             
