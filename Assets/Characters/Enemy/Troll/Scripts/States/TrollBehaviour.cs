@@ -29,7 +29,7 @@ public class TrollBehaviour : EnemyBehaviour
 
     [ReadOnly] public States activeState = States.Null;
 
-    [Space, SerializeField] private Vector3[] patrolPoints;
+    [Space] public Vector3[] patrolPoints;
     
     #region States
     [Space,Header("States")]
@@ -63,7 +63,6 @@ public class TrollBehaviour : EnemyBehaviour
     public Transform GetLamp => lamp;
     public TrollData GetTrollData => trollData;
     public CameraPort CameraPort => cameraPort;
-    public ref Vector3[] GetPatrolPoints => ref patrolPoints;
     
     public CheckPointPort CheckPointPort => checkPointPort;
     public Animator Animator => animator;

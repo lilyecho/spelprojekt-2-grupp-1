@@ -43,8 +43,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         private void SetTargetPoint()
         {
              
-            int nextPointIndex = patrolPointIndex % TrollBehaviour.GetPatrolPoints.Length;
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetPatrolPoints[nextPointIndex]);
+            int nextPointIndex = patrolPointIndex % TrollBehaviour.patrolPoints.Length;
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.patrolPoints[nextPointIndex]);
         }
     
         public override void Update()
@@ -87,14 +87,14 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         private void CheckSwapPatrolPoint()
         {
-            if (TrollBehaviour.GetPatrolPoints.Length <= 0)
+            if (TrollBehaviour.patrolPoints.Length <= 0)
             {
                 Debug.Log("Missing patrolpoints :"+TrollBehaviour.name);
                 return;
             }
             if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
             {
-                patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.GetPatrolPoints.Length;
+                patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.patrolPoints.Length;
                 SetTargetPoint();
             }
         }
@@ -106,17 +106,17 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         private void VisualizePoints()
         {
-            if (TrollBehaviour.GetPatrolPoints.Length < 1) return;
-            if (TrollBehaviour.GetPatrolPoints.Length == 1)
+            if (TrollBehaviour.patrolPoints.Length < 1) return;
+            if (TrollBehaviour.patrolPoints.Length == 1)
             {
-                Gizmos.DrawCube(TrollBehaviour.GetPatrolPoints[0], new Vector3(.5f,.5f,.5f));
+                Gizmos.DrawCube(TrollBehaviour.patrolPoints[0], new Vector3(.5f,.5f,.5f));
                 return;
             }
         
-            for (int i = 0; i < TrollBehaviour.GetPatrolPoints.Length; i++)
+            for (int i = 0; i < TrollBehaviour.patrolPoints.Length; i++)
             {
-                Gizmos.DrawCube(TrollBehaviour.GetPatrolPoints[i], new Vector3(.5f,.5f,.5f));
-                Gizmos.DrawLine(TrollBehaviour.GetPatrolPoints[i], TrollBehaviour.GetPatrolPoints[(i+1)%TrollBehaviour.GetPatrolPoints.Length]);
+                Gizmos.DrawCube(TrollBehaviour.patrolPoints[i], new Vector3(.5f,.5f,.5f));
+                Gizmos.DrawLine(TrollBehaviour.patrolPoints[i], TrollBehaviour.patrolPoints[(i+1)%TrollBehaviour.patrolPoints.Length]);
             }
         }
     }
