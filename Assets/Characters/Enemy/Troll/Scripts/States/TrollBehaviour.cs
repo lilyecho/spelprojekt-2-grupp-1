@@ -5,6 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Vector3 = UnityEngine.Vector3;
 
 
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
@@ -23,13 +24,15 @@ public class TrollBehaviour : EnemyBehaviour
     public Transform cameraPosDuringAttack;
     #endregion
 
+    private Vector3 startPos;
+    
     private bool _movementOn = true;
     
     private NavMeshAgent navMeshAgent;
 
     [ReadOnly] public States activeState = States.Null;
 
-    [Space] public Vector3[] patrolPoints;
+    [Space,SerializeField] private Vector3[] patrolPoints;
     
     #region States
     [Space,Header("States")]
@@ -57,8 +60,24 @@ public class TrollBehaviour : EnemyBehaviour
     #endregion
     
     #region Getters & Setters
+
+    public Vector3 StartPos => startPos;
     public NavMeshAgent GetNavMeshAgent => navMeshAgent;
-    
+
+    public Vector3[] WorldPatrolPoints
+    {
+        get
+        {
+            List<Vector3> points = new List<Vector3>();
+            foreach (Vector3 patrolPoint in patrolPoints)
+            {
+                points.Add(patrolPoint+startPos);
+            }
+
+            return points.ToArray();
+        }
+    }
+    public ref Vector3[] LocalPatrolPoints => ref patrolPoints;
     public Transform GetEyes => eyes;
     public Transform GetLamp => lamp;
     public TrollData GetTrollData => trollData;
@@ -80,18 +99,25 @@ public class TrollBehaviour : EnemyBehaviour
     
     protected override void OnEnable()
     {
-        base.OnEnable();
         timeManager.OnMovement += ChangeMovementActivation;
+        checkPointPort.OnRespawn += Respawn;
+        
+        base.OnEnable();
+        startPos = transform.position;
     }
 
     protected override void OnDisable()
     {
-        base.OnDisable();
         timeManager.OnMovement -= ChangeMovementActivation;
+        checkPointPort.OnRespawn -= Respawn;
+        
+        base.OnDisable();
     }
 
     protected override void Awake()
     {
+        startPos = transform.position;
+        
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         
@@ -296,5 +322,12 @@ public class TrollBehaviour : EnemyBehaviour
         {
             navMeshAgent.speed = 0;
         }
+    }
+    
+    public void Respawn()
+    {
+        transform.position = startPos;
+        PatrolState.SetTargetPoint(PatrolState.PatrolPointIndex);
+        Transition(PatrolState);
     }
 }

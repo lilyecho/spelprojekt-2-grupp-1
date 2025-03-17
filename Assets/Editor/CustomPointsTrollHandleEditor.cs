@@ -10,18 +10,18 @@ namespace Editor
         {
             TrollBehaviour trollBehaviour = (TrollBehaviour) target;
 
-            Vector3 trollPos = trollBehaviour.transform.position;
+            Vector3 trollPos = trollBehaviour.StartPos;
             
-            for (int i = 0; i < trollBehaviour.patrolPoints.Length; i++)
+            for (int i = 0; i < trollBehaviour.LocalPatrolPoints.Length; i++)
             {
                 EditorGUI.BeginChangeCheck();
         
-                Vector3 patrolHandlePosition = Handles.PositionHandle(trollBehaviour.patrolPoints[i]+trollPos, Quaternion.identity);
+                Vector3 patrolHandlePosition = Handles.PositionHandle(trollBehaviour.LocalPatrolPoints[i]+trollPos, Quaternion.identity);
         
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(trollBehaviour, "Change patrolPoint's position");
-                    trollBehaviour.patrolPoints[i] = patrolHandlePosition-trollPos;
+                    trollBehaviour.LocalPatrolPoints[i] = patrolHandlePosition-trollPos;
                 }
             }
         }

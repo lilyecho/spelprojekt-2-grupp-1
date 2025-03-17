@@ -35,10 +35,10 @@ public class AttackStateTroll : TrollStates
     private void CatchPlayer()
     {
         //StopPlayerMovement();
-        RespawnPlayer();
+        Respawn();
     }
 
-    private void RespawnPlayer()
+    private void Respawn()
     {
         TrollBehaviour.CheckPointPort.Respawn();
         TrollBehaviour.cameraTrollPort.ResetCamera();

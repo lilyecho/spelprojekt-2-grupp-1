@@ -15,7 +15,14 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         [SerializeField] private UnityEvent OnEnter;
         [SerializeField] private UnityEvent OnExit;
-    
+
+
+        #region Properties
+
+        public int PatrolPointIndex => patrolPointIndex;
+
+        #endregion
+        
         public override void Enter()
         {
             //Events
@@ -29,7 +36,7 @@ namespace Characters.Enemy.Troll.Scripts.States
             TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetPatrol.statePriority;
             TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         
-            SetTargetPoint();
+            SetTargetPoint(patrolPointIndex);
             SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
         }
     
@@ -40,11 +47,10 @@ namespace Characters.Enemy.Troll.Scripts.States
             TrollBehaviour.Animator.SetBool(TrollBehaviour.patrollingAP, false);
         }
 
-        private void SetTargetPoint()
+        public void SetTargetPoint(int currentPatrolIndex)
         {
-             
-            int nextPointIndex = patrolPointIndex % TrollBehaviour.patrolPoints.Length;
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.patrolPoints[nextPointIndex]);
+            int nextPointIndex = currentPatrolIndex % TrollBehaviour.WorldPatrolPoints.Length;
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.WorldPatrolPoints[nextPointIndex]);
         }
     
         public override void Update()
@@ -87,15 +93,15 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         private void CheckSwapPatrolPoint()
         {
-            if (TrollBehaviour.patrolPoints.Length <= 0)
+            if (TrollBehaviour.WorldPatrolPoints.Length <= 0)
             {
                 Debug.Log("Missing patrolpoints :"+TrollBehaviour.name);
                 return;
             }
             if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
             {
-                patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.patrolPoints.Length;
-                SetTargetPoint();
+                patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.WorldPatrolPoints.Length;
+                SetTargetPoint(patrolPointIndex);
             }
         }
 
@@ -106,17 +112,17 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         private void VisualizePoints()
         {
-            if (TrollBehaviour.patrolPoints.Length < 1) return;
-            if (TrollBehaviour.patrolPoints.Length == 1)
+            if (TrollBehaviour.WorldPatrolPoints.Length < 1) return;
+            if (TrollBehaviour.WorldPatrolPoints.Length == 1)
             {
-                Gizmos.DrawCube(TrollBehaviour.patrolPoints[0], new Vector3(.5f,.5f,.5f));
+                Gizmos.DrawCube(TrollBehaviour.WorldPatrolPoints[0], new Vector3(.5f,.5f,.5f));
                 return;
             }
         
-            for (int i = 0; i < TrollBehaviour.patrolPoints.Length; i++)
+            for (int i = 0; i < TrollBehaviour.WorldPatrolPoints.Length; i++)
             {
-                Gizmos.DrawCube(TrollBehaviour.patrolPoints[i], new Vector3(.5f,.5f,.5f));
-                Gizmos.DrawLine(TrollBehaviour.patrolPoints[i], TrollBehaviour.patrolPoints[(i+1)%TrollBehaviour.patrolPoints.Length]);
+                Gizmos.DrawCube(TrollBehaviour.WorldPatrolPoints[i], new Vector3(.5f,.5f,.5f));
+                Gizmos.DrawLine(TrollBehaviour.WorldPatrolPoints[i], TrollBehaviour.WorldPatrolPoints[(i+1)%TrollBehaviour.WorldPatrolPoints.Length]);
             }
         }
     }
