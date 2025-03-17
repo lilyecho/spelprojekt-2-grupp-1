@@ -8,5 +8,5 @@ public class FireFliesPoint : MonoBehaviour
 
     public float distanceToTrigger;
 
-
+    [HideInInspector] public int index;
 }

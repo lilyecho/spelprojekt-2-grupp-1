@@ -107,6 +107,7 @@ public class FireFlies : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             points[i] = pointsParentObject.transform.GetChild(i).GetComponent<FireFliesPoint>();
+            points[i].index = i;
         }
     }
 
@@ -142,13 +143,47 @@ public class FireFlies : MonoBehaviour
     }
 
     
-    public void ResetPosition()
+    public void StartResetPosition()
     {
-        moving = false;
-        index = 0;
-        fireFliesParent.transform.position = startPositionWorld;
+        StartCoroutine(ResetPosition());
     }
 
+    public IEnumerator ResetPosition()
+    {
+        yield return null;
 
+        float dist = float.MaxValue;
+        FireFliesPoint spawnPoint = null;
+
+        for(int i = 0;i < points.Length;i++)
+        {
+            if (Vector2.Distance(points[i].transform.position, player.transform.position) < dist)
+            {
+                dist = Vector2.Distance(points[i].transform.position, player.transform.position);
+                spawnPoint = points[i];
+            }
+        }
+
+
+        moving = false;
+        index = spawnPoint.index;
+        //fireFliesParent.transform.position = startPositionWorld;
+        if(spawnPoint != null)
+        {
+            fireFliesParent.transform.position = spawnPoint.transform.position;
+        }
+        
+    }
+
+    public CheckPointPort checkPointPort;
+
+    private void OnEnable()
+    {
+        checkPointPort.OnRespawn += StartResetPosition;
+    }
+    private void OnDisable()
+    {
+        checkPointPort.OnRespawn -= StartResetPosition;
+    }
 
 }
