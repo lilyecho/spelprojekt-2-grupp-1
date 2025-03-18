@@ -57,8 +57,9 @@ public class SearchStateTroll : TrollStates
     
     private TrollStates Check4Player(Transform eyes, float range, float angle)
     {
-        if (TrollBehaviour.GetTarget == null) return TrollBehaviour.searchState;
-        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTarget.position, range)) return TrollBehaviour.searchState;
+        if (TrollBehaviour.GetTarget == null) return TrollBehaviour.patrolState;
+        if (CheckIfPlayerHidden()) return TrollBehaviour.searchState;
+        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTargetTransform.position, range)) return TrollBehaviour.searchState;
         if (!CheckTargetWithinAngleOfSight(eyes, angle)) return TrollBehaviour.searchState;
         if (!CheckIfRaycastHit(eyes, range)) return TrollBehaviour.searchState;
 

@@ -39,8 +39,9 @@ public class LookAroundTrollState : TrollStates
     
     private TrollStates Check4Player(Transform eyes, float range, float angle)
     {
-        if (TrollBehaviour.GetTarget == null) return TrollBehaviour.lookAroundState;
-        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTarget.position, range)) return TrollBehaviour.lookAroundState;
+        if (TrollBehaviour.GetTarget == null) return TrollBehaviour.patrolState;
+        if (CheckIfPlayerHidden()) return TrollBehaviour.lookAroundState;
+        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTargetTransform.position, range)) return TrollBehaviour.lookAroundState;
         if (!CheckTargetWithinAngleOfSight(eyes, angle)) return TrollBehaviour.lookAroundState;
         if (!CheckIfRaycastHit(eyes, range)) return TrollBehaviour.lookAroundState;
 

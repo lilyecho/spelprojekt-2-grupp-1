@@ -56,7 +56,7 @@ public class TrollStates
     
     protected bool CheckTargetInRange(Transform eyes,float range)
     {
-        float distance = Vector3.Distance(TrollBehaviour.GetTarget.position, eyes.position);
+        float distance = Vector3.Distance(TrollBehaviour.GetTargetTransform.position, eyes.position);
         return distance <= range;
     }
 
@@ -67,7 +67,7 @@ public class TrollStates
     protected bool CheckTargetWithinAngleOfSight(Transform eyes, float angleOneSide)
     {
         Vector3 trollPos = eyes.position;
-        Vector3 targetPos = TrollBehaviour.GetTarget.position;
+        Vector3 targetPos = TrollBehaviour.GetTargetTransform.position;
         Vector3 directionToPlayer = (new Vector3(targetPos.x,0,targetPos.z) - new Vector3(trollPos.x,0,trollPos.z))
             .normalized;
         float angle = Vector3.Angle(TrollBehaviour.transform.forward, directionToPlayer);
@@ -97,6 +97,11 @@ public class TrollStates
         
         return isWalkable;
     }
+
+    protected bool CheckIfPlayerHidden()
+    {
+        return TrollBehaviour.GetTarget.Hidden;
+    }
     
     /// <summary>
     /// If true the it has hit the player
@@ -107,34 +112,18 @@ public class TrollStates
     protected bool CheckIfRaycastHit(Transform eyes,float range)
     {
         LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment", "Ignore Raycast");
-        Transform target = TrollBehaviour.GetTarget;
+        Transform target = TrollBehaviour.GetTargetTransform;
         
         Vector3 directionToPlayer = (target.position+new Vector3(0,0.2f,0)  - eyes.position).normalized;
         Physics.Raycast(eyes.position,directionToPlayer ,out RaycastHit hit,range,layerMask);
             
-        foreach (var playerCollider in TrollBehaviour.GetTarget.GetComponents<Collider>())
+        foreach (var playerCollider in TrollBehaviour.GetTargetTransform.GetComponents<Collider>())
         {
             if (hit.collider == playerCollider)
             {
-                Debug.Log("Hit");
                 return true;
             }
         }
-        /*
-        foreach (Vector2 addOn in areaOfRayCasts)
-        {
-            Vector3 directionToPlayer = ((target.position+new Vector3(0,0.2f,0) + target.forward*addOn.x + target.up*addOn.y) - eyes.position).normalized;
-            Physics.Raycast(eyes.position,directionToPlayer ,out RaycastHit hit,range,layerMask);
-            
-            foreach (var playerCollider in TrollBehaviour.GetTarget.GetComponents<Collider>())
-            {
-                if (hit.collider == playerCollider)
-                {
-                    Debug.Log("Hit");
-                    return true;
-                }
-            }
-        }*/
         return false;
     }
 }

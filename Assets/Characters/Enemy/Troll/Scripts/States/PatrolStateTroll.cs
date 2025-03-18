@@ -93,9 +93,10 @@ namespace Characters.Enemy.Troll.Scripts.States
         private TrollStates Check4Player(Transform eyes, float range, float angle)
         {
             if (TrollBehaviour.GetTarget == null) return TrollBehaviour.patrolState;
+            if (CheckIfPlayerHidden()) return TrollBehaviour.patrolState;
             if (!CheckTargetInRange(eyes,range)) return TrollBehaviour.patrolState;
             if (!CheckTargetWithinAngleOfSight(eyes,angle)) return TrollBehaviour.patrolState;
-            if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTarget.position, range)) return TrollBehaviour.patrolState;
+            if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTargetTransform.position, range)) return TrollBehaviour.patrolState;
 
             if (CheckIfRaycastHit(eyes,range))
             {

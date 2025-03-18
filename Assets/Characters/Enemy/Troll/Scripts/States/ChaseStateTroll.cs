@@ -27,7 +27,7 @@ public class ChaseStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         
         
-        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Increase);
         
         SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetChase);
@@ -46,38 +46,36 @@ public class ChaseStateTroll : TrollStates
         if (newState != this) newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetAggressionRange);
         if (newState != this)
         {
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
             TrollBehaviour.Transition(newState);
             return;
         }
         
-        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
     }
     
     private TrollStates Check4Player(Transform eyes, float range)
     {
+        if (TrollBehaviour.GetTarget == null) return TrollBehaviour.patrolState;
+        
         bool inRangeOfAggression = CheckTargetInRange(eyes,range);
         if (!inRangeOfAggression) return TrollBehaviour.patrolState;
         
-        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTarget.position, range))
+        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTargetTransform.position, range))
         {
-            Debug.Log("not walkable - chase");
             return TrollBehaviour.searchState;
         }
         
         if (!CheckIfRaycastHit(eyes,range))
         {
-            Debug.Log("not in raycast - chase");
             return TrollBehaviour.searchState;
         }
         
         if (CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
         {
-            Debug.Log("Close for attack - chase");
             return TrollBehaviour.attackState;
         }
         
-        Debug.Log("default false - chase");
         return TrollBehaviour.chaseState;
     }
     
@@ -85,17 +83,5 @@ public class ChaseStateTroll : TrollStates
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(trollBehaviour.transform.position,trollBehaviour.GetTrollData.GetAttackRange);
-        //DrawRaycasts();
-        
     }
-
-    /*private void DrawRaycasts()
-    {
-        if(TrollBehaviour.GetTarget == null) return;
-        foreach (Vector2 addOn in areaOfRayCasts)
-        {
-            Vector3 directionToPlayer = ((TrollBehaviour.GetTarget.position+new Vector3(0,0.2f,0) + TrollBehaviour.GetTarget.forward*addOn.x + TrollBehaviour.GetTarget.up*addOn.y) - TrollBehaviour.GetEyes.position).normalized;
-            Gizmos.DrawRay(TrollBehaviour.GetEyes.position,directionToPlayer*16);
-        }
-    }*/
 }

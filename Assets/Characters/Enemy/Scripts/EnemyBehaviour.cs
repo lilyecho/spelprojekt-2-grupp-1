@@ -18,7 +18,8 @@ public class EnemyBehaviour : MonoBehaviour
     private PlayerBehaviour target = null;
     private Transform enemyTransform = null; 
     
-    [CanBeNull] public Transform GetTarget => target.transform;
+    [CanBeNull] public PlayerBehaviour GetTarget => target;
+    [CanBeNull] public Transform GetTargetTransform => target.transform;
     public EnemyManagerPort GetEnemyManagerPort => enemyManagerPort;
 
     public AudioPort GetAudioPort => audioPort;

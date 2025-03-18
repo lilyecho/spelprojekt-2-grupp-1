@@ -26,7 +26,7 @@ public class AttackStateTroll : TrollStates
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetAttack.statePriority;
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         
-        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
+        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
         //TrollBehaviour.GetNavMeshAgent.
         TrollBehaviour.cameraTrollPort.AstridCaught(TrollBehaviour.transform, TrollBehaviour.cameraPosDuringAttack);
         CatchPlayer();
@@ -47,7 +47,7 @@ public class AttackStateTroll : TrollStates
     
     private void StopPlayerMovement()
     {
-        if (!TrollBehaviour.GetTarget.gameObject.TryGetComponent<Rigidbody>(out Rigidbody targetComp))
+        if (!TrollBehaviour.GetTargetTransform.gameObject.TryGetComponent<Rigidbody>(out Rigidbody targetComp))
             throw new MissingComponentException("Target (aka player) doesn't have rigidbody!");
 
         targetComp.constraints = RigidbodyConstraints.FreezeAll;
