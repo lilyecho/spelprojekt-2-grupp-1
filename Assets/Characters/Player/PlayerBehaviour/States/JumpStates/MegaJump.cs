@@ -25,6 +25,7 @@ public class MegaJump : JumpState
         chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
         playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onEnter);
+        playerBehaviour.chargingJumpParticles.gameObject.SetActive(true);
     }
 
     public override void Update()
@@ -43,22 +44,22 @@ public class MegaJump : JumpState
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
     {
-        if (context.canceled && chargeTimer <= 0)
+        if (context.performed && chargeTimer <= 0)
         {
             playerBehaviour.anim.SetBool(animationSuperJumpRelease, true);
             playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onMegaJump);
             
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetMegaJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
-            Jump(jumpForce, playerBehaviour.PlayerData.GetMegaJump.GetKeptMomentumPercentage);
+            Jump(jumpForce, playerBehaviour.PlayerData.GetMegaJump.GetKeptMomentumPercentage, playerBehaviour.megaJumpParticles);
             chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
         }
-        else if (context.canceled)
+        else if (context.performed)
         {
             playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
             playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onNormalJump);
             
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
-            Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
+            Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage, playerBehaviour.jumpParticles);
         }
     }
     
@@ -68,6 +69,11 @@ public class MegaJump : JumpState
         public SoundInfo[] onEnter;
         public SoundInfo[] onMegaJump;
         public SoundInfo[] onNormalJump;
+    }
+
+    public override void Exit()
+    {
+        playerBehaviour.chargingJumpParticles.gameObject.SetActive(false);
     }
 }
 

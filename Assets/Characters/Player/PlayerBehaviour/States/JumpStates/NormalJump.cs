@@ -13,7 +13,7 @@ public class NormalJump : JumpState
         if (playerBehaviour.intoJump)
         {
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1, playerBehaviour.PlayerData.GetGravityMagnitudeUp);
-            Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
+            Jump(jumpForce, playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage, playerBehaviour.jumpParticles);
             playerBehaviour.intoJump = false;
         }
         //sneak isn't deactivated so change to megaJump-state 
@@ -50,7 +50,7 @@ public class NormalJump : JumpState
         if (context.performed)
         {
             float jumpForce = PhysicsCalculations.ForceToJumpCertainHeight(playerBehaviour.PlayerData.GetNormalJump.GetJumpHeight, 1,  playerBehaviour.PlayerData.GetGravityMagnitudeUp);
-            Jump(jumpForce,playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage);
+            Jump(jumpForce,playerBehaviour.PlayerData.GetNormalJump.GetKeptMomentumPercentage, playerBehaviour.jumpParticles);
         }
     }
     

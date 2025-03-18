@@ -64,6 +64,8 @@ public class PlayerBehaviour : MonoBehaviour
     public bool intoJump = false;
     
     public ParticleSystem jumpParticles;
+    public ParticleSystem megaJumpParticles;
+    public ParticleSystem chargingJumpParticles;
     private ParticleSystem jumpParticlesInstance;
     
     [SerializeField] private TimeManager timeManager = null;
@@ -458,9 +460,9 @@ public class PlayerBehaviour : MonoBehaviour
         return transform.rotation;
     }
     
-    public void JumpParticles()
+    public void JumpParticles(ParticleSystem part)
     {
-        jumpParticlesInstance = Instantiate(jumpParticles, transform.position, jumpParticles.transform.rotation);
+        jumpParticlesInstance = Instantiate(part, transform.position, jumpParticles.transform.rotation);
     }
 
     public void PauseGame(InputAction.CallbackContext context)
