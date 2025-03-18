@@ -72,6 +72,8 @@ public class Falling : State
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.PlayerData.GetGravityMagnitudeDown, ForceMode.Acceleration);
         
         ApplyHorizontalCounterForce();
+
+        playerBehaviour.rb.velocity += PushDownSlopes(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength)* 2f ;
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -120,5 +122,37 @@ public class Falling : State
     }
     */
 
-    
+
+    private Vector3  PushDownSlopes(Transform[] raycastPoints, float rayCastLength)
+    {
+        LayerMask layerToIgnore = (1 << 8) | (1 << 2) | (1 << 10);
+        RaycastHit hit;
+        Vector3 normal;
+        Vector3 right;
+        Vector3 slopeDirection;
+        foreach (Transform t in raycastPoints)
+        {
+            if (Physics.Raycast(t.position, Vector3.down, out hit, rayCastLength, ~layerToIgnore))
+            {
+                float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+                if (angle > playerBehaviour.PlayerData.GetMaxRotationAngle)
+                {
+                    normal = hit.normal;
+                    right = Vector3.Cross(Vector3.up, normal);
+                    slopeDirection = Vector3.Cross(normal, right);
+                    if (Vector3.Dot(slopeDirection, Vector3.down) < 0)
+                    {
+                        slopeDirection = -slopeDirection;
+                    }
+
+                    return slopeDirection.normalized;
+                }
+                
+            }
+            
+        }
+        return Vector3.zero;
+    }
+
 }

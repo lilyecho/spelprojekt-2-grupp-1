@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.28822675
+      value: -0.35117647
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23551872
+      value: 0.24997756
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -148,19 +148,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.46331713
+      value: 0.34340712
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.46331713
+      value: -0.34340712
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5341697
+      value: -0.61811936
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5341697
+      value: 0.61811936
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -678,13 +678,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303284402}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25569886, y: 0, z: 0, w: 0.9667565}
-  m_LocalPosition: {x: 0, y: 0, z: -56.52}
+  m_LocalRotation: {x: 0, y: 0.93019354, z: -0.36706942, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 73.9}
   m_LocalScale: {x: 10.42, y: 1, z: 15.56}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 29.63, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.07, y: 180, z: 0}
 --- !u!1001 &398202423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -924,6 +924,7 @@ MonoBehaviour:
   accTime: 0
   intoJump: 0
   jumpParticles: {fileID: 0}
+  megaJumpParticles: {fileID: 0}
   chargingJumpParticles: {fileID: 0}
   timeManager: {fileID: 0}
   hidden: 0
