@@ -328,7 +328,7 @@ namespace Characters.Enemy.Troll.Scripts.States
                 navMeshAgent.speed = 0;
             }
         }
-    
+        
         public void Respawn()
         {
             transform.position = startPos;
