@@ -56,11 +56,24 @@ namespace Characters.Enemy.Troll.Scripts.States
         public override void Update()
         {
             //Debug.Log("Walkable: "+CheckIfTargetPositionIsWalkable());
-            
+
             //TrollEyes
-            if (Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,TrollBehaviour.GetTrollData.GetTrollSight.angle)) return;
+            TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
+                TrollBehaviour.GetTrollData.GetTrollSight.angle);
+            if (newState != this)
+            {
+                TrollBehaviour.Transition(newState);
+                return;
+            }
+            
             //LampEyes
-            if(Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,TrollBehaviour.GetTrollData.GetLampSight.angle)) return;
+            newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,TrollBehaviour.GetTrollData.GetLampSight.angle);
+            if (newState != this)
+            {
+                TrollBehaviour.Transition(newState);
+                return;
+            }
+            
             CheckSwapPatrolPoint();
         }
 
@@ -77,20 +90,19 @@ namespace Characters.Enemy.Troll.Scripts.States
         /// <param name="range"></param>
         /// <param name="angle"></param>
         /// <returns>true if swap state</returns>
-        private bool Check4Player(Transform eyes, float range, float angle)
+        private TrollStates Check4Player(Transform eyes, float range, float angle)
         {
-            if (TrollBehaviour.GetTarget == null) return false;
-            if (!CheckTargetInRange(eyes,range)) return false;
-            if (!CheckTargetWithinAngleOfSight(eyes,angle)) return false;
-            if (!CheckIfTargetPositionIsWalkable()) return false;
+            if (TrollBehaviour.GetTarget == null) return TrollBehaviour.patrolState;
+            if (!CheckTargetInRange(eyes,range)) return TrollBehaviour.patrolState;
+            if (!CheckTargetWithinAngleOfSight(eyes,angle)) return TrollBehaviour.patrolState;
+            if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTarget.position, range)) return TrollBehaviour.patrolState;
 
             if (CheckIfRaycastHit(eyes,range))
             {
-                TrollBehaviour.Transition(TrollBehaviour.chaseState);
-                return true;
+                return TrollBehaviour.chaseState;
             }
 
-            return false;
+            return TrollBehaviour.patrolState;
         }
     
         private void CheckSwapPatrolPoint()
