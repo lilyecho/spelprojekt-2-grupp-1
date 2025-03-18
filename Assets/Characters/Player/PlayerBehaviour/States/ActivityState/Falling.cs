@@ -71,6 +71,7 @@ public class Falling : State
         //Gravity
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.PlayerData.GetGravityMagnitudeDown, ForceMode.Acceleration);
         
+        ApplyHorizontalCounterForce();
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -99,5 +100,25 @@ public class Falling : State
             Gizmos.DrawWireSphere(player.transform.position, player.GetShrinkPlayerData.GetAlertingRanges.landing);
         }
     }
- 
+
+    /*
+    public override void OnWASD(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            playerBehaviour.rb.drag = 2;
+        }
+        if (context.performed)
+        {
+            playerBehaviour.rb.drag = 0;
+        }
+    }
+
+    public override void Exit()
+    {
+        playerBehaviour.rb.drag = 0;
+    }
+    */
+
+    
 }
