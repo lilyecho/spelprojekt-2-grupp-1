@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LightRelocation : MonoBehaviour
 {
+    [SerializeField] private Transform troll;
     [SerializeField] private Transform joint1;
     [SerializeField] private Transform joint2;
     [SerializeField, Range(0,1)] private float offset;
@@ -12,12 +13,18 @@ public class LightRelocation : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = CalculateNewPos();
+        SetForward();
     }
 
     private Vector3 CalculateNewPos()
     {
         Vector3 direction = (joint2.position - joint1.position).normalized;
         return  joint1.position + direction * offset;
+    }
+    
+    private void SetForward()
+    {
+        transform.forward = troll.forward;
     }
 
     private void OnDrawGizmosSelected()
