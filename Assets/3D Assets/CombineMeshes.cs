@@ -18,7 +18,8 @@ public class CombineMeshes : MonoBehaviour
 
         for (int i = 0; i < meshFilters.Length; i++)
         {
-            Debug.Log(meshFilters[i].mesh.isReadable);
+            if(!meshFilters[i].mesh.isReadable) Debug.Log(meshFilters[i].mesh.name);
+            
             combine[i].mesh = meshFilters[i].sharedMesh;
             combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
             meshFilters[i].gameObject.SetActive(false);
