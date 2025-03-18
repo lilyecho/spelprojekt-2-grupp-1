@@ -346,4 +346,15 @@ public abstract class State
     
     protected virtual void CreateSoundAlert(){}
 
+
+
+    protected void ApplyHorizontalCounterForce()
+    {
+        Vector2 horizontalMagnitude = new Vector2(playerBehaviour.rb.velocity.x, playerBehaviour.rb.velocity.z);
+        if (playerBehaviour.moveInput == Vector2.zero && horizontalMagnitude.magnitude > 0.001f)
+        {
+            playerBehaviour.rb.AddForce(new Vector3(playerBehaviour.rb.velocity.x, 0, playerBehaviour.rb.velocity.z).normalized * -1 * 10, ForceMode.Force);
+        }
+    }
+
 }

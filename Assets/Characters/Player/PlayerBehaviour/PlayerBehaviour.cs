@@ -71,7 +71,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     
     //Hidden
-    private bool hidden;
+    [SerializeField]private bool hidden;
     
     #region Shrink
 

@@ -15,10 +15,11 @@ public class EnemyBehaviour : MonoBehaviour
     
     #endregion
 
-    private Transform target = null;
+    private PlayerBehaviour target = null;
     private Transform enemyTransform = null; 
     
-    [CanBeNull] public Transform GetTarget => target;
+    [CanBeNull] public PlayerBehaviour GetTarget => target;
+    [CanBeNull] public Transform GetTargetTransform => target.transform;
     public EnemyManagerPort GetEnemyManagerPort => enemyManagerPort;
 
     public AudioPort GetAudioPort => audioPort;
@@ -39,8 +40,13 @@ public class EnemyBehaviour : MonoBehaviour
     private void RegisterTarget(RegistrationPort.TypeOfRegistration type ,GameObject newTarget)
     {
         if (type != RegistrationPort.TypeOfRegistration.Player) return;
+
+        if (!newTarget.TryGetComponent(out PlayerBehaviour player))
+        {
+            throw new MissingComponentException("Player dont have PlayerBehaviour");
+        }
         
-        target = newTarget.transform;
+        target = player;
     }
     
     protected virtual void Awake()
@@ -67,7 +73,7 @@ public class EnemyBehaviour : MonoBehaviour
             return false;
         }
 
-        distance = Vector3.Distance(enemyTransform.position, target.position);
+        distance = Vector3.Distance(enemyTransform.position, target.transform.position);
         return true;
     }
 }

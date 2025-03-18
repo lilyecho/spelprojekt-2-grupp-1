@@ -7,5 +7,10 @@ namespace Characters.Player.PlayerBehaviour
     public class HidePort : ScriptableObject
     {
         public UnityAction<bool> OnHidden = delegate(bool isHidden){ };
+
+        public void Hidden(bool isHidden)
+        {
+            OnHidden(isHidden);
+        }
     }
 }

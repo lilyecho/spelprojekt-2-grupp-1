@@ -9,6 +9,14 @@ public class TrollStates
 {
     protected TrollBehaviour TrollBehaviour = null;
     
+    //Raycast area
+    /*protected Vector2[] areaOfRayCasts = new[]
+    {
+        new Vector2(-0.1f, 0.1f), new Vector2(0,0.1f), new Vector2(0.1f,0.1f),
+        new Vector2(-0.1f, 0), new Vector2(0,0), new Vector2(0.1f,0),
+        new Vector2(-0.1f, -0.1f), new Vector2(0,-0.1f), new Vector2(0.1f,-0.1f)
+    }; */
+    
     public virtual void Awake(TrollBehaviour trollBehaviour)
     {
         TrollBehaviour = trollBehaviour;
@@ -48,7 +56,7 @@ public class TrollStates
     
     protected bool CheckTargetInRange(Transform eyes,float range)
     {
-        float distance = Vector3.Distance(TrollBehaviour.GetTarget.position, eyes.position);
+        float distance = Vector3.Distance(TrollBehaviour.GetTargetTransform.position, eyes.position);
         return distance <= range;
     }
 
@@ -59,7 +67,7 @@ public class TrollStates
     protected bool CheckTargetWithinAngleOfSight(Transform eyes, float angleOneSide)
     {
         Vector3 trollPos = eyes.position;
-        Vector3 targetPos = TrollBehaviour.GetTarget.position;
+        Vector3 targetPos = TrollBehaviour.GetTargetTransform.position;
         Vector3 directionToPlayer = (new Vector3(targetPos.x,0,targetPos.z) - new Vector3(trollPos.x,0,trollPos.z))
             .normalized;
         float angle = Vector3.Angle(TrollBehaviour.transform.forward, directionToPlayer);
@@ -67,24 +75,34 @@ public class TrollStates
         return MathF.Abs(angle) <= angleOneSide;
     }
 
-    protected bool CheckIfTargetPositionIsWalkable()
+    public bool CheckIfPositionIsWalkable(Vector3 position, float range)
     {
         NavMeshPath path = new NavMeshPath();
-        bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
-            TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
+        Physics.Raycast(position + Vector3.up, Vector3.down,out RaycastHit hit);
+        /*bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
+            hit.point, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead*/
+
+        bool isWalkable = NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, range,
+            1 << NavMesh.GetAreaFromName("Walkable"));
         
         return isWalkable;
     }
     
-    protected bool CheckIfTargetPositionIsWalkable(out NavMeshPath path)
+    protected bool CheckIfPositionIsWalkable(Vector3 position,out NavMeshPath path)
     {
         path = new NavMeshPath();
+        Physics.Raycast(position + Vector3.up, Vector3.down,out RaycastHit hit);
         bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
-            TrollBehaviour.GetTarget.position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
+            hit.point, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
         
         return isWalkable;
     }
 
+    protected bool CheckIfPlayerHidden()
+    {
+        return TrollBehaviour.GetTarget.Hidden;
+    }
+    
     /// <summary>
     /// If true the it has hit the player
     /// </summary>
@@ -94,14 +112,18 @@ public class TrollStates
     protected bool CheckIfRaycastHit(Transform eyes,float range)
     {
         LayerMask layerMask = ~LayerMask.GetMask("InteractiveEnvironment", "Ignore Raycast");
-        Vector3 directionToPlayer = (TrollBehaviour.GetTarget.position - eyes.position).normalized;
+        Transform target = TrollBehaviour.GetTargetTransform;
+        
+        Vector3 directionToPlayer = (target.position+new Vector3(0,0.2f,0)  - eyes.position).normalized;
         Physics.Raycast(eyes.position,directionToPlayer ,out RaycastHit hit,range,layerMask);
-
-        foreach (var playerCollider in TrollBehaviour.GetTarget.GetComponents<Collider>())
+            
+        foreach (var playerCollider in TrollBehaviour.GetTargetTransform.GetComponents<Collider>())
         {
-            return hit.collider == playerCollider;
+            if (hit.collider == playerCollider)
+            {
+                return true;
+            }
         }
-
         return false;
     }
 }

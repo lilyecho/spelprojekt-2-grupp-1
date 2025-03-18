@@ -52,6 +52,8 @@ public class Jumping : State
 
         flagAbleToFall = true;
         ChangeRotationToStandard();
+
+        ApplyHorizontalCounterForce();
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -70,4 +72,21 @@ public class Jumping : State
     {   
         public SoundInfo[] onEnter;
     }
+
+
+    /*
+    public override void OnWASD(InputAction.CallbackContext context)
+    {
+        if(context.canceled)
+        {
+            playerBehaviour.rb.drag = 2;
+        }
+        if (context.performed)
+        {
+            playerBehaviour.rb.drag = 0;
+        }
+    }
+    */
+
+    
 }

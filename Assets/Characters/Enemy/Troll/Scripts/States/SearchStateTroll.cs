@@ -38,38 +38,31 @@ public class SearchStateTroll : TrollStates
         }
         
         //TrollEyes
-        if (Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
-                TrollBehaviour.GetTrollData.GetTrollSight.angle))
+        TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
+            TrollBehaviour.GetTrollData.GetTrollSight.angle);
+        if (newState != this)
         {
-            Debug.Log("Search till chase - Troll");
-            TrollBehaviour.Transition(TrollBehaviour.chaseState);
+            TrollBehaviour.Transition(newState);
             return;
         }
-        
-        //Lampeyes
-        if (Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,
-                TrollBehaviour.GetTrollData.GetLampSight.angle))
+            
+        //LampEyes
+        newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range,TrollBehaviour.GetTrollData.GetLampSight.angle);
+        if (newState != this)
         {
-            Debug.Log("Search till chase - Lamp");
-            TrollBehaviour.Transition(TrollBehaviour.chaseState);
+            TrollBehaviour.Transition(newState);
             return;
         }
     }
     
-    protected bool Check4Player(Transform eyes, float range, float angle)
+    private TrollStates Check4Player(Transform eyes, float range, float angle)
     {
-        if (TrollBehaviour.GetTarget == null){
-            return false;
-        }
-        if (!CheckIfTargetPositionIsWalkable())
-        {
-            return false;
-        } 
-            
-        if (!CheckTargetWithinAngleOfSight(eyes, angle)){
-            return false;
-        }
-        
-        return CheckIfRaycastHit(eyes, range);
+        if (TrollBehaviour.GetTarget == null) return TrollBehaviour.patrolState;
+        if (CheckIfPlayerHidden()) return TrollBehaviour.searchState;
+        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTargetTransform.position, range)) return TrollBehaviour.searchState;
+        if (!CheckTargetWithinAngleOfSight(eyes, angle)) return TrollBehaviour.searchState;
+        if (!CheckIfRaycastHit(eyes, range)) return TrollBehaviour.searchState;
+
+        return TrollBehaviour.chaseState;
     }
 }
