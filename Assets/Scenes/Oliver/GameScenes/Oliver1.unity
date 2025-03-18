@@ -39075,27 +39075,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5564687
+      value: 0.20707181
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.021639958
+      value: 0.18847916
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.68387437
+      value: -0.44453338
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.68387437
+      value: 0.44453338
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.1797663
+      value: 0.5499001
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1797663
+      value: -0.5499001
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57162,6 +57162,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1061150011880521229, guid: 726dc6e50a68c8c409498d479bd305d9, type: 3}
   m_PrefabInstance: {fileID: 1454348475}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1454852611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1454852612}
+  - component: {fileID: 1454852613}
+  m_Layer: 0
+  m_Name: Pond
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1454852612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454852611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 54.4, y: 60.28, z: -226.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1491344564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1454852613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454852611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1723444639
+      Data2: 1200007242
+      Data3: 276882052
+      Data4: -1152187433
+    Path: event:/Sound/Ambiance/AMB_Pond
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 12.513386
+  OverrideMaxDistance: 94.89128
 --- !u!1001 &1454876444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58546,6 +58609,8 @@ Transform:
   - {fileID: 1628697583}
   - {fileID: 490196642}
   - {fileID: 1318469277}
+  - {fileID: 1454852612}
+  - {fileID: 1682319796}
   m_Father: {fileID: 365918288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1491561405 stripped
@@ -66298,6 +66363,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4649443329392870834, guid: 520159ed64339aa489f779dce4df8b0d, type: 3}
   m_PrefabInstance: {fileID: 48584917}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1682319795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682319796}
+  - component: {fileID: 1682319797}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682319796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682319795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 54.4, y: 60.28, z: -199.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1491344564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1682319797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682319795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 837784963
+      Data2: 1281615535
+      Data3: 1399536053
+      Data4: -1071044959
+    Path: event:/Sound/Ambiance/AMB_Water
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 6.622814
+  OverrideMaxDistance: 18.209152
 --- !u!1001 &1682800326
 PrefabInstance:
   m_ObjectHideFlags: 0
