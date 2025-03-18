@@ -95,6 +95,7 @@ namespace Characters.Enemy.Troll.Scripts.States
             Patrol,
             Chase,
             Search,
+            LookAround,
             Attack
         }
     
@@ -289,7 +290,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         public override void Alerted(Vector3 alertPoint)
         {
             if (activeState.HasFlag(States.Attack) || activeState.HasFlag(States.Chase)) return;
-        
+            if (!searchState.CheckIfPositionIsWalkable(alertPoint, trollData.GetAggressionRange)) return;
+            
             navMeshAgent.SetDestination(alertPoint);
             Transition(searchState);
         }

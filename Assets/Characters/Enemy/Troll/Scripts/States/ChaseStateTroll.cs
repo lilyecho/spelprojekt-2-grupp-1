@@ -41,39 +41,25 @@ public class ChaseStateTroll : TrollStates
 
     public override void FixedUpdate()
     {
-        /*currentTimer -= Time.fixedDeltaTime;
-        if (currentTimer <= 0)
-        {
-            TrollBehaviour.Transition(TrollBehaviour.patrolState);
-            return;
-        }*/
-        
-        //Troll
-        TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range);
-        if (newState == this);
-        else
+        //TrollEyes
+        TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetAggressionRange);
+        if (newState != this) newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetAggressionRange);
+        if (newState != this)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
             TrollBehaviour.Transition(newState);
             return;
         }
         
-        newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetLampSight.range);
-        if (newState == this);
-        else
-        {
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
-            TrollBehaviour.Transition(newState);
-            return;
-        }
+        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTarget.position);
     }
     
     private TrollStates Check4Player(Transform eyes, float range)
     {
-        bool inRangeOfAggression = CheckTargetInRange(eyes,TrollBehaviour.GetTrollData.GetAggressionRange);
+        bool inRangeOfAggression = CheckTargetInRange(eyes,range);
         if (!inRangeOfAggression) return TrollBehaviour.patrolState;
         
-        if (!CheckIfTargetPositionIsWalkable())
+        if (!CheckIfPositionIsWalkable(TrollBehaviour.GetTarget.position, range))
         {
             Debug.Log("not walkable - chase");
             return TrollBehaviour.searchState;
@@ -99,5 +85,17 @@ public class ChaseStateTroll : TrollStates
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(trollBehaviour.transform.position,trollBehaviour.GetTrollData.GetAttackRange);
+        //DrawRaycasts();
+        
     }
+
+    /*private void DrawRaycasts()
+    {
+        if(TrollBehaviour.GetTarget == null) return;
+        foreach (Vector2 addOn in areaOfRayCasts)
+        {
+            Vector3 directionToPlayer = ((TrollBehaviour.GetTarget.position+new Vector3(0,0.2f,0) + TrollBehaviour.GetTarget.forward*addOn.x + TrollBehaviour.GetTarget.up*addOn.y) - TrollBehaviour.GetEyes.position).normalized;
+            Gizmos.DrawRay(TrollBehaviour.GetEyes.position,directionToPlayer*16);
+        }
+    }*/
 }
