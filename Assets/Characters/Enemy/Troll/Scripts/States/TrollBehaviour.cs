@@ -204,6 +204,8 @@ namespace Characters.Enemy.Troll.Scripts.States
             VisualiseAggressionRange();
         }
 
+        #region Gizmos
+
         private void VisualiseAggressionRange()
         {
             Gizmos.color = new Color(0f, 1f, 1f, .7f);
@@ -286,6 +288,9 @@ namespace Characters.Enemy.Troll.Scripts.States
 
             return new Vector2(vectorX, vectorY);
         }
+
+        #endregion
+        
 
         public override void Alerted(Vector3 alertPoint)
         {
