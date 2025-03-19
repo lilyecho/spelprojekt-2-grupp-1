@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
@@ -39,16 +40,20 @@ public class FakeLightCone : MonoBehaviour
         List<Mesh> meshes = new List<Mesh>(); 
         //ConeFormation
         meshes.Add(CreateConeMesh(transform.position, edgeVertices));
-        
+
+        _meshFilter.mesh = meshes[0];
+
         //CenterFormation
         Vector3 centerPoint = CreateCenterPoint();
         meshes.Add(CreatePizzaMesh(centerPoint, edgeVertices));
-        
+
         //Recommended by documentation
         Vector3 pos = transform.position;
+        Quaternion rot = transform.rotation;
 
         //Recommended by documentation
         transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
         
         CombineInstance[] combine = new CombineInstance[meshes.Count];
         for (int i = 0; i < meshes.Count; i++)
@@ -59,9 +64,11 @@ public class FakeLightCone : MonoBehaviour
         Mesh mesh = new Mesh();
         mesh.CombineMeshes(combine, true);
         _meshFilter.mesh = mesh;
-        
+
         //Recommended by documentation
         transform.position = pos;
+        transform.rotation = rot;
+
     }
 
     private Vector3 CreateCenterPoint()
@@ -89,8 +96,8 @@ public class FakeLightCone : MonoBehaviour
         for (int i = 0; i < edgeVertices.Length; i++)
         {
             triangles[i * 3] = 0;
-            triangles[i * 3+2] = i+1;
-            triangles[i * 3+1] = (i+2)% edgeVertices.Length;
+            triangles[i * 3+2] = (i+1)% edgeVertices.Length+1;
+            triangles[i * 3+1] = (i+2)% edgeVertices.Length+1;
         }
         
         mesh.vertices = allVert;
@@ -114,8 +121,8 @@ public class FakeLightCone : MonoBehaviour
         for (int i = 0; i < edgeVertices.Length; i++)
         {
             triangles[i * 3] = 0;
-            triangles[i * 3+1] = i+1;
-            triangles[i * 3+2] = (i+2)% edgeVertices.Length;
+            triangles[i * 3+1] = (i+1)% edgeVertices.Length+1;
+            triangles[i * 3+2] = (i+2)% edgeVertices.Length+1;
         }
         
         mesh.vertices = allVert;
