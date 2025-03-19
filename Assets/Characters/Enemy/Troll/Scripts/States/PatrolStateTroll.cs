@@ -51,8 +51,8 @@ namespace Characters.Enemy.Troll.Scripts.States
 
         public void SetTargetPoint(int currentPatrolIndex)
         {
-            int nextPointIndex = currentPatrolIndex % TrollBehaviour.WorldPatrolPoints.Length;
-            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.WorldPatrolPoints[nextPointIndex]);
+            int nextPointIndex = currentPatrolIndex % TrollBehaviour.LocalPatrolPoints.Length;
+            TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.LocalPatrolPoints[nextPointIndex]+TrollBehaviour.StartPos);
         }
     
         public override void Update()
@@ -114,14 +114,14 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         private void CheckSwapPatrolPoint()
         {
-            if (TrollBehaviour.WorldPatrolPoints.Length <= 0)
+            if (TrollBehaviour.LocalPatrolPoints.Length <= 0)
             {
                 Debug.Log("Missing patrolpoints :"+TrollBehaviour.name);
                 return;
             }
             if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
             {
-                patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.WorldPatrolPoints.Length;
+                patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.LocalPatrolPoints.Length;
                 SetTargetPoint(patrolPointIndex);
             }
         }
@@ -133,17 +133,33 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         private void VisualizePoints()
         {
-            if (TrollBehaviour.WorldPatrolPoints.Length < 1) return;
-            if (TrollBehaviour.WorldPatrolPoints.Length == 1)
+            if (TrollBehaviour.LocalPatrolPoints.Length < 1) return;
+            if (TrollBehaviour.LocalPatrolPoints.Length == 1)
             {
-                Gizmos.DrawCube(TrollBehaviour.WorldPatrolPoints[0], new Vector3(.5f,.5f,.5f));
+                if (!Application.isPlaying)
+                {
+                    Gizmos.DrawCube( TrollBehaviour.transform.position+TrollBehaviour.LocalPatrolPoints[0], new Vector3(.5f,.5f,.5f));
+                }
+                else
+                {
+                    Gizmos.DrawCube( TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[0], new Vector3(.5f,.5f,.5f));
+                }
                 return;
             }
         
-            for (int i = 0; i < TrollBehaviour.WorldPatrolPoints.Length; i++)
+            for (int i = 0; i < TrollBehaviour.LocalPatrolPoints.Length; i++)
             {
-                Gizmos.DrawCube(TrollBehaviour.WorldPatrolPoints[i], new Vector3(.5f,.5f,.5f));
-                Gizmos.DrawLine(TrollBehaviour.WorldPatrolPoints[i], TrollBehaviour.WorldPatrolPoints[(i+1)%TrollBehaviour.WorldPatrolPoints.Length]);
+                if (!Application.isPlaying)
+                {
+                    Gizmos.DrawCube(TrollBehaviour.transform.position+TrollBehaviour.LocalPatrolPoints[i], new Vector3(.5f,.5f,.5f));
+                    Gizmos.DrawLine(TrollBehaviour.transform.position+TrollBehaviour.LocalPatrolPoints[i], TrollBehaviour.transform.position+TrollBehaviour.LocalPatrolPoints[(i+1)%TrollBehaviour.LocalPatrolPoints.Length]);
+                }
+                else
+                {
+                    Gizmos.DrawCube(TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[i], new Vector3(.5f,.5f,.5f));
+                    Gizmos.DrawLine(TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[i], TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[(i+1)%TrollBehaviour.LocalPatrolPoints.Length]);
+                }
+                
             }
         }
     }

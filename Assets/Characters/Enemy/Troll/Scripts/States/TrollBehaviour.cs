@@ -64,20 +64,7 @@ namespace Characters.Enemy.Troll.Scripts.States
 
         public Vector3 StartPos => startPos;
         public NavMeshAgent GetNavMeshAgent => navMeshAgent;
-
-        public Vector3[] WorldPatrolPoints
-        {
-            get
-            {
-                List<Vector3> points = new List<Vector3>();
-                foreach (Vector3 patrolPoint in patrolPoints)
-                {
-                    points.Add(patrolPoint+startPos);
-                }
-
-                return points.ToArray();
-            }
-        }
+        
         public ref Vector3[] LocalPatrolPoints => ref patrolPoints;
         public Transform GetEyes => eyes;
         public Transform GetLamp => lamp;
