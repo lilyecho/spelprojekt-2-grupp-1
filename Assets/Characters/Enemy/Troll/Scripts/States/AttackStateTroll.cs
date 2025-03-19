@@ -18,6 +18,7 @@ public class AttackStateTroll : TrollStates
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Attack;
         TrollBehaviour.stateColor = Color.green;
+        TrollBehaviour.Animator.SetTrigger(TrollBehaviour.grabbingAP);
         
         //Update camera
         TrollBehaviour.CameraPort.OnTarget(TrollBehaviour.GetEyes);
@@ -25,18 +26,23 @@ public class AttackStateTroll : TrollStates
         //Change pathfinding system so that other trolls will get run over by this troll and fight with others of the same for space
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetAttack.statePriority;
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-        
-        TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
-        //TrollBehaviour.GetNavMeshAgent.
-        TrollBehaviour.cameraTrollPort.AstridCaught(TrollBehaviour.transform, TrollBehaviour.cameraPosDuringAttack);
+
+        TrollBehaviour.GetNavMeshAgent.isStopped = true;
         CatchPlayer();
-        TrollBehaviour.Transition(TrollBehaviour.patrolState);
+    }
+
+    public override void FixedUpdate()
+    {
+        if (TrollBehaviour.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        {
+            Respawn();
+        }
     }
 
     private void CatchPlayer()
     {
-        //StopPlayerMovement();
-        Respawn();
+        StopPlayerMovement();
+        TrollBehaviour.cameraTrollPort.AstridCaught(TrollBehaviour.transform, TrollBehaviour.cameraPosDuringAttack);
     }
 
     private void Respawn()
@@ -47,9 +53,6 @@ public class AttackStateTroll : TrollStates
     
     private void StopPlayerMovement()
     {
-        if (!TrollBehaviour.GetTargetTransform.gameObject.TryGetComponent<Rigidbody>(out Rigidbody targetComp))
-            throw new MissingComponentException("Target (aka player) doesn't have rigidbody!");
-
-        targetComp.constraints = RigidbodyConstraints.FreezeAll;
+        TrollBehaviour.GetTarget.ChangeMovementActivation(false);
     }
 }

@@ -343,8 +343,17 @@ public abstract class State
         }
         return false;
     }
-    
-    protected virtual void CreateSoundAlert(){}
+
+    protected void CreateSoundAlert(Vector3 position, float range)
+    {
+        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
+        {
+            soundRange = range,
+            point = position
+        };
+            
+        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
+    }
 
 
 

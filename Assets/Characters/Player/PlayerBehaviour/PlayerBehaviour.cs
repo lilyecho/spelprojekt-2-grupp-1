@@ -74,6 +74,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     //Hidden
     [SerializeField]private bool hidden;
+    [SerializeField]private bool isAttacked;
     
     #region Shrink
 
@@ -109,13 +110,6 @@ public class PlayerBehaviour : MonoBehaviour
     
     [Space]
     public bool debugStates;
-
-
-    #region Steps
-
-    
-
-    #endregion
     
     private void OnEnable()
     {
@@ -167,7 +161,11 @@ public class PlayerBehaviour : MonoBehaviour
         jumping.OnDrawGizmosSelected(this);
     }
 
-    private void ChangeMovementActivation(bool nextValue)
+    /// <summary>
+    /// True if movement is on
+    /// </summary>
+    /// <param name="nextValue"></param>
+    public void ChangeMovementActivation(bool nextValue)
     {
         _movementOn = nextValue;
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
@@ -194,6 +192,13 @@ public class PlayerBehaviour : MonoBehaviour
     public AbilityData.Abilities ChangeAbilities
     {
         set => currentAbilities |= value;
+    }
+    public bool Hidden => hidden;
+
+    public bool Attacked
+    {
+        get => isAttacked;
+        set => isAttacked = value;
     }
 
     void Start()
@@ -472,8 +477,6 @@ public class PlayerBehaviour : MonoBehaviour
             GameManager.instance?.PauseGame();
         }
     }
-
-    public bool Hidden => hidden;
     
     private void ChangeHidden(bool newValue)
     {

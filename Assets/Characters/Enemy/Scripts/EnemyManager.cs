@@ -6,9 +6,9 @@ public class EnemyManager : MonoBehaviour
 {
     //[SerializeField] private RegistrationPort registrationPort = null;
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
-    [SerializeField, ReadOnly] private List<EnemyBehaviour> enemies;
+    [SerializeField] private List<EnemyBehaviour> enemies;
 
-    [SerializeField,ReadOnly] private int amountOfChaseUnits = 0;
+    [SerializeField] private int amountOfChaseUnits = 0;
 
 
     [Header("Audio")] 

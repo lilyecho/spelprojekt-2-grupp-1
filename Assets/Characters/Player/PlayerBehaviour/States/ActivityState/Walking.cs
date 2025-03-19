@@ -73,7 +73,7 @@ public class Walking : State, IAcceleration
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.walk.speed,
             playerBehaviour.PlayerData.GetSpeedRelated.walk.accTotalTime);
         
-        CreateSoundAlert();
+        CreateSoundAlert(playerBehaviour.transform.position, playerBehaviour.PlayerData.GetAlertingRanges.walk);
     }
 
     public override void OnShift(InputAction.CallbackContext context)
@@ -124,15 +124,5 @@ public class Walking : State, IAcceleration
         float maxSpeed = playerBehaviour.PlayerData.GetSpeedRelated.walk.speed;
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.walk.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed, maxSpeed, totalAccelerationTime);
-    }
-    protected override void CreateSoundAlert()
-    {
-        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
-        {
-            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.walk,
-            point = playerBehaviour.transform.position
-        };
-            
-        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
 }

@@ -77,7 +77,7 @@ public class Sneaking : State, IAcceleration
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.sneak.speed,playerBehaviour.PlayerData.GetSpeedRelated.sneak.accTotalTime);
         
-        CreateSoundAlert();
+        CreateSoundAlert(playerBehaviour.transform.position, playerBehaviour.PlayerData.GetAlertingRanges.sneak);
     }
     
     public override void OnShift(InputAction.CallbackContext context)
@@ -121,16 +121,7 @@ public class Sneaking : State, IAcceleration
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.sneak.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
-    protected override void CreateSoundAlert()
-    {
-        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
-        {
-            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.sneak,
-            point = playerBehaviour.transform.position
-        };
-            
-        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
-    }
+    
     [Serializable]
     private struct SoundInfos
     {   

@@ -77,7 +77,7 @@ public class Running : State, IAcceleration
         
         ApplyAcceleration(playerBehaviour.PlayerData.GetSpeedRelated.run.speed,playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime);
         
-        CreateSoundAlert();
+        CreateSoundAlert(playerBehaviour.transform.position, playerBehaviour.PlayerData.GetAlertingRanges.run);
     }
     
     public override void OnCTRL(InputAction.CallbackContext context)
@@ -121,16 +121,4 @@ public class Running : State, IAcceleration
         float totalAccelerationTime = playerBehaviour.PlayerData.GetSpeedRelated.run.accTotalTime;
         playerBehaviour.accTime = CalculateAccelerationTimeFromSpeed(currentSpeed,maxSpeed,totalAccelerationTime);
     }
-    
-    protected override void CreateSoundAlert()
-    {
-        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
-        {
-            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.run,
-            point = playerBehaviour.transform.position
-        };
-            
-        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
-    }
-    
 }

@@ -36,7 +36,7 @@ public class Falling : State
         if (CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength))
         {
             playerBehaviour.anim.SetBool(animationSuperJumpRelease, false);
-            CreateSoundAlert();
+            CreateSoundAlert(playerBehaviour.transform.position, playerBehaviour.PlayerData.GetAlertingRanges.landing);
             playerBehaviour.ChangeState(playerBehaviour.idle);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
@@ -49,17 +49,6 @@ public class Falling : State
         {
             playerBehaviour.intoJump = false;
         }
-    }
-
-    protected override void CreateSoundAlert()
-    {
-        SoundAlertInfo soundAlertInfo = new SoundAlertInfo
-        {
-            soundRange = playerBehaviour.PlayerData.GetAlertingRanges.landing,
-            point = playerBehaviour.transform.position
-        };
-            
-        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
     }
 
     public override void FixedUpdate()

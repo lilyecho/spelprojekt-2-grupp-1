@@ -43,7 +43,7 @@ public class ChaseStateTroll : TrollStates
     {
         //TrollEyes
         TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetAggressionRange);
-        if (newState != this) newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetAggressionRange);
+        if (newState != this && newState != TrollBehaviour.attackState) newState = Check4Player(TrollBehaviour.GetLamp, TrollBehaviour.GetTrollData.GetAggressionRange);
         if (newState != this)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
@@ -71,8 +71,9 @@ public class ChaseStateTroll : TrollStates
             return TrollBehaviour.searchState;
         }
         
-        if (CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange)) // insight and close enough for attack
+        if (CheckTargetInRange(TrollBehaviour.transform,TrollBehaviour.GetTrollData.GetAttackRange) && !TrollBehaviour.GetTarget.Attacked) // insight and close enough for attack
         {
+            TrollBehaviour.GetTarget.Attacked = true;
             return TrollBehaviour.attackState;
         }
         

@@ -39,6 +39,8 @@ namespace SceneHandling.CheckPoints.Scripts
         {
             playerBehaviour.transform.position = latestCheckPoint.SpawnPoint;
             playerBehaviour.ResetAbilities = latestCheckPoint.Abilities;
+            playerBehaviour.Attacked = false;
+            playerBehaviour.ChangeMovementActivation(true);
         }
     }
 }

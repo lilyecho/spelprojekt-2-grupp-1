@@ -106,10 +106,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         protected override void Awake()
         {
             startPos = transform.position;
-        
             navMeshAgent = GetComponent<NavMeshAgent>();
-            //navMeshAgent.acceleration = 0;
-            
             animator = GetComponent<Animator>();
         
             base.Awake();
@@ -326,6 +323,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         {
             transform.position = startPos;
             patrolState.SetTargetPoint(patrolState.PatrolPointIndex);
+            navMeshAgent.isStopped = false;
             Transition(patrolState);
         }
     }
