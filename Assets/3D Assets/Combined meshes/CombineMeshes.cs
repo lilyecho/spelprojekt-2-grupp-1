@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 public class CombineMeshes : MonoBehaviour
 {
+
+    [SerializeField] private bool sameMaterials;
     void Start()
     {
         //Recommended by documentation
@@ -26,12 +28,20 @@ public class CombineMeshes : MonoBehaviour
             
             combine[i].mesh = meshFilters[i].sharedMesh;
             combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-            meshFilters[i].gameObject.SetActive(false);
+            
+            if (sameMaterials)
+            {
+                meshFilters[i].gameObject.SetActive(false);
+            }
         }
 
         Mesh mesh = new Mesh();
-        mesh.CombineMeshes(combine, true);
-        transform.GetComponent<MeshFilter>().sharedMesh = mesh;
+        mesh.CombineMeshes(combine, sameMaterials);
+
+        if (sameMaterials)
+        {
+            transform.GetComponent<MeshFilter>().sharedMesh = mesh;
+        }
         gameObject.GetComponent<MeshCollider>().sharedMesh = mesh;
         gameObject.SetActive(true);
         
