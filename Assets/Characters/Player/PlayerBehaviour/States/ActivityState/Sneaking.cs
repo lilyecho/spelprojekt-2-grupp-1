@@ -21,33 +21,24 @@ public class Sneaking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
-        //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Sneak);
-        
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
-        Debug.Log("Sneaking: " + soundInfos.onEnter);
     }
     
     public override void Exit()
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), false);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onExit);
-        Debug.Log("Sneaking: " + soundInfos.onExit);
     }
 
     public override void Update()
     {
         
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
-        //playerBehaviour.transform.rotation = AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, time, Vector3.up);
-        //playerBehaviour.transform.rotation = Quaternion.Slerp(playerBehaviour.transform.rotation, AlignToSlope(playerBehaviour.rayCastPoints, playerBehaviour.transform, normal,
-        //                                                        playerBehaviour.PlayerData.GetSlopeCheckerLength, playerBehaviour.PlayerData.GetMaxRotationAngle), time);
+        
         time = time + Time.deltaTime;
-
-
         if (!coyote && !CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 1.5f))
         {
-            //playerBehaviour.ChangeState(playerBehaviour.falling);
             coyote = true;
         }
         
