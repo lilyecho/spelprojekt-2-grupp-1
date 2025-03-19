@@ -4985,7 +4985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3095236800667535367, guid: 85296ec6384e1bc4091e734c6ee4424e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -102.87985
+      value: -102.882
       objectReference: {fileID: 0}
     - target: {fileID: 3095236800667535367, guid: 85296ec6384e1bc4091e734c6ee4424e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5023,6 +5023,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4233191940165645160, guid: 85296ec6384e1bc4091e734c6ee4424e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25f0a16e3c22dae4c88de3164532a5e0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5872,7 +5876,7 @@ PrefabInstance:
     - target: {fileID: 4233191940165645160, guid: 3ae1f4dc4c142a34a92010c4eea085f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 43fc9a6f9844ced41aa4b42b08ec4351, type: 2}
+      objectReference: {fileID: 2100000, guid: 25f0a16e3c22dae4c88de3164532a5e0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5889,22 +5893,22 @@ PrefabInstance:
     - target: {fileID: 2924376050633041284, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 98654eaa696dcca4aa6e8760d51a05d0, type: 2}
+      objectReference: {fileID: 2100000, guid: 86572e2d14e1d0649b54b1ebde598514, type: 2}
     - target: {fileID: 3717023259847017553, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_Name
       value: tickor gul
       objectReference: {fileID: 0}
     - target: {fileID: 4097805458821848811, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -97.42117
+      value: -96.341
       objectReference: {fileID: 0}
     - target: {fileID: 4097805458821848811, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.808
+      value: 0.968
       objectReference: {fileID: 0}
     - target: {fileID: 4097805458821848811, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.247814
+      value: -24.939
       objectReference: {fileID: 0}
     - target: {fileID: 4097805458821848811, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7801,7 +7805,7 @@ PrefabInstance:
     - target: {fileID: 2913565457880192554, guid: 46fff1f7aace4f747a48f502f2758ad3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 98654eaa696dcca4aa6e8760d51a05d0, type: 2}
+      objectReference: {fileID: 2100000, guid: 9582a69d06dd1d343a4b7671415b4f82, type: 2}
     - target: {fileID: 3706440678455359487, guid: 46fff1f7aace4f747a48f502f2758ad3, type: 3}
       propertyPath: m_Name
       value: tickor (1)
@@ -11008,6 +11012,7 @@ Transform:
   - {fileID: 1678344517}
   - {fileID: 5750977617222498179}
   - {fileID: 1305786667}
+  - {fileID: 3430583261692678983}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1719229249
@@ -14135,6 +14140,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6681aac4c16bf93498dd0f6aed528167, type: 3}
+--- !u!1001 &3430583261692678982
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1696291790}
+    m_Modifications:
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -48.432
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -72.574905
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 736507886431114833, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+      propertyPath: m_Name
+      value: tickor vitt
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+--- !u!4 &3430583261692678983 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 104509309755346155, guid: f92d76143c75a424ea7dedd9e682b519, type: 3}
+  m_PrefabInstance: {fileID: 3430583261692678982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3564732334673964845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14735,7 +14802,7 @@ PrefabInstance:
     - target: {fileID: 2924376050633041284, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 98654eaa696dcca4aa6e8760d51a05d0, type: 2}
+      objectReference: {fileID: 2100000, guid: 16fe1657c7f484041a244e68c0b59368, type: 2}
     - target: {fileID: 3717023259847017553, guid: 25c585b5b326aa049a7cdb23af1c5716, type: 3}
       propertyPath: m_Name
       value: tickor gul
