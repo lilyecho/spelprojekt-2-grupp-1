@@ -73,7 +73,7 @@ public class Falling : State
         
         ApplyHorizontalCounterForce();
 
-        playerBehaviour.rb.velocity += PushDownSlopes(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength)* 1.5f ;
+        playerBehaviour.rb.velocity += PushDownSlopes(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength);
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
