@@ -35,24 +35,29 @@ public class TrollStates
     }
     public virtual void OnDrawGizmos(TrollBehaviour troll) { }
 
+    /*
     protected IEnumerator Accelerate(float maxSpeed, float totalAccelerationTime)
     {
         while (true)
         {
             float currentSpeed = TrollBehaviour.GetNavMeshAgent.velocity.magnitude;
-            float percentage = (maxSpeed - currentSpeed) / maxSpeed;
-            
-            if (percentage >= 0.99)
-            {
-                TrollBehaviour.GetNavMeshAgent.velocity =
-                    TrollBehaviour.GetNavMeshAgent.velocity.normalized * maxSpeed;
-                yield break;
-            }
+            float percentage = currentSpeed / maxSpeed;
 
             float lerpTime = (totalAccelerationTime * percentage+ Time.deltaTime)/totalAccelerationTime;
-            yield return Mathf.Lerp(0, maxSpeed,lerpTime < 1 ? lerpTime : 1);
+            if (lerpTime >= 0.99 )
+            {
+                Debug.Log("Max");
+                TrollBehaviour.GetNavMeshAgent.velocity =
+                    TrollBehaviour.GetNavMeshAgent.velocity.normalized * maxSpeed;
+                TrollBehaviour.GetNavMeshAgent.speed = maxSpeed;
+                TrollBehaviour.GetNavMeshAgent.ResetPath();
+                break;
+            }
+            TrollBehaviour.GetNavMeshAgent.velocity =
+                (TrollBehaviour.GetNavMeshAgent.destination - TrollBehaviour.transform.position).normalized * Mathf.Lerp(0, maxSpeed,lerpTime < 1 ? lerpTime : 1);
+            yield return null;
         }
-    }
+    }*/
     
     protected void SetUpStateValuesInAgent(StateParameters parameterValues)
     {
@@ -63,7 +68,7 @@ public class TrollStates
     
     protected void SetAgentSpeed(float speed)
     {
-        TrollBehaviour.GetNavMeshAgent.velocity = TrollBehaviour.GetNavMeshAgent.velocity.normalized*speed;
+        TrollBehaviour.GetNavMeshAgent.speed = speed;
         TrollBehaviour.Animator.SetFloat(TrollBehaviour.speedAP, speed);
     }
     protected void SetAgentAngularSpeed(float speed)
@@ -98,7 +103,6 @@ public class TrollStates
 
     public bool CheckIfPositionIsWalkable(Vector3 position, float range)
     {
-        NavMeshPath path = new NavMeshPath();
         Physics.Raycast(position + Vector3.up, Vector3.down,out RaycastHit hit);
         /*bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
             hit.point, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead*/
@@ -109,12 +113,11 @@ public class TrollStates
         return isWalkable;
     }
     
-    protected bool CheckIfPositionIsWalkable(Vector3 position,out NavMeshPath path)
+    protected bool CalculatePath(Vector3 position,out NavMeshPath path)
     {
         path = new NavMeshPath();
-        Physics.Raycast(position + Vector3.up, Vector3.down,out RaycastHit hit);
         bool isWalkable = NavMesh.CalculatePath(TrollBehaviour.GetNavMeshAgent.transform.position,
-            hit.point, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
+            position, 1 << NavMesh.GetAreaFromName("Walkable"), path); //Has to do with binary 0,1,2,3 --> 1,2,4,8 1<< x moves the number 1 x ahead
         
         return isWalkable;
     }

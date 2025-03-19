@@ -35,7 +35,9 @@ namespace Characters.Enemy.Troll.Scripts.States
             //Change pathfinding system so that trolls wont get stuck on the way to patrols
             TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetPatrol.statePriority;
             TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        
+
+            //TrollBehaviour.StartCoroutine(Accelerate(TrollBehaviour.GetTrollData.GetPatrol.speed,2f));
+            
             SetTargetPoint(patrolPointIndex);
             SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
         }
@@ -55,8 +57,6 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         public override void Update()
         {
-            
-
             //TrollEyes
             TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
                 TrollBehaviour.GetTrollData.GetTrollSight.angle);
@@ -76,8 +76,13 @@ namespace Characters.Enemy.Troll.Scripts.States
             
             CheckSwapPatrolPoint();
         }
-        
-        
+
+        public override void FixedUpdate()
+        {
+            TrollBehaviour.Animator.SetFloat(TrollBehaviour.speedAP, TrollBehaviour.GetNavMeshAgent.velocity.magnitude);
+        }
+
+
         private void SearchAtAlertPoint(Vector3 alertSourcePosition)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(alertSourcePosition);
