@@ -121,6 +121,8 @@ namespace Characters.Enemy.Troll.Scripts.States
             startPos = transform.position;
         
             navMeshAgent = GetComponent<NavMeshAgent>();
+            //navMeshAgent.acceleration = 0;
+            
             animator = GetComponent<Animator>();
         
             base.Awake();
@@ -291,7 +293,6 @@ namespace Characters.Enemy.Troll.Scripts.States
 
         #endregion
         
-
         public override void Alerted(Vector3 alertPoint)
         {
             if (activeState.HasFlag(States.Attack) || activeState.HasFlag(States.Chase)) return;

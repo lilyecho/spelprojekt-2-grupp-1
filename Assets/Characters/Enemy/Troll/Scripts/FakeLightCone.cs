@@ -63,6 +63,9 @@ public class FakeLightCone : MonoBehaviour
         }
         Mesh mesh = new Mesh();
         mesh.CombineMeshes(combine, true);
+        //mesh.RecalculateBounds();
+        //mesh.RecalculateNormals();
+        
         _meshFilter.mesh = mesh;
 
         //Recommended by documentation

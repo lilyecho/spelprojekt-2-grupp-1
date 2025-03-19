@@ -55,7 +55,7 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         public override void Update()
         {
-            //Debug.Log("Walkable: "+CheckIfTargetPositionIsWalkable());
+            
 
             //TrollEyes
             TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
@@ -76,7 +76,8 @@ namespace Characters.Enemy.Troll.Scripts.States
             
             CheckSwapPatrolPoint();
         }
-
+        
+        
         private void SearchAtAlertPoint(Vector3 alertSourcePosition)
         {
             TrollBehaviour.GetNavMeshAgent.SetDestination(alertSourcePosition);

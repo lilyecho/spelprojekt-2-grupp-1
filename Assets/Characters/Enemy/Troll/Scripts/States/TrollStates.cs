@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Characters.Enemy.Troll.Scripts.States;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -33,6 +35,25 @@ public class TrollStates
     }
     public virtual void OnDrawGizmos(TrollBehaviour troll) { }
 
+    protected IEnumerator Accelerate(float maxSpeed, float totalAccelerationTime)
+    {
+        while (true)
+        {
+            float currentSpeed = TrollBehaviour.GetNavMeshAgent.velocity.magnitude;
+            float percentage = (maxSpeed - currentSpeed) / maxSpeed;
+            
+            if (percentage >= 0.99)
+            {
+                TrollBehaviour.GetNavMeshAgent.velocity =
+                    TrollBehaviour.GetNavMeshAgent.velocity.normalized * maxSpeed;
+                yield break;
+            }
+
+            float lerpTime = (totalAccelerationTime * percentage+ Time.deltaTime)/totalAccelerationTime;
+            yield return Mathf.Lerp(0, maxSpeed,lerpTime < 1 ? lerpTime : 1);
+        }
+    }
+    
     protected void SetUpStateValuesInAgent(StateParameters parameterValues)
     {
         SetAgentSpeed(parameterValues.speed);
@@ -42,7 +63,7 @@ public class TrollStates
     
     protected void SetAgentSpeed(float speed)
     {
-        TrollBehaviour.GetNavMeshAgent.speed = speed;
+        TrollBehaviour.GetNavMeshAgent.velocity = TrollBehaviour.GetNavMeshAgent.velocity.normalized*speed;
         TrollBehaviour.Animator.SetFloat(TrollBehaviour.speedAP, speed);
     }
     protected void SetAgentAngularSpeed(float speed)
