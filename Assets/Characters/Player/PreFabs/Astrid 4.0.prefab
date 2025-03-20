@@ -1222,40 +1222,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     soundInfos:
-      onEnter:
-      - soundImplementationName: onIdle
-        action: 15
-        eventReference:
-          Guid:
-            Data1: -337360150
-            Data2: 1182316273
-            Data3: 1982423946
-            Data4: 1573589476
-          Path: event:/PC_Cat_Idle
-        locality: 0
-        parameterName: CatLoopingVO
-        parameterValue: 0
-        playVariant: 0
-        locationVariant: 0
-        locationTransform: {fileID: 39312636168687084}
-        stopMode: 0
-      onExit:
-      - soundImplementationName: onIdleExit
-        action: 2
-        eventReference:
-          Guid:
-            Data1: -337360150
-            Data2: 1182316273
-            Data3: 1982423946
-            Data4: 1573589476
-          Path: event:/PC_Cat_Idle
-        locality: 0
-        parameterName: CatLoopingVO
-        parameterValue: 1
-        playVariant: 0
-        locationVariant: 0
-        locationTransform: {fileID: 0}
-        stopMode: 0
+      onEnter: []
+      onExit: []
   walking:
     OnEnter:
       m_PersistentCalls:
