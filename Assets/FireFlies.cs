@@ -93,6 +93,7 @@ public class FireFlies : MonoBehaviour
                 if (points[index].isStop || index == points.Length - 1)
                 {
                     triggerRadius = points[index].distanceToTrigger;
+                    moveSpeed = points[index].changeSpeedTo;
                     moving = false;
                 }
                 index++;

@@ -109,19 +109,18 @@ public class KameraPrototyp : MonoBehaviour
             angleP += delta.y * GetCameraData.GetRotateSpeedP * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
             angleP = Mathf.Clamp(angleP, GetCameraData.GetPMax, GetCameraData.GetPMin);
         }
-        
-        Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius - extraRadius);
 
-        if(angleP == GetCameraData.GetPMin && delta.y > 0)
+        
+        
+        /*
+        if (angleP == GetCameraData.GetPMin && delta.y > 0)
         {
             extraP += delta.y * GetCameraData.GetRotateSpeedP * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
             angleH += delta.x * GetCameraData.GetRotateSpeedH * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
             extraP = Mathf.Clamp(extraP, 0, 35);
-            //extraHeightOffset = 1 + 1.5f * (extraP / 35);
-            //extraRadius = .5f * (extraP / 35);
+            extraHeightOffset = 1 + 1.5f * (extraP / 35);
+            extraRadius = .5f * (extraP / 35);
 
-            extraHeightOffset = 1 + 1.5f * Mathf.Pow(extraP / 35, 0.7f);
-            extraRadius = .5f * Mathf.Pow(extraP / 35, 1.2f);
         }
 
         if(extraP > 0 && delta.y < 0)
@@ -129,12 +128,14 @@ public class KameraPrototyp : MonoBehaviour
             extraP += delta.y * GetCameraData.GetRotateSpeedP * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
             angleH += delta.x * GetCameraData.GetRotateSpeedH * multi * GameManager.instance.cameraSensitivity * Time.deltaTime;
             extraP = Mathf.Clamp(extraP, 0, 35);
-            //extraHeightOffset = 1 + 1.5f * (extraP / 35);
-            //extraRadius = .5f * (extraP / 35);
-
-            extraHeightOffset = 1 + 1.5f * Mathf.Pow(extraP / 35, 0.7f);
-            extraRadius = .5f * Mathf.Pow(extraP / 35, 1.2f);
+            extraHeightOffset = 1 + 1.5f * (extraP / 35);
+            extraRadius = .5f * (extraP / 35);
         }
+        */
+
+        Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
+
+        
 
         Quaternion rotation = Quaternion.Euler(angleP + extraP, angleH, 0);
         //cam.transform.position = target.position + rotation * offset;
