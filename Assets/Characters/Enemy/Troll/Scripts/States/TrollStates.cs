@@ -150,4 +150,9 @@ public class TrollStates
         }
         return false;
     }
+
+    protected void Turn()
+    {
+        
+    }
 }

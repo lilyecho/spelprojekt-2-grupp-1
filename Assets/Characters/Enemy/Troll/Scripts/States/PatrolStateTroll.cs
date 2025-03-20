@@ -57,6 +57,13 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         public override void Update()
         {
+            foreach (var VARIABLE in TrollBehaviour.GetNavMeshAgent.path.corners)
+            {
+                Debug.Log(VARIABLE);
+            }
+            Debug.Log("___________________");
+            
+            
             //TrollEyes
             TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
                 TrollBehaviour.GetTrollData.GetTrollSight.angle);
