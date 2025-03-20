@@ -144,8 +144,17 @@ public class KameraPrototyp : MonoBehaviour
         cam.transform.LookAt(targetPoint.transform.position);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Quaternion rotation = Quaternion.Euler(angleP + extraP, angleH, 0);
+        Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
 
-    
+        Gizmos.DrawSphere(transform.position + GetCameraData.GetHeightOffset + rotation * offset, 0.1f);
+
+        Gizmos.DrawRay(transform.position + GetCameraData.GetHeightOffset + rotation * offset, ((transform.position + GetCameraData.GetHeightOffset) - (transform.position + GetCameraData.GetHeightOffset + rotation * offset)).normalized);
+    }
+
 
 
     public void OnAstridCaught(CameraTrollPort cameraTrollPort, Transform troll, Transform cameraPos)

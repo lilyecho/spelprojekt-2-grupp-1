@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.15062344
+      value: -0.03427421
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1436264
+      value: -0.034193587
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -148,19 +148,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.64170486
+      value: -0.33928284
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.64170486
+      value: 0.33928284
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.29700986
+      value: 0.62039274
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.29700986
+      value: -0.62039274
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1013,8 +1013,6 @@ MonoBehaviour:
   playerDataShrink: {fileID: 0}
   currentAbilities: 0
   audioPort: {fileID: 0}
-  parameterData: {fileID: 0}
-  characterAudioData: {fileID: 0}
   rb: {fileID: 437572087}
   anim: {fileID: 0}
   moveInput: {x: 0, y: 0}
@@ -1034,6 +1032,7 @@ MonoBehaviour:
   chargingJumpParticles: {fileID: 0}
   timeManager: {fileID: 0}
   hidden: 0
+  isAttacked: 0
   particleSystemOnShrink: {fileID: 0}
   shrinkCooldown: 1
   shrinkCooldownTimer: 1
@@ -1115,6 +1114,7 @@ MonoBehaviour:
       onEnter: []
       onMegaJump: []
       onNormalJump: []
+      onNoJump: []
   debugStates: 0
   rotationSpeed: 10
   currentVelocity: 0
@@ -4006,11 +4006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5704581851922697474, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: angleH
-      value: 180
+      value: 227.2
       objectReference: {fileID: 0}
     - target: {fileID: 5704581851922697474, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: angleP
-      value: 130
+      value: 120.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
