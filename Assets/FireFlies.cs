@@ -168,6 +168,7 @@ public class FireFlies : MonoBehaviour
 
         moving = false;
         index = spawnPoint.index;
+        moveSpeed = points[index].changeSpeedTo;
         //fireFliesParent.transform.position = startPositionWorld;
         if(spawnPoint != null)
         {
