@@ -26,7 +26,7 @@ public class Falling : State
     [Serializable]
     private struct SoundInfos
     {   
-        public SoundInfo[] onExit;
+        public SoundInfo[] onLanding;
     }
     
     public override void Enter()
@@ -46,6 +46,9 @@ public class Falling : State
         {
             playerBehaviour.anim.SetBool(animationSuperJumpRelease, false);
             CreateSoundAlert(playerBehaviour.transform.position, playerBehaviour.PlayerData.GetAlertingRanges.landing);
+            
+            playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onLanding);
+            
             playerBehaviour.ChangeState(playerBehaviour.idle);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
