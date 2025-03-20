@@ -222,54 +222,66 @@ public abstract class State
     /// <summary>
     /// Makes it so that only x and z movement matters in air-movement
     /// </summary>
-    protected void ApplyCorrectiveAirForces()
+    protected void ApplyCorrectiveAirForces(AirForceMode airForceMode)
     {
         if (playerBehaviour.moveDir == Vector3.zero) return;
+
+        MidAirForces midAirForces = GetMidAirForce(airForceMode);
         
         //Flaws is the use of vector2 which only use x and y, but keep in mind that x => x and z => y
         Vector3 currentVelocity = playerBehaviour.rb.velocity;
 
         //Works as a cap so the player wont move to fast
         float currentXZSpeed = new Vector2(currentVelocity.x,currentVelocity.z).magnitude;
-        if (currentXZSpeed >= playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed)
+        if (currentXZSpeed >= midAirForces.GetMaximumSpeed)
         {
             Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
-            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.PlayerData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+            playerBehaviour.rb.AddForce(forceDir * midAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
 
-            Vector3 newVelocity = new Vector3(playerBehaviour.rb.velocity.x, 0,playerBehaviour.rb.velocity.z).normalized*playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
+            Vector3 newVelocity = new Vector3(playerBehaviour.rb.velocity.x, 0,playerBehaviour.rb.velocity.z).normalized* midAirForces.GetMaximumSpeed;
             newVelocity.y = playerBehaviour.rb.velocity.y;
             playerBehaviour.rb.velocity = newVelocity;
-
-
-            /*
-            Vector2 adaptedXZMoveDir = new Vector2(playerBehaviour.moveDir.x,playerBehaviour.moveDir.z).normalized *
-                                       playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
-
-            playerBehaviour.rb.velocity = new Vector3(adaptedXZMoveDir.x,currentVelocity.y,adaptedXZMoveDir.y);*/
-            //Debug.Log("MaxSpeed - In Air");
+            
         }
         else
         {
             Vector3 forceDir = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized;
-            playerBehaviour.rb.AddForce(forceDir * playerBehaviour.PlayerData.GetMidAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
+            playerBehaviour.rb.AddForce(forceDir * midAirForces.GetAppliedMagnitude, ForceMode.Acceleration);
         }
-        
-        /*Vector3 primaryVelocity = new Vector3(playerBehaviour.moveDir.x,0,playerBehaviour.moveDir.z).normalized * playerBehaviour.PlayerData.GetMidAirForces.GetMaximumSpeed;
-
-            Vector3 correctedVelocity = new Vector3(0, playerBehaviour.rb.velocity.y, 0);
-            if (!(playerBehaviour.rb.velocity.x < 0 && primaryVelocity.x < 0 ))
-            {
-                correctedVelocity.x = primaryVelocity.x;
-            }
-            if (!(playerBehaviour.rb.velocity.z < 0 && primaryVelocity.z < 0))
-            {
-                correctedVelocity.z = primaryVelocity.z;
-            }
-
-            playerBehaviour.rb.velocity = correctedVelocity;*/
     }
 
+    private MidAirForces GetMidAirForce(AirForceMode airForceMode)
+    {
+        switch (airForceMode)
+        {
+            case AirForceMode.Sneak:
+                return playerBehaviour.PlayerData.GetAirForceSneak;
+            case AirForceMode.Walk:
+                return playerBehaviour.PlayerData.GetAirForceWalk;
+            case AirForceMode.Run:
+                return playerBehaviour.PlayerData.GetAirForceRun;
+            case AirForceMode.Glide:
+                return playerBehaviour.PlayerData.GetAirForceGlide;
+            default:
+                throw new ArgumentException("Missing airForceMode implementation for airCorrectiveForces");
+        }
+    }
 
+    protected AirForceMode ConvertMovementModeToAirForceMode(PlayerBehaviour.MovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case PlayerBehaviour.MovementMode.SNEAK:
+                return AirForceMode.Sneak;
+            case PlayerBehaviour.MovementMode.WALK:
+                return AirForceMode.Walk;
+            case PlayerBehaviour.MovementMode.RUN:
+                return AirForceMode.Run;
+            default:
+                throw new ArgumentException("Missing movement mode implementation for conversion to AirForceMode");
+        }
+    }
+    
     protected Quaternion UpdateAirborneRotation(Vector2 moveInput, Transform playerTransform, Rigidbody rb)
     {
         Quaternion targetRotation;
@@ -299,21 +311,7 @@ public abstract class State
             
 
     }
-
-    /*protected void TakeStep()
-    {
-        playerBehaviour.GetAudioPort.OnStep(
-            playerBehaviour.GetAudioData,
-            playerBehaviour.GetCheckerTransform);
-    }*/
     
-    /// <summary>
-    /// Only capable 4 now to change global parameters (Won't search for a suitable change in any local parameters)
-    /// </summary>
-    protected void OnEnterChangeGlobalActivityParameter(string parameterName , int value)
-    {
-        playerBehaviour.GetAudioPort.OnChangeGlobalParameter(parameterName, value);
-    }
 
     /// <summary>
     /// Transform up-vector is world-direction (0,1,0)
@@ -362,8 +360,17 @@ public abstract class State
         Vector2 horizontalMagnitude = new Vector2(playerBehaviour.rb.velocity.x, playerBehaviour.rb.velocity.z);
         if (playerBehaviour.moveInput == Vector2.zero && horizontalMagnitude.magnitude > 0.001f)
         {
-            playerBehaviour.rb.AddForce(new Vector3(playerBehaviour.rb.velocity.x, 0, playerBehaviour.rb.velocity.z).normalized * -1 * 10, ForceMode.Force);
+            playerBehaviour.rb.AddForce(new Vector3(playerBehaviour.rb.velocity.x, 0, playerBehaviour.rb.velocity.z).normalized * (-1 * 10), ForceMode.Force);
         }
+    }
+    
+    public enum AirForceMode
+    {
+        None,
+        Sneak,
+        Walk,
+        Run,
+        Glide
     }
 
 }
