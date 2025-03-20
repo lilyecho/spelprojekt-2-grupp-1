@@ -1183,8 +1183,6 @@ MonoBehaviour:
   playerDataShrink: {fileID: 11400000, guid: a1e5c9cf0d179504c9945db078813ce0, type: 2}
   currentAbilities: -1
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
-  parameterData: {fileID: 11400000, guid: 94143429f0fd9974b9efa3cc6f799cbb, type: 2}
-  characterAudioData: {fileID: 11400000, guid: 31c613226e0d944458b4e944d8afafd7, type: 2}
   rb: {fileID: 1347789619314901936}
   anim: {fileID: 0}
   moveInput: {x: 0, y: 0}
@@ -1254,24 +1252,24 @@ MonoBehaviour:
     soundInfos:
       onEnter:
       - soundImplementationName: onEnterSneak
-        action: 2
+        action: -1
         eventReference:
           Guid:
-            Data1: -99017354
-            Data2: 1115391521
-            Data3: 1226343332
-            Data4: -1244855710
-          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
         locality: 1
-        parameterName: CatSneak
-        parameterValue: 1
+        parameterName: CatPowers
+        parameterValue: 2
         playVariant: 0
         locationVariant: 0
-        locationTransform: {fileID: 0}
-        stopMode: 0
+        locationTransform: {fileID: 2097215418498796415}
+        stopMode: 1
       onExit:
       - soundImplementationName: onExitSneak
-        action: 2
+        action: -1
         eventReference:
           Guid:
             Data1: -99017354
@@ -1280,12 +1278,12 @@ MonoBehaviour:
             Data4: -1244855710
           Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
         locality: 1
-        parameterName: CatSneak
-        parameterValue: 0
+        parameterName: CatPowers
+        parameterValue: 2
         playVariant: 0
         locationVariant: 0
-        locationTransform: {fileID: 0}
-        stopMode: 0
+        locationTransform: {fileID: 2097215418498796415}
+        stopMode: 1
   running:
     OnEnter:
       m_PersistentCalls:
@@ -1392,6 +1390,41 @@ MonoBehaviour:
     growPositionChange: {x: 0, y: 0.23, z: 0}
     growColliderOffset: {x: 0, y: 0.05, z: 0.04}
     colliderSize: {x: 0.18, y: 0.55, z: 0.55}
+    soundInfos:
+      onEnter:
+      - soundImplementationName: 
+        action: 15
+        eventReference:
+          Guid:
+            Data1: 0
+            Data2: 0
+            Data3: 0
+            Data4: 0
+          Path: 
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
+      onExit:
+      - soundImplementationName: 
+        action: 0
+        eventReference:
+          Guid:
+            Data1: 0
+            Data2: 0
+            Data3: 0
+            Data4: 0
+          Path: 
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   megaJump:
     SoundInformations:
       onEnter:
@@ -1799,6 +1832,11 @@ MonoBehaviour:
     stopMode: 0
   curveName: sfxAstridStep
   activationValue: 0.9
+--- !u!4 &2097215418498796415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1881340883554427256, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+  m_PrefabInstance: {fileID: 504706482222770695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5246406279976226306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5751071882428621829, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
