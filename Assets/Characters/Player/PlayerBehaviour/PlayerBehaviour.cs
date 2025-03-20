@@ -18,7 +18,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private CheckPointPort checkPointPort = null;
-    [SerializeField] private HidePort hidePort = null;
     
     [Space,SerializeField] private PlayerData playerDataNormal;
     [SerializeField] private PlayerData playerDataShrink;
@@ -112,13 +111,11 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnEnable()
     {
         timeManager.OnMovement += ChangeMovementActivation;
-        hidePort.OnHidden += ChangeHidden;
     }
 
     private void OnDisable()
     {
         timeManager.OnMovement -= ChangeMovementActivation;
-        hidePort.OnHidden -= ChangeHidden;
     }
 
     private void Awake()
@@ -191,7 +188,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         set => currentAbilities |= value;
     }
-    public bool Hidden => hidden;
+
+    public bool Hidden
+    {
+        get => hidden;
+        set => hidden = value;
+    }
 
     public bool Attacked
     {
@@ -474,10 +476,5 @@ public class PlayerBehaviour : MonoBehaviour
         {
             GameManager.instance?.PauseGame();
         }
-    }
-    
-    private void ChangeHidden(bool newValue)
-    {
-        hidden = newValue;
     }
 }
