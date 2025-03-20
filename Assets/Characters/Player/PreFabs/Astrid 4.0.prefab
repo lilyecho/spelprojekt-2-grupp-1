@@ -1043,6 +1043,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
   m_PrefabInstance: {fileID: 504706482222770695}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &263497446476431045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 335854996673959106, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+  m_PrefabInstance: {fileID: 504706482222770695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &846810934666368854 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
@@ -1216,6 +1221,41 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundInfos:
+      onEnter:
+      - soundImplementationName: onIdle
+        action: 15
+        eventReference:
+          Guid:
+            Data1: -337360150
+            Data2: 1182316273
+            Data3: 1982423946
+            Data4: 1573589476
+          Path: event:/PC_Cat_Idle
+        locality: 0
+        parameterName: CatLoopingVO
+        parameterValue: 0
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
+      onExit:
+      - soundImplementationName: onIdleExit
+        action: 2
+        eventReference:
+          Guid:
+            Data1: -337360150
+            Data2: 1182316273
+            Data3: 1982423946
+            Data4: 1573589476
+          Path: event:/PC_Cat_Idle
+        locality: 0
+        parameterName: CatLoopingVO
+        parameterValue: 1
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   walking:
     OnEnter:
       m_PersistentCalls:
@@ -1337,6 +1377,24 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     gizmos: 0
+    soundInfos:
+      onExit:
+      - soundImplementationName: OnLanding
+        action: -1
+        eventReference:
+          Guid:
+            Data1: 1001402678
+            Data2: 1289994936
+            Data3: -2017049453
+            Data4: 1334099315
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Landing
+        locality: 0
+        parameterName: CatBellMovement
+        parameterValue: 2
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 263497446476431045}
+        stopMode: 1
   gliding:
     OnEnter:
       m_PersistentCalls:
@@ -1392,7 +1450,24 @@ MonoBehaviour:
     colliderSize: {x: 0.18, y: 0.55, z: 0.55}
     soundInfos:
       onEnter:
-      - soundImplementationName: 
+      - soundImplementationName: OnShrink
+        action: 15
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: CatPowers
+        parameterValue: 2
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 2097215418498796415}
+        stopMode: 1
+      onExit:
+      - soundImplementationName: OnShrinkExit
         action: 15
         eventReference:
           Guid:
@@ -1402,28 +1477,11 @@ MonoBehaviour:
             Data4: 0
           Path: 
         locality: 0
-        parameterName: 
-        parameterValue: 0
+        parameterName: CatPowers
+        parameterValue: 2
         playVariant: 0
         locationVariant: 0
-        locationTransform: {fileID: 0}
-        stopMode: 0
-      onExit:
-      - soundImplementationName: 
-        action: 0
-        eventReference:
-          Guid:
-            Data1: 0
-            Data2: 0
-            Data3: 0
-            Data4: 0
-          Path: 
-        locality: 0
-        parameterName: 
-        parameterValue: 0
-        playVariant: 0
-        locationVariant: 0
-        locationTransform: {fileID: 0}
+        locationTransform: {fileID: 2097215418498796415}
         stopMode: 0
   megaJump:
     SoundInformations:
