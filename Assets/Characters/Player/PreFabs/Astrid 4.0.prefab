@@ -1363,7 +1363,7 @@ MonoBehaviour:
         locationTransform: {fileID: 263497446476431045}
         stopMode: 1
       - soundImplementationName: OnLandingMegaJump
-        action: -1
+        action: 18
         eventReference:
           Guid:
             Data1: 377131813
@@ -1372,11 +1372,11 @@ MonoBehaviour:
             Data4: 1475062927
           Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
         locality: 0
-        parameterName: CatBellMovement
-        parameterValue: 2
-        playVariant: 0
+        parameterName: IsPowerActive
+        parameterValue: 0
+        playVariant: 1
         locationVariant: 0
-        locationTransform: {fileID: 263497446476431045}
+        locationTransform: {fileID: 39312636168687084}
         stopMode: 1
   gliding:
     OnEnter:
