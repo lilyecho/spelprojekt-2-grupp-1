@@ -37,6 +37,7 @@ public class MegaJump : JumpState
     {
         if (context.canceled || playerBehaviour.movementMode != PlayerBehaviour.MovementMode.SNEAK)
         {
+            playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onNoJump);
             playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
@@ -69,6 +70,7 @@ public class MegaJump : JumpState
         public SoundInfo[] onEnter;
         public SoundInfo[] onMegaJump;
         public SoundInfo[] onNormalJump;
+        public SoundInfo[] onNoJump;
     }
 
     public override void Exit()
