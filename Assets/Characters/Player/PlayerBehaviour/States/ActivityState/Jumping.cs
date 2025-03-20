@@ -13,6 +13,9 @@ public class Jumping : State
     private bool flagAbleToFall;
     [SerializeField] private SoundInfos soundInfos;
 
+
+    
+
     private AirForceMode airForceMode;
     
     #region AnimationParameters

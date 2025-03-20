@@ -34,6 +34,8 @@ public class Gliding : State
         {
             playerBehaviour.ChangeState(playerBehaviour.falling);
         }
+
+        ExitGlidingStateIfTooCloseToTroll();
     }
 
     public override void FixedUpdate()
@@ -41,6 +43,7 @@ public class Gliding : State
         playerBehaviour.rb.velocity = new Vector3(playerBehaviour.rb.velocity.x, playerBehaviour.PlayerData.GetGlideFallingSpeed, playerBehaviour.rb.velocity.z);
         ApplyCorrectiveAirForces(AirForceMode.Glide);
         UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
+
     }
 
     public override void OnSpaceBar(InputAction.CallbackContext context)
@@ -56,4 +59,15 @@ public class Gliding : State
         public SoundInfo[] onEnter;
         public SoundInfo[] onExit;
     }
+
+
+
+    private void ExitGlidingStateIfTooCloseToTroll()
+    {
+        if (EnemyManager.instance.GetClosestDistanceToEnemyFromPlayer(out float? dist) && dist < playerBehaviour.minDistToTroll)
+        {
+            playerBehaviour.ChangeState(playerBehaviour.falling);
+        }
+    }
+
 }

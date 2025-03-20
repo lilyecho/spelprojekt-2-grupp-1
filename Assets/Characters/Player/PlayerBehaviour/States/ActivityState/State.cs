@@ -326,7 +326,8 @@ public abstract class State
 
     protected bool Glide()
     {
-        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideMinimumHeight) && playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.Glide))
+        if (!CheckForGround(playerBehaviour.rayCastPoints, playerBehaviour.PlayerData.GetGlideMinimumHeight) && playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.Glide)
+            && EnemyManager.instance.GetClosestDistanceToEnemyFromPlayer(out float? dist) && dist > playerBehaviour.minDistToTroll)
         {
             return true;
         }

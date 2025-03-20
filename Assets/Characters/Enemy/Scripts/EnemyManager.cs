@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager instance;
+
+
     //[SerializeField] private RegistrationPort registrationPort = null;
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private List<EnemyBehaviour> enemies;
@@ -16,6 +20,16 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         enemies = new List<EnemyBehaviour>();
+
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void OnEnable()
@@ -23,12 +37,16 @@ public class EnemyManager : MonoBehaviour
         enemyManagerPort.OnRegister += RegisterEnemy;
         enemyManagerPort.OnChaseChange += UpdateChaseUnitValue;
         enemyManagerPort.OnSoundAlert += ActivateSearchForAlert;
+
+        SceneManager.sceneLoaded += SceneChange;
     }
     private void OnDisable()
     {
         enemyManagerPort.OnRegister -= RegisterEnemy;
         enemyManagerPort.OnChaseChange -= UpdateChaseUnitValue;
         enemyManagerPort.OnSoundAlert -= ActivateSearchForAlert;
+
+        SceneManager.sceneLoaded -= SceneChange;
     }
 
     private void RegisterEnemy(RegistrationPort.TypeOfRegistration type,GameObject newEnemy)
@@ -103,7 +121,12 @@ public class EnemyManager : MonoBehaviour
             audioManagerPort.OnChased(true);
         }
     }
-    
-    
+
+
+    private void SceneChange(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Game Manager");
+    }
+
     
 }

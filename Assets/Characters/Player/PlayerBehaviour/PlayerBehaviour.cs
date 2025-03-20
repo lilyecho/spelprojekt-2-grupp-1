@@ -67,8 +67,11 @@ public class PlayerBehaviour : MonoBehaviour
     
     [SerializeField] private TimeManager timeManager = null;
     private bool _movementOn = true;
-    
-    
+
+    //test
+    public float minDistToTroll = 5;
+    //
+
     //Hidden
     [SerializeField]private bool hidden;
     [SerializeField]private bool isAttacked;
@@ -477,4 +480,6 @@ public class PlayerBehaviour : MonoBehaviour
             GameManager.instance?.PauseGame();
         }
     }
+
+
 }
