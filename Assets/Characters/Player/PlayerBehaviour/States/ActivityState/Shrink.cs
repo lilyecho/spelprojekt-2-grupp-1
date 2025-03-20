@@ -17,7 +17,7 @@ public class Shrink : State
     private bool _active = false;
     private Vector3 standardSize;
     
-    [SerializeField] private SoundInfos soundInfos;
+    [FormerlySerializedAs("soundInfos")] [SerializeField] private SoundInfos soundInfosShrink;
 
     [Serializable]
     private struct SoundInfos
@@ -31,7 +31,7 @@ public class Shrink : State
         ReSize();
         
         playerBehaviour.ChangeState(playerBehaviour.idle);
-        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfosShrink.onEnter);
     }
     
 

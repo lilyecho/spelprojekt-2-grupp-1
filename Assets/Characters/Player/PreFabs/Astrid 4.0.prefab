@@ -1186,7 +1186,7 @@ MonoBehaviour:
   hidePort: {fileID: 11400000, guid: a18cd4de09a134744ad07b48c71305f3, type: 2}
   playerDataNormal: {fileID: 11400000, guid: 8f72cd383086fe14caee523532899c8b, type: 2}
   playerDataShrink: {fileID: 11400000, guid: a1e5c9cf0d179504c9945db078813ce0, type: 2}
-  currentAbilities: -1
+  currentAbilities: 5
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   rb: {fileID: 1347789619314901936}
   anim: {fileID: 0}
@@ -1260,7 +1260,7 @@ MonoBehaviour:
     soundInfos:
       onEnter:
       - soundImplementationName: onEnterSneak
-        action: -1
+        action: 2
         eventReference:
           Guid:
             Data1: 377131813
@@ -1269,15 +1269,15 @@ MonoBehaviour:
             Data4: 1475062927
           Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
         locality: 1
-        parameterName: CatPowers
-        parameterValue: 2
+        parameterName: CatSneak
+        parameterValue: 1
         playVariant: 0
         locationVariant: 0
         locationTransform: {fileID: 2097215418498796415}
         stopMode: 1
       onExit:
       - soundImplementationName: onExitSneak
-        action: -1
+        action: 2
         eventReference:
           Guid:
             Data1: -99017354
@@ -1286,8 +1286,8 @@ MonoBehaviour:
             Data4: -1244855710
           Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
         locality: 1
-        parameterName: CatPowers
-        parameterValue: 2
+        parameterName: CatSneak
+        parameterValue: 0
         playVariant: 0
         locationVariant: 0
         locationTransform: {fileID: 2097215418498796415}
@@ -1363,6 +1363,22 @@ MonoBehaviour:
         locationVariant: 0
         locationTransform: {fileID: 263497446476431045}
         stopMode: 1
+      - soundImplementationName: OnLandingMegaJump
+        action: -1
+        eventReference:
+          Guid:
+            Data1: 1001402678
+            Data2: 1289994936
+            Data3: -2017049453
+            Data4: 1334099315
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Landing
+        locality: 0
+        parameterName: CatBellMovement
+        parameterValue: 2
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 263497446476431045}
+        stopMode: 1
   gliding:
     OnEnter:
       m_PersistentCalls:
@@ -1416,7 +1432,7 @@ MonoBehaviour:
     growPositionChange: {x: 0, y: 0.23, z: 0}
     growColliderOffset: {x: 0, y: 0.05, z: 0.04}
     colliderSize: {x: 0.18, y: 0.55, z: 0.55}
-    soundInfos:
+    soundInfosShrink:
       onEnter:
       - soundImplementationName: OnShrink
         action: 15
@@ -1521,7 +1537,7 @@ MonoBehaviour:
         locationVariant: 0
         locationTransform: {fileID: 0}
         stopMode: 1
-  debugStates: 1
+  debugStates: 0
   rotationSpeed: 10
   currentVelocity: 0
   smoothTime: 0.1

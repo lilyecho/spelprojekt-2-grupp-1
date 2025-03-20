@@ -23,6 +23,7 @@ public class Sneaking : State, IAcceleration
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
+        Debug.Log("Sneak");
     }
     
     public override void Exit()
@@ -33,7 +34,7 @@ public class Sneaking : State, IAcceleration
 
     public override void Update()
     {
-        
+        Debug.Log("Fort - Sneak");
         normal = GetSurfaceNormal(playerBehaviour.rayCastPoints, playerBehaviour.rayCastLength * 2);
         
         time = time + Time.deltaTime;
