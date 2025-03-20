@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
+using SceneHandling.SoundSystem.Scripts;
 
 
 [Serializable]
@@ -12,7 +13,8 @@ public class Falling : State
     float jumpBufferTimer;
     [SerializeField] private bool gizmos;
     private AirForceMode airForceMode;
-
+    [SerializeField] private SoundInfos soundInfos;
+    
     #region AnimationParameters
 
     private int animationGrounded = Animator.StringToHash("Grounded");
@@ -20,6 +22,12 @@ public class Falling : State
     private int animationSuperJumpRelease = Animator.StringToHash("SuperJumpRelease");
 
     #endregion
+    
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo[] onExit;
+    }
     
     public override void Enter()
     {

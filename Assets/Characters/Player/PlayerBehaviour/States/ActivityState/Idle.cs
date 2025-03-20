@@ -4,14 +4,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using SceneHandling.SoundSystem.Scripts;
 
 [Serializable]
 public class Idle : State
 {
     float time = 0f;
     Vector3 normal;
-
+    [SerializeField] private SoundInfos soundInfos;
     
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo[] onEnter;
+        public SoundInfo[] onExit;
+    }    
     
     public override void Enter()
     {
@@ -20,10 +27,12 @@ public class Idle : State
         if(playerBehaviour.moveInput == Vector2.zero)
         {
             playerBehaviour.rb.velocity = Vector3.zero;
+            playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         }
         
         if (playerBehaviour.moveInput != Vector2.zero)
         {
+            playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onExit);
             switch (playerBehaviour.movementMode)
             {
                 case PlayerBehaviour.MovementMode.SNEAK:

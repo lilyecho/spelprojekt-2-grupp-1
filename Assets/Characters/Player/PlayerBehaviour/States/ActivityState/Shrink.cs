@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using SceneHandling.SoundSystem.Scripts;
 
 [Serializable]
 public class Shrink : State
@@ -15,13 +16,22 @@ public class Shrink : State
     [Space,SerializeField] private Vector3 colliderSize;
     private bool _active = false;
     private Vector3 standardSize;
+    
+    [SerializeField] private SoundInfos soundInfos;
 
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo[] onEnter;
+        public SoundInfo[] onExit;
+    }
     
     public override void Enter()
     {
         ReSize();
         
         playerBehaviour.ChangeState(playerBehaviour.idle);
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
     }
     
 
