@@ -1226,7 +1226,23 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     gizmos: 0
-    soundInfos: []
+    soundInfos:
+    - soundImplementationName: Walk
+      action: 13
+      eventReference:
+        Guid:
+          Data1: 128342943
+          Data2: 1296806260
+          Data3: 944847771
+          Data4: -1043102824
+        Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Runing
+      locality: 0
+      parameterName: 
+      parameterValue: 0
+      playVariant: 0
+      locationVariant: 0
+      locationTransform: {fileID: 5246406279976226306}
+      stopMode: 0
   sneaking:
     OnEnter:
       m_PersistentCalls:
@@ -1281,7 +1297,19 @@ MonoBehaviour:
   jumping:
     OnEnter:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnExit:
       m_PersistentCalls:
         m_Calls: []
@@ -1402,7 +1430,7 @@ MonoBehaviour:
         stopMode: 1
       onNormalJump:
       - soundImplementationName: OnNormalJump
-        action: 18
+        action: 2
         eventReference:
           Guid:
             Data1: 377131813
@@ -1771,6 +1799,11 @@ MonoBehaviour:
     stopMode: 0
   curveName: sfxAstridStep
   activationValue: 0.9
+--- !u!4 &5246406279976226306 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5751071882428621829, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+  m_PrefabInstance: {fileID: 504706482222770695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1646367767551677566
 PrefabInstance:
   m_ObjectHideFlags: 0
