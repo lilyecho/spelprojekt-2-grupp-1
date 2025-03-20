@@ -38,7 +38,7 @@ namespace Characters.Enemy.Troll.Scripts.States
 
             //TrollBehaviour.StartCoroutine(Accelerate(TrollBehaviour.GetTrollData.GetPatrol.speed,2f));
             
-            SetTargetPoint(patrolPointIndex);
+            UpdateTargetPoint(patrolPointIndex);
             SetUpStateValuesInAgent(TrollBehaviour.GetTrollData.GetPatrol);
         }
     
@@ -49,7 +49,7 @@ namespace Characters.Enemy.Troll.Scripts.States
             TrollBehaviour.Animator.SetBool(TrollBehaviour.patrollingAP, false);
         }
 
-        public void SetTargetPoint(int currentPatrolIndex)
+        private void SetTargetPoint(int currentPatrolIndex)
         {
             int nextPointIndex = currentPatrolIndex % TrollBehaviour.LocalPatrolPoints.Length;
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.LocalPatrolPoints[nextPointIndex]+TrollBehaviour.StartPos);
@@ -57,13 +57,6 @@ namespace Characters.Enemy.Troll.Scripts.States
     
         public override void Update()
         {
-            foreach (var VARIABLE in TrollBehaviour.GetNavMeshAgent.path.corners)
-            {
-                Debug.Log(VARIABLE);
-            }
-            Debug.Log("___________________");
-            
-            
             //TrollEyes
             TrollStates newState = Check4Player(TrollBehaviour.GetEyes, TrollBehaviour.GetTrollData.GetTrollSight.range,
                 TrollBehaviour.GetTrollData.GetTrollSight.angle);
@@ -129,7 +122,7 @@ namespace Characters.Enemy.Troll.Scripts.States
             if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
             {
                 patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.LocalPatrolPoints.Length;
-                SetTargetPoint(patrolPointIndex);
+                UpdateTargetPoint(patrolPointIndex);
             }
         }
 
@@ -168,6 +161,27 @@ namespace Characters.Enemy.Troll.Scripts.States
                 }
                 
             }
+        }
+
+        public void UpdateTargetPoint(int newPatrolIndex)
+        {
+            
+            //TODO velocity
+            SetTargetPoint(newPatrolIndex);
+            
+            Vector3 dir1 = TrollBehaviour.transform.forward;
+            dir1.y = 0;
+            Vector3 dir2 = (TrollBehaviour.LocalPatrolPoints[newPatrolIndex]+TrollBehaviour.StartPos - TrollBehaviour.transform.position).normalized;
+            dir2.y = 0;
+            
+            float angle = Vector3.SignedAngle(dir1.normalized,dir2.normalized,Vector3.up);
+            Debug.Log(angle);
+            
+        }
+        
+        private void PatrolTurn()
+        {
+        
         }
     }
 }

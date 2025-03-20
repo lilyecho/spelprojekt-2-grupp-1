@@ -324,7 +324,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         public void Respawn()
         {
             transform.position = startPos;
-            patrolState.SetTargetPoint(patrolState.PatrolPointIndex);
+            patrolState.UpdateTargetPoint(patrolState.PatrolPointIndex);
             navMeshAgent.isStopped = false;
             Transition(patrolState);
         }
