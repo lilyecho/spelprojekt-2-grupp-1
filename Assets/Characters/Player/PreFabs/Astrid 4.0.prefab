@@ -1207,6 +1207,7 @@ MonoBehaviour:
   chargingJumpParticles: {fileID: 7090392455813459073}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   hidden: 0
+  isAttacked: 0
   particleSystemOnShrink: {fileID: 8124358052296443870}
   shrinkCooldown: 1
   shrinkCooldownTimer: 1
@@ -1382,8 +1383,40 @@ MonoBehaviour:
         locationVariant: 1
         locationTransform: {fileID: 39312636168687084}
         stopMode: 0
-      onMegaJump: []
-      onNormalJump: []
+      onMegaJump:
+      - soundImplementationName: OnMegaJump
+        action: 18
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: IsPowerActive
+        parameterValue: 1
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 1
+      onNormalJump:
+      - soundImplementationName: OnNormalJump
+        action: 18
+        eventReference:
+          Guid:
+            Data1: 377131813
+            Data2: 1079919229
+            Data3: 214603939
+            Data4: 1475062927
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/PC_Cat_Magic_Powers
+        locality: 0
+        parameterName: IsPowerActive
+        parameterValue: 2
+        playVariant: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 1
   debugStates: 1
   rotationSpeed: 10
   currentVelocity: 0
