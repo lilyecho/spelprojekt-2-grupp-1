@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -200,4 +201,4 @@ public class PowerVisualizers : MonoBehaviour
         Physics.Raycast(guidHeightPoint, directionToCollision, out RaycastHit hit, maxLengthPointPlacement);
         Gizmos.DrawSphere(hit.point,.1f);
     }
-}
+}*/

@@ -26,7 +26,7 @@ public class PlayerData : ScriptableObject
     [Space,Header("Jump-Related")]
     [SerializeField] private JumpParameters normalJump;
     [SerializeField] private JumpParameters megaJump;
-    [SerializeField, Tooltip("Data according to X-Z plane")] private MidAirForces appliableAirForces;
+    [SerializeField] private AirForces airForces;
     [SerializeField] private float chargeTime;
     [SerializeField] private float coyoteTime;
     [SerializeField] private float jumpBufferDuration;
@@ -53,7 +53,10 @@ public class PlayerData : ScriptableObject
     public SoundAlertingRanges GetAlertingRanges => alertingRanges;
     public JumpParameters GetNormalJump => normalJump;
     public JumpParameters GetMegaJump => megaJump;
-    public MidAirForces GetMidAirForces => appliableAirForces;
+    public MidAirForces GetAirForceSneak => airForces.AirForceSneak;
+    public MidAirForces GetAirForceWalk => airForces.AirForceWalk;
+    public MidAirForces GetAirForceRun => airForces.AirForceRun;
+    public MidAirForces GetAirForceGlide => airForces.AirForceGlide;
     public float GetChargeTime => chargeTime;
     public float GetCoyoteTime => coyoteTime;
     public float GetJumpBufferDuration => jumpBufferDuration;
@@ -67,5 +70,15 @@ public class PlayerData : ScriptableObject
     public Vector3 CharacterScale => new Vector3(1, 1, 1) * factorialValue4Shrink;
 
     #endregion
+
     
+}
+
+[Serializable]
+struct AirForces
+{
+    public MidAirForces AirForceSneak;
+    public MidAirForces AirForceWalk;
+    public MidAirForces AirForceRun;
+    public MidAirForces AirForceGlide;
 }

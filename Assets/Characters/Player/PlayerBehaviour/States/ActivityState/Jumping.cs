@@ -12,6 +12,8 @@ public class Jumping : State
 {
     private bool flagAbleToFall;
     [SerializeField] private SoundInfos soundInfos;
+
+    private AirForceMode airForceMode;
     
     #region AnimationParameters
 
@@ -23,6 +25,7 @@ public class Jumping : State
     
     public override void Enter()
     {
+        airForceMode = ConvertMovementModeToAirForceMode(playerBehaviour.movementMode);
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         playerBehaviour.anim.SetBool(animationGrounded, false);
@@ -45,7 +48,7 @@ public class Jumping : State
     {
         UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
         
-        ApplyCorrectiveAirForces();
+        ApplyCorrectiveAirForces(airForceMode);
         
         //Gravity
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.PlayerData.GetGravityMagnitudeUp, ForceMode.Acceleration);

@@ -11,7 +11,7 @@ public class Falling : State
 {
     float jumpBufferTimer;
     [SerializeField] private bool gizmos;
-
+    private AirForceMode airForceMode;
 
     #region AnimationParameters
 
@@ -23,6 +23,7 @@ public class Falling : State
     
     public override void Enter()
     {
+        airForceMode = ConvertMovementModeToAirForceMode(playerBehaviour.movementMode);
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
         playerBehaviour.anim.SetBool(animationGrounded, false);
         playerBehaviour.ChangeJumpState(playerBehaviour.unableToJump);
@@ -55,7 +56,7 @@ public class Falling : State
     {
         UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
         
-        ApplyCorrectiveAirForces();
+        ApplyCorrectiveAirForces(airForceMode);
         
         //Gravity
         playerBehaviour.rb.AddForce(Vector3.down * playerBehaviour.PlayerData.GetGravityMagnitudeDown, ForceMode.Acceleration);

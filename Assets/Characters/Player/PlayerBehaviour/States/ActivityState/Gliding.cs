@@ -39,7 +39,7 @@ public class Gliding : State
     public override void FixedUpdate()
     {
         playerBehaviour.rb.velocity = new Vector3(playerBehaviour.rb.velocity.x, playerBehaviour.PlayerData.GetGlideFallingSpeed, playerBehaviour.rb.velocity.z);
-        ApplyCorrectiveAirForces();
+        ApplyCorrectiveAirForces(AirForceMode.Glide);
         UpdateAirborneRotation2(playerBehaviour.rb, playerBehaviour.transform, ref playerBehaviour.currentVelocity, playerBehaviour.smoothTime);
     }
 

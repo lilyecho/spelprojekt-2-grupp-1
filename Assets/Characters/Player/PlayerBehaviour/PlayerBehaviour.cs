@@ -31,10 +31,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Audio-Stuff")]
     [SerializeField] private AudioPort audioPort;
-    [SerializeField] private FmodParameterData parameterData;
-    [SerializeField] private CharacterAudioData characterAudioData;
+    
     public AudioPort GetAudioPort => audioPort;
-    //public CharacterAudioData GetAudioData => characterAudioData;
 
     #endregion
     [Space]
