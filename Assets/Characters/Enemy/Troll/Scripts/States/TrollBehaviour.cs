@@ -57,6 +57,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         [HideInInspector] public int grabbingAP = Animator.StringToHash("Grabbing");
         [HideInInspector] public int lookAroundAP = Animator.StringToHash("Look Around");
         [HideInInspector] public int searchingAP = Animator.StringToHash("Searching");
+        [HideInInspector] public int turnRightAP = Animator.StringToHash("TurnRight");
+        [HideInInspector] public int turnLeftAP = Animator.StringToHash("TurnLeft");
 
         #endregion
     

@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using UnityEngine;
 
@@ -11,13 +12,20 @@ namespace SceneHandling.CheckPoints.Scripts
     
         [SerializeField,ReadOnly] private CheckPointBehaviour latestCheckPoint = null;
     
-        private void Awake()
+        private void OnEnable()
         {
             registrationPort.OnRegister += Registration;
         
             checkPointPort.OnChangeCheckPoint += ChangeLatestCheckPoint;
             checkPointPort.OnRespawn += Respawn;
-            //checkPointPort.OnChangeCheckPoint += ChangeLatestAbilities;
+        }
+
+        private void OnDisable()
+        {
+            registrationPort.OnRegister -= Registration;
+        
+            checkPointPort.OnChangeCheckPoint -= ChangeLatestCheckPoint;
+            checkPointPort.OnRespawn -= Respawn;
         }
 
         private void ChangeLatestCheckPoint(CheckPointBehaviour checkPoint)
@@ -37,6 +45,7 @@ namespace SceneHandling.CheckPoints.Scripts
 
         private void Respawn()
         {
+            playerBehaviour.rb.velocity = Vector3.zero;
             playerBehaviour.transform.position = latestCheckPoint.SpawnPoint;
             playerBehaviour.ResetAbilities = latestCheckPoint.Abilities;
             playerBehaviour.Attacked = false;
