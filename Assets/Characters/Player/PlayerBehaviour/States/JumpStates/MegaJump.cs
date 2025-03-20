@@ -26,7 +26,7 @@ public class MegaJump : JumpState
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
         playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onEnter);
         playerBehaviour.chargingJumpParticles.gameObject.SetActive(true);
-        Debug.Log("enter");
+        
     }
 
     public override void Update()

@@ -143,6 +143,7 @@ public class AudioHandler : MonoBehaviour
             Debug.Log("Stopped");
             instance.stop(soundInfo.stopMode== SoundInfo.StopMode.Immediate ? STOP_MODE.IMMEDIATE : STOP_MODE.ALLOWFADEOUT);
         }
+        Debug.Log("Release");
         instance.release();
     }
     

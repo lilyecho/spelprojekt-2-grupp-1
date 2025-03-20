@@ -1043,11 +1043,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
   m_PrefabInstance: {fileID: 504706482222770695}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &263497446476431045 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 335854996673959106, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
-  m_PrefabInstance: {fileID: 504706482222770695}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &846810934666368854 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
@@ -1345,8 +1340,8 @@ MonoBehaviour:
         m_Calls: []
     gizmos: 0
     soundInfos:
-      onExit:
-      - soundImplementationName: OnLanding
+      onLanding:
+      - soundImplementationName: LandingSFX
         action: -1
         eventReference:
           Guid:
@@ -1359,10 +1354,10 @@ MonoBehaviour:
         parameterName: CatBellMovement
         parameterValue: 2
         playVariant: 0
-        locationVariant: 0
-        locationTransform: {fileID: 263497446476431045}
+        locationVariant: 1
+        locationTransform: {fileID: 7506425103288067005}
         stopMode: 1
-      - soundImplementationName: OnLandingMegaJump
+      - soundImplementationName: LandingMegaJump
         action: 18
         eventReference:
           Guid:
@@ -1374,9 +1369,9 @@ MonoBehaviour:
         locality: 0
         parameterName: IsPowerActive
         parameterValue: 0
-        playVariant: 1
-        locationVariant: 0
-        locationTransform: {fileID: 39312636168687084}
+        playVariant: 0
+        locationVariant: 1
+        locationTransform: {fileID: 7506425103288067005}
         stopMode: 1
   gliding:
     OnEnter:
@@ -1881,6 +1876,11 @@ Transform:
 --- !u!4 &5246406279976226306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5751071882428621829, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+  m_PrefabInstance: {fileID: 504706482222770695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7506425103288067005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8011127496012908986, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
   m_PrefabInstance: {fileID: 504706482222770695}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1646367767551677566
