@@ -1055,7 +1055,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 719784290}
-  - {fileID: 1396362955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1254106305
@@ -1071,11 +1070,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialType: 2
---- !u!4 &1396362955 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3312597179252802247, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
-  m_PrefabInstance: {fileID: 8659833837498588592}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1605654087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1218,6 +1212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Troll - 2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 2422898272927467253, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3086106526684781647, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1326,11 +1324,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1254106304}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3312597179252802247, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.119365625
+      value: -4.774625
       objectReference: {fileID: 0}
     - target: {fileID: 3312597179252802247, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1338,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3312597179252802247, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.12263005
+      value: 4.905202
       objectReference: {fileID: 0}
     - target: {fileID: 3312597179252802247, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1368,10 +1366,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5484088367568511610, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7374627395615440931, guid: 9ed482ccb2a2fb34d9055c86f7e0c4ba, type: 3}
       propertyPath: m_Name
       value: Bushes1
@@ -1398,3 +1392,4 @@ SceneRoots:
   - {fileID: 1169691056361410556}
   - {fileID: 582360382}
   - {fileID: 584570826}
+  - {fileID: 8659833837498588592}

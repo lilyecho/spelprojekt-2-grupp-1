@@ -16,31 +16,19 @@ public class BushScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        foreach(GameObject bush in bushes)
         {
-            foreach(GameObject bush in bushes)
-            {
-                bush.GetComponent<MeshRenderer>().material = transparentBushMaterial;
-            }
+            bush.GetComponent<MeshRenderer>().material = transparentBushMaterial;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        foreach (GameObject bush in bushes)
         {
-            foreach (GameObject bush in bushes)
-            {
-                bush.GetComponent<MeshRenderer>().material = opaqueBushMaterial;
-            }
+            bush.GetComponent<MeshRenderer>().material = opaqueBushMaterial;
         }
     }
 }
