@@ -155,7 +155,17 @@ public class KameraPrototyp : MonoBehaviour
         Gizmos.DrawRay(transform.position + GetCameraData.GetHeightOffset + rotation * offset, ((transform.position + GetCameraData.GetHeightOffset) - (transform.position + GetCameraData.GetHeightOffset + rotation * offset)).normalized);
     }
 
-
+    private void OnValidate()
+    {
+        
+        angleP = Mathf.Clamp(angleP, GetCameraData.GetPMax, GetCameraData.GetPMin);
+        angleH = Mathf.Clamp(angleH, 0, 360);
+        Quaternion rotation = Quaternion.Euler(angleP + extraP, angleH, 0);
+        Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
+        
+        Camera.main.transform.position = transform.position + GetCameraData.GetHeightOffset + rotation * offset;
+        Camera.main.transform.LookAt(transform.position + GetCameraData.GetHeightOffset);
+    }
 
     public void OnAstridCaught(CameraTrollPort cameraTrollPort, Transform troll, Transform cameraPos)
     {
@@ -183,6 +193,7 @@ public class KameraPrototyp : MonoBehaviour
 
     private void OnEnable()
     {
+
         cameraTrollPort.OnAstridGettingCaught += OnAstridCaught;
         cameraTrollPort.CameraAfterRespawn += CameraAfterRespawn;
     }
