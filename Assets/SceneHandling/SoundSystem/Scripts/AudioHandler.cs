@@ -324,4 +324,19 @@ public class AudioHandler : MonoBehaviour
 
         dictionaryGuidSceneInstances = new Dictionary<GUID, EventInstance>();
     }
+
+    private void OnDestroy()
+    {
+        foreach (var keyValue in dictionaryGuidSceneInstances)
+        {
+            keyValue.Value.stop(STOP_MODE.IMMEDIATE);
+            keyValue.Value.release();
+        }
+        
+        foreach (var keyValue in dictionaryGuidGameInstances)
+        {
+            keyValue.Value.stop(STOP_MODE.IMMEDIATE);
+            keyValue.Value.release();
+        }
+    }
 }

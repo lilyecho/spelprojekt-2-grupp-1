@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,7 +29,15 @@ public class GameManager : MonoBehaviour
 
     public bool runOnCTRL = true;
 
+    private void OnEnable()
+    {
+        //throw new NotImplementedException();
+    }
 
+    private void OnDisable()
+    {
+        //throw new NotImplementedException();
+    }
 
     void Awake()
     {
@@ -43,11 +52,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
-
-    
-    
-
-
     public void PauseGame()
     {
         onPause.Invoke();

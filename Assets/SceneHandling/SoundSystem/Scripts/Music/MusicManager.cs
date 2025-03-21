@@ -25,6 +25,11 @@ public class MusicManager : MonoBehaviour
     {
         [Header("MainMusic")] 
         public SoundInfo[] onAwake;
+
+        public SoundInfo[] onLvl1;
+        public SoundInfo[] onLvl2;
+        public SoundInfo[] onLvl3;
+        public SoundInfo[] onLvl4;
         
         [Space,Header("Enemy-Related")]
         public SoundInfo[] onChased;
@@ -34,15 +39,30 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        audioHandler.HandleSoundInfos(soundInfos.onAwake);
-    }
-
-    private void SceneChange(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        
+        Debug.LogError(transform.parent.parent.name);
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                audioHandler.HandleSoundInfos(soundInfos.onAwake);
+                break;
+            case 1:
+                audioHandler.HandleSoundInfos(soundInfos.onLvl1);
+                break;
+            case 2:
+                audioHandler.HandleSoundInfos(soundInfos.onLvl2);
+                break;
+            case 3:
+                audioHandler.HandleSoundInfos(soundInfos.onLvl3);
+                break;
+            case 4:
+                audioHandler.HandleSoundInfos(soundInfos.onLvl4);
+                break;
+            default:
+                Debug.LogError("Missing sound-implementation for this lvl");
+                break;
+        }
     }
     
-
     private void FixedUpdate()
     {
         CheckEnemyRelatedMusic();
