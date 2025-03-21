@@ -28,7 +28,6 @@ public class EnemyManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 

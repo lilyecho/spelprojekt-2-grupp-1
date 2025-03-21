@@ -163,8 +163,17 @@ public class KameraPrototyp : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(angleP + extraP, angleH, 0);
         Vector3 offset = new Vector3(0, GetCameraData.GetHeight, -GetCameraData.GetRadius);
         
-        Camera.main.transform.position = transform.position + GetCameraData.GetHeightOffset + rotation * offset;
-        Camera.main.transform.LookAt(transform.position + GetCameraData.GetHeightOffset);
+        if(GetCameraData != null)
+        {
+            if(Camera.main != null)
+            {
+                Camera.main.transform.position = transform.position + GetCameraData.GetHeightOffset + rotation * offset;
+                Camera.main.transform.LookAt(transform.position + GetCameraData.GetHeightOffset);
+            }
+            
+        }
+
+        
     }
 
     public void OnAstridCaught(CameraTrollPort cameraTrollPort, Transform troll, Transform cameraPos)
