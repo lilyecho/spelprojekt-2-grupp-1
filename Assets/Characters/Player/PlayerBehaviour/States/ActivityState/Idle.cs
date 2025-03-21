@@ -111,6 +111,7 @@ public class Idle : State
     {
         if (context.performed && playerBehaviour.GetAbilities.HasFlag(AbilityData.Abilities.Shrink))
         {
+            Debug.Log("ChangeToShrink");
             playerBehaviour.ChangeState(playerBehaviour.shrink);
         }
     }

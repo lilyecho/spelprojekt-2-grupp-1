@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using SceneHandling.SoundSystem.Scripts;
+using Unity.VisualScripting;
 
 [Serializable]
 public class Shrink : State
@@ -18,7 +19,8 @@ public class Shrink : State
     private Vector3 standardSize;
     
     [FormerlySerializedAs("soundInfos")] [SerializeField] private SoundInfos soundInfosShrink;
-
+    
+    
     [Serializable]
     private struct SoundInfos
     {   

@@ -81,8 +81,8 @@ public class PlayerBehaviour : MonoBehaviour
     
     public ParticleSystem GetOnShrinkParticleSystem => particleSystemOnShrink;
 
-    [HideInInspector] public float shrinkCooldown = 1f;
-    [HideInInspector] public float shrinkCooldownTimer = 1f;
+    [SerializeField] private float shrinkCooldown = 1f;
+    [SerializeField] private float shrinkCooldownTimer = 1f;
 
     #endregion
 
@@ -138,7 +138,7 @@ public class PlayerBehaviour : MonoBehaviour
         megaJump.Awake(this);
         unableToJump.Awake(this);
 
-        shrinkCooldownTimer = 0f;
+        shrinkCooldownTimer = shrinkCooldown;
     }
 
     private void OnDrawGizmos()
@@ -230,6 +230,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!_movementOn) return;
         
+        shrinkCooldownTimer -= Time.deltaTime;
+        
         currentState?.Update();
         jumpState?.Update();
         //moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
@@ -242,7 +244,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
 
-        shrinkCooldownTimer -= Time.deltaTime;
+        
     }
 
     private void FixedUpdate()
@@ -401,7 +403,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Shrink(InputAction.CallbackContext context)
     {
-        currentState?.OnShrink(context);
+        if (shrinkCooldownTimer <= 0 && context.performed)
+        {
+            Debug.Log("PlayerShrink");
+            currentState?.OnShrink(context);
+            shrinkCooldownTimer = shrinkCooldown;
+        }
+        
     }
 
     public void Respawn(InputAction.CallbackContext context)

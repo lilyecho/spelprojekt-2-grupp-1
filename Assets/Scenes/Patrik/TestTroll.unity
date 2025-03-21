@@ -349,8 +349,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472002063}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.83541286, z: -0.5496229, w: 0}
-  m_LocalPosition: {x: -2.97, y: 3.174, z: -10.5}
+  m_LocalRotation: {x: 0, y: 0.83541286, z: -0.54962295, w: 0}
+  m_LocalPosition: {x: 0, y: 3.12, z: 0.9999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -545,25 +545,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
   m_PrefabInstance: {fileID: 1096266299}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &654993282 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-  m_PrefabInstance: {fileID: 1096266299}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &654993295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654993253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd5c65d31d6d114d98d9facddd350fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hidePort: {fileID: 11400000, guid: a18cd4de09a134744ad07b48c71305f3, type: 2}
-  amountOfActiveHideObjects: 0
 --- !u!1001 &664822510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -843,162 +824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astrid 4.0
       objectReference: {fileID: 0}
-    - target: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: debugStates
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.gizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: running.gizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: walking.gizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: sneaking.gizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: currentAbilities
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundAlertRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].action
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.OnEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].parameterName
-      value: CatBellMovement
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].parameterValue
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[0].action
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[1].action
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[2].action
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[0].locality
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[1].locality
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[2].locality
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].locationTransform
-      value: 
-      objectReference: {fileID: 654993282}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].eventReference.Path
-      value: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Jumping
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[0].playVariant
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[0].parameterName
-      value: CatSneak
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[1].parameterName
-      value: CatSneak
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[2].parameterName
-      value: CatSneak
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].soundImplementationName
-      value: JumpSound
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].eventReference.Guid.Data1
-      value: 1410284054
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].eventReference.Guid.Data2
-      value: 1229434782
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].eventReference.Guid.Data3
-      value: 1386002601
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: jumping.soundInfos.onEnter.Array.data[1].eventReference.Guid.Data4
-      value: 1363115021
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[0].soundImplementationName
-      value: Jumpsound
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[1].soundImplementationName
-      value: ChangeParameter
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: megaJump.SoundInformations.onEnter.Array.data[2].soundImplementationName
-      value: ChangeParameter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5704581851922697474, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: cameraPort
-      value: 
-      objectReference: {fileID: 11400000, guid: 8a6e13f451123b941b1cfefaa71bb5a1, type: 2}
-    - target: {fileID: 6227218755017578390, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8295930903367655619, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      propertyPath: soundInfo.action
-      value: 13
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 846810934666368854, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 654993295}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
 --- !u!1 &1254106299
 GameObject:
@@ -1377,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2422898272927467253, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3086106526684781647, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
       propertyPath: m_LocalPosition.x
