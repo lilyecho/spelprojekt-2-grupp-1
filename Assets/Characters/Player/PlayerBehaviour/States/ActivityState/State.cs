@@ -350,8 +350,11 @@ public abstract class State
             soundRange = range,
             point = position
         };
-            
-        SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
+
+        if (!playerBehaviour.Hidden)
+        {
+            SoundAlertCreation.CreateAlertPoint(soundAlertInfo,playerBehaviour.EnemyManagerPort);
+        }
     }
 
 
