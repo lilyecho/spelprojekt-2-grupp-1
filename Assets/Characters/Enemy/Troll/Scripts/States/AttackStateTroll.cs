@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Characters.Enemy.Troll.Scripts.States;
+using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -12,6 +13,18 @@ public class AttackStateTroll : TrollStates
 {
     [SerializeField] private UnityEvent OnEnter;
     [SerializeField] private UnityEvent OnExit;
+    
+    [Space, SerializeField] private SoundInfos soundInfos;
+    
+    #region SoundInfos
+
+    [Serializable]
+    struct SoundInfos
+    {
+        public SoundInfo[] onAttack;
+    }
+
+    #endregion
     
     public override void Enter()
     {
