@@ -8825,6 +8825,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[0].action
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].action
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[0].parameterName
+      value: Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[0].parameterValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].instanceVariant
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].eventReference.Path
+      value: event:/Music/Loops/Level1-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].soundImplementationName
+      value: MainMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].eventReference.Guid.Data1
+      value: 2081386146
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].eventReference.Guid.Data2
+      value: 1325772597
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].eventReference.Guid.Data3
+      value: -529544518
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onMusic.Array.data[1].eventReference.Guid.Data4
+      value: 1092673225
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10445,27 +10493,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.46348518
+      value: 0.24926555
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17386933
+      value: 0.21608129
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.14023235
+      value: -0.63344514
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14023235
+      value: 0.63344514
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.693062
+      value: -0.31424075
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.693062
+      value: 0.31424075
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34821,10 +34869,10 @@ MonoBehaviour:
         Data3: -529544518
         Data4: 1092673225
       Path: event:/Music/Loops/Level1-2
+    instanceVariant: 0
     locality: 0
     parameterName: Level2
     parameterValue: 1
-    playVariant: 1
     locationVariant: 0
     locationTransform: {fileID: 0}
     stopMode: 0
