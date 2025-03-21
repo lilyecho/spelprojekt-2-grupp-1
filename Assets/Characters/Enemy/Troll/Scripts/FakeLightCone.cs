@@ -76,7 +76,8 @@ public class FakeLightCone : MonoBehaviour
 
     private Vector3 CreateCenterPoint()
     {
-        if (Physics.Raycast(transform.position, troll.forward, out RaycastHit hit, trollData.GetLampSight.range))
+        LayerMask layerMask = ~LayerMask.GetMask("Player","InteractiveEnvironment", "Ignore Raycast");
+        if (Physics.Raycast(transform.position, troll.forward, out RaycastHit hit, trollData.GetLampSight.range,layerMask))
         {
             return hit.point;
         }
