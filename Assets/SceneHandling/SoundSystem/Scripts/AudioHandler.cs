@@ -6,6 +6,7 @@ using FMOD.Studio;
 using FMODUnity;
 using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
@@ -13,7 +14,8 @@ public class AudioHandler : MonoBehaviour
 {
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private FmodParameterData parameterData = null;
-    private Dictionary<GUID,EventInstance> dictionaryGuidInstances = new Dictionary<GUID, EventInstance>();
+    private Dictionary<GUID,EventInstance> dictionaryGuidSceneInstances = new Dictionary<GUID, EventInstance>();
+    private Dictionary<GUID,EventInstance> dictionaryGuidGameInstances = new Dictionary<GUID, EventInstance>();
     
     [SerializeField] private bool debugMode;
 
@@ -21,12 +23,8 @@ public class AudioHandler : MonoBehaviour
     {
         audioPort.OnSoundInfo += HandleSoundInfo;
         audioPort.OnSoundInfos += HandleSoundInfos;
-        
-        audioPort.OnChangeGlobalParameter += ChangeGlobalParameter;
-        audioPort.OnCreate += CreateInstance;
-        audioPort.OnStart += PlayInstance;
-        audioPort.OnSetParameter += ChangeLocalParameter;
-        audioPort.OnRemove += RemoveInstance;
+
+        SceneManager.sceneLoaded += SceneChange;
     }
 
     private void OnDisable()
@@ -34,18 +32,14 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo -= HandleSoundInfo;
         audioPort.OnSoundInfos -= HandleSoundInfos;
         
-        audioPort.OnChangeGlobalParameter -= ChangeGlobalParameter;
-        audioPort.OnCreate -= CreateInstance;
-        audioPort.OnStart -= PlayInstance;
-        audioPort.OnSetParameter -= ChangeLocalParameter;
-        audioPort.OnRemove -= RemoveInstance;
+        SceneManager.sceneLoaded -= SceneChange;
     }
 
     private void Update()
     {
         if (debugMode)
         {
-            Debug.Log("Amount of instances: "+dictionaryGuidInstances.Count);
+            Debug.Log("Amount of instances: "+dictionaryGuidSceneInstances.Count);
         }
     }
 
@@ -72,8 +66,16 @@ public class AudioHandler : MonoBehaviour
     private void HandleCreate(SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Create)) return;
+
+        if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
+        {
+            CreateInstance(ref dictionaryGuidSceneInstances,soundInfo.eventReference);
+        }
+        else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
+        {
+            CreateInstance(ref dictionaryGuidGameInstances,soundInfo.eventReference);
+        }
         
-        CreateInstance(soundInfo.eventReference);
     }
 
     private void HandleParameterChange(SoundInfo soundInfo)
@@ -86,11 +88,19 @@ public class AudioHandler : MonoBehaviour
             return;
         }
         
-        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
-        NewTryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
+        if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
+        {
+            if (!TryGetInstance(ref dictionaryGuidSceneInstances,soundInfo.eventReference, out EventInstance instance)) return;
+            TryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
+        }
+        else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
+        {
+            if (!TryGetInstance(ref dictionaryGuidGameInstances,soundInfo.eventReference, out EventInstance instance)) return;
+            TryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
+        }
     }
     
-    private void NewTryChangeLocalParameter(EventInstance instance, string parameterName, float value)
+    private void TryChangeLocalParameter(EventInstance instance, string parameterName, float value)
     {
         instance.setParameterByName(parameterName, value);
     }
@@ -98,29 +108,78 @@ public class AudioHandler : MonoBehaviour
     private void HandleLocation(SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
-        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
         
-        if (soundInfo.locationVariant == SoundInfo.LocationVariant.Attached)
+        if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
         {
-            AttachInstanceToObject(instance, soundInfo.locationTransform);
+            if (!TryGetInstance(ref dictionaryGuidSceneInstances,soundInfo.eventReference, out EventInstance instance)) return;
+            TryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
+            
+            if (soundInfo.locationVariant == SoundInfo.LocationVariant.Attached)
+            {
+                AttachInstanceToObject(instance, soundInfo.locationTransform);
+            }
+            else
+            {
+                PlaceInstanceOnPosition(instance, soundInfo.locationTransform.position);
+            }
         }
-        else
+        else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
         {
-            PlaceInstanceOnPosition(instance, soundInfo.locationTransform.position);
+            if (!TryGetInstance(ref dictionaryGuidGameInstances,soundInfo.eventReference, out EventInstance instance)) return;
+            TryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
+            
+            if (soundInfo.locationVariant == SoundInfo.LocationVariant.Attached)
+            {
+                AttachInstanceToObject(instance, soundInfo.locationTransform);
+            }
+            else
+            {
+                PlaceInstanceOnPosition(instance, soundInfo.locationTransform.position);
+            }
         }
     }
     
     private void HandlePlay(SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Play)) return;
+
+        Dictionary<GUID, EventInstance> instanceDict;
         
-        if (soundInfo.playVariant == SoundInfo.PlayVariant.OneShot)
+        if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
         {
-            NewPlayOneShot(soundInfo.eventReference);
+            instanceDict = dictionaryGuidSceneInstances;
+        }
+        else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
+        {
+            instanceDict = dictionaryGuidGameInstances;
         }
         else
         {
-            PlayInstance(soundInfo.eventReference);
+            throw new Exception("other cases in HandlePlay that didnt handle the situation");
+        }
+        
+        //When to create and start at the same time
+        if (soundInfo.action.HasFlag(SoundInfo.SoundAction.Create))
+        {
+            if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.OneShot)
+            {
+                PlayOneShot(ref instanceDict,soundInfo.eventReference);
+            }
+            else
+            {
+                PlayInstance(ref instanceDict,soundInfo.eventReference);
+            }
+            return;
+        }
+        
+        //When only to start sound
+        if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.OneShot)
+        {
+            PlayOneShot(ref instanceDict, soundInfo.eventReference);
+        }
+        else
+        {
+            PlayInstance(ref instanceDict, soundInfo.eventReference);
         }
     }
 
@@ -128,31 +187,45 @@ public class AudioHandler : MonoBehaviour
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Stop)) return;
         
-        TryStopInstance(soundInfo);
+        Dictionary<GUID, EventInstance> instanceDict;
+        
+        if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
+        {
+            instanceDict = dictionaryGuidSceneInstances;
+        }
+        else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
+        {
+            instanceDict = dictionaryGuidGameInstances;
+        }
+        else
+        {
+            throw new Exception("other cases in HandlePlay that didnt handle the situation");
+        }
+        
+        TryStopInstance(ref instanceDict, soundInfo);
     }
 
-    private void TryStopInstance(SoundInfo soundInfo)
+    private void TryStopInstance(ref Dictionary<GUID, EventInstance> instanceDict ,SoundInfo soundInfo)
     {
-        if (!TryGetInstance(soundInfo.eventReference, out EventInstance instance)) return;
+        if (!TryGetInstance(ref instanceDict,soundInfo.eventReference, out EventInstance instance)) return;
         
         GUID eventGUID = soundInfo.eventReference.Guid;
-        dictionaryGuidInstances.Remove(eventGUID);
+        instanceDict.Remove(eventGUID);
         
         if (soundInfo.stopMode != SoundInfo.StopMode.None) 
         {
-            Debug.Log("Stopped");
             instance.stop(soundInfo.stopMode== SoundInfo.StopMode.Immediate ? STOP_MODE.IMMEDIATE : STOP_MODE.ALLOWFADEOUT);
         }
-        Debug.Log("Release");
+        
         instance.release();
     }
     
-    private void NewPlayOneShot(EventReference eventReference)
+    private void PlayOneShot(ref Dictionary<GUID, EventInstance> instanceDic,EventReference eventReference)
     {
-        if (!TryGetInstance(eventReference, out EventInstance instance)) return;
+        if (!TryGetInstance(ref instanceDic, eventReference, out EventInstance instance)) return;
         instance.start();
         GUID eventGUID = eventReference.Guid;
-        dictionaryGuidInstances.Remove(eventGUID);
+        instanceDic.Remove(eventGUID);
         instance.release();
     }
 
@@ -166,141 +239,47 @@ public class AudioHandler : MonoBehaviour
         instance.set3DAttributes(placementPos.To3DAttributes());
     }
     
-    private void ChangeGlobalParameter(string parameterName, float value)
-    {
-        RuntimeManager.StudioSystem.setParameterByName(parameterName, value);
-    }
-    
-    private void CreateInstance(EventReference eventReference)
+    private void CreateInstance(ref Dictionary<GUID, EventInstance> instanceDic, EventReference eventReference)
     {
         GUID eventGUID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventGUID)) return;
+        if (instanceDic.ContainsKey(eventGUID)) return;
         
-        dictionaryGuidInstances[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
+        instanceDic[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
     }
 
-    private void PlayInstance(EventReference eventReference)
+    private void PlayInstance(ref Dictionary<GUID, EventInstance> instanceDict, EventReference eventReference)
     {
-        if (!TryGetInstance(eventReference, out EventInstance instance)) return;
+        if (!TryGetInstance(ref instanceDict,eventReference, out EventInstance instance)) return;
 
         instance.start();
     }
     
-    private void ChangeLocalParameter(EventReference reference, string parameterName, float value)
-    {
-        if (!dictionaryGuidInstances.ContainsKey(reference.Guid)) return;
-        
-        dictionaryGuidInstances[reference.Guid].setParameterByName(parameterName, value);
-    }
-
-    private void RemoveInstance(EventReference eventReference)
-    {
-        GUID eventGUID = eventReference.Guid;
-        if (!TryGetInstance(eventGUID, out EventInstance instance)) return;
-        
-        dictionaryGuidInstances.Remove(eventGUID);
-        //TODO hårdkodat
-        instance.stop(STOP_MODE.ALLOWFADEOUT);
-        instance.release();
-        
-    }
-    
-    private bool TryGetInstance(GUID eventGUID, out EventInstance instance)
-    {
-        instance = new EventInstance();
-        if (!dictionaryGuidInstances.ContainsKey(eventGUID)) return false;
-
-        instance = dictionaryGuidInstances[eventGUID];
-        return true;
-    }
-    private bool TryGetInstance(EventReference eventReference, out EventInstance instance)
+    private bool TryGetInstance(ref Dictionary<GUID, EventInstance> instanceDict, EventReference eventReference, out EventInstance instance)
     {
         GUID eventGUID = eventReference.Guid;
         instance = new EventInstance();
-        if (!dictionaryGuidInstances.ContainsKey(eventGUID)) return false;
+        if (!instanceDict.ContainsKey(eventGUID)) return false;
 
-        instance = dictionaryGuidInstances[eventGUID];
+        instance = dictionaryGuidSceneInstances[eventGUID];
         return true;
-    }
-    
-    public void PlayOneShot(EventReference eventReference)
-    {
-        RuntimeManager.PlayOneShot(eventReference);
-    }
-    
-    public void PlayOneShot(EventReference eventReference, Vector3 placementPos)
-    {
-        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
-        instance.set3DAttributes(placementPos.To3DAttributes());
-        instance.start();
-        instance.release();
-    }
-
-    /// <summary>
-    /// Change parameter before the sound
-    /// </summary>
-    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, string parameterName, float parameterValue)
-    {
-        //TODO performance-heavy
-        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
-
-        instance.set3DAttributes(placementPos.To3DAttributes());
-        
-        instance.setParameterByName(parameterName,parameterValue);
-        instance.start();
-        instance.release();
-    }
-    
-    /// <summary>
-    /// Change parameters before the sound, but keep in mind the importance of index-relation between parameterNames and parameterValues 
-    /// </summary>
-    public void PlayOneShot(EventReference eventReference, Vector3 placementPos, Dictionary<string, float> parameterNamesAndValues)
-    {
-        if (parameterNamesAndValues.Count <= 0) throw new Exception("Elements in parameterNamesAndValues has to exist");
-        
-        //TODO performance-heavy
-        EventInstance instance = RuntimeManager.CreateInstance(eventReference);
-        
-        instance.set3DAttributes(placementPos.To3DAttributes());
-        foreach (var nameAndValue in parameterNamesAndValues)
-        {
-            instance.setParameterByName(nameAndValue.Key,nameAndValue.Value);
-        }
-        
-        instance.start();
-        instance.release();
     }
     
     public bool TryCreateInstance(EventReference eventReference)
     {
         GUID eventGUID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventGUID))
+        if (dictionaryGuidSceneInstances.ContainsKey(eventGUID))
         {
             return false;
         }
-        dictionaryGuidInstances[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
+        dictionaryGuidSceneInstances[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
         return true;
     }
     
-    public bool TryCreateInstance(EventReference eventReference, out EventInstance instance)
-    {
-        GUID eventGUID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventGUID))
-        {
-            instance = new EventInstance();
-            return false;
-        }
-        
-        instance = RuntimeManager.CreateInstance(eventReference);
-        dictionaryGuidInstances[eventReference.Guid] = instance;
-        return true;
-    }
-
     public bool TryChangeLocalParameter(EventReference reference, string parameterName, float value)
     {
-        if (dictionaryGuidInstances.ContainsKey(reference.Guid))
+        if (dictionaryGuidSceneInstances.ContainsKey(reference.Guid))
         {
-            dictionaryGuidInstances[reference.Guid].setParameterByName(parameterName, value);
+            dictionaryGuidSceneInstances[reference.Guid].setParameterByName(parameterName, value);
             return true;
         }
         return false;
@@ -317,37 +296,32 @@ public class AudioHandler : MonoBehaviour
             Debug.LogError("Missing global parameter");
         }
     }
-
-    private bool TryStopSound(EventReference eventReference)
-    {
-        GUID eventGUID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventGUID))
-        {
-            dictionaryGuidInstances.Remove(eventGUID);
-            return true;
-        }
-
-        return false;
-    }
     
     public bool TryStartSound(EventReference eventReference)
     {
         GUID eventGUID = eventReference.Guid;
-        if (dictionaryGuidInstances.ContainsKey(eventGUID))
+        if (dictionaryGuidSceneInstances.ContainsKey(eventGUID))
         {
-            dictionaryGuidInstances[eventGUID].start();
+            dictionaryGuidSceneInstances[eventGUID].start();
             return true;
         }
 
         return false;
     }
-    
-    private void OnDestroy()
+
+    private void SceneChange(Scene scene, LoadSceneMode loadSceneMode)
     {
-        foreach (var keyValue in dictionaryGuidInstances)
+        EndAllSceneInstances();
+    }
+
+    private void EndAllSceneInstances()
+    {
+        foreach (var keyValue in dictionaryGuidSceneInstances)
         {
             keyValue.Value.stop(STOP_MODE.IMMEDIATE);
             keyValue.Value.release();
         }
+
+        dictionaryGuidSceneInstances = new Dictionary<GUID, EventInstance>();
     }
 }

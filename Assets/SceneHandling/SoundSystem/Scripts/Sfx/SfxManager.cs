@@ -17,14 +17,11 @@ public class SfxManager : MonoBehaviour
     private void OnEnable()
     {
         audioPort.OnStep += CreateSound4Step;
-        audioPort.OnJump += CreateSound4Jump;
     }
 
     private void OnDisable()
     {
         audioPort.OnStep -= CreateSound4Step;
-        audioPort.OnJump -= CreateSound4Jump;
-        
     }
 
     private void CreateSound4Step(SoundInfo soundInfo, Transform checkerTransform)
@@ -38,10 +35,4 @@ public class SfxManager : MonoBehaviour
         
         audioHandler.HandleSoundInfo(soundInfo);
     }
-
-    private void CreateSound4Jump(EventReference eventReference, Vector3 jumpPos)
-    {
-        audioHandler.PlayOneShot(eventReference, jumpPos);
-    }
-    
 }

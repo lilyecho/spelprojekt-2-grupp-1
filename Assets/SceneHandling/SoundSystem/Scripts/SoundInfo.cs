@@ -1,6 +1,7 @@
 using System;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SceneHandling.SoundSystem.Scripts
 {
@@ -15,11 +16,11 @@ namespace SceneHandling.SoundSystem.Scripts
         public SoundAction action;
         public EventReference eventReference;
 
+        public InstanceVariant instanceVariant;
+        
         public SoundLocality locality;
         [ParamRef] public string parameterName;
         public float parameterValue;
-    
-        public PlayVariant playVariant;
 
         public LocationVariant locationVariant;
         public Transform locationTransform;
@@ -39,7 +40,7 @@ namespace SceneHandling.SoundSystem.Scripts
             Immediate
         }
     
-        public enum PlayVariant
+        public enum InstanceVariant
         {
             OneShot,
             SceneInstance,

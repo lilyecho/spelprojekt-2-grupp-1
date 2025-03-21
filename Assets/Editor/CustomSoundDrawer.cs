@@ -13,11 +13,11 @@ namespace Editor
         private SerializedProperty action;
         private SerializedProperty eventReference;
         
+        private SerializedProperty instanceVariant;
+        
         private SerializedProperty locality;
         private SerializedProperty parameterName;
         private SerializedProperty parameterValue;
-        
-        private SerializedProperty playVariant;
         
         private SerializedProperty locationVariant;
         private SerializedProperty locationTransform;
@@ -26,13 +26,13 @@ namespace Editor
 
         private int linesSizeBase;
         private int lineSizeEventRef;
+        private int lineSizeInstanceVariant;
         private int lineSizePlay;
         private int lineSizeLocationRelated;
         private int lineSizeRemove;
         private int lineSizeParameter;
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            
             FindAllProperties(property);
             
             int amountOfLines = 1;
@@ -47,6 +47,10 @@ namespace Editor
                 if (soundAction != 0)
                 {
                     amountOfLines += lineSizeEventRef;
+                }
+                if (soundAction.HasFlag(SoundInfo.SoundAction.Create))
+                {
+                    amountOfLines += lineSizeInstanceVariant;
                 }
                 if (soundAction.HasFlag(SoundInfo.SoundAction.Location))
                 {
@@ -89,7 +93,9 @@ namespace Editor
                 SoundInfo.SoundAction soundAction = (SoundInfo.SoundAction) action.enumValueFlag;
                 if (soundAction != 0)
                 {
+                    DrawInstanceRelated(position, ref currentAmountOfLines);
                     DrawEventReferenceRelated(position, ref currentAmountOfLines);
+                    
                 }
                 if (soundAction.HasFlag(SoundInfo.SoundAction.ChangeParameter))
                 {
@@ -99,10 +105,11 @@ namespace Editor
                 {
                     DrawLocationRelated(position, ref currentAmountOfLines);
                 }
+                /*
                 if (soundAction.HasFlag(SoundInfo.SoundAction.Play))
                 {
                     DrawPlayRelated(position, ref currentAmountOfLines);
-                }
+                }*/
                 if (soundAction.HasFlag(SoundInfo.SoundAction.Stop))
                 {
                     DrawRemoveRelated(position, ref currentAmountOfLines);
@@ -124,6 +131,9 @@ namespace Editor
 
             eventReference = property.FindPropertyRelative("eventReference");
             if (eventReference == null) Debug.LogWarning("eventReference is null in PropertyDrawer.");
+            
+            instanceVariant = property.FindPropertyRelative("instanceVariant");
+            if (eventReference == null) Debug.LogWarning("instanceVariant is null in PropertyDrawer.");
 
             locality = property.FindPropertyRelative("locality");
             if (locality == null) Debug.LogWarning("locality is null in PropertyDrawer.");
@@ -134,8 +144,8 @@ namespace Editor
             parameterValue = property.FindPropertyRelative("parameterValue");
             if (parameterValue == null) Debug.LogWarning("parameterValue is null in PropertyDrawer.");
 
-            playVariant = property.FindPropertyRelative("playVariant");
-            if (playVariant == null) Debug.LogWarning("playVariant is null in PropertyDrawer.");
+            /*playVariant = property.FindPropertyRelative("playVariant");
+            if (playVariant == null) Debug.LogWarning("playVariant is null in PropertyDrawer.");*/
 
             locationVariant = property.FindPropertyRelative("locationVariant");
             if (locationVariant == null) Debug.LogWarning("locationVariant is null in PropertyDrawer.");
@@ -173,6 +183,32 @@ namespace Editor
             linesSizeBase = sectionAmountOfLines;
         }
         
+        private void DrawInstanceRelated(Rect position, ref int startLineIndex)
+        {
+            lineSizeInstanceVariant = 0;
+            int sectionAmountOfLines = 0;
+            
+            float xPos = position.xMin;
+            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            float width = position.size.x;
+            float height = EditorGUIUtility.singleLineHeight;
+            Rect drawArea = new Rect(xPos, yPos, width, height);
+            
+            
+            //Header
+            EditorGUI.LabelField(drawArea,"Create", EditorStyles.boldLabel);
+            startLineIndex += 1;
+            sectionAmountOfLines += 1;
+            
+            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
+            drawArea = new Rect(xPos, yPos, width, height);
+            EditorGUI.PropertyField(drawArea, instanceVariant ,new GUIContent("Instance-Variant"));
+            //Extra padding, 1+1
+            startLineIndex += 2;
+            sectionAmountOfLines += 2;
+            lineSizeInstanceVariant = sectionAmountOfLines;
+        }
+        
         private void DrawLocationRelated(Rect position, ref int startLineIndex)
         {
             lineSizeLocationRelated = 0;
@@ -205,31 +241,6 @@ namespace Editor
             startLineIndex += 2;
             sectionAmountOfLines += 2;
             lineSizeLocationRelated = sectionAmountOfLines;
-        }
-        
-        private void DrawPlayRelated(Rect position, ref int startLineIndex)
-        {
-            lineSizePlay = 0;
-            int sectionAmountOfLines = 0;
-            
-            float xPos = position.xMin;
-            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
-            float width = position.size.x;
-            float height = EditorGUIUtility.singleLineHeight;
-            Rect drawArea = new Rect(xPos, yPos, width, height);
-            
-            //Header
-            EditorGUI.LabelField(drawArea,"Play", EditorStyles.boldLabel);
-            startLineIndex += 1;
-            sectionAmountOfLines += 1;
-            
-            yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
-            drawArea = new Rect(xPos, yPos, width, height);
-            EditorGUI.PropertyField(drawArea, playVariant ,new GUIContent("Play-Type"));
-            //Extra padding, 1+1
-            startLineIndex += 2;
-            sectionAmountOfLines += 2;
-            lineSizePlay = sectionAmountOfLines;
         }
         
         private void DrawRemoveRelated(Rect position, ref int startLineIndex)

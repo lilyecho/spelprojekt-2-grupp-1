@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
 
 
     [Header("Audio")] 
-    [SerializeField] private AudioManagerPort audioManagerPort = null; 
+    [SerializeField] private AudioPort audioPort = null; 
     private void Awake()
     {
         enemies = new List<EnemyBehaviour>();
@@ -113,12 +113,12 @@ public class EnemyManager : MonoBehaviour
         //Decrease from preAmount --> only check if zero
         if (diff < 0 && amountOfChaseUnits == 0)
         {
-            audioManagerPort.OnChased(false);
+            audioPort.OnChased(false);
         }
         //Increase from preAmount --> only check if value is one
         else if (diff > 0 && amountOfChaseUnits == 1)
         {
-            audioManagerPort.OnChased(true);
+            audioPort.OnChased(true);
         }
     }
 

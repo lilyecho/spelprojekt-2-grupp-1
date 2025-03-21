@@ -3,64 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
+using SceneHandling.SoundSystem.Scripts;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
     [Header("Port-Related")]
     [SerializeField] private RegistrationPort registrationPort = null;
     [Header("Music-Related")]
-    [SerializeField] private MusicData musicData;
     [SerializeField] private AudioHandler audioHandler = null;
     [Header("Behaviour-Related")]
     [SerializeField, ReadOnly] private EnemyManager enemyManager = null;
     [SerializeField] private float closeDistance;
 
-    [Space, Header("MainMusic")] 
-    [SerializeField] private UnityEvent test = new UnityEvent();
-    
-    
-    //TODO väldigt temportärt endast för speltest 1
-    private string parameterName = "";
-    private int value;
-    private void Start()
+    [SerializeField] private SoundInfos soundInfos;
+
+
+    [Serializable]
+    struct SoundInfos
     {
-        //InitialSetup();
-        test.Invoke();
+        [Header("MainMusic")] 
+        public SoundInfo[] onMusic;
+        
+        [Space,Header("Enemy-Related")]
+        public SoundInfo[] onChased;
+        public SoundInfo[] onNotChased;
+        public SoundInfo[] onClose;
     }
 
-    public void ChangeParameterName(string newParameter)
+    private void Awake()
     {
-        parameterName = newParameter;
+        CreateMusic();
     }
 
-    public void ChangeValue(int newValue)
+    private void SceneChange(Scene scene, LoadSceneMode loadSceneMode)
     {
-        value = newValue;
-    }
-
-    public void CreateMusic()
-    {
-        audioHandler.TryCreateInstance(musicData.GetMainMusic);
-    }
-
-    public void ChangeLocalParameter()
-    {
-        audioHandler.TryChangeLocalParameter(musicData.GetMainMusic, parameterName, value);
+        
     }
     
-    public void ChangeGlobalParameter()
+    private void CreateMusic()
     {
-        audioHandler.TryChangeGlobalParameter(parameterName, value);
+        audioHandler.HandleSoundInfos(soundInfos.onMusic);
     }
-
-    public void StartMusic()
-    {
-        audioHandler.TryStartSound(musicData.GetMainMusic);
-    }
-
     private void OnEnable()
     {
         registrationPort.OnRegister += SetRegistration;
@@ -79,9 +66,6 @@ public class MusicManager : MonoBehaviour
                 enemyManager = enemyManagerGameObject.GetComponent<EnemyManager>();
                 break;
             
-            /*case RegistrationPort.TypeOfRegistration.Player:
-                playerTransform = enemyManagerGameObject.GetComponent<Transform>();
-                break;*/
             default:
                 return;
         }
@@ -119,17 +103,4 @@ public class MusicManager : MonoBehaviour
             Debug.LogWarning("Missing enemyManager in musicManager");
         }
     }
-
-    /*
-    private void PlayerChasedMusic(bool onOff)
-    {
-        if (onOff)
-        {
-            AudioManager.Instance.InvokeEventInfo(Chasing);
-        }
-        else
-        {
-            AudioManager.Instance.InvokeEventInfo(NotChasing);
-        }
-    }*/
 }
