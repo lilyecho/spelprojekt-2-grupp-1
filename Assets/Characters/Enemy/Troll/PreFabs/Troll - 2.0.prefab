@@ -664,6 +664,8 @@ MonoBehaviour:
   patrolState:
     trollAlertPort: {fileID: 11400000, guid: b4945f8df470b114f9d7ef77d1d3a000, type: 2}
     patrolPointIndex: 0
+    patrolSounds:
+      onRandomSounds: []
     OnEnter:
       m_PersistentCalls:
         m_Calls: []
@@ -677,6 +679,24 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundInfos:
+      onScream:
+      - soundImplementationName: trollScream
+        action: 13
+        eventReference:
+          Guid:
+            Data1: 191544052
+            Data2: 1187731663
+            Data3: -2225235
+            Data4: -1012710240
+          Path: event:/Sound/Characters/Enemy/Troll/ENMY_TrollEmote_Shout
+        instanceVariant: 0
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   searchState:
     OnEnter:
       m_PersistentCalls:
@@ -691,6 +711,24 @@ MonoBehaviour:
     OnExit:
       m_PersistentCalls:
         m_Calls: []
+    soundInfos:
+      onAttack:
+      - soundImplementationName: catScream
+        action: 13
+        eventReference:
+          Guid:
+            Data1: 461025339
+            Data2: 1219117928
+            Data3: -1204504176
+            Data4: 1540787092
+          Path: event:/PC_Cat_Emote_Angry2D
+        instanceVariant: 0
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   stateColor: {r: 0, g: 0, b: 0, a: 1}
   speedAP: -823668238
   chasingAP: -1101124001
@@ -698,6 +736,8 @@ MonoBehaviour:
   grabbingAP: -480882504
   lookAroundAP: -1860736291
   searchingAP: 291028053
+  turnRightAP: -685270779
+  turnLeftAP: -1847120011
 --- !u!4 &3086106526684781647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
