@@ -4571,13 +4571,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e19ef1acfe1794594a055564543f3028, type: 2}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: soundInfos.onMusic.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].action
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].action
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].instanceVariant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].instanceVariant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].locationTransform
+      value: 
+      objectReference: {fileID: 1759405910}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].locationTransform
+      value: 
+      objectReference: {fileID: 1759405910}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -4585,6 +4613,14 @@ PrefabInstance:
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].eventReference.Path
+      value: event:/Sound/Ambiance/AMB_WEA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].eventReference.Path
+      value: event:/Sound/Ambiance/AMB_ANM_Bird
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: soundInfos.onMusic.Array.data[0].eventReference.Path
@@ -4598,6 +4634,14 @@ PrefabInstance:
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1791334220}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].soundImplementationName
+      value: weather
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].soundImplementationName
+      value: weather
+      objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4613,6 +4657,38 @@ PrefabInstance:
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: StartMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].eventReference.Guid.Data1
+      value: 512042772
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].eventReference.Guid.Data2
+      value: 1185587307
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].eventReference.Guid.Data3
+      value: -1305029985
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[1].eventReference.Guid.Data4
+      value: -1644683934
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].eventReference.Guid.Data1
+      value: 551665280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].eventReference.Guid.Data2
+      value: 1285047314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].eventReference.Guid.Data3
+      value: 509276826
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onAwake.Array.data[2].eventReference.Guid.Data4
+      value: 1942959973
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: soundInfos.onMusic.Array.data[0].eventReference.Guid.Data1
