@@ -35,7 +35,7 @@ public class MusicManager : MonoBehaviour
         public SoundInfo[] onClose;
     }
 
-    private void Awake()
+    private void Start()
     {
         audioHandler.HandleSoundInfos(soundInfos.onAwake);
     }

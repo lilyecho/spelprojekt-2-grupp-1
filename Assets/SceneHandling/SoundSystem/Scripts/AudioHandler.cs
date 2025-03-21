@@ -37,9 +37,12 @@ public class AudioHandler : MonoBehaviour
 
     private void Update()
     {
+        
         if (debugMode)
         {
-            Debug.Log("Amount of instances: "+dictionaryGuidSceneInstances.Count);
+            string t = "Game instances: "+dictionaryGuidGameInstances.Count;
+            t += "\nScene instances: "+dictionaryGuidSceneInstances.Count;
+            Debug.Log(t);
         }
     }
 
@@ -55,7 +58,6 @@ public class AudioHandler : MonoBehaviour
     {
         if (soundInfo.action == 0) return;
         
-        //TODO depending on if existic instance or created one
         HandleCreate(soundInfo);
         HandleParameterChange(soundInfo);
         HandleLocation(soundInfo);
@@ -112,7 +114,6 @@ public class AudioHandler : MonoBehaviour
         if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
         {
             if (!TryGetInstance(ref dictionaryGuidSceneInstances,soundInfo.eventReference, out EventInstance instance)) return;
-            TryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
             
             if (soundInfo.locationVariant == SoundInfo.LocationVariant.Attached)
             {
@@ -126,7 +127,6 @@ public class AudioHandler : MonoBehaviour
         else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
         {
             if (!TryGetInstance(ref dictionaryGuidGameInstances,soundInfo.eventReference, out EventInstance instance)) return;
-            TryChangeLocalParameter(instance, soundInfo.parameterName, soundInfo.parameterValue);
             
             if (soundInfo.locationVariant == SoundInfo.LocationVariant.Attached)
             {
