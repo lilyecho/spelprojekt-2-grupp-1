@@ -1201,7 +1201,6 @@ MonoBehaviour:
   intoJump: 0
   jumpParticles: {fileID: 2994038875534626662, guid: 746361efc8341f942b3f92fd7b0de34b, type: 3}
   megaJumpParticles: {fileID: 2994038875534626662, guid: dd125155d09e46144826e45e26d240d7, type: 3}
-  chargingJumpParticles: {fileID: 7090392455813459073}
   timeManager: {fileID: 11400000, guid: 9988ec9be590db449ab7d347deb2cdd0, type: 2}
   minDistToTroll: 5
   hidden: 0
@@ -1463,6 +1462,8 @@ MonoBehaviour:
         locationTransform: {fileID: 39312636168687084}
         stopMode: 0
   megaJump:
+    chargingJumpParticles: {fileID: 7090392455813459073}
+    chargedJumpParticle: {fileID: 8150337269659952276}
     SoundInformations:
       onEnter:
       - soundImplementationName: OnEnterMegaJump
@@ -2125,5 +2126,10 @@ Transform:
 --- !u!198 &8124358052296443870 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2994038875534626662, guid: d631c16d945ce1846b7b7ba403ece49b, type: 3}
+  m_PrefabInstance: {fileID: 6427607417114413240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8150337269659952276 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2893741381454408748, guid: d631c16d945ce1846b7b7ba403ece49b, type: 3}
   m_PrefabInstance: {fileID: 6427607417114413240}
   m_PrefabAsset: {fileID: 0}

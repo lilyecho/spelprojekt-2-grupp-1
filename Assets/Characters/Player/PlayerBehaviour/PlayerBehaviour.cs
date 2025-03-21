@@ -62,7 +62,6 @@ public class PlayerBehaviour : MonoBehaviour
     
     public ParticleSystem jumpParticles;
     public ParticleSystem megaJumpParticles;
-    public ParticleSystem chargingJumpParticles;
     private ParticleSystem jumpParticlesInstance;
     
     [SerializeField] private TimeManager timeManager = null;
