@@ -10,7 +10,8 @@ using UnityEngine.InputSystem;
 public class MegaJump : JumpState
 {
     [SerializeField] private JumpsSoundInfos SoundInformations;
-        
+
+    private bool doneChargedEffect;
     private float chargeTimer;
 
     #region AnimationParameters
@@ -23,6 +24,8 @@ public class MegaJump : JumpState
     public override void Enter()
     {
         chargeTimer = playerBehaviour.PlayerData.GetChargeTime;
+        doneChargedEffect = false;
+        
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
         playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onEnter);
         playerBehaviour.chargingJumpParticles.gameObject.SetActive(true);
@@ -32,6 +35,13 @@ public class MegaJump : JumpState
     public override void Update()
     {
         chargeTimer -= Time.deltaTime;
+        
+        //Particles for when it is done charging
+        if (!doneChargedEffect && chargeTimer <= 0)
+        {
+            playerBehaviour.chargingJumpParticles.gameObject.SetActive(false);
+            doneChargedEffect = false;
+        }
     }
 
     public override void OnShift(InputAction.CallbackContext context)
