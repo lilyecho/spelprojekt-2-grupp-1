@@ -121,7 +121,6 @@ public class AudioHandler : MonoBehaviour
             }
             else
             {
-                Debug.Log(soundInfo.soundImplementationName);
                 PlaceInstanceOnPosition(instance, soundInfo.locationTransform.position);
             }
         }
