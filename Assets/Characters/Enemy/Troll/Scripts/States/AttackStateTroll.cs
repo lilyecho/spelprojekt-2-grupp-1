@@ -14,8 +14,10 @@ public class AttackStateTroll : TrollStates
     [SerializeField] private UnityEvent OnEnter;
     [SerializeField] private UnityEvent OnExit;
     
-    [Space, SerializeField] private SoundInfos soundInfos;
     
+    
+    [Space, SerializeField] private SoundInfos soundInfos;
+    [SerializeField] private Transform placementOnattack;
     #region SoundInfos
 
     [Serializable]
@@ -68,5 +70,6 @@ public class AttackStateTroll : TrollStates
     private void StopPlayerMovement()
     {
         TrollBehaviour.GetTarget.ChangeMovementActivation(false);
+        TrollBehaviour.GetTarget.transform.position = placementOnattack.position;
     }
 }
