@@ -17,6 +17,8 @@ public class SoundToAnimation : MonoBehaviour
     
     protected Animator animator;
     protected int hashedCurveName;
+    
+    protected bool activeSound = false;
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
@@ -30,9 +32,18 @@ public class SoundToAnimation : MonoBehaviour
 
     protected virtual void CheckPlaySound()
     {
-        if (animator.GetFloat(hashedCurveName) >= activationValue)
+        float currentValue = animator.GetFloat(hashedCurveName);
+        
+        if (currentValue == 0) return;
+        
+        if (!activeSound && currentValue >= activationValue)
         {
+            activeSound = true;
             audioPort.OnSoundInfo(soundInfo);
+        }
+        else if (currentValue < activationValue)
+        {
+            activeSound = false;
         }
     }
 }

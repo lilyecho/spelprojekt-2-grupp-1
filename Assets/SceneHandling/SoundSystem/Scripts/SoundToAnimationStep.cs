@@ -8,7 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class SoundToAnimationStep : SoundToAnimation
 {
-    private bool activeSound = false;
+    
     protected override void CheckPlaySound()
     {
         float currentValue = animator.GetFloat(hashedCurveName);
