@@ -78,6 +78,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7648943167004602414}
   - component: {fileID: 1027122217384250409}
+  - component: {fileID: 8466922641410847546}
+  - component: {fileID: 3383903330938484276}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -126,11 +128,95 @@ MonoBehaviour:
   cameraSensitivitySlider: {fileID: 2575488149034241839}
   onPause:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8466922641410847546}
+        m_TargetAssemblyTypeName: SoundTrigger, Assembly-CSharp
+        m_MethodName: OnInvoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   unPause:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3383903330938484276}
+        m_TargetAssemblyTypeName: SoundTrigger, Assembly-CSharp
+        m_MethodName: OnInvoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   runOnCTRL: 1
+--- !u!114 &8466922641410847546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449663036324132210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722affbf7e20347e9bbda71de9ce0402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: OnPause
+    action: 11
+    eventReference:
+      Guid:
+        Data1: -1235575180
+        Data2: 1120570107
+        Data3: 1577911200
+        Data4: 1978570355
+      Path: event:/pause
+    instanceVariant: 0
+    locality: 1
+    parameterName: pause
+    parameterValue: 1
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
+--- !u!114 &3383903330938484276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449663036324132210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722affbf7e20347e9bbda71de9ce0402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: UnPause
+    action: 9
+    eventReference:
+      Guid:
+        Data1: -1997377908
+        Data2: 1315693069
+        Data3: 305517198
+        Data4: 1301389346
+      Path: event:/unpause
+    instanceVariant: 0
+    locality: 1
+    parameterName: pause
+    parameterValue: 0
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
 --- !u!1001 &2011570421668190954
 PrefabInstance:
   m_ObjectHideFlags: 0
