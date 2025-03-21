@@ -255,6 +255,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 49686828232525548, guid: 8c0fea66e3b235d4d92c881f1c5b126e, type: 3}
   m_PrefabInstance: {fileID: 2231342562963006402}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3140256650334724145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3846985525497742323, guid: 8c0fea66e3b235d4d92c881f1c5b126e, type: 3}
+  m_PrefabInstance: {fileID: 2231342562963006402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e45b78bf7395a4d936917903aa5f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5328329590518498572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,6 +901,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7648943167004602414}
     m_Modifications:
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: enemyManager
+      value: 
+      objectReference: {fileID: 3140256650334724145}
+    - target: {fileID: 3008122371558187139, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: enemyManager
+      value: 
+      objectReference: {fileID: 3140256650334724145}
     - target: {fileID: 6188481562169791002, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: m_Name
       value: AudioHandler

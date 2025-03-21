@@ -25,15 +25,13 @@ public class ChaseStateTroll : TrollStates
 
     #endregion
     
-    private const float totalTime = 4;
-    private float currentTimer;
     public override void Enter()
     {
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Chase;
         TrollBehaviour.Animator.SetBool(TrollBehaviour.chasingAP, true);
+        TrollBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onScream);
         TrollBehaviour.stateColor = Color.red;
-        currentTimer = totalTime;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Attack
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetChase.statePriority;

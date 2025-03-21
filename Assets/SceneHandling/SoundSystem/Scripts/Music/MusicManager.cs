@@ -11,12 +11,10 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-    [Header("Port-Related")]
-    [SerializeField] private RegistrationPort registrationPort = null;
     [Header("Music-Related")]
     [SerializeField] private AudioHandler audioHandler = null;
     [Header("Behaviour-Related")]
-    [SerializeField, ReadOnly] private EnemyManager enemyManager = null;
+    [SerializeField] private EnemyManager enemyManager = null;
     [SerializeField] private float closeDistance;
 
     [SerializeField] private SoundInfos soundInfos;
@@ -27,7 +25,6 @@ public class MusicManager : MonoBehaviour
     {
         [Header("MainMusic")] 
         public SoundInfo[] onAwake;
-        public SoundInfo[] onMusic;
         
         [Space,Header("Enemy-Related")]
         public SoundInfo[] onChased;
@@ -45,28 +42,6 @@ public class MusicManager : MonoBehaviour
         
     }
     
-    private void OnEnable()
-    {
-        registrationPort.OnRegister += SetRegistration;
-    }
-
-    private void OnDisable()
-    {
-        registrationPort.OnRegister -= SetRegistration;
-    }
-
-    private void SetRegistration(RegistrationPort.TypeOfRegistration type, GameObject enemyManagerGameObject)
-    {
-        switch (type)
-        {
-            case RegistrationPort.TypeOfRegistration.EnemyManager:
-                enemyManager = enemyManagerGameObject.GetComponent<EnemyManager>();
-                break;
-            
-            default:
-                return;
-        }
-    }
 
     private void FixedUpdate()
     {

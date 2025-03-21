@@ -31,6 +31,7 @@ public class AttackStateTroll : TrollStates
         //Inspector thing
         TrollBehaviour.activeState = TrollBehaviour.States.Attack;
         TrollBehaviour.stateColor = Color.green;
+        TrollBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onAttack);
         TrollBehaviour.Animator.SetTrigger(TrollBehaviour.grabbingAP);
         
         //Update camera
