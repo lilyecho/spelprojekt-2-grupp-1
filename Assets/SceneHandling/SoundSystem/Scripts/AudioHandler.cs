@@ -260,7 +260,7 @@ public class AudioHandler : MonoBehaviour
         instance = new EventInstance();
         if (!instanceDict.ContainsKey(eventGUID)) return false;
 
-        instance = dictionaryGuidSceneInstances[eventGUID];
+        instance = instanceDict[eventGUID];
         return true;
     }
     
