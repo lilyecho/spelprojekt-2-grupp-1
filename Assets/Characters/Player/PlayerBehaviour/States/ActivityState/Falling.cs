@@ -47,7 +47,6 @@ public class Falling : State
             playerBehaviour.anim.SetBool(animationSuperJumpRelease, false);
             CreateSoundAlert(playerBehaviour.transform.position, playerBehaviour.PlayerData.GetAlertingRanges.landing);
             
-            Debug.Log("This");
             playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onLanding);
             
             playerBehaviour.ChangeState(playerBehaviour.idle);

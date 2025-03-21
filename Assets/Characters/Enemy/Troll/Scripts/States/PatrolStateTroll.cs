@@ -187,7 +187,7 @@ namespace Characters.Enemy.Troll.Scripts.States
             dir2.y = 0;
             
             float angle = Vector3.SignedAngle(dir1.normalized,dir2.normalized,Vector3.up);
-            Debug.Log(angle);
+            //Debug.Log(angle);
             
         }
 
