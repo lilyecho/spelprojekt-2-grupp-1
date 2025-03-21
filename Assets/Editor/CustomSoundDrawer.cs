@@ -26,7 +26,6 @@ namespace Editor
 
         private int linesSizeBase;
         private int lineSizeEventRef;
-        private int lineSizeInstanceVariant;
         private int lineSizePlay;
         private int lineSizeLocationRelated;
         private int lineSizeRemove;
@@ -47,10 +46,6 @@ namespace Editor
                 if (soundAction != 0)
                 {
                     amountOfLines += lineSizeEventRef;
-                }
-                if (soundAction.HasFlag(SoundInfo.SoundAction.Create))
-                {
-                    amountOfLines += lineSizeInstanceVariant;
                 }
                 if (soundAction.HasFlag(SoundInfo.SoundAction.Location))
                 {
@@ -93,9 +88,7 @@ namespace Editor
                 SoundInfo.SoundAction soundAction = (SoundInfo.SoundAction) action.enumValueFlag;
                 if (soundAction != 0)
                 {
-                    DrawInstanceRelated(position, ref currentAmountOfLines);
                     DrawEventReferenceRelated(position, ref currentAmountOfLines);
-                    
                 }
                 if (soundAction.HasFlag(SoundInfo.SoundAction.ChangeParameter))
                 {
@@ -177,36 +170,18 @@ namespace Editor
             yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
             drawArea = new Rect(xPos, yPos, width, height);
             EditorGUI.PropertyField(drawArea, action,new GUIContent("Action"));
-            //Extra padding, 1+1
-            startLineIndex += 2;
-            sectionAmountOfLines += 2;
-            linesSizeBase = sectionAmountOfLines;
-        }
-        
-        private void DrawInstanceRelated(Rect position, ref int startLineIndex)
-        {
-            lineSizeInstanceVariant = 0;
-            int sectionAmountOfLines = 0;
             
-            float xPos = position.xMin;
-            float yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
-            float width = position.size.x;
-            float height = EditorGUIUtility.singleLineHeight;
-            Rect drawArea = new Rect(xPos, yPos, width, height);
-            
-            
-            //Header
-            EditorGUI.LabelField(drawArea,"Create", EditorStyles.boldLabel);
             startLineIndex += 1;
             sectionAmountOfLines += 1;
             
             yPos = position.yMin + EditorGUIUtility.singleLineHeight * startLineIndex;
             drawArea = new Rect(xPos, yPos, width, height);
-            EditorGUI.PropertyField(drawArea, instanceVariant ,new GUIContent("Instance-Variant"));
+            EditorGUI.PropertyField(drawArea, instanceVariant,new GUIContent("Instance-Variant"));
+            
             //Extra padding, 1+1
             startLineIndex += 2;
             sectionAmountOfLines += 2;
-            lineSizeInstanceVariant = sectionAmountOfLines;
+            linesSizeBase = sectionAmountOfLines;
         }
         
         private void DrawLocationRelated(Rect position, ref int startLineIndex)
