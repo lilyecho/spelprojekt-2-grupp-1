@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SfxManager : MonoBehaviour
 {
-    [SerializeField] private FmodParameterData fmodParameterData = null;
     [SerializeField] private AudioPort audioPort = null;
     
     [Header("Sfx-Related")]
@@ -30,7 +29,7 @@ public class SfxManager : MonoBehaviour
 
         soundInfo.action |= SoundInfo.SoundAction.ChangeParameter;
         //Todo flera parametrar 
-        soundInfo.parameterName = fmodParameterData.GetMaterialParameter;
+        soundInfo.parameterName = "Material";
         soundInfo.parameterValue = (float)material;
         
         audioHandler.HandleSoundInfo(soundInfo);
