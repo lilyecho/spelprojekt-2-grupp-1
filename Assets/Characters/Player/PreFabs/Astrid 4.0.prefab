@@ -1037,6 +1037,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8295930903367655619}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1444043552637213289}
   m_SourcePrefab: {fileID: 100100000, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
 --- !u!4 &39312636168687084 stripped
 Transform:
@@ -1870,6 +1873,20 @@ MonoBehaviour:
     stopMode: 0
   curveName: sfxAstridStep
   activationValue: 0.9
+--- !u!114 &1444043552637213289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846810934666368854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd5c65d31d6d114d98d9facddd350fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidePort: {fileID: 11400000, guid: a18cd4de09a134744ad07b48c71305f3, type: 2}
+  amountOfActiveHideObjects: 0
 --- !u!4 &2097215418498796415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1881340883554427256, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
