@@ -26,6 +26,7 @@ public class MusicManager : MonoBehaviour
     struct SoundInfos
     {
         [Header("MainMusic")] 
+        public SoundInfo[] onAwake;
         public SoundInfo[] onMusic;
         
         [Space,Header("Enemy-Related")]
@@ -36,7 +37,7 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        CreateMusic();
+        audioHandler.HandleSoundInfos(soundInfos.onAwake);
     }
 
     private void SceneChange(Scene scene, LoadSceneMode loadSceneMode)
@@ -44,10 +45,6 @@ public class MusicManager : MonoBehaviour
         
     }
     
-    private void CreateMusic()
-    {
-        audioHandler.HandleSoundInfos(soundInfos.onMusic);
-    }
     private void OnEnable()
     {
         registrationPort.OnRegister += SetRegistration;
