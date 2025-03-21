@@ -42,7 +42,8 @@ namespace SceneHandling.SoundSystem.Scripts
         public enum PlayVariant
         {
             OneShot,
-            Instance
+            SceneInstance,
+            GameInstance
         }
     
         public enum LocationVariant

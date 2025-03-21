@@ -125,7 +125,7 @@ public class EnemyManager : MonoBehaviour
 
     private void SceneChange(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Game Manager");
+        enemies = new List<EnemyBehaviour>();
     }
 
     
