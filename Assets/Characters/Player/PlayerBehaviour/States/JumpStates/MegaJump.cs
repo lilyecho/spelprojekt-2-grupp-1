@@ -9,6 +9,8 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class MegaJump : JumpState
 {
+    [SerializeField] private ParticleSystem chargingJumpParticles;
+    [SerializeField] private ParticleSystem chargedJumpParticle;
     [SerializeField] private JumpsSoundInfos SoundInformations;
 
     private bool doneChargedEffect;
@@ -28,7 +30,7 @@ public class MegaJump : JumpState
         
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
         playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onEnter);
-        playerBehaviour.chargingJumpParticles.gameObject.SetActive(true);
+        chargingJumpParticles.gameObject.SetActive(true);
         
     }
 
@@ -39,8 +41,9 @@ public class MegaJump : JumpState
         //Particles for when it is done charging
         if (!doneChargedEffect && chargeTimer <= 0)
         {
-            playerBehaviour.chargingJumpParticles.gameObject.SetActive(false);
-            doneChargedEffect = false;
+            chargedJumpParticle.Play();
+            chargingJumpParticles.gameObject.SetActive(false);
+            doneChargedEffect = true;
         }
     }
 
@@ -86,7 +89,7 @@ public class MegaJump : JumpState
 
     public override void Exit()
     {
-        playerBehaviour.chargingJumpParticles.gameObject.SetActive(false);
+        chargingJumpParticles.gameObject.SetActive(false);
     }
 }
 
