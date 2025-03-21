@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SceneHandling.SoundSystem.Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,10 +13,21 @@ namespace Characters.Enemy.Troll.Scripts.States
     {
         [SerializeField] private TrollAlertPort trollAlertPort;
         [SerializeField] private int patrolPointIndex;
-    
-        [SerializeField] private UnityEvent OnEnter;
+
+        [SerializeField] private SoundInfos patrolSounds;
+        
+        [Space, SerializeField] private UnityEvent OnEnter;
         [SerializeField] private UnityEvent OnExit;
 
+        #region SoundInfos
+
+        [Serializable]
+        struct SoundInfos
+        {
+            public SoundInfo[] onRandomSounds;
+        }
+
+        #endregion
 
         #region Properties
 
@@ -177,6 +189,11 @@ namespace Characters.Enemy.Troll.Scripts.States
             float angle = Vector3.SignedAngle(dir1.normalized,dir2.normalized,Vector3.up);
             Debug.Log(angle);
             
+        }
+
+        private void MakeRandomSound()
+        {
+            TrollBehaviour.GetAudioPort.OnSoundInfos(patrolSounds.onRandomSounds);
         }
         
         private void PatrolTurn()
