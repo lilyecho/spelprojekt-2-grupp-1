@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshRenderer))]
+//[RequireComponent(typeof(MeshRenderer))]
 public class FakeLightCone : MonoBehaviour
 {
     [SerializeField] private Transform troll;
@@ -202,15 +202,6 @@ public class FakeLightCone : MonoBehaviour
     {
         Dictionary<int, Vector3[]> dict = RayCastPointsInCircles();
         
-        /*Gizmos.color = Color.red;
-        foreach (Vector3[] circlesPoints in dict.Values)
-        {
-            foreach (Vector3 circlePoint in circlesPoints)
-            {
-                Gizmos.DrawCube(circlePoint, new Vector3(0.1f,0.1f,0.1f));
-            }
-        }*/
-
         List<Mesh> meshes = new List<Mesh>(); 
         //ConeFormation
         meshes.Add(ModernCreateConeMesh(transform.position, dict[dict.Count-1]));
@@ -220,7 +211,6 @@ public class FakeLightCone : MonoBehaviour
         
         //Tie the sack, centerpiece
         Vector3 furthestCenterPoint = CreateFurthestCenterPoint();
-        //Gizmos.DrawCube(furthestCenterPoint, new Vector3(0.1f,0.1f,0.1f));
         meshes.Add(ModernFakeLightFrontMinorMesh(furthestCenterPoint, dict[0]));
 
         _meshFilter.mesh = CombineMeshes(meshes);
@@ -273,6 +263,16 @@ public class FakeLightCone : MonoBehaviour
         mesh.triangles = triangles.ToArray();
         mesh.normals = normals.ToArray();
         
+        Color32 colorMaterial = Color.yellow;
+        Color32[] test = new Color32[allVertices.Count];
+        for (int i = 0; i < allVertices.Count; i++)
+        {
+            float distance = Vector3.Distance(allVertices[i], transform.position);
+            test[i] = colorMaterial;
+        }
+
+        mesh.colors32 = test;
+        
         return mesh;
     }
     
@@ -310,6 +310,16 @@ public class FakeLightCone : MonoBehaviour
         mesh.vertices = allVertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.normals = normals.ToArray();
+
+        Color32 colorMaterial = Color.yellow;
+        Color32[] test = new Color32[allVertices.Count];
+        for (int i = 0; i < allVertices.Count; i++)
+        {
+            float distance = Vector3.Distance(allVertices[i], transform.position);
+            test[i] = colorMaterial;
+        }
+
+        mesh.colors32 = test;
         
         return mesh;
     }
@@ -331,13 +341,23 @@ public class FakeLightCone : MonoBehaviour
         mesh.vertices = allVertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.normals = normals.ToArray();
+
+        Color32 colorMaterial = Color.yellow;;
+        Color32[] test = new Color32[allVertices.Count];
+        for (int i = 0; i < allVertices.Count; i++)
+        {
+            float distance = Vector3.Distance(allVertices[i], transform.position);
+            test[i] = colorMaterial;
+        }
+
+        mesh.colors32 = test;
         
         return mesh;
     }
     
-    private void CreateTriangle(Vector3 start, Vector3 middle, Vector3 end, ref List<Vector3> allVertices, ref List<int> triangles, ref List<Vector3> normals)
+    private void CreateTriangle(Vector3 start, Vector3 middle, Vector3 end, ref List<Vector3> allVertices, ref List<int> triangles, ref List<Vector3> normals, bool invertNormal = false)
     {
-        Vector3 normalValue = CalculateNormalValueOfTriangle(start, middle, end);
+        Vector3 normalValue = CalculateNormalValueOfTriangle(invertNormal ? end : start, middle, invertNormal ? start : end);
         
         allVertices.Add(start);
         triangles.Add(allVertices.Count-1);
