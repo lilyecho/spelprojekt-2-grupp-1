@@ -18,8 +18,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private float closeDistance;
 
     [SerializeField] private SoundInfos soundInfos;
-
-
+    
     [Serializable]
     struct SoundInfos
     {
@@ -36,10 +35,48 @@ public class MusicManager : MonoBehaviour
         public SoundInfo[] onNotChased;
         public SoundInfo[] onClose;
     }
+    
+    #region Singleton
 
-    private void Start()
+    public static MusicManager instance;
+
+    private void SingletonStructureCheck()
     {
-        Debug.LogError(transform.parent.parent.name);
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    #endregion
+    
+    private void Awake()
+    {
+        SingletonStructureCheck();
+    }
+
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += SceneChange;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= SceneChange;
+    }
+    
+    private void SceneChange(Scene preScene, Scene newScene)
+    {
+        UpdateMusicAccordingToScene();
+    }
+
+    private void UpdateMusicAccordingToScene()
+    {
+        
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
@@ -62,6 +99,7 @@ public class MusicManager : MonoBehaviour
                 break;
         }
     }
+    
     
     private void FixedUpdate()
     {

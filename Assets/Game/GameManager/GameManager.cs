@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    
     public GameObject pauseMenu;
     public GameObject paused;
     public GameObject settings;
@@ -25,20 +25,9 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent onPause;
     public UnityEvent unPause;
-
-
+    
     public bool runOnCTRL = true;
-
-    private void OnEnable()
-    {
-        //throw new NotImplementedException();
-    }
-
-    private void OnDisable()
-    {
-        //throw new NotImplementedException();
-    }
-
+    
     void Awake()
     {
         if (instance != null)
@@ -83,8 +72,6 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 
     public void RunOnCTRL()
     {
