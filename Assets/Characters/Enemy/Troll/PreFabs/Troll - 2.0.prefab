@@ -794,22 +794,22 @@ MonoBehaviour:
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   soundInfo:
     soundImplementationName: TrollSteg
-    action: 0
+    action: 13
     eventReference:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: -1487460158
+        Data2: 1080510655
+        Data3: -1295468893
+        Data4: 1902215575
+      Path: event:/Sound/Characters/Enemy/Troll/ENMY_TrollFootstep
     instanceVariant: 0
     locality: 0
     parameterName: 
     parameterValue: 0
-    locationVariant: 0
-    locationTransform: {fileID: 0}
+    locationVariant: 1
+    locationTransform: {fileID: 2759658157397552981}
     stopMode: 0
-  curveName: 
+  curveName: sfxTrollStep
   activationValue: 0.9
 --- !u!114 &5322119138117602721
 MonoBehaviour:
@@ -826,23 +826,28 @@ MonoBehaviour:
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   soundInfo:
     soundImplementationName: LampSound
-    action: 0
+    action: 13
     eventReference:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: 1732703410
+        Data2: 1167794131
+        Data3: -2144583536
+        Data4: 775737183
+      Path: event:/Sound/Characters/Enemy/Troll/ENMY_TrollLantern
     instanceVariant: 0
     locality: 0
     parameterName: 
     parameterValue: 0
-    locationVariant: 0
-    locationTransform: {fileID: 0}
+    locationVariant: 1
+    locationTransform: {fileID: 7833998855458072888}
     stopMode: 0
-  curveName: 
-  activationValue: 0
+  curveName: sfxTrollLantern
+  activationValue: 0.9
+--- !u!4 &2759658157397552981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 797966769481471217, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+  m_PrefabInstance: {fileID: 3269249346036759460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3086106526684781647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
@@ -851,6 +856,11 @@ Transform:
 --- !u!4 &6450559972068128234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -803247207237317042, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+  m_PrefabInstance: {fileID: 3269249346036759460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7833998855458072888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4473973808820661604, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
   m_PrefabInstance: {fileID: 3269249346036759460}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8587245606585232020 stripped
