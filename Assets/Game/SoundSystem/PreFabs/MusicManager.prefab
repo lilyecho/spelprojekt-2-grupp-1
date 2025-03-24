@@ -44,71 +44,112 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c6a53f82e5de14a95d7062fe356157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
-  musicData: {fileID: 11400000, guid: f7f9feab4240e9a4f884718efbe149ad, type: 2}
   audioHandler: {fileID: 0}
   enemyManager: {fileID: 0}
   closeDistance: 0
-  test:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3615667782707805718}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: CreateMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3615667782707805718}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: ChangeParameterName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level2
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3615667782707805718}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: ChangeValue
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level2
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3615667782707805718}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: ChangeLocalParameter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level2
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3615667782707805718}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: StartMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level2
-          m_BoolArgument: 0
-        m_CallState: 2
+  soundInfos:
+    onStartMenu:
+    - soundImplementationName: Menu Music
+      action: 9
+      eventReference:
+        Guid:
+          Data1: 828118429
+          Data2: 1153076884
+          Data3: -1434751561
+          Data4: 23693270
+        Path: event:/Music/Loops/MainMenu
+      instanceVariant: 2
+      locality: 0
+      parameterName: 
+      parameterValue: 0
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    onIntro: []
+    onLvl1:
+    - soundImplementationName: Lvl 1 Music
+      action: 11
+      eventReference:
+        Guid:
+          Data1: 2081386146
+          Data2: 1325772597
+          Data3: -529544518
+          Data4: 1092673225
+        Path: event:/Music/Loops/Level1-2
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level2
+      parameterValue: 0
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    onLvl2:
+    - soundImplementationName: Music Change Param
+      action: 2
+      eventReference:
+        Guid:
+          Data1: 2081386146
+          Data2: 1325772597
+          Data3: -529544518
+          Data4: 1092673225
+        Path: event:/Music/Loops/Level1-2
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level2
+      parameterValue: 1
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    onLvl3:
+    - soundImplementationName: Lvl 3 Music
+      action: 11
+      eventReference:
+        Guid:
+          Data1: -1211369258
+          Data2: 1298399030
+          Data3: -922918270
+          Data4: 418594966
+        Path: event:/Music/Loops/Level3-5
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level
+      parameterValue: 3
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    - soundImplementationName: StopPreviousMusic
+      action: 16
+      eventReference:
+        Guid:
+          Data1: 2081386146
+          Data2: 1325772597
+          Data3: -529544518
+          Data4: 1092673225
+        Path: event:/Music/Loops/Level1-2
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level
+      parameterValue: 3
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 1
+    onLvl4:
+    - soundImplementationName: Music Change Param
+      action: 2
+      eventReference:
+        Guid:
+          Data1: -1211369258
+          Data2: 1298399030
+          Data3: -922918270
+          Data4: 418594966
+        Path: event:/Music/Loops/Level3-5
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level
+      parameterValue: 4
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    onChased: []
+    onNotChased: []
+    onClose: []
