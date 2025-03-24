@@ -147,18 +147,26 @@ namespace Characters.Enemy.Troll.Scripts.States
             }
         }
 
-        private void Rotate(){
+        private void Rotate()
+        {
+            Vector3[] pathCorners = TrollBehaviour.GetNavMeshAgent.path.corners;
+            Vector3 wantedDir = (pathCorners[1] - pathCorners[0]).normalized;
+        }
+
+        private void RotateCoroutine()
+        {
+            
         }
         public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
         {
             VisualizePoints();
+            if (trollBehaviour.GetNavMeshAgent == null) return;
+            
             foreach (Vector3 pos in trollBehaviour.GetNavMeshAgent.path.corners)
             {
-                Debug.Log(pos);
                 Gizmos.color = Color.red;
-                Gizmos.DrawCube(pos, new Vector3(0.1f,0.1f,0.1f));
+                Gizmos.DrawCube(pos, new Vector3(0.3f,0.3f,0.3f));
             }
-            Debug.Log("-----");
         }
     
         private void VisualizePoints()

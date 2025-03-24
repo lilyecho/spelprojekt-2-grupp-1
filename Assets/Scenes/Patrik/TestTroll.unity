@@ -504,7 +504,7 @@ Transform:
   m_GameObject: {fileID: 472002063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.83541286, z: -0.5496229, w: 0}
-  m_LocalPosition: {x: -2.99, y: 3.174, z: 5.66}
+  m_LocalPosition: {x: -14.285, y: 3.174, z: -6.109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1003,6 +1003,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astrid 4.0
       objectReference: {fileID: 0}
+    - target: {fileID: 2502285214404553260, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
+      propertyPath: currentAbilities
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1424,8 +1428,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5328166006651579013, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
+      propertyPath: patrolPoints.Array.data[2].x
+      value: -5.6191707
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328166006651579013, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
+      propertyPath: patrolPoints.Array.data[2].z
+      value: 4.042995
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328166006651579013, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
       propertyPath: patrolState.patrolSinglePoint
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8959237820581160106, guid: 07e0e2c60b8e40d46b8ece4eacd3282c, type: 3}
       propertyPath: m_Mesh
