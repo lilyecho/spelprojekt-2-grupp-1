@@ -81,18 +81,23 @@ public class MusicManager : MonoBehaviour
         {
             case 0:
                 audioHandler.HandleSoundInfos(soundInfos.onAwake);
+                Debug.Log("0");
                 break;
             case 1:
                 audioHandler.HandleSoundInfos(soundInfos.onLvl1);
+                Debug.Log("1");
                 break;
             case 2:
                 audioHandler.HandleSoundInfos(soundInfos.onLvl2);
+                Debug.Log("2");
                 break;
             case 3:
                 audioHandler.HandleSoundInfos(soundInfos.onLvl3);
+                Debug.Log("3");
                 break;
             case 4:
                 audioHandler.HandleSoundInfos(soundInfos.onLvl4);
+                Debug.Log("4");
                 break;
             default:
                 Debug.LogError("Missing sound-implementation for this lvl");
