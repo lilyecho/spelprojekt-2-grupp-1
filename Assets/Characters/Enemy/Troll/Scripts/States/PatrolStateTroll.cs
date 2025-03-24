@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using SceneHandling.SoundSystem.Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Characters.Enemy.Troll.Scripts.States
     public class PatrolStateTroll : TrollStates
     {
         [SerializeField] private TrollAlertPort trollAlertPort;
+        [SerializeField] private bool patrolSinglePoint;
         [SerializeField] private int patrolPointIndex;
 
         [SerializeField] private SoundInfos patrolSounds;
@@ -20,7 +22,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         [Space, SerializeField] private UnityEvent OnEnter;
         [SerializeField] private UnityEvent OnExit;
 
-        [SerializeField] private bool patrolSinglePoint;
+        private Vector3[] _internalPoints;
+        private int _currentInternalPointIndex = 0;
         
         #region SoundInfos
 
@@ -68,6 +71,10 @@ namespace Characters.Enemy.Troll.Scripts.States
         {
             int nextPointIndex = currentPatrolIndex % TrollBehaviour.LocalPatrolPoints.Length;
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.LocalPatrolPoints[nextPointIndex]+TrollBehaviour.StartPos);
+
+            _internalPoints =  TrollBehaviour.GetNavMeshAgent.path.corners;
+            Debug.Log(_internalPoints.Length);
+            _currentInternalPointIndex = 0;
         }
     
         public override void Update()

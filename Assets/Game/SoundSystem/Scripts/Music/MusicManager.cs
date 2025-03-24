@@ -29,6 +29,7 @@ public class MusicManager : MonoBehaviour
         public SoundInfo[] onLvl2;
         public SoundInfo[] onLvl3;
         public SoundInfo[] onLvl4;
+        public SoundInfo[] onOutro;
         
         [Space,Header("Enemy-Related")]
         public SoundInfo[] onChased;
@@ -96,6 +97,9 @@ public class MusicManager : MonoBehaviour
                 break;
             case 5:
                 audioHandler.HandleSoundInfos(soundInfos.onLvl4);
+                break;
+            case 6:
+                audioHandler.HandleSoundInfos(soundInfos.onOutro);
                 break;
             default:
                 Debug.LogError("Missing sound-implementation for this lvl");
