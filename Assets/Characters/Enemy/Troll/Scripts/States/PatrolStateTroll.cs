@@ -147,11 +147,8 @@ namespace Characters.Enemy.Troll.Scripts.States
             }
         }
 
-        /*private IEnumerator Rotate(Vector3 wantedDir)
-        {
-            
-        }*/
-        
+        private void Rotate(){
+        }
         public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
         {
             VisualizePoints();

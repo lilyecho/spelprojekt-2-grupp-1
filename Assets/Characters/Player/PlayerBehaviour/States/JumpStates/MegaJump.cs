@@ -30,7 +30,6 @@ public class MegaJump : JumpState
         doneChargedEffect = false;
         
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
-        playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onChargedMegaJump);
         chargingJumpParticles.gameObject.SetActive(true);
         
     }
@@ -44,6 +43,7 @@ public class MegaJump : JumpState
         {
             chargedJumpParticle.Play();
             chargingJumpParticles.gameObject.SetActive(false);
+            playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onChargedMegaJump);
             doneChargedEffect = true;
         }
     }
