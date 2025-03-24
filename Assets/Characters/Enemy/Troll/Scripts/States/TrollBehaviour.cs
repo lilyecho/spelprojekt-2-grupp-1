@@ -290,7 +290,11 @@ namespace Characters.Enemy.Troll.Scripts.States
             if (!searchState.CheckIfPositionIsWalkable(alertPoint, trollData.GetAggressionRange)) return;
             
             navMeshAgent.SetDestination(alertPoint);
-            Transition(searchState);
+            if (activeState != States.Search)
+            {
+                Transition(searchState);
+            }
+            
         }
     
         private void ChangeMovementActivation(bool nextValue)
