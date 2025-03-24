@@ -311,18 +311,24 @@ public class AudioHandler : MonoBehaviour
 
     private void SceneChange(Scene scene, LoadSceneMode loadSceneMode)
     {
-        EndAllSceneInstances();
+        EndAllInstances(ref dictionaryGuidSceneInstances);
     }
 
-    private void EndAllSceneInstances()
+    public void ResetAllDicts()
     {
-        foreach (var keyValue in dictionaryGuidSceneInstances)
+        EndAllInstances(ref dictionaryGuidSceneInstances);
+        EndAllInstances(ref dictionaryGuidGameInstances);
+    }
+    
+    private void EndAllInstances(ref Dictionary<GUID, EventInstance> dict)
+    {
+        foreach (var keyValue in dict)
         {
             keyValue.Value.stop(STOP_MODE.IMMEDIATE);
             keyValue.Value.release();
         }
 
-        dictionaryGuidSceneInstances = new Dictionary<GUID, EventInstance>();
+        dict = new Dictionary<GUID, EventInstance>();
     }
 
     private void OnDestroy()

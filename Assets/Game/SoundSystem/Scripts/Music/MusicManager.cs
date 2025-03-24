@@ -23,8 +23,8 @@ public class MusicManager : MonoBehaviour
     struct SoundInfos
     {
         [Header("MainMusic")] 
-        public SoundInfo[] onAwake;
-
+        public SoundInfo[] onStartMenu;
+        public SoundInfo[] onIntro;
         public SoundInfo[] onLvl1;
         public SoundInfo[] onLvl2;
         public SoundInfo[] onLvl3;
@@ -57,8 +57,7 @@ public class MusicManager : MonoBehaviour
     {
         SingletonStructureCheck();
     }
-
-
+    
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += SceneChange;
@@ -80,24 +79,23 @@ public class MusicManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
-                audioHandler.HandleSoundInfos(soundInfos.onAwake);
-                Debug.Log("0");
+                audioHandler.ResetAllDicts();
+                audioHandler.HandleSoundInfos(soundInfos.onStartMenu);
                 break;
             case 1:
-                audioHandler.HandleSoundInfos(soundInfos.onLvl1);
-                Debug.Log("1");
+                audioHandler.HandleSoundInfos(soundInfos.onIntro);
                 break;
             case 2:
-                audioHandler.HandleSoundInfos(soundInfos.onLvl2);
-                Debug.Log("2");
+                audioHandler.HandleSoundInfos(soundInfos.onLvl1);
                 break;
             case 3:
-                audioHandler.HandleSoundInfos(soundInfos.onLvl3);
-                Debug.Log("3");
+                audioHandler.HandleSoundInfos(soundInfos.onLvl2);
                 break;
             case 4:
+                audioHandler.HandleSoundInfos(soundInfos.onLvl3);
+                break;
+            case 5:
                 audioHandler.HandleSoundInfos(soundInfos.onLvl4);
-                Debug.Log("4");
                 break;
             default:
                 Debug.LogError("Missing sound-implementation for this lvl");
