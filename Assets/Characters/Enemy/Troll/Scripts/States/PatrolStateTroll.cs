@@ -71,10 +71,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         {
             int nextPointIndex = currentPatrolIndex % TrollBehaviour.LocalPatrolPoints.Length;
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.LocalPatrolPoints[nextPointIndex]+TrollBehaviour.StartPos);
-
+            
             _internalPoints =  TrollBehaviour.GetNavMeshAgent.path.corners;
-            Debug.Log(_internalPoints.Length);
-            _currentInternalPointIndex = 0;
         }
     
         public override void Update()
@@ -159,6 +157,12 @@ namespace Characters.Enemy.Troll.Scripts.States
         public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
         {
             VisualizePoints();
+            foreach (Vector3 pos in _internalPoints)
+            {
+                Debug.Log(pos);
+                Gizmos.DrawCube(pos, new Vector3(0.1f,0.1f,0.1f));
+            }
+            Debug.Log("-----");
         }
     
         private void VisualizePoints()
@@ -189,7 +193,6 @@ namespace Characters.Enemy.Troll.Scripts.States
                     Gizmos.DrawCube(TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[i], new Vector3(.5f,.5f,.5f));
                     Gizmos.DrawLine(TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[i], TrollBehaviour.StartPos+TrollBehaviour.LocalPatrolPoints[(i+1)%TrollBehaviour.LocalPatrolPoints.Length]);
                 }
-                
             }
         }
 

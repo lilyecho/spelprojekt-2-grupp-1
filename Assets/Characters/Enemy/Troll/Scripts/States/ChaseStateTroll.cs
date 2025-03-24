@@ -10,19 +10,22 @@ using UnityEngine.Events;
 [Serializable]
 public class ChaseStateTroll : TrollStates
 {
+    [SerializeField,Range(0.1f,10f)] private float totalChaseTime = 4f;
+    
     [SerializeField] private UnityEvent OnEnter;
     [SerializeField] private UnityEvent OnExit;
     
     [Space, SerializeField] private SoundInfos soundInfos;
+
+    
+    private float currentTime = 0f;
     
     #region SoundInfos
-
     [Serializable]
     struct SoundInfos
     {
         public SoundInfo[] onScream;
     }
-
     #endregion
     
     public override void Enter()
@@ -32,11 +35,13 @@ public class ChaseStateTroll : TrollStates
         TrollBehaviour.Animator.SetBool(TrollBehaviour.chasingAP, true);
         TrollBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onScream);
         TrollBehaviour.stateColor = Color.red;
+
+        //Timer
+        currentTime = totalChaseTime;
         
         //Change pathfinding system so that trolls will get run over by more aggressive trolls - Attack
         TrollBehaviour.GetNavMeshAgent.avoidancePriority = TrollBehaviour.GetTrollData.GetChase.statePriority;
         TrollBehaviour.GetNavMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-        
         
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Increase);
@@ -48,6 +53,11 @@ public class ChaseStateTroll : TrollStates
     {
         TrollBehaviour.GetEnemyManagerPort.OnChaseChange(ChangeValue.Decrease);
         TrollBehaviour.Animator.SetBool(TrollBehaviour.chasingAP, false);
+    }
+
+    public override void Update()
+    {
+        CheckTimerForChase();
     }
 
     public override void FixedUpdate()
@@ -63,6 +73,16 @@ public class ChaseStateTroll : TrollStates
         }
         
         TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.GetTargetTransform.position);
+    }
+
+    private void CheckTimerForChase()
+    {
+        currentTime -= Time.deltaTime;
+        if (currentTime <= 0)
+        {
+            TrollBehaviour.Transition(TrollBehaviour.patrolState);
+            currentTime = totalChaseTime;
+        }
     }
     
     private TrollStates Check4Player(Transform eyes, float range)
