@@ -310,7 +310,7 @@ public class PlayerBehaviour : MonoBehaviour
         
         //walkState?.OnShift(context);
 
-        if(GameManager.instance.runOnCTRL)
+        if(GameManager.instance.runOnCTRL && movementMode != MovementMode.RUN)
         {
             if (context.performed)
             {
@@ -326,7 +326,7 @@ public class PlayerBehaviour : MonoBehaviour
             jumpState?.OnShift(context);
         }
 
-        else
+        else if(movementMode != MovementMode.SNEAK)
         {
             if (context.performed)
             {
@@ -350,7 +350,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         
         //walkState?.OnCTRL(context);
-        if(GameManager.instance.runOnCTRL)
+        if(GameManager.instance.runOnCTRL && movementMode != MovementMode.SNEAK)
         {
             if (context.performed)
             {
@@ -366,7 +366,7 @@ public class PlayerBehaviour : MonoBehaviour
             currentState?.OnCTRL(context);
         }
 
-        else
+        else if(movementMode != MovementMode.RUN)
         {
             if (context.performed)
             {
