@@ -25,6 +25,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         #endregion
 
         private Vector3 startPos;
+        private Vector3 startDir;
     
         private bool _movementOn = true;
     
@@ -65,6 +66,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         #region Getters & Setters
 
         public Vector3 StartPos => startPos;
+        public Vector3 StartDir => startDir;
         public NavMeshAgent GetNavMeshAgent => navMeshAgent;
         
         public ref Vector3[] LocalPatrolPoints => ref patrolPoints;
@@ -95,6 +97,7 @@ namespace Characters.Enemy.Troll.Scripts.States
         
             base.OnEnable();
             startPos = transform.position;
+            startDir = transform.forward;
         }
 
         protected override void OnDisable()
@@ -108,6 +111,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         protected override void Awake()
         {
             startPos = transform.position;
+            startDir = transform.forward;
+            
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
         
