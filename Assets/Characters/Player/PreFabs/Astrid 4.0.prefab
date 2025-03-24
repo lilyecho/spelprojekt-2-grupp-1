@@ -1300,6 +1300,41 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     gizmos: 0
+    soundInfos:
+      onEnter:
+      - soundImplementationName: playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
+        action: 2
+        eventReference:
+          Guid:
+            Data1: -99017354
+            Data2: 1115391521
+            Data3: 1226343332
+            Data4: -1244855710
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
+        instanceVariant: 0
+        locality: 1
+        parameterName: CatSneak
+        parameterValue: 2
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
+      onExit:
+      - soundImplementationName: running.soundInfos.onExit
+        action: 2
+        eventReference:
+          Guid:
+            Data1: -99017354
+            Data2: 1115391521
+            Data3: 1226343332
+            Data4: -1244855710
+          Path: event:/Sound/Characters/PlayerCharacter/Cat/Locomotion/PC_Cat_Bell
+        instanceVariant: 0
+        locality: 1
+        parameterName: CatSneak
+        parameterValue: 0
+        locationVariant: 0
+        locationTransform: {fileID: 0}
+        stopMode: 0
   jumping:
     OnEnter:
       m_PersistentCalls:
