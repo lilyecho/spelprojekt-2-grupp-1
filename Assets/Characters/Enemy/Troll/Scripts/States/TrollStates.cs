@@ -33,31 +33,7 @@ public class TrollStates
     {
         TrollBehaviour = trollBehaviour;
     }
-    public virtual void OnDrawGizmos(TrollBehaviour troll) { }
-
-    /*
-    protected IEnumerator Accelerate(float maxSpeed, float totalAccelerationTime)
-    {
-        while (true)
-        {
-            float currentSpeed = TrollBehaviour.GetNavMeshAgent.velocity.magnitude;
-            float percentage = currentSpeed / maxSpeed;
-
-            float lerpTime = (totalAccelerationTime * percentage+ Time.deltaTime)/totalAccelerationTime;
-            if (lerpTime >= 0.99 )
-            {
-                Debug.Log("Max");
-                TrollBehaviour.GetNavMeshAgent.velocity =
-                    TrollBehaviour.GetNavMeshAgent.velocity.normalized * maxSpeed;
-                TrollBehaviour.GetNavMeshAgent.speed = maxSpeed;
-                TrollBehaviour.GetNavMeshAgent.ResetPath();
-                break;
-            }
-            TrollBehaviour.GetNavMeshAgent.velocity =
-                (TrollBehaviour.GetNavMeshAgent.destination - TrollBehaviour.transform.position).normalized * Mathf.Lerp(0, maxSpeed,lerpTime < 1 ? lerpTime : 1);
-            yield return null;
-        }
-    }*/
+    public virtual void OnDrawGizmos(TrollBehaviour troll) {}
     
     protected void SetUpStateValuesInAgent(StateParameters parameterValues)
     {
