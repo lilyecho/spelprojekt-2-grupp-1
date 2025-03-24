@@ -5,6 +5,7 @@ using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class MegaJump : JumpState
@@ -29,7 +30,7 @@ public class MegaJump : JumpState
         doneChargedEffect = false;
         
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, true);
-        playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onEnter);
+        playerBehaviour.GetAudioPort.OnSoundInfos(SoundInformations.onChargedMegaJump);
         chargingJumpParticles.gameObject.SetActive(true);
         
     }
@@ -81,7 +82,7 @@ public class MegaJump : JumpState
     [Serializable]
     private struct JumpsSoundInfos
     {
-        public SoundInfo[] onEnter;
+        [FormerlySerializedAs("onEnter")] public SoundInfo[] onChargedMegaJump;
         public SoundInfo[] onMegaJump;
         public SoundInfo[] onNormalJump;
         public SoundInfo[] onNoJump;
