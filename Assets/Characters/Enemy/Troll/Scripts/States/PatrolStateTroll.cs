@@ -21,9 +21,6 @@ namespace Characters.Enemy.Troll.Scripts.States
         
         [Space, SerializeField] private UnityEvent OnEnter;
         [SerializeField] private UnityEvent OnExit;
-
-        private Vector3[] _internalPoints;
-        private int _currentInternalPointIndex = 0;
         
         #region SoundInfos
 
@@ -71,8 +68,6 @@ namespace Characters.Enemy.Troll.Scripts.States
         {
             int nextPointIndex = currentPatrolIndex % TrollBehaviour.LocalPatrolPoints.Length;
             TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.LocalPatrolPoints[nextPointIndex]+TrollBehaviour.StartPos);
-            
-            _internalPoints =  TrollBehaviour.GetNavMeshAgent.path.corners;
         }
     
         public override void Update()
@@ -157,9 +152,10 @@ namespace Characters.Enemy.Troll.Scripts.States
         public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
         {
             VisualizePoints();
-            foreach (Vector3 pos in _internalPoints)
+            foreach (Vector3 pos in trollBehaviour.GetNavMeshAgent.path.corners)
             {
                 Debug.Log(pos);
+                Gizmos.color = Color.red;
                 Gizmos.DrawCube(pos, new Vector3(0.1f,0.1f,0.1f));
             }
             Debug.Log("-----");
