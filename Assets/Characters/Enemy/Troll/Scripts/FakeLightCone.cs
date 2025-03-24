@@ -41,60 +41,10 @@ public class FakeLightCone : MonoBehaviour
         LayerMask layerMask = ~LayerMask.GetMask("Player","InteractiveEnvironment", "Ignore Raycast");
         if (Physics.Raycast(transform.position, troll.forward, out RaycastHit hit, trollData.GetLampSight.range,layerMask))
         {
-            return hit.point;
+            return hit.point-troll.forward*0.001f;
         }
 
-        return transform.position + troll.forward * trollData.GetLampSight.range;
-    }
-    
-    private Mesh CreateConeMesh(Vector3 startPoint, Vector3[] edgeVertices)
-    {
-        Mesh mesh = new Mesh();
-        Vector3[] allVert = new Vector3[edgeVertices.Length + 1];
-        allVert[0] = transform.InverseTransformPoint(startPoint);
-        for (int i = 1; i < allVert.Length; i++)
-        {
-            allVert[i] =  transform.InverseTransformPoint(edgeVertices[i-1]);
-        }
-
-        int[] triangles = new int[3*edgeVertices.Length];
-        
-        for (int i = 0; i < edgeVertices.Length; i++)
-        {
-            triangles[i * 3] = 0;
-            triangles[i * 3+2] = (i+1)% edgeVertices.Length+1;
-            triangles[i * 3+1] = (i+2)% edgeVertices.Length+1;
-        }
-        
-        mesh.vertices = allVert;
-        mesh.triangles = triangles;
-        
-        return mesh;
-    }
-    
-    private Mesh CreatePizzaMesh(Vector3 startPoint, Vector3[] edgeVertices)
-    {
-        Mesh mesh = new Mesh();
-        Vector3[] allVert = new Vector3[edgeVertices.Length + 1];
-        allVert[0] = transform.InverseTransformPoint(startPoint);
-        for (int i = 1; i < allVert.Length; i++)
-        {
-            allVert[i] =  transform.InverseTransformPoint(edgeVertices[i-1]);
-        }
-
-        int[] triangles = new int[3*edgeVertices.Length];
-        
-        for (int i = 0; i < edgeVertices.Length; i++)
-        {
-            triangles[i * 3] = 0;
-            triangles[i * 3+1] = (i+1)% edgeVertices.Length+1;
-            triangles[i * 3+2] = (i+2)% edgeVertices.Length+1;
-        }
-        
-        mesh.vertices = allVert;
-        mesh.triangles = triangles;
-        
-        return mesh;
+        return transform.position + troll.forward * trollData.GetLampSight.range-troll.forward*0.001f;
     }
     
     private Vector3[] RayCastPointsInACircle(Vector3 startPoint,Vector3 startDirection, float maxRange, float angleOfSpread, int resolution, float angleBetweenPoints)
@@ -112,11 +62,11 @@ public class FakeLightCone : MonoBehaviour
 
             if (Physics.Raycast(startPoint, direction,out RaycastHit hit, maxRange))
             {
-                result.Add(hit.point);
+                result.Add(hit.point-direction*0.001f);
             }
             else
             {
-                result.Add(startPoint+direction*maxRange);
+                result.Add(startPoint+direction*maxRange-direction*0.001f);
             }
         }
         
