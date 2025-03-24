@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using SceneHandling.SoundSystem.Scripts;
 [Serializable]
 public class Running : State, IAcceleration
 {
@@ -16,15 +17,26 @@ public class Running : State, IAcceleration
     
     bool coyote = false;
     float coyoteTimer;
+    [SerializeField] private SoundInfos soundInfos;
+    
+    [Serializable]
+    private struct SoundInfos
+    {   
+        public SoundInfo[] onEnter;
+        public SoundInfo[] onExit;
+    }
+    
     public override void Enter()
     {
         //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
         
         FixCurrentAccelerationTime();
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
+        
     }
     public override void Exit()
     {
-
+        playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onExit);
     }
 
     public override void OnCollision(Collision collision)
