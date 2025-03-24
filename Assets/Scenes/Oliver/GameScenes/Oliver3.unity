@@ -11133,6 +11133,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1992486663552630640, guid: 7fb2f11c9b7d66e4fba8d25b96e264d0, type: 3}
   m_PrefabInstance: {fileID: 217919630}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &218343012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218343013}
+  - component: {fileID: 218343015}
+  - component: {fileID: 218343014}
+  m_Layer: 2
+  m_Name: ReverbZone1B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218343013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218343012}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.34832188, z: -0, w: 0.93737507}
+  m_LocalPosition: {x: 54.5, y: 23.8, z: 189.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1807735185}
+  m_LocalEulerAnglesHint: {x: 0, y: -40.769, z: 0}
+--- !u!114 &218343014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218343012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: 1277051202
+      Data2: 1106402911
+      Data3: 2087437203
+      Data4: 1037778257
+    Path: event:/RockyHoleReverb
+  Event: 
+  PlayEvent: 3
+  StopEvent: 4
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!65 &218343015
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218343012}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 39.50253, y: 72.81322, z: 158.32532}
+  m_Center: {x: -18.906298, y: 13.527626, z: -15.57019}
 --- !u!1001 &219013344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29845,7 +29930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.11
+      value: -63.9
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29853,7 +29938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.83
+      value: -90.3
       objectReference: {fileID: 0}
     - target: {fileID: 39312636168687084, guid: 90275f7a4485cf346acfa139f0e16636, type: 3}
       propertyPath: m_LocalRotation.w
@@ -39844,7 +39929,7 @@ GameObject:
   - component: {fileID: 853414220}
   - component: {fileID: 853414221}
   m_Layer: 0
-  m_Name: AudioSourceWater2
+  m_Name: AudioSourceCricket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39880,11 +39965,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 837784963
-      Data2: 1281615535
-      Data3: 1399536053
-      Data4: -1071044959
-    Path: event:/Sound/Ambiance/AMB_Water
+      Data1: 1217180276
+      Data2: 1266472309
+      Data3: -1021617512
+      Data4: -2136689906
+    Path: event:/Sound/Ambiance/AMB_ANM_Cricket
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -39895,7 +39980,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 5
+  OverrideMaxDistance: 20
 --- !u!4 &853508567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2715060620732193819, guid: 4742a4e3fef7ed241998b39c58e40ad4, type: 3}
@@ -53307,6 +53392,69 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4742a4e3fef7ed241998b39c58e40ad4, type: 3}
+--- !u!1 &1164322838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164322839}
+  - component: {fileID: 1164322840}
+  m_Layer: 0
+  m_Name: AudioSourcWater (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164322839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164322838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24.3, y: 16.6, z: 136.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1807735185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1164322840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164322838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 837784963
+      Data2: 1281615535
+      Data3: 1399536053
+      Data4: -1071044959
+    Path: event:/Sound/Ambiance/AMB_Water
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 24.300941
+  OverrideMaxDistance: 82.54428
 --- !u!1001 &1167026779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56525,7 +56673,7 @@ GameObject:
   - component: {fileID: 1230821433}
   - component: {fileID: 1230821434}
   m_Layer: 2
-  m_Name: ReverbZone
+  m_Name: ReverbZone1A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56565,8 +56713,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 75.54651, y: 72.81322, z: 109.380356}
-  m_Center: {x: -25.245497, y: 13.527626, z: -16.294487}
+  m_Size: {x: 75.00867, y: 72.81322, z: 109.380356}
+  m_Center: {x: -25.514446, y: 13.527626, z: -16.294487}
 --- !u!114 &1230821434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56582,13 +56730,13 @@ MonoBehaviour:
   CollisionTag: Player
   EventReference:
     Guid:
-      Data1: 1277051202
-      Data2: 1106402911
-      Data3: 2087437203
-      Data4: 1037778257
-    Path: event:/RockyHoleReverb
+      Data1: 1009515272
+      Data2: 1115921500
+      Data3: -1490015837
+      Data4: 1963865076
+    Path: event:/CaveReverb
   Event: 
-  PlayEvent: 1
+  PlayEvent: 3
   StopEvent: 4
   AllowFadeout: 1
   TriggerOnce: 0
@@ -75117,7 +75265,7 @@ GameObject:
   - component: {fileID: 1615896248}
   - component: {fileID: 1615896249}
   m_Layer: 0
-  m_Name: AudioSourcWater
+  m_Name: AudioSourcePineMarten
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75153,11 +75301,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 837784963
-      Data2: 1281615535
-      Data3: 1399536053
-      Data4: -1071044959
-    Path: event:/Sound/Ambiance/AMB_Water
+      Data1: 689753461
+      Data2: 1172334809
+      Data3: -1624690798
+      Data4: 568276983
+    Path: event:/Sound/Ambiance/AMB_ANM_PineMarten
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -82866,7 +83014,7 @@ Transform:
   m_GameObject: {fileID: 1759405907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.8354129, z: -0.5496229, w: 0}
-  m_LocalPosition: {x: 141.52048, y: 22.33361, z: 184.71204}
+  m_LocalPosition: {x: 33.510475, y: 22.33361, z: 134.24203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85053,9 +85201,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1615896248}
+  - {fileID: 1164322839}
   - {fileID: 853414220}
   - {fileID: 540535011}
   - {fileID: 1230821432}
+  - {fileID: 218343013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1807778934
