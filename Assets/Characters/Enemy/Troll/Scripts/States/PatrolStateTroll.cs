@@ -138,7 +138,7 @@ namespace Characters.Enemy.Troll.Scripts.States
             {
                 Rotate(TrollBehaviour.StartDir);
             }
-            else if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f && patrolSinglePoint)
+            else if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f && !patrolSinglePoint)
             {
                 patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.LocalPatrolPoints.Length;
                 UpdateTargetPoint(patrolPointIndex);
