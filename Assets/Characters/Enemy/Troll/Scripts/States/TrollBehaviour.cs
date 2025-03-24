@@ -294,7 +294,6 @@ namespace Characters.Enemy.Troll.Scripts.States
             {
                 Transition(searchState);
             }
-            
         }
     
         private void ChangeMovementActivation(bool nextValue)

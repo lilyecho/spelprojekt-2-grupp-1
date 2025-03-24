@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using SceneHandling.SoundSystem.Scripts;
 using Unity.VisualScripting;
@@ -136,19 +137,20 @@ namespace Characters.Enemy.Troll.Scripts.States
             
             if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f && patrolSinglePoint)
             {
-                Rotate(TrollBehaviour.StartDir);
+                TrollBehaviour.transform.forward = TrollBehaviour.StartDir;
+                //Rotate(TrollBehaviour.StartDir);
             }
-            else if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f && !patrolSinglePoint)
+            else if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
             {
                 patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.LocalPatrolPoints.Length;
                 UpdateTargetPoint(patrolPointIndex);
             }
         }
 
-        private void Rotate(Vector3 wantedDir)
+        /*private IEnumerator Rotate(Vector3 wantedDir)
         {
-            TrollBehaviour.transform.forward = wantedDir;
-        }
+            
+        }*/
         
         public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
         {

@@ -16,6 +16,7 @@ public class LookAroundTrollState : TrollStates
     {
         if (TrollBehaviour.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
+            Debug.Log("Done-Animation");
             TrollBehaviour.Transition(TrollBehaviour.patrolState);
         }
         
