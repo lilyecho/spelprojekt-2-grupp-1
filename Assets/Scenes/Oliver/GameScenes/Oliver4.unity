@@ -17959,11 +17959,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1723444639
-      Data2: 1200007242
-      Data3: 276882052
-      Data4: -1152187433
-    Path: event:/Sound/Ambiance/AMB_Pond
+      Data1: 689753461
+      Data2: 1172334809
+      Data3: -1624690798
+      Data4: 568276983
+    Path: event:/Sound/Ambiance/AMB_ANM_PineMarten
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -17972,9 +17972,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 20
-  OverrideMaxDistance: 50
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 5
 --- !u!4 &653729834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 59615149175501986, guid: 9ea968d49d284224daf1d27f6a0e8024, type: 3}
@@ -27280,27 +27280,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.26782
+      value: 0.45218483
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22615965
+      value: -0.19296983
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.694783
+      value: 0.68045765
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.694783
+      value: -0.68045765
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.13144055
+      value: 0.19229501
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.13144055
+      value: -0.19229501
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32244,6 +32244,10 @@ PrefabInstance:
       propertyPath: test.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onLvl4.Array.data[1].locationTransform
+      value: 
+      objectReference: {fileID: 264427549}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: test.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
