@@ -704,16 +704,48 @@ MonoBehaviour:
   - {x: 0.69123125, y: 0, z: 6.906368}
   patrolState:
     trollAlertPort: {fileID: 11400000, guid: b4945f8df470b114f9d7ef77d1d3a000, type: 2}
+    patrolSinglePoint: 0
     patrolPointIndex: 0
     patrolSounds:
-      onRandomSounds: []
+      onRandomSounds:
+      - soundImplementationName: trollSong
+        action: 13
+        eventReference:
+          Guid:
+            Data1: 97832737
+            Data2: 1250847227
+            Data3: -1975878991
+            Data4: 852202192
+          Path: event:/Sound/Characters/Enemy/Troll/ENMY_TrollEmote_Song
+        instanceVariant: 0
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        locationVariant: 0
+        locationTransform: {fileID: 3086106526684781647}
+        stopMode: 0
+      - soundImplementationName: trollChatter
+        action: 13
+        eventReference:
+          Guid:
+            Data1: -2036380747
+            Data2: 1247713516
+            Data3: 1063481227
+            Data4: -2066701864
+          Path: event:/Sound/Characters/Enemy/Troll/ENMY_TrollEmote_Chatter
+        instanceVariant: 0
+        locality: 0
+        parameterName: 
+        parameterValue: 0
+        locationVariant: 0
+        locationTransform: {fileID: 3086106526684781647}
+        stopMode: 0
     OnEnter:
       m_PersistentCalls:
         m_Calls: []
     OnExit:
       m_PersistentCalls:
         m_Calls: []
-    patrolSinglePoint: 0
   chaseState:
     OnEnter:
       m_PersistentCalls:
