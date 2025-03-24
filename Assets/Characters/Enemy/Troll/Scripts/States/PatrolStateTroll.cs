@@ -19,6 +19,8 @@ namespace Characters.Enemy.Troll.Scripts.States
         [Space, SerializeField] private UnityEvent OnEnter;
         [SerializeField] private UnityEvent OnExit;
 
+        [SerializeField] private bool patrolSinglePoint;
+        
         #region SoundInfos
 
         [Serializable]
@@ -131,13 +133,23 @@ namespace Characters.Enemy.Troll.Scripts.States
                 Debug.Log("Missing patrolpoints :"+TrollBehaviour.name);
                 return;
             }
-            if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f)
+            
+            if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f && patrolSinglePoint)
+            {
+                Rotate(TrollBehaviour.StartDir);
+            }
+            else if (TrollBehaviour.GetNavMeshAgent.remainingDistance <= 0.01f && !patrolSinglePoint)
             {
                 patrolPointIndex = (patrolPointIndex+1)%TrollBehaviour.LocalPatrolPoints.Length;
                 UpdateTargetPoint(patrolPointIndex);
             }
         }
 
+        private void Rotate(Vector3 wantedDir)
+        {
+            TrollBehaviour.transform.forward = wantedDir;
+        }
+        
         public override void OnDrawGizmos(TrollBehaviour trollBehaviour)
         {
             VisualizePoints();
@@ -177,10 +189,15 @@ namespace Characters.Enemy.Troll.Scripts.States
 
         public void UpdateTargetPoint(int newPatrolIndex)
         {
+            if (patrolSinglePoint)
+            {
+                TrollBehaviour.GetNavMeshAgent.SetDestination(TrollBehaviour.StartPos);
+                return;
+            }
             
-            //TODO velocity
             SetTargetPoint(newPatrolIndex);
             
+            //Rotation
             Vector3 dir1 = TrollBehaviour.transform.forward;
             dir1.y = 0;
             Vector3 dir2 = (TrollBehaviour.LocalPatrolPoints[newPatrolIndex]+TrollBehaviour.StartPos - TrollBehaviour.transform.position).normalized;
