@@ -266,7 +266,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697660000}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 7509f934414e847419a6cbc3812fec0e, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 8f91f5e241ed2744a8bdefa104cc282a, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1759405909}
@@ -280,14 +280,12 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -334,6 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd905b5b3d4ec624f9f3182cd6efbd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeSceneCooldown: 1
 --- !u!114 &697660007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,54 +382,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a6509cad-c3d7-427d-ab16-267776c63144
     m_ActionName: Player/Ctrl[/Keyboard/ctrl]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 697660006}
-        m_TargetAssemblyTypeName: LoadBehaviour, Assembly-CSharp
-        m_MethodName: ReloadScene
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a885b65c-044c-46c7-abe0-105e4c0ec808
-    m_ActionName: Player/ReloadScene[/Keyboard/o]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 697660006}
-        m_TargetAssemblyTypeName: LoadBehaviour, Assembly-CSharp
-        m_MethodName: LoadLastScene
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5ae0e4c2-c7b1-4cf5-bb8a-3ecea112f952
-    m_ActionName: Player/LoadLastScene[/Keyboard/i]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 697660006}
-        m_TargetAssemblyTypeName: LoadBehaviour, Assembly-CSharp
-        m_MethodName: LoadNextScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 80ba0341-6d25-4dd0-bbae-ea63aead82e9
-    m_ActionName: Player/LoadNextScene[/Keyboard/p]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 041d8b7a-fe5e-4f89-abf3-9b2c7c41a89f
