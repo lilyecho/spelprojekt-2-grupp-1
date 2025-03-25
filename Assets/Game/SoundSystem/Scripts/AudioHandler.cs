@@ -47,13 +47,17 @@ public class AudioHandler : MonoBehaviour
             string t = "Game instances: "+dictionaryGuidGameInstances.Count;
             foreach (EventInstance eventInstance in dictionaryGuidGameInstances.Values)
             {
-                t += "\n --> "+eventInstance;
+                eventInstance.getDescription(out EventDescription eventDescription);
+                eventDescription.getPath(out string path);
+                t += "\n --> "+path;
             }
             
             t += "\n\nScene instances: "+dictionaryGuidSceneInstances.Count;
             foreach (EventInstance eventInstance in dictionaryGuidSceneInstances.Values)
             {
-                t += "\n --> "+eventInstance;
+                eventInstance.getDescription(out EventDescription eventDescription);
+                eventDescription.getPath(out string path);
+                t += "\n --> "+path;
             }
             Debug.Log(t);
         }
