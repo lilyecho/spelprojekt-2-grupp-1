@@ -8,6 +8,7 @@ using SceneHandling.SoundSystem.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
+using EventInstance = FMOD.Studio.EventInstance;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioHandler : MonoBehaviour
@@ -44,16 +45,23 @@ public class AudioHandler : MonoBehaviour
         if (debugMode)
         {
             string t = "Game instances: "+dictionaryGuidGameInstances.Count;
-            t += "\nScene instances: "+dictionaryGuidSceneInstances.Count;
+            foreach (EventInstance eventInstance in dictionaryGuidGameInstances.Values)
+            {
+                t += "\n --> "+eventInstance;
+            }
+            
+            t += "\n\nScene instances: "+dictionaryGuidSceneInstances.Count;
+            foreach (EventInstance eventInstance in dictionaryGuidSceneInstances.Values)
+            {
+                t += "\n --> "+eventInstance;
+            }
             Debug.Log(t);
         }
     }
 
     private void UpdatePlayerTransform(RegistrationPort.TypeOfRegistration typeOfRegistration, GameObject newGameObject)
     {
-        Debug.Log("Test");
         if (typeOfRegistration != RegistrationPort.TypeOfRegistration.Player) return;
-        Debug.Log("Player reg");
         playerTransform = newGameObject.transform;
     }
     
@@ -68,11 +76,11 @@ public class AudioHandler : MonoBehaviour
     public void HandleSoundInfo(SoundInfo soundInfo)
     {
         if (soundInfo.action == 0) return;
+        Debug.Log("Handle");
         
-        Debug.Log("SoundInfo");
-        bool hasCreated = HandleCreate(soundInfo);
+        HandleCreate(soundInfo);
         HandleParameterChange(soundInfo);
-        HandleLocation(soundInfo, hasCreated);
+        HandleLocation(ref soundInfo);
         HandlePlay(soundInfo);
         HandleStop(soundInfo);
     }
@@ -119,25 +127,38 @@ public class AudioHandler : MonoBehaviour
         instance.setParameterByName(parameterName, value);
     }
     
-    private void HandleLocation(SoundInfo soundInfo, bool hasCreated)
+    private void HandleLocation(ref SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
         
-        Transform playerTrans = null;
+        //Handle null-input transform
         if (soundInfo.locationTransform == null && playerTransform == null)
         {
-            Debug.Log(soundInfo.soundImplementationName+": Missing transform from player in location-handling for sound");
-            playerTrans = GameObject.FindWithTag("Player").transform;
-
-            if (playerTrans == null)
+            if (debugMode) Debug.Log(soundInfo.soundImplementationName+": Missing transform from player in location-handling for sound");
+            soundInfo.locationTransform = GameObject.FindWithTag("Player").transform;
+            
+            if (soundInfo.locationTransform == null)
             {
-                Debug.Log("Missing player in scene");
+                if (debugMode) Debug.Log(soundInfo.soundImplementationName+": Missing player in scene - Setting camera as transform");
+                soundInfo.locationTransform = Camera.main.transform;
+            }
+            
+            if (soundInfo.locationTransform == null)
+            {
+                Debug.Log(soundInfo.soundImplementationName+": Missing camera-transform --> Wont make this sound without a valid transform");
                 return;
             }
         }
+        //Playertransform already declared
+        else if (soundInfo.locationTransform == null)
+        {
+            if (debugMode) Debug.Log(soundInfo.soundImplementationName+": Missing inputTransform - Transform is now player");
+            soundInfo.locationTransform = playerTransform;
+        }
+        //Valid locationTransform
         else
         {
-            soundInfo.locationTransform = playerTransform;
+            if (debugMode) Debug.Log(soundInfo.soundImplementationName+": ");
         }
         
         

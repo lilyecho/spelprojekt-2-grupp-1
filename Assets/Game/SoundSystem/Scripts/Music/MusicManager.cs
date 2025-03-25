@@ -139,17 +139,14 @@ public class MusicManager : MonoBehaviour
         {
             Debug.LogWarning("Missing enemyManager in musicManager");
         }
-        /*
-        [Header("MainMusic")] 
-    public SoundInfo[] onStartMenu;
-    public SoundInfo[] onIntro;
-    public SoundInfo[] onLvl1;
-    public SoundInfo[] onLvl2;
-    public SoundInfo[] onLvl3;
-    public SoundInfo[] onLvl4;
-    public SoundInfo[] onOutro;*/
-
+        
         CheckSoundInfos(ref soundInfos.onStartMenu);
+        CheckSoundInfos(ref soundInfos.onIntro);
+        CheckSoundInfos(ref soundInfos.onLvl1);
+        CheckSoundInfos(ref soundInfos.onLvl2);
+        CheckSoundInfos(ref soundInfos.onLvl3);
+        CheckSoundInfos(ref soundInfos.onLvl4);
+        CheckSoundInfos(ref soundInfos.onOutro);
     }
 
     private void CheckSoundInfos(ref SoundInfo[] soundInfos)
