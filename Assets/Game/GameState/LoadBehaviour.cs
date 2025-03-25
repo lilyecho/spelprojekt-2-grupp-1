@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(PlayerInput))]
 public class LoadBehaviour : MonoBehaviour
 {
     [SerializeField,Range(0.01f,2)] private float changeSceneCooldown = 1;
     private float _currentTime = 0;
+    
+    //TODO
+    
     
     private void FixedUpdate()
     {
