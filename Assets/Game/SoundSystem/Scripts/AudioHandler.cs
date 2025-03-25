@@ -26,7 +26,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo += HandleSoundInfo;
         audioPort.OnSoundInfos += HandleSoundInfos;
 
-        registrationPort.OnRegisterStart += UpdatePlayerTransform;
+        registrationPort.OnRegisterAwake += UpdatePlayerTransform;
     }
 
     private void OnDisable()
@@ -34,7 +34,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo -= HandleSoundInfo;
         audioPort.OnSoundInfos -= HandleSoundInfos;
         
-        registrationPort.OnRegisterStart -= UpdatePlayerTransform;
+        registrationPort.OnRegisterAwake -= UpdatePlayerTransform;
     }
 
     private void Update()
@@ -120,7 +120,11 @@ public class AudioHandler : MonoBehaviour
 
         if (soundInfo.locationTransform != null)
         {
-            soundInfo.locationTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            if (playerTransform == null)
+            {
+                Debug.Log(soundInfo.soundImplementationName+": Missing transform and reserve-transform for player in location-handling for sound");
+            }
+            soundInfo.locationTransform = playerTransform;
         }
         
         if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
