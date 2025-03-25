@@ -160,6 +160,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   runOnCTRL: 1
+  bell: {fileID: 0}
+  bellGO: {fileID: 0}
+  bellAnim: {fileID: 0}
 --- !u!114 &8466922641410847546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,6 +1200,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
       propertyPath: soundInfos.onStartMenu.Array.data[3].stopMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
+      propertyPath: soundInfos.onLvl4.Array.data[1].locationVariant
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1446306260246418824, guid: 859775a1c7c593d4aaccaf9955ee6449, type: 3}
