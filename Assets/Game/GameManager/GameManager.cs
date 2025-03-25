@@ -80,11 +80,18 @@ public class GameManager : MonoBehaviour
         runOnCTRL = false;
     }
     
+    
+
     public Image bell;
     public GameObject bellGO;
     public Animator bellAnim;
     Vector2 hidePos = new Vector2(-10000, -10000);
     Vector2 showPos = new Vector2(-750, 250);
+
+    string bellAlert = "Bell Alert";
+    string bellNormal = "Bell Normal";
+    string bellShaking = "Bell Shaking";
+    string hideBell = "Hide Bell";
 
     public void PlayBellAlert()
     {
@@ -105,6 +112,45 @@ public class GameManager : MonoBehaviour
     {
         bellGO.transform.position = hidePos;
     }
+    public void ShowBell()
+    {
+        bellGO.transform.position = showPos;
+    }
 
+    public IEnumerator UpdateBellAnimation(string animation)
+    {
+        if (GetCurrentAnimationName() == bellAlert)
+        {
+            yield return new WaitForSeconds(GetRemainingAnimationTime());
+            bellAnim.Play(animation);
+        }
+        else if (GetCurrentAnimationName() == bellAlert && animation == hideBell)
+        {
+            yield return new WaitForSeconds(GetRemainingAnimationTime());
+            HideBell();
+        }
+        else
+        {
+            bellAnim.Play(animation);
+        }
+    }
+
+    float GetRemainingAnimationTime()
+    {
+        if (bellAnim == null) return 0f;
+
+        AnimatorStateInfo stateInfo = bellAnim.GetCurrentAnimatorStateInfo(0);
+        float normalizedTime = Mathf.Repeat(stateInfo.normalizedTime, 1f);
+        return stateInfo.length * (1 - normalizedTime);
+    }
+
+    string GetCurrentAnimationName()
+    {
+        if (bellAnim == null)
+        {
+            return null;
+        }
+        return bellAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+    }
 
 }
