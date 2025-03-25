@@ -243,8 +243,6 @@ public class PlayerBehaviour : MonoBehaviour
         cameraRight.Normalize();
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
-
-        
     }
 
     private void FixedUpdate()
@@ -289,13 +287,6 @@ public class PlayerBehaviour : MonoBehaviour
         jumpState?.Exit();
         jumpState = newState;
         jumpState.Enter();
-    }
-
-    public void ChangeWalkState(State newState)
-    {
-        /*walkState?.Exit();
-        walkState = newState;
-        walkState.Enter();*/
     }
 
     public void Space(InputAction.CallbackContext context)
