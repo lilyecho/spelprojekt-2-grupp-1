@@ -82,4 +82,38 @@ public class GameManager : MonoBehaviour
     {
         runOnCTRL = false;
     }
+
+
+
+
+
+
+
+    public Image bell;
+    public GameObject bellGO;
+    public Animator bellAnim;
+    Vector2 hidePos = new Vector2(-10000, -10000);
+    Vector2 showPos = new Vector2(-750, 250);
+
+    public void PlayBellAlert()
+    {
+        bellGO.transform.position = showPos;
+        bellAnim.Play("Bell Alert");
+    }
+    public void PlayBellNormal()
+    {
+        bellGO.transform.position = showPos;
+        bellAnim.Play("Bell Normal");
+    }
+    public void PlayBellShaking()
+    {
+        bellGO.transform.position = showPos;
+        bellAnim.Play("Bell Shaking");
+    }
+    public void HideBell()
+    {
+        bellGO.transform.position = hidePos;
+    }
+
+
 }
