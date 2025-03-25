@@ -14,6 +14,7 @@ public class RegistrationPort : ScriptableObject
         EnemyManager
     }
     
-    public UnityAction<TypeOfRegistration, GameObject> OnRegister = delegate(TypeOfRegistration arg0, GameObject arg1) {  };
+    public UnityAction<TypeOfRegistration, GameObject> OnRegisterAwake = delegate(TypeOfRegistration arg0, GameObject arg1) {  };
+    public UnityAction<TypeOfRegistration, GameObject> OnRegisterStart = delegate(TypeOfRegistration arg0, GameObject arg1) {  };
     
 }

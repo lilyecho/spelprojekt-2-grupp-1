@@ -27,12 +27,12 @@ public class EnemyBehaviour : MonoBehaviour
     
     protected virtual void OnEnable()
     {
-        registrationPort.OnRegister += RegisterTarget;
+        registrationPort.OnRegisterStart += RegisterTarget;
     }
 
     protected virtual void OnDisable()
     {
-        registrationPort.OnRegister -= RegisterTarget;
+        registrationPort.OnRegisterStart -= RegisterTarget;
     }
 
     public virtual void Alerted(Vector3 alertPoint) {}
@@ -56,7 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        enemyManagerPort.OnRegister(RegistrationPort.TypeOfRegistration.Enemy, gameObject);
+        enemyManagerPort.OnRegisterStart(RegistrationPort.TypeOfRegistration.Enemy, gameObject);
     }
 
     

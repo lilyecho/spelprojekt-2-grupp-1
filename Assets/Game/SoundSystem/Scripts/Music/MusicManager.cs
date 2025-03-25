@@ -71,6 +71,7 @@ public class MusicManager : MonoBehaviour
     
     private void SceneChange(Scene preScene, Scene newScene)
     {
+        Debug.Log("SceneChanged");
         UpdateMusicAccordingToScene();
     }
 

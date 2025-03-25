@@ -14,7 +14,7 @@ public class AudioHandler : MonoBehaviour
 {
     [SerializeField] private AudioPort audioPort = null;
     [SerializeField] private RegistrationPort registrationPort = null;
-    private Transform playerTransform = null;
+    [SerializeField] private Transform playerTransform = null;
     
     private Dictionary<GUID,EventInstance> dictionaryGuidSceneInstances = new Dictionary<GUID, EventInstance>();
     private Dictionary<GUID,EventInstance> dictionaryGuidGameInstances = new Dictionary<GUID, EventInstance>();
@@ -26,9 +26,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo += HandleSoundInfo;
         audioPort.OnSoundInfos += HandleSoundInfos;
 
-        registrationPort.OnRegister += UpdatePlayerTransform;
-
-        SceneManager.sceneLoaded += SceneChange;
+        registrationPort.OnRegisterStart += UpdatePlayerTransform;
     }
 
     private void OnDisable()
@@ -36,9 +34,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo -= HandleSoundInfo;
         audioPort.OnSoundInfos -= HandleSoundInfos;
         
-        registrationPort.OnRegister -= UpdatePlayerTransform;
-        
-        SceneManager.sceneLoaded -= SceneChange;
+        registrationPort.OnRegisterStart -= UpdatePlayerTransform;
     }
 
     private void Update()
@@ -124,7 +120,7 @@ public class AudioHandler : MonoBehaviour
 
         if (soundInfo.locationTransform != null)
         {
-            soundInfo.locationTransform = playerTransform;
+            soundInfo.locationTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
         
         if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
@@ -323,11 +319,6 @@ public class AudioHandler : MonoBehaviour
         }
 
         return false;
-    }
-
-    private void SceneChange(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        EndAllInstances(ref dictionaryGuidSceneInstances);
     }
 
     public void ResetAllDicts()

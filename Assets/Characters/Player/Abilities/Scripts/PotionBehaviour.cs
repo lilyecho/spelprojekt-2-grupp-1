@@ -13,12 +13,12 @@ public class PotionBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        registrationPort.OnRegister += RegisterPlayer;
+        registrationPort.OnRegisterStart += RegisterPlayer;
     }
 
     private void OnDisable()
     {
-        registrationPort.OnRegister -= RegisterPlayer;
+        registrationPort.OnRegisterStart -= RegisterPlayer;
     }
     
     private void OnTriggerEnter(Collider other)

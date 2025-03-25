@@ -14,7 +14,7 @@ namespace SceneHandling.CheckPoints.Scripts
     
         private void OnEnable()
         {
-            registrationPort.OnRegister += Registration;
+            registrationPort.OnRegisterStart += Registration;
         
             checkPointPort.OnChangeCheckPoint += ChangeLatestCheckPoint;
             checkPointPort.OnRespawn += Respawn;
@@ -22,7 +22,7 @@ namespace SceneHandling.CheckPoints.Scripts
 
         private void OnDisable()
         {
-            registrationPort.OnRegister -= Registration;
+            registrationPort.OnRegisterStart -= Registration;
         
             checkPointPort.OnChangeCheckPoint -= ChangeLatestCheckPoint;
             checkPointPort.OnRespawn -= Respawn;

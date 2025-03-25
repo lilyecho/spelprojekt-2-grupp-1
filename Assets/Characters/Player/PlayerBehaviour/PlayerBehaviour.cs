@@ -207,7 +207,8 @@ public class PlayerBehaviour : MonoBehaviour
         get => isAttacked;
         set => isAttacked = value;
     }
-
+    
+    
     void Start()
     {
         jumpState = normalJump;

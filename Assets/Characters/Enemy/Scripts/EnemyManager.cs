@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        enemyManagerPort.OnRegister += RegisterEnemy;
+        enemyManagerPort.OnRegisterStart += RegisterEnemy;
         enemyManagerPort.OnChaseChange += UpdateChaseUnitValue;
         enemyManagerPort.OnSoundAlert += ActivateSearchForAlert;
 
@@ -41,7 +41,7 @@ public class EnemyManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        enemyManagerPort.OnRegister -= RegisterEnemy;
+        enemyManagerPort.OnRegisterStart -= RegisterEnemy;
         enemyManagerPort.OnChaseChange -= UpdateChaseUnitValue;
         enemyManagerPort.OnSoundAlert -= ActivateSearchForAlert;
 
