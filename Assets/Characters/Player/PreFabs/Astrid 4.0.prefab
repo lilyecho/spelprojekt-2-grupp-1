@@ -1208,9 +1208,10 @@ MonoBehaviour:
   minDistToTroll: 5
   hidden: 0
   isAttacked: 0
+  respawnTimerCooldown: 0.1
+  _currenRespawnTime: 0
   particleSystemOnShrink: {fileID: 8124358052296443870}
   shrinkCooldown: 1
-  shrinkCooldownTimer: 1
   idle:
     OnEnter:
       m_PersistentCalls:

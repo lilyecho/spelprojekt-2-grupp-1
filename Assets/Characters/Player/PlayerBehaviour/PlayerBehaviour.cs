@@ -23,7 +23,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private PlayerData playerDataShrink;
     private PlayerData _currentPlayerPlayerData;
     
-    //[SerializeField] private AbilityData abilityData;
     [SerializeField] private AbilityData.Abilities currentAbilities;
     
     #region Audio
@@ -56,10 +55,9 @@ public class PlayerBehaviour : MonoBehaviour
     public float rayCastLength;
     
     [HideInInspector]public float accTime;
+    [HideInInspector] public bool intoJump = false;
     
-    [HideInInspector]
-    public bool intoJump = false;
-    
+    [Space, Header("Particles")]
     public ParticleSystem jumpParticles;
     public ParticleSystem megaJumpParticles;
     private ParticleSystem jumpParticlesInstance;
@@ -74,15 +72,22 @@ public class PlayerBehaviour : MonoBehaviour
     //Hidden
     [SerializeField]private bool hidden;
     [SerializeField]private bool isAttacked;
+
+    #region TimerRespawn
+    [Space, Header("Respawn")]
+    [SerializeField, Range(0.1f, 1)] private float respawnTimerCooldown;
+    [SerializeField] private float _currenRespawnTime;
+
+    #endregion
     
     #region Shrink
-
+    [Space,Header("Shrink")]
     [SerializeField] private ParticleSystem particleSystemOnShrink;
     
     public ParticleSystem GetOnShrinkParticleSystem => particleSystemOnShrink;
 
     [SerializeField] private float shrinkCooldown = 1f;
-    [SerializeField] private float shrinkCooldownTimer = 1f;
+    private float _shrinkCooldownTimer;
 
     #endregion
 
@@ -138,7 +143,7 @@ public class PlayerBehaviour : MonoBehaviour
         megaJump.Awake(this);
         unableToJump.Awake(this);
 
-        shrinkCooldownTimer = shrinkCooldown;
+        _shrinkCooldownTimer = shrinkCooldown;
     }
 
     private void OnDrawGizmos()
@@ -230,12 +235,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!_movementOn) return;
         
-        shrinkCooldownTimer -= Time.deltaTime;
-        
         currentState?.Update();
         jumpState?.Update();
         //moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-
         
         cameraForward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
         cameraRight = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
@@ -244,10 +246,21 @@ public class PlayerBehaviour : MonoBehaviour
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
     }
-
+    
     private void FixedUpdate()
     {
         if (!_movementOn) return;
+        
+        if (_currenRespawnTime > 0)
+        {
+            _currenRespawnTime -= Time.fixedDeltaTime;
+        }
+
+        if (_shrinkCooldownTimer > 0)
+        {
+            _shrinkCooldownTimer -= Time.fixedDeltaTime;
+        }
+        
         currentState?.FixedUpdate();
         
         SetSpeedParameterAnimation();
@@ -332,21 +345,16 @@ public class PlayerBehaviour : MonoBehaviour
             if (!_movementOn) return;
             currentState?.OnCTRL(context);
         }
-
-        
-        
     }
 
     public void CTRL(InputAction.CallbackContext context)
     {
-        
         //walkState?.OnCTRL(context);
         if(GameManager.instance.runOnCTRL && movementMode != MovementMode.SNEAK)
         {
             if (context.performed)
             {
                 movementMode = MovementMode.RUN;
-
             }
             if (context.canceled)
             {
@@ -394,19 +402,23 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Shrink(InputAction.CallbackContext context)
     {
-        if (shrinkCooldownTimer <= 0 && context.performed)
+        if (_shrinkCooldownTimer <= 0 && context.performed)
         {
             Debug.Log("PlayerShrink");
             currentState?.OnShrink(context);
-            shrinkCooldownTimer = shrinkCooldown;
+            _shrinkCooldownTimer = shrinkCooldown;
         }
-        
     }
 
+    
     public void Respawn(InputAction.CallbackContext context)
     {
+        if (_currenRespawnTime > 0) return;
+        
         if (context.performed)
         {
+            _currenRespawnTime = respawnTimerCooldown;
+            ChangeMovementActivation(false);
             checkPointPort.Respawn();
         }
     }
@@ -445,14 +457,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (moveDir != Vector3.zero)
         {
-            /*
-            Debug.LogError("Rot"+Time.deltaTime);
-            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveDir.x, 0, moveDir.z));
-            float maxDegreeCurrent = (Quaternion.Angle(transform.rotation, targetRotation)/rotationSpeed)*Time.deltaTime;
-            //Debug.LogError("Angles: "+testRot*Time.deltaTime);
-            
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, testRot*Time.fixedDeltaTime);*/
-
             float targetAngle = MathF.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
 
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
