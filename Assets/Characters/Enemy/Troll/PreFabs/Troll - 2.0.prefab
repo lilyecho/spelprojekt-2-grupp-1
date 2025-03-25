@@ -640,6 +640,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5322119138117602721}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7795109851142814322}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3002298893246151531}
   m_SourcePrefab: {fileID: 100100000, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
 --- !u!4 &1946261184269867677 stripped
 Transform:
@@ -747,12 +753,37 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   chaseState:
+    totalChaseTime: 4
     OnEnter:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7795109851142814322}
+          m_TargetAssemblyTypeName: SoundTrigger, Assembly-CSharp
+          m_MethodName: OnInvoke
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnExit:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 3002298893246151531}
+          m_TargetAssemblyTypeName: SoundTrigger, Assembly-CSharp
+          m_MethodName: OnInvoke
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     soundInfos:
       onScream:
       - soundImplementationName: trollScream
@@ -774,10 +805,34 @@ MonoBehaviour:
   searchState:
     OnEnter:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7795109851142814322}
+          m_TargetAssemblyTypeName: SoundTrigger, Assembly-CSharp
+          m_MethodName: OnInvoke
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnExit:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 3002298893246151531}
+          m_TargetAssemblyTypeName: SoundTrigger, Assembly-CSharp
+          m_MethodName: OnInvoke
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   attackState:
     OnEnter:
       m_PersistentCalls:
@@ -877,6 +932,66 @@ MonoBehaviour:
     stopMode: 0
   curveName: sfxTrollLantern
   activationValue: 0.9
+--- !u!114 &7795109851142814322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422898272927467253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722affbf7e20347e9bbda71de9ce0402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: TrollChase
+    action: 2
+    eventReference:
+      Guid:
+        Data1: -1211369258
+        Data2: 1298399030
+        Data3: -922918270
+        Data4: 418594966
+      Path: event:/Music/Loops/Level3-5
+    instanceVariant: 2
+    locality: 1
+    parameterName: TrollChasing
+    parameterValue: 1
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
+--- !u!114 &3002298893246151531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422898272927467253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722affbf7e20347e9bbda71de9ce0402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: TrollNotChase
+    action: 2
+    eventReference:
+      Guid:
+        Data1: -1211369258
+        Data2: 1298399030
+        Data3: -922918270
+        Data4: 418594966
+      Path: event:/Music/Loops/Level3-5
+    instanceVariant: 2
+    locality: 1
+    parameterName: TrollChasing
+    parameterValue: 0
+    locationVariant: 0
+    locationTransform: {fileID: 0}
+    stopMode: 0
 --- !u!4 &2759658157397552981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 797966769481471217, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
