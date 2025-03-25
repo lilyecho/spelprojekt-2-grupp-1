@@ -23,6 +23,7 @@ public class Sneaking : State, IAcceleration
     {
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
+        GameManager.instance.PlayBellNormal();
     }
     
     public override void Exit()

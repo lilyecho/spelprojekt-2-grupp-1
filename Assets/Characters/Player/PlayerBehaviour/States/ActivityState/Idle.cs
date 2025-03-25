@@ -46,6 +46,10 @@ public class Idle : State
                     break;
             }
         }
+        else
+        {
+            GameManager.instance.HideBell();
+        }
     }
 
     public override void Update()

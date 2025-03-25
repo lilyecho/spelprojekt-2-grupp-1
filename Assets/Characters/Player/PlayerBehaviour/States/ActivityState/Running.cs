@@ -29,7 +29,7 @@ public class Running : State, IAcceleration
     public override void Enter()
     {
         //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Run);
-        
+        GameManager.instance.PlayBellShaking();
         FixCurrentAccelerationTime();
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
         

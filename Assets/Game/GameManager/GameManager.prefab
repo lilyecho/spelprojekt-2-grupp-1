@@ -161,8 +161,12 @@ MonoBehaviour:
         m_CallState: 2
   runOnCTRL: 1
   bell: {fileID: 0}
-  bellGO: {fileID: 0}
-  bellAnim: {fileID: 0}
+  bellGO: {fileID: 7393499085741188581}
+  bellAnim: {fileID: 2101425222693980433}
+  bellAlert: Bell Alert
+  bellNormal: Bell Normal
+  bellShaking: Bell Shaking
+  hideBell: Hide Bell
 --- !u!114 &8466922641410847546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,8 +1405,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b553f33d2c1eca47a6e89b768bb8bb7, type: 3}
+--- !u!95 &2101425222693980433 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8329548776190290317, guid: 2b553f33d2c1eca47a6e89b768bb8bb7, type: 3}
+  m_PrefabInstance: {fileID: 7976230502575382684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6777148848824644626 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3511690164303287438, guid: 2b553f33d2c1eca47a6e89b768bb8bb7, type: 3}
+  m_PrefabInstance: {fileID: 7976230502575382684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7393499085741188581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 588774591655265657, guid: 2b553f33d2c1eca47a6e89b768bb8bb7, type: 3}
   m_PrefabInstance: {fileID: 7976230502575382684}
   m_PrefabAsset: {fileID: 0}

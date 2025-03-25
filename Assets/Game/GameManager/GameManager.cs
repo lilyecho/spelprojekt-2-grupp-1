@@ -88,24 +88,24 @@ public class GameManager : MonoBehaviour
     Vector2 hidePos = new Vector2(-10000, -10000);
     Vector2 showPos = new Vector2(-750, 250);
 
-    string bellAlert = "Bell Alert";
-    string bellNormal = "Bell Normal";
-    string bellShaking = "Bell Shaking";
-    string hideBell = "Hide Bell";
+    public string bellAlert = "Bell Alert";
+    public string bellNormal = "Bell Normal";
+    public string bellShaking = "Bell Shaking";
+    public string hideBell = "Hide Bell";
 
     public void PlayBellAlert()
     {
-        bellGO.transform.position = showPos;
+        ShowBell();
         bellAnim.Play("Bell Alert");
     }
     public void PlayBellNormal()
     {
-        bellGO.transform.position = showPos;
+        ShowBell();
         bellAnim.Play("Bell Normal");
     }
     public void PlayBellShaking()
     {
-        bellGO.transform.position = showPos;
+        ShowBell();
         bellAnim.Play("Bell Shaking");
     }
     public void HideBell()
@@ -114,15 +114,17 @@ public class GameManager : MonoBehaviour
     }
     public void ShowBell()
     {
-        bellGO.transform.position = showPos;
+        bellGO.transform.localPosition = showPos;
     }
 
     public IEnumerator UpdateBellAnimation(string animation)
     {
         if (GetCurrentAnimationName() == bellAlert)
         {
-            yield return new WaitForSeconds(GetRemainingAnimationTime());
+            //yield return new WaitForSeconds(GetRemainingAnimationTime());
             bellAnim.Play(animation);
+            yield return new WaitForSeconds(GetRemainingAnimationTime());
+            HideBell();
         }
         else if (GetCurrentAnimationName() == bellAlert && animation == hideBell)
         {

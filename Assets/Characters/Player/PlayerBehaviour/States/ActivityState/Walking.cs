@@ -25,7 +25,7 @@ public class Walking : State, IAcceleration
     public override void Enter()
     {
         //OnEnterChangeGlobalActivityParameter(playerBehaviour.GetParameterData.GetCatSneak, (int)CharacterActivity.Walk);
-
+        GameManager.instance.PlayBellNormal();
         coyoteTimer = playerBehaviour.PlayerData.GetCoyoteTime;
 
         FixCurrentAccelerationTime();
