@@ -115,8 +115,24 @@ MonoBehaviour:
       locationTransform: {fileID: 0}
       stopMode: 1
     onLvl1:
-    - soundImplementationName: Lvl 1 Music
-      action: 11
+    - soundImplementationName: mainMusicClose
+      action: 16
+      eventReference:
+        Guid:
+          Data1: 828118429
+          Data2: 1153076884
+          Data3: -1434751561
+          Data4: 23693270
+        Path: event:/Music/Loops/MainMenu
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level2
+      parameterValue: 0
+      locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 1
+    - soundImplementationName: StartMusic
+      action: 9
       eventReference:
         Guid:
           Data1: 2081386146
@@ -126,12 +142,12 @@ MonoBehaviour:
         Path: event:/Music/Loops/Level1-2
       instanceVariant: 2
       locality: 0
-      parameterName: Level2
+      parameterName: 
       parameterValue: 0
       locationVariant: 0
       locationTransform: {fileID: 0}
-      stopMode: 0
-    - soundImplementationName: Lvl 1 AMB
+      stopMode: 2
+    - soundImplementationName: StartAMB
       action: 13
       eventReference:
         Guid:
@@ -146,9 +162,9 @@ MonoBehaviour:
       parameterValue: 0
       locationVariant: 1
       locationTransform: {fileID: 0}
-      stopMode: 0
+      stopMode: 2
     onLvl2:
-    - soundImplementationName: Music Change Param
+    - soundImplementationName: lvl2
       action: 2
       eventReference:
         Guid:
@@ -164,19 +180,19 @@ MonoBehaviour:
       locationVariant: 0
       locationTransform: {fileID: 0}
       stopMode: 0
-    - soundImplementationName: 
-      action: 0
+    - soundImplementationName: lvl2AMB
+      action: 13
       eventReference:
         Guid:
-          Data1: 0
-          Data2: 0
-          Data3: 0
-          Data4: 0
-        Path: 
-      instanceVariant: 0
+          Data1: 512042772
+          Data2: 1185587307
+          Data3: -1305029985
+          Data4: -1644683934
+        Path: event:/Sound/Ambiance/AMB_WEA
+      instanceVariant: 2
       locality: 0
-      parameterName: 
-      parameterValue: 0
+      parameterName: Level2
+      parameterValue: 1
       locationVariant: 0
       locationTransform: {fileID: 0}
       stopMode: 0
