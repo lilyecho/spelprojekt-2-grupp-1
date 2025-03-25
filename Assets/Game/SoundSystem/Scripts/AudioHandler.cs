@@ -13,7 +13,9 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 public class AudioHandler : MonoBehaviour
 {
     [SerializeField] private AudioPort audioPort = null;
-    [SerializeField] private FmodParameterData parameterData = null;
+    [SerializeField] private RegistrationPort registrationPort = null;
+    private Transform playerTransform = null;
+    
     private Dictionary<GUID,EventInstance> dictionaryGuidSceneInstances = new Dictionary<GUID, EventInstance>();
     private Dictionary<GUID,EventInstance> dictionaryGuidGameInstances = new Dictionary<GUID, EventInstance>();
     
@@ -24,6 +26,8 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo += HandleSoundInfo;
         audioPort.OnSoundInfos += HandleSoundInfos;
 
+        registrationPort.OnRegister += UpdatePlayerTransform;
+
         SceneManager.sceneLoaded += SceneChange;
     }
 
@@ -32,12 +36,13 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfo -= HandleSoundInfo;
         audioPort.OnSoundInfos -= HandleSoundInfos;
         
+        registrationPort.OnRegister -= UpdatePlayerTransform;
+        
         SceneManager.sceneLoaded -= SceneChange;
     }
 
     private void Update()
     {
-        
         if (debugMode)
         {
             string t = "Game instances: "+dictionaryGuidGameInstances.Count;
@@ -46,6 +51,12 @@ public class AudioHandler : MonoBehaviour
         }
     }
 
+    private void UpdatePlayerTransform(RegistrationPort.TypeOfRegistration typeOfRegistration, GameObject newGameObject)
+    {
+        if (typeOfRegistration != RegistrationPort.TypeOfRegistration.Player) return;
+        playerTransform = newGameObject.transform;
+    }
+    
     public void HandleSoundInfos(SoundInfo[] soundInfos)
     {
         foreach (SoundInfo soundInfo in soundInfos)
@@ -110,6 +121,11 @@ public class AudioHandler : MonoBehaviour
     private void HandleLocation(SoundInfo soundInfo)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
+
+        if (soundInfo.locationTransform != null)
+        {
+            soundInfo.locationTransform = playerTransform;
+        }
         
         if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
         {
