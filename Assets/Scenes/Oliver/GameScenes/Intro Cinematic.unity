@@ -475,11 +475,88 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a8d17126-573b-4c13-a9fa-88f4f7e9a38d
     m_ActionName: Player/E[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: baeeba09-f1bb-4f5b-855b-ea6f876879f4
+    m_ActionName: Player/Pause[/Keyboard/escape,/DualSenseGamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ff789b7e-f4b7-4381-beb2-a569a54d3c24
+    m_ActionName: Player/Respawn[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1001 &1141454756
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2449663036324132210, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 81.80977
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 219.2267
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -95.62429
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648943167004602414, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onLvl3.Array.data[2].locationTransform
+      value: 
+      objectReference: {fileID: 1759405910}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onLvl4.Array.data[1].locationTransform
+      value: 
+      objectReference: {fileID: 1759405910}
+    - target: {fileID: 9109919602313744922, guid: a919b635d36ccf0479f11034e054d868, type: 3}
+      propertyPath: soundInfos.onStartMenu.Array.data[2].locationTransform
+      value: 
+      objectReference: {fileID: 1759405910}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a919b635d36ccf0479f11034e054d868, type: 3}
 --- !u!1 &1257069126
 GameObject:
   m_ObjectHideFlags: 1
@@ -630,3 +707,4 @@ SceneRoots:
   - {fileID: 27558586}
   - {fileID: 697660003}
   - {fileID: 1257069128}
+  - {fileID: 1141454756}
