@@ -8,6 +8,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using SoundInfo = SceneHandling.SoundSystem.Scripts.SoundInfo;
 
 public class MusicManager : MonoBehaviour
 {
@@ -68,16 +69,14 @@ public class MusicManager : MonoBehaviour
     {
         SceneManager.activeSceneChanged -= SceneChange;
     }
-    
+
     private void SceneChange(Scene preScene, Scene newScene)
     {
-        Debug.Log("SceneChanged");
         UpdateMusicAccordingToScene();
     }
 
     private void UpdateMusicAccordingToScene()
     {
-        
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
@@ -140,5 +139,28 @@ public class MusicManager : MonoBehaviour
         {
             Debug.LogWarning("Missing enemyManager in musicManager");
         }
+        /*
+        [Header("MainMusic")] 
+    public SoundInfo[] onStartMenu;
+    public SoundInfo[] onIntro;
+    public SoundInfo[] onLvl1;
+    public SoundInfo[] onLvl2;
+    public SoundInfo[] onLvl3;
+    public SoundInfo[] onLvl4;
+    public SoundInfo[] onOutro;*/
+
+        CheckSoundInfos(ref soundInfos.onStartMenu);
     }
+
+    private void CheckSoundInfos(ref SoundInfo[] soundInfos)
+    {
+        for (int i = 0; i < soundInfos.Length; i++)
+        {
+            SoundInfo controlSoundInfo = soundInfos[i];
+            controlSoundInfo.locationTransform = null;
+            soundInfos[i] = controlSoundInfo;
+        }
+    }
+    
+    
 }

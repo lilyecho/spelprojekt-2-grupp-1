@@ -27,6 +27,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfos += HandleSoundInfos;
 
         registrationPort.OnRegisterAwake += UpdatePlayerTransform;
+        registrationPort.OnRegisterStart += UpdatePlayerTransform;
     }
 
     private void OnDisable()
@@ -35,6 +36,7 @@ public class AudioHandler : MonoBehaviour
         audioPort.OnSoundInfos -= HandleSoundInfos;
         
         registrationPort.OnRegisterAwake -= UpdatePlayerTransform;
+        registrationPort.OnRegisterStart -= UpdatePlayerTransform;
     }
 
     private void Update()
@@ -49,7 +51,9 @@ public class AudioHandler : MonoBehaviour
 
     private void UpdatePlayerTransform(RegistrationPort.TypeOfRegistration typeOfRegistration, GameObject newGameObject)
     {
+        Debug.Log("Test");
         if (typeOfRegistration != RegistrationPort.TypeOfRegistration.Player) return;
+        Debug.Log("Player reg");
         playerTransform = newGameObject.transform;
     }
     
@@ -65,26 +69,27 @@ public class AudioHandler : MonoBehaviour
     {
         if (soundInfo.action == 0) return;
         
-        HandleCreate(soundInfo);
+        Debug.Log("SoundInfo");
+        bool hasCreated = HandleCreate(soundInfo);
         HandleParameterChange(soundInfo);
-        HandleLocation(soundInfo);
+        HandleLocation(soundInfo, hasCreated);
         HandlePlay(soundInfo);
         HandleStop(soundInfo);
     }
 
-    private void HandleCreate(SoundInfo soundInfo)
+    private bool HandleCreate(SoundInfo soundInfo)
     {
-        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Create)) return;
+        if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Create)) return false;
 
         if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
         {
-            CreateInstance(ref dictionaryGuidSceneInstances,soundInfo.eventReference);
+            return CreateInstance(ref dictionaryGuidSceneInstances,soundInfo.eventReference);
         }
-        else if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
+        if (soundInfo.instanceVariant == SoundInfo.InstanceVariant.GameInstance)
         {
-            CreateInstance(ref dictionaryGuidGameInstances,soundInfo.eventReference);
+            return CreateInstance(ref dictionaryGuidGameInstances,soundInfo.eventReference);
         }
-        
+        return false;
     }
 
     private void HandleParameterChange(SoundInfo soundInfo)
@@ -114,18 +119,27 @@ public class AudioHandler : MonoBehaviour
         instance.setParameterByName(parameterName, value);
     }
     
-    private void HandleLocation(SoundInfo soundInfo)
+    private void HandleLocation(SoundInfo soundInfo, bool hasCreated)
     {
         if (!soundInfo.action.HasFlag(SoundInfo.SoundAction.Location)) return;
-
-        if (soundInfo.locationTransform != null)
+        
+        Transform playerTrans = null;
+        if (soundInfo.locationTransform == null && playerTransform == null)
         {
-            if (playerTransform == null)
+            Debug.Log(soundInfo.soundImplementationName+": Missing transform from player in location-handling for sound");
+            playerTrans = GameObject.FindWithTag("Player").transform;
+
+            if (playerTrans == null)
             {
-                Debug.Log(soundInfo.soundImplementationName+": Missing transform and reserve-transform for player in location-handling for sound");
+                Debug.Log("Missing player in scene");
+                return;
             }
+        }
+        else
+        {
             soundInfo.locationTransform = playerTransform;
         }
+        
         
         if (soundInfo.instanceVariant is SoundInfo.InstanceVariant.SceneInstance or SoundInfo.InstanceVariant.OneShot)
         {
@@ -255,12 +269,13 @@ public class AudioHandler : MonoBehaviour
         instance.set3DAttributes(placementPos.To3DAttributes());
     }
     
-    private void CreateInstance(ref Dictionary<GUID, EventInstance> instanceDic, EventReference eventReference)
+    private bool CreateInstance(ref Dictionary<GUID, EventInstance> instanceDic, EventReference eventReference)
     {
         GUID eventGUID = eventReference.Guid;
-        if (instanceDic.ContainsKey(eventGUID)) return;
+        if (instanceDic.ContainsKey(eventGUID)) return false;
         
         instanceDic[eventReference.Guid] = RuntimeManager.CreateInstance(eventReference);
+        return true;
     }
 
     private void PlayInstance(ref Dictionary<GUID, EventInstance> instanceDict, EventReference eventReference)

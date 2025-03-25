@@ -16,6 +16,7 @@ public class RegistrationBehaviour : MonoBehaviour
     {
         if (!registrationAwake) return;
         registrationPort.OnRegisterAwake(typeOfRegistration,gameObject);
+        Debug.Log("Awake - player");
     }
     void Start()
     {

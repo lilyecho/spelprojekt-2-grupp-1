@@ -18,8 +18,7 @@ public class GameManager : MonoBehaviour
     public Button defaultButton;
 
     public TimeManager timeManager;
-
-
+    
     public float cameraSensitivity = 1;
     public Slider cameraSensitivitySlider;
 
@@ -40,15 +39,13 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    
+
     public void PauseGame()
     {
         onPause.Invoke();
         
         timeManager.Movement(false);
         pauseMenu.gameObject.SetActive(true);
-        
-        
     }
     public void UnpauseGame()
     {
@@ -82,13 +79,7 @@ public class GameManager : MonoBehaviour
     {
         runOnCTRL = false;
     }
-
-
-
-
-
-
-
+    
     public Image bell;
     public GameObject bellGO;
     public Animator bellAnim;
