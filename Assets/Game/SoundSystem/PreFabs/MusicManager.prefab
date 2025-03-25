@@ -49,6 +49,22 @@ MonoBehaviour:
   closeDistance: 0
   soundInfos:
     onStartMenu:
+    - soundImplementationName: Game AMB Stop
+      action: 16
+      eventReference:
+        Guid:
+          Data1: 512042772
+          Data2: 1185587307
+          Data3: -1305029985
+          Data4: -1644683934
+        Path: event:/Sound/Ambiance/AMB_WEA
+      instanceVariant: 2
+      locality: 0
+      parameterName: 
+      parameterValue: 0
+      locationVariant: 1
+      locationTransform: {fileID: 0}
+      stopMode: 1
     - soundImplementationName: Menu Music
       action: 9
       eventReference:
@@ -63,6 +79,22 @@ MonoBehaviour:
       parameterName: 
       parameterValue: 0
       locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    - soundImplementationName: Menu AMB
+      action: 13
+      eventReference:
+        Guid:
+          Data1: 512042772
+          Data2: 1185587307
+          Data3: -1305029985
+          Data4: -1644683934
+        Path: event:/Sound/Ambiance/AMB_WEA
+      instanceVariant: 2
+      locality: 0
+      parameterName: 
+      parameterValue: 0
+      locationVariant: 1
       locationTransform: {fileID: 0}
       stopMode: 0
     onIntro:
@@ -110,7 +142,7 @@ MonoBehaviour:
         Path: event:/Sound/Ambiance/AMB_WEA
       instanceVariant: 2
       locality: 0
-      parameterName: Level2
+      parameterName: 
       parameterValue: 0
       locationVariant: 1
       locationTransform: {fileID: 0}
@@ -130,6 +162,22 @@ MonoBehaviour:
       parameterName: Level2
       parameterValue: 1
       locationVariant: 0
+      locationTransform: {fileID: 0}
+      stopMode: 0
+    - soundImplementationName: lvl2 AMB
+      action: 13
+      eventReference:
+        Guid:
+          Data1: 512042772
+          Data2: 1185587307
+          Data3: -1305029985
+          Data4: -1644683934
+        Path: event:/Sound/Ambiance/AMB_WEA
+      instanceVariant: 2
+      locality: 0
+      parameterName: Level1
+      parameterValue: 1
+      locationVariant: 1
       locationTransform: {fileID: 0}
       stopMode: 0
     onLvl3:
@@ -212,7 +260,7 @@ MonoBehaviour:
       parameterName: Level
       parameterValue: 4
       locationVariant: 1
-      locationTransform: {fileID: 0}
+      locationTransform: {fileID: 7276283490869123472}
       stopMode: 0
     onOutro:
     - soundImplementationName: StopPreviousMusic
