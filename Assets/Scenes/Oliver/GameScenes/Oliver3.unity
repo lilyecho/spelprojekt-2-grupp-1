@@ -15833,6 +15833,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 851273532}
     m_Modifications:
     - target: {fileID: 1360206903603436068, guid: a0b7bf9124dc1a84090a27d345491bbf, type: 3}
+      propertyPath: checkPointPort
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e43fc8d7d583f84c958922bf2677053, type: 2}
+    - target: {fileID: 1360206903603436068, guid: a0b7bf9124dc1a84090a27d345491bbf, type: 3}
       propertyPath: activateAbility
       value: 4
       objectReference: {fileID: 0}
@@ -15899,66 +15903,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3097817276656987253, guid: a0b7bf9124dc1a84090a27d345491bbf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 232590437}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0b7bf9124dc1a84090a27d345491bbf, type: 3}
 --- !u!4 &232590435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8193047946536879787, guid: a0b7bf9124dc1a84090a27d345491bbf, type: 3}
   m_PrefabInstance: {fileID: 232590434}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &232590436 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3097817276656987253, guid: a0b7bf9124dc1a84090a27d345491bbf, type: 3}
-  m_PrefabInstance: {fileID: 232590434}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &232590437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232590436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38196f90fd94af4188557d4374c8965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 232590436}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Fungus.Flowchart, Fungus
-        m_MethodName: ExecuteBlock
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Block #2
-          m_BoolArgument: 0
-        m_CallState: 2
-  onStay:
-    m_PersistentCalls:
-      m_Calls: []
-  onExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &233573797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66689,27 +66640,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.24040402
+      value: -0.041385617
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21079247
+      value: 0.041243605
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.34031793
+      value: 0.6934303
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.34031793
+      value: -0.6934303
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6198256
+      value: -0.1383997
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6198256
+      value: 0.1383997
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -91550,27 +91501,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.24040402
+      value: -0.041385617
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21079247
+      value: 0.041243605
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.42885512
+      value: 0.6650757
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.42885512
+      value: -0.6650757
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5622129
+      value: -0.24015473
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5622129
+      value: 0.24015473
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
