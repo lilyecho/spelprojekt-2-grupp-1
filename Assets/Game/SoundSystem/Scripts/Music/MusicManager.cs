@@ -1,12 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using FMOD.Studio;
-using FMODUnity;
-using SceneHandling.SoundSystem.Scripts;
-using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using SoundInfo = SceneHandling.SoundSystem.Scripts.SoundInfo;
 
@@ -36,6 +29,7 @@ public class MusicManager : MonoBehaviour
         public SoundInfo[] onChased;
         public SoundInfo[] onNotChased;
         public SoundInfo[] onClose;
+        public SoundInfo[] onNotClose;
     }
     
     #region Singleton
@@ -62,11 +56,13 @@ public class MusicManager : MonoBehaviour
     
     private void OnEnable()
     {
+        audioHandler.GetAudioPort.OnChased += Chased;
         SceneManager.activeSceneChanged += SceneChange;
     }
 
     private void OnDisable()
     {
+        audioHandler.GetAudioPort.OnChased -= Chased;
         SceneManager.activeSceneChanged -= SceneChange;
     }
 
@@ -118,19 +114,8 @@ public class MusicManager : MonoBehaviour
     {
         if (enemyManager == null) return;
         if (!enemyManager.GetClosestDistanceToEnemyFromPlayer(out float? possibleDistance)) return;
-        
-        float distance = (float)possibleDistance;
-        
-        if (distance <= closeDistance)
-        {
-            float interpolationValue = MathF.Abs(distance / closeDistance-1);
-            audioHandler.TryChangeGlobalParameter("CloseToTroll", interpolationValue);
-        }
-        else
-        {
-            audioHandler.TryChangeGlobalParameter("CloseToTroll", 0);
-        }
-        
+
+        audioHandler.HandleSoundInfos(possibleDistance <= closeDistance ? soundInfos.onClose : soundInfos.onNotClose);
     }
 
     private void OnValidate()
@@ -158,6 +143,10 @@ public class MusicManager : MonoBehaviour
             soundInfos[i] = controlSoundInfo;
         }
     }
-    
-    
+
+    private void Chased(bool isChased)
+    {
+        audioHandler.HandleSoundInfos(isChased ? soundInfos.onChased : soundInfos.onNotChased);
+    }
+
 }

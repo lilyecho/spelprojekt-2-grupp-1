@@ -22,6 +22,8 @@ public class AudioHandler : MonoBehaviour
     
     [SerializeField] private bool debugMode;
 
+    public AudioPort GetAudioPort => audioPort;
+    
     private void OnEnable()
     {
         audioPort.OnSoundInfo += HandleSoundInfo;
