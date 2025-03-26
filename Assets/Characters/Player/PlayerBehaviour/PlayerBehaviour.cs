@@ -172,6 +172,8 @@ public class PlayerBehaviour : MonoBehaviour
         _movementOn = nextValue;
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         anim.speed = nextValue ? 1 : 0;
+        ChangeState(idle);
+        
     }
 
     public EnemyManagerPort EnemyManagerPort => enemyManagerPort;
