@@ -17,6 +17,8 @@ namespace SceneHandling.CheckPoints.Scripts
             registrationPort.OnRegisterStart += Registration;
         
             checkPointPort.OnChangeCheckPoint += ChangeLatestCheckPoint;
+            checkPointPort.OnChangedAbility += UpdateAbilitiesInLatestCheckPoint;
+            
             checkPointPort.OnRespawn += Respawn;
         }
 
@@ -25,9 +27,16 @@ namespace SceneHandling.CheckPoints.Scripts
             registrationPort.OnRegisterStart -= Registration;
         
             checkPointPort.OnChangeCheckPoint -= ChangeLatestCheckPoint;
+            checkPointPort.OnChangedAbility -= UpdateAbilitiesInLatestCheckPoint;
+            
             checkPointPort.OnRespawn -= Respawn;
         }
 
+        private void UpdateAbilitiesInLatestCheckPoint(AbilityData.Abilities abilities)
+        {
+            latestCheckPoint.Abilities = abilities;
+        }
+        
         private void ChangeLatestCheckPoint(CheckPointBehaviour checkPoint)
         {
             latestCheckPoint = checkPoint;

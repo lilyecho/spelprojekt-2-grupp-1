@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class CheckPointPort : ScriptableObject
 {
     public UnityAction<CheckPointBehaviour> OnChangeCheckPoint = delegate(CheckPointBehaviour checkPoint){ };
+    public UnityAction<AbilityData.Abilities> OnChangedAbility = delegate(AbilityData.Abilities checkPoint){ };
     public UnityAction OnRespawn = delegate(){};
 
     public void ChangeCheckPoint(CheckPointBehaviour checkPointBehaviour)

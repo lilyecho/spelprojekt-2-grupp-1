@@ -6,6 +6,7 @@ using UnityEngine;
 public class PotionBehaviour : MonoBehaviour
 {
     [SerializeField] private RegistrationPort registrationPort = null;
+    [SerializeField] private CheckPointPort checkPointPort = null;
     private PlayerBehaviour player = null;
     
     [SerializeField] private AbilityData.Abilities activateAbility;
