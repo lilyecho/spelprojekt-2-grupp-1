@@ -17,6 +17,8 @@ public class FakeLightCone : MonoBehaviour
     private MeshFilter _meshFilter;
 
     private Vector3[] rayCastPoints;
+    private LayerMask _layerMask;
+    
     
     private void OnValidate()
     {
@@ -27,6 +29,7 @@ public class FakeLightCone : MonoBehaviour
     private void Awake()
     {
         _meshFilter = GetComponent<MeshFilter>();
+        _layerMask = ~LayerMask.GetMask("Player","InteractiveEnvironment", "Ignore Raycast");
         ResetFakeLight();
     }
 
@@ -38,8 +41,7 @@ public class FakeLightCone : MonoBehaviour
 
     private Vector3 CreateFurthestCenterPoint()
     {
-        LayerMask layerMask = ~LayerMask.GetMask("Player","InteractiveEnvironment", "Ignore Raycast");
-        if (Physics.Raycast(transform.position, troll.forward, out RaycastHit hit, trollData.GetLampSight.range,layerMask))
+        if (Physics.Raycast(transform.position, troll.forward, out RaycastHit hit, trollData.GetLampSight.range,_layerMask))
         {
             return hit.point-troll.forward*0.001f;
         }
@@ -60,7 +62,7 @@ public class FakeLightCone : MonoBehaviour
             
             Vector3 direction = (rotationForward * rotationY * startDirection).normalized;
 
-            if (Physics.Raycast(startPoint, direction,out RaycastHit hit, maxRange))
+            if (Physics.Raycast(startPoint, direction,out RaycastHit hit, maxRange,_layerMask))
             {
                 result.Add(hit.point-direction*0.001f);
             }
