@@ -34,7 +34,7 @@ namespace SceneHandling.CheckPoints.Scripts
 
         private void UpdateAbilitiesInLatestCheckPoint(AbilityData.Abilities abilities)
         {
-            latestCheckPoint.Abilities = abilities;
+            latestCheckPoint.Abilities |= abilities;
         }
         
         private void ChangeLatestCheckPoint(CheckPointBehaviour checkPoint)

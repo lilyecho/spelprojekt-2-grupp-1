@@ -26359,6 +26359,10 @@ PrefabInstance:
       propertyPath: spawnPoint.z
       value: 0.108039856
       objectReference: {fileID: 0}
+    - target: {fileID: 7140718961756079239, guid: 9318aa5b5c9ff4a498c7d6e813fb9dad, type: 3}
+      propertyPath: savedAbilities
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -57470,27 +57474,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.09600957
+      value: 0.488502
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09422294
+      value: 0.104158856
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.14728725
+      value: 0.672732
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.14728725
+      value: -0.672732
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.69159704
+      value: 0.21778826
       objectReference: {fileID: 0}
     - target: {fileID: 1575761651238668957, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.69159704
+      value: -0.21778826
       objectReference: {fileID: 0}
     - target: {fileID: 2748433157718371313, guid: dd844fb81d5c58e4ea9502a9811c89a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63337,6 +63341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   registrationPort: {fileID: 11400000, guid: aa0366d64a5de9147b22c6c08761dd5f, type: 2}
+  checkPointPort: {fileID: 11400000, guid: 4e43fc8d7d583f84c958922bf2677053, type: 2}
   activateAbility: 2
 --- !u!135 &1051844858
 SphereCollider:

@@ -25,6 +25,7 @@ public class PotionBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         player.ChangeAbilities = activateAbility;
+        checkPointPort.OnChangedAbility(activateAbility);
         Destroy(gameObject);
     }
 
