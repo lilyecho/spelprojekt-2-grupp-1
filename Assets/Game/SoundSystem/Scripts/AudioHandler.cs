@@ -80,7 +80,6 @@ public class AudioHandler : MonoBehaviour
     public void HandleSoundInfo(SoundInfo soundInfo)
     {
         if (soundInfo.action == 0) return;
-        Debug.Log("Handle");
         
         HandleCreate(soundInfo);
         HandleParameterChange(soundInfo);
