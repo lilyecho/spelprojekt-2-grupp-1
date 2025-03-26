@@ -1040,6 +1040,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1444043552637213289}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 245388087179077440}
   m_SourcePrefab: {fileID: 100100000, guid: a7c223c5442beca448b5d91f170adc62, type: 3}
 --- !u!4 &39312636168687084 stripped
 Transform:
@@ -1798,6 +1801,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ff789b7e-f4b7-4381-beb2-a569a54d3c24
     m_ActionName: Player/Respawn[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 245388087179077440}
+        m_TargetAssemblyTypeName: LoadBehaviour, Assembly-CSharp
+        m_MethodName: ReloadScene
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bf1f8b90-2390-4bf2-beb2-65e308a326df
+    m_ActionName: Player/ReloadScene[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 245388087179077440}
+        m_TargetAssemblyTypeName: LoadBehaviour, Assembly-CSharp
+        m_MethodName: LoadLastScene
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 33198e01-1e01-4a31-a575-22643b9be3f4
+    m_ActionName: Player/LoadLastScene[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 245388087179077440}
+        m_TargetAssemblyTypeName: LoadBehaviour, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 29458ba7-0f6f-4c03-b4c0-1a6506ecf83c
+    m_ActionName: Player/LoadNextScene[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1865,6 +1916,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hidePort: {fileID: 11400000, guid: a18cd4de09a134744ad07b48c71305f3, type: 2}
   amountOfActiveHideObjects: 0
+--- !u!114 &245388087179077440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846810934666368854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd905b5b3d4ec624f9f3182cd6efbd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2097215418498796415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1881340883554427256, guid: a7c223c5442beca448b5d91f170adc62, type: 3}

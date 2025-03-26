@@ -7,24 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class LoadBehaviour : MonoBehaviour
 {
-    [SerializeField,Range(0.01f,2)] private float changeSceneCooldown = 1;
-    private float _currentTime = 0;
-    
-    //TODO
-    
-    
-    private void FixedUpdate()
-    {
-        if (_currentTime > 0)
-        {
-            _currentTime -= Time.fixedDeltaTime;
-            if (_currentTime <= 0)
-            {
-                _currentTime = changeSceneCooldown;
-            }
-        }
-    }
-
     public static void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -49,8 +31,6 @@ public class LoadBehaviour : MonoBehaviour
 
     public void ReloadScene(InputAction.CallbackContext context)
     {
-        if (_currentTime > 0) return;
-       
         if (context.performed)
         {
             ReloadScene();
@@ -58,8 +38,6 @@ public class LoadBehaviour : MonoBehaviour
     }
     public void LoadLastScene(InputAction.CallbackContext context)
     {
-        if (_currentTime > 0) return;
-        
         if (context.performed)
         {
             LoadLastScene();
@@ -67,8 +45,6 @@ public class LoadBehaviour : MonoBehaviour
     }
     public void LoadNextScene(InputAction.CallbackContext context)
     {
-        if (_currentTime > 0) return;
-        
         if (context.performed)
         {
             LoadNextScene();
