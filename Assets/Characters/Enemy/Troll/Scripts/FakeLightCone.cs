@@ -15,28 +15,19 @@ public class FakeLightCone : MonoBehaviour
     [FormerlySerializedAs("resolutionPerLine")] [SerializeField, Min(1)] private int resolutionCircles=1;
 
     private MeshFilter _meshFilter;
-
-    private Vector3[] rayCastPoints;
+    
     private LayerMask _layerMask;
     
     
     private void OnValidate()
     {
         _meshFilter = GetComponent<MeshFilter>();
-        ResetFakeLight();
     }
 
     private void Awake()
     {
         _meshFilter = GetComponent<MeshFilter>();
         _layerMask = ~LayerMask.GetMask("Player","InteractiveEnvironment", "Ignore Raycast");
-        ResetFakeLight();
-    }
-
-    private void ResetFakeLight()
-    {
-        //Each line has a certain amount of points, + (startPoint & endPoint - of light)
-        rayCastPoints = new Vector3[resolutionPointsInCircle * resolutionCircles + 2];
     }
 
     private Vector3 CreateFurthestCenterPoint()
