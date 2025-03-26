@@ -279,6 +279,9 @@ public class AudioHandler : MonoBehaviour
     private void PlayOneShot(ref Dictionary<GUID, EventInstance> instanceDic,EventReference eventReference)
     {
         if (!TryGetInstance(ref instanceDic, eventReference, out EventInstance instance)) return;
+        instance.getPlaybackState(out PLAYBACK_STATE state);
+        if (state == PLAYBACK_STATE.PLAYING) return;
+        
         instance.start();
         GUID eventGUID = eventReference.Guid;
         instanceDic.Remove(eventGUID);
