@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Characters.Player.PlayerBehaviour;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -78,7 +80,6 @@ public class PlayerBehaviour : MonoBehaviour
     [Space, Header("Respawn")]
     [SerializeField, Range(0.1f, 1)] private float respawnTimerCooldown;
     [SerializeField] private float currenRespawnTime;
-    private bool _respawn;
 
     #endregion
     
@@ -171,12 +172,11 @@ public class PlayerBehaviour : MonoBehaviour
     /// <param name="nextValue"></param>
     public void ChangeMovementActivation(bool nextValue)
     {
+        ChangeState(idle);
+        ChangeJumpState(normalJump);
         _movementOn = nextValue;
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         anim.speed = nextValue ? 1 : 0;
-        ChangeState(idle);
-        ChangeJumpState(normalJump);
-        
     }
 
     public EnemyManagerPort EnemyManagerPort => enemyManagerPort;
@@ -253,11 +253,6 @@ public class PlayerBehaviour : MonoBehaviour
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
     }
 
-    private void LateUpdate()
-    {
-        PlayerRespawn();
-    }
-
     private void FixedUpdate()
     {
         if (!_movementOn) return;
@@ -275,16 +270,6 @@ public class PlayerBehaviour : MonoBehaviour
         currentState?.FixedUpdate();
         
         SetSpeedParameterAnimation();
-    }
-
-    private void PlayerRespawn()
-    {
-        if (_respawn)
-        {
-            _respawn = false;
-            ChangeMovementActivation(false);
-            checkPointPort.Respawn();
-        }
     }
     
     private void SetSpeedParameterAnimation()
@@ -438,8 +423,9 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (context.performed)
         {
-            _respawn = true;
             currenRespawnTime = respawnTimerCooldown;
+            ChangeMovementActivation(false);
+            checkPointPort.Respawn();
         }
     }
 

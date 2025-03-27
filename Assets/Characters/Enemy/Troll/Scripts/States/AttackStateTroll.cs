@@ -70,6 +70,6 @@ public class AttackStateTroll : TrollStates
     private void StopPlayerMovement()
     {
         TrollBehaviour.GetTarget.ChangeMovementActivation(false);
-        TrollBehaviour.GetTarget.transform.position = placementOnattack.position;
+        TrollBehaviour.GetTarget.rb.MovePosition(placementOnattack.position);
     }
 }
