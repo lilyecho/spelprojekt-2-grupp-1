@@ -555,7 +555,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NewAstridAnimationController
+  m_Name: NewAstridShrinkAnimationController 1
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -1177,7 +1177,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: c85f94c82d82ca840bfc1412cd5acaad, type: 2}
-    m_Threshold: 0.6
+    m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1.4
     m_CycleOffset: 0
@@ -1185,7 +1185,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 3e93d9d887713a448aace6d8eacc98dd, type: 2}
-    m_Threshold: 3
+    m_Threshold: 1.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1.5
     m_CycleOffset: 0
@@ -1193,7 +1193,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 9d6b60681c54ba445a97ae34f7f8191e, type: 2}
-    m_Threshold: 7
+    m_Threshold: 3.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -1202,7 +1202,7 @@ BlendTree:
   m_BlendParameter: Speed
   m_BlendParameterY: Blend
   m_MinThreshold: 0
-  m_MaxThreshold: 7
+  m_MaxThreshold: 3.5
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
