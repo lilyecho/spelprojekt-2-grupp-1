@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
-
-
+    
     //[SerializeField] private RegistrationPort registrationPort = null;
     [SerializeField] private EnemyManagerPort enemyManagerPort = null;
     [SerializeField] private List<EnemyBehaviour> enemies;
@@ -58,7 +58,7 @@ public class EnemyManager : MonoBehaviour
 
     private void ActivateSearchForAlert(SoundAlertInfo soundAlertInfo)
     {
-        EnemyBehaviour[] alertedEnemies = FindAllEnemiesInRange(soundAlertInfo);
+        EnemyBehaviour[] alertedEnemies = FindAllEnemiesInRange(soundAlertInfo.point, soundAlertInfo.soundRange);
 
         foreach (EnemyBehaviour enemy in alertedEnemies)
         {
@@ -67,12 +67,12 @@ public class EnemyManager : MonoBehaviour
     }
     
     
-    private EnemyBehaviour[] FindAllEnemiesInRange(SoundAlertInfo soundAlertInfo)
+    private EnemyBehaviour[] FindAllEnemiesInRange(Vector3 pos, float range)
     {
         List<EnemyBehaviour> enemiesInRange = new List<EnemyBehaviour>();
         foreach (EnemyBehaviour enemy in enemies)
         {
-            if (Vector3.Distance(soundAlertInfo.point,enemy.transform.position) < soundAlertInfo.soundRange)
+            if (Vector3.Distance(pos,enemy.transform.position) < range)
             {
                 enemiesInRange.Add(enemy);
             }
@@ -120,13 +120,10 @@ public class EnemyManager : MonoBehaviour
             audioPort.OnChased(true);
         }
     }
-
-
+    
     private void SceneChange(Scene scene, LoadSceneMode mode)
     {
         enemies = new List<EnemyBehaviour>();
         amountOfChaseUnits = 0;
     }
-
-    
 }
