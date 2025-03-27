@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         
         timeManager.Movement(false);
         pauseMenu.gameObject.SetActive(true);
+        Cursor.visible = true;
     }
     public void UnpauseGame()
     {
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         
         pauseMenu.gameObject.SetActive(false);
         timeManager.Movement(true);
+        Cursor.visible = false;
     }
 
     public void UpdateCameraSense()
