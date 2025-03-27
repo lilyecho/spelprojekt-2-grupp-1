@@ -49,6 +49,8 @@ public class AttackStateTroll : TrollStates
 
     public override void FixedUpdate()
     {
+        if (!TrollBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")) return;
+        
         if (TrollBehaviour.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             Respawn();
@@ -70,5 +72,6 @@ public class AttackStateTroll : TrollStates
     {
         TrollBehaviour.GetTarget.ChangeMovementActivation(false);
         TrollBehaviour.GetTarget.rb.MovePosition(placementOnattack.position);
+        TrollBehaviour.GetTarget.transform.position = placementOnattack.position;
     }
 }
