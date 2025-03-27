@@ -87,8 +87,7 @@ public class GameManager : MonoBehaviour
     public Image bell;
     public GameObject bellGO;
     public Animator bellAnim;
-    Vector2 hidePos = new Vector2(-10000, -10000);
-    Vector2 showPos = new Vector2(-750, 250);
+    
 
     public string bellAlert = "Bell Alert";
     public string bellNormal = "Bell Normal";
@@ -97,64 +96,39 @@ public class GameManager : MonoBehaviour
 
     public void PlayBellAlert()
     {
-        ShowBell();
+        bellAnim.SetBool("Normal", false);
+        bellAnim.SetBool("Shaking", false);
+        bellAnim.SetBool("Invisible", false);
+        bellAnim.SetBool("Alert", true);
         bellAnim.Play("Bell Alert");
+        
+
+        Debug.Log("ALERT");
     }
     public void PlayBellNormal()
     {
-        ShowBell();
-        bellAnim.Play("Bell Normal");
+        bellAnim.SetBool("Alert", false);
+        bellAnim.SetBool("Shaking", false);
+        bellAnim.SetBool("Invisible", false);
+        bellAnim.SetBool("Normal", true);
     }
     public void PlayBellShaking()
     {
-        ShowBell();
-        bellAnim.Play("Bell Shaking");
-    }
-    public void HideBell()
-    {
-        bellGO.transform.position = hidePos;
-    }
-    public void ShowBell()
-    {
-        bellGO.transform.localPosition = showPos;
+        bellAnim.SetBool("Alert", false);
+        bellAnim.SetBool("Normal", false);
+        bellAnim.SetBool("Invisible", false);
+        bellAnim.SetBool("Shaking", true);
     }
 
-    public IEnumerator UpdateBellAnimation(string animation)
+    public void PlayBellInvisible()
     {
-        if (GetCurrentAnimationName() == bellAlert)
-        {
-            //yield return new WaitForSeconds(GetRemainingAnimationTime());
-            bellAnim.Play(animation);
-            yield return new WaitForSeconds(GetRemainingAnimationTime());
-            HideBell();
-        }
-        else if (GetCurrentAnimationName() == bellAlert && animation == hideBell)
-        {
-            yield return new WaitForSeconds(GetRemainingAnimationTime());
-            HideBell();
-        }
-        else
-        {
-            bellAnim.Play(animation);
-        }
+        bellAnim.SetBool("Alert", false);
+        bellAnim.SetBool("Normal", false);
+        bellAnim.SetBool("Shaking", false);
+        bellAnim.SetBool("Invisible", true);
     }
+   
 
-    float GetRemainingAnimationTime()
-    {
-        if (bellAnim == null) return 0f;
-
-        AnimatorStateInfo stateInfo = bellAnim.GetCurrentAnimatorStateInfo(0);
-        float normalizedTime = Mathf.Repeat(stateInfo.normalizedTime, 1f);
-        return stateInfo.length * (1 - normalizedTime);
-    }
-
-    string GetCurrentAnimationName()
-    {
-        if (bellAnim == null)
-        {
-            return null;
-        }
-        return bellAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-    }
+    
 
 }

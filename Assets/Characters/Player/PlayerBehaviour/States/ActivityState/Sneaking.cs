@@ -21,9 +21,10 @@ public class Sneaking : State, IAcceleration
     float coyoteTimer;
     public override void Enter()
     {
+        GameManager.instance.PlayBellNormal();
         playerBehaviour.anim.SetBool(Animator.StringToHash("Sneaking"), true);
         playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onEnter);
-        GameManager.instance.PlayBellNormal();
+        
     }
     
     public override void Exit()
