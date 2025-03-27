@@ -202,7 +202,6 @@ public class KameraPrototyp : MonoBehaviour
 
     private void OnEnable()
     {
-
         cameraTrollPort.OnAstridGettingCaught += OnAstridCaught;
         cameraTrollPort.CameraAfterRespawn += CameraAfterRespawn;
     }
