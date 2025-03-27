@@ -483,6 +483,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PauseGame(InputAction.CallbackContext context)
     {
+        if (!_movementOn) return;
+        
         if (context.performed)
         {
             GameManager.instance?.PauseGame();
