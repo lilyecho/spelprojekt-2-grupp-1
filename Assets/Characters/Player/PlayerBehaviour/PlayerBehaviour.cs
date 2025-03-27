@@ -147,6 +147,10 @@ public class PlayerBehaviour : MonoBehaviour
         unableToJump.Awake(this);
 
         _shrinkCooldownTimer = shrinkCooldown;
+
+
+
+        Cursor.visible = false;
     }
 
     private void OnDrawGizmos()
