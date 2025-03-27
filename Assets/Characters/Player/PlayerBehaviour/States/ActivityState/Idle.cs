@@ -48,7 +48,7 @@ public class Idle : State
         }
         else
         {
-            GameManager.instance.HideBell();
+            GameManager.instance.PlayBellInvisible();
         }
     }
 
