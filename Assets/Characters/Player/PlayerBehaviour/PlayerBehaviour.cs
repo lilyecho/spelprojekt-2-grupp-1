@@ -2,6 +2,7 @@ using System;
 using Characters.Player.PlayerBehaviour;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerBehaviour : MonoBehaviour
@@ -76,7 +77,8 @@ public class PlayerBehaviour : MonoBehaviour
     #region TimerRespawn
     [Space, Header("Respawn")]
     [SerializeField, Range(0.1f, 1)] private float respawnTimerCooldown;
-    [SerializeField] private float _currenRespawnTime;
+    [SerializeField] private float currenRespawnTime;
+    private bool _respawn;
 
     #endregion
     
@@ -250,14 +252,19 @@ public class PlayerBehaviour : MonoBehaviour
 
         moveDir = (moveInput.x * cameraRight + moveInput.y * cameraForward).normalized;
     }
-    
+
+    private void LateUpdate()
+    {
+        PlayerRespawn();
+    }
+
     private void FixedUpdate()
     {
         if (!_movementOn) return;
         
-        if (_currenRespawnTime > 0)
+        if (currenRespawnTime > 0)
         {
-            _currenRespawnTime -= Time.fixedDeltaTime;
+            currenRespawnTime -= Time.fixedDeltaTime;
         }
 
         if (_shrinkCooldownTimer > 0)
@@ -270,6 +277,16 @@ public class PlayerBehaviour : MonoBehaviour
         SetSpeedParameterAnimation();
     }
 
+    private void PlayerRespawn()
+    {
+        if (_respawn)
+        {
+            _respawn = false;
+            ChangeMovementActivation(false);
+            checkPointPort.Respawn();
+        }
+    }
+    
     private void SetSpeedParameterAnimation()
     {
         //If low enough be zero - Specified request for animation
@@ -417,13 +434,12 @@ public class PlayerBehaviour : MonoBehaviour
     
     public void Respawn(InputAction.CallbackContext context)
     {
-        if (_currenRespawnTime > 0) return;
+        if (currenRespawnTime > 0) return;
         
         if (context.performed)
         {
-            _currenRespawnTime = respawnTimerCooldown;
-            ChangeMovementActivation(false);
-            checkPointPort.Respawn();
+            _respawn = true;
+            currenRespawnTime = respawnTimerCooldown;
         }
     }
 
