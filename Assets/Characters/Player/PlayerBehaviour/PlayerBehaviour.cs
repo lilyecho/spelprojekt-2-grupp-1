@@ -173,6 +173,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb.constraints = nextValue ? RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         anim.speed = nextValue ? 1 : 0;
         ChangeState(idle);
+        ChangeJumpState(normalJump);
         
     }
 
