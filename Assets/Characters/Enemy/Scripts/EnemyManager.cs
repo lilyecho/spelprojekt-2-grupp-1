@@ -125,6 +125,7 @@ public class EnemyManager : MonoBehaviour
     private void SceneChange(Scene scene, LoadSceneMode mode)
     {
         enemies = new List<EnemyBehaviour>();
+        amountOfChaseUnits = 0;
     }
 
     

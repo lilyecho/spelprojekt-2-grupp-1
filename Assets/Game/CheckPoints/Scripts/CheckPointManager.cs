@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Collections;
 using UnityEngine;
 
@@ -55,7 +56,7 @@ namespace SceneHandling.CheckPoints.Scripts
         private void Respawn()
         {
             playerBehaviour.rb.velocity = Vector3.zero;
-            playerBehaviour.transform.position = latestCheckPoint.SpawnPoint;
+            playerBehaviour.rb.MovePosition(latestCheckPoint.SpawnPoint);
             playerBehaviour.ResetAbilities = latestCheckPoint.Abilities;
             playerBehaviour.Attacked = false;
             playerBehaviour.ChangeMovementActivation(true);
