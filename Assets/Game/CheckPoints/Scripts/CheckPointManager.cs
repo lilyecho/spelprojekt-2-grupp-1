@@ -9,6 +9,8 @@ namespace SceneHandling.CheckPoints.Scripts
     {
         [SerializeField] private CheckPointPort checkPointPort = null;
         [SerializeField] private RegistrationPort registrationPort = null;
+        [SerializeField] private CameraTrollPort cameraPort = null;
+        
         [SerializeField]private PlayerBehaviour playerBehaviour = null;
     
         [SerializeField,ReadOnly] private CheckPointBehaviour latestCheckPoint = null;
@@ -59,6 +61,7 @@ namespace SceneHandling.CheckPoints.Scripts
             playerBehaviour.rb.MovePosition(latestCheckPoint.SpawnPoint);
             playerBehaviour.ResetAbilities = latestCheckPoint.Abilities;
             playerBehaviour.Attacked = false;
+            cameraPort.ResetCamera();
             playerBehaviour.ChangeMovementActivation(true);
         }
     }
