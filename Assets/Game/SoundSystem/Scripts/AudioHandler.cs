@@ -140,12 +140,16 @@ public class AudioHandler : MonoBehaviour
         if (soundInfo.locationTransform == null && playerTransform == null)
         {
             if (debugMode) Debug.Log(soundInfo.soundImplementationName+": Missing transform from player in location-handling for sound");
-            soundInfo.locationTransform = GameObject.FindWithTag("Player").transform;
+            GameObject playerObject = GameObject.FindWithTag("Player");
             
-            if (soundInfo.locationTransform == null)
+            if (playerObject == null)
             {
                 if (debugMode) Debug.Log(soundInfo.soundImplementationName+": Missing player in scene - Setting camera as transform");
                 soundInfo.locationTransform = Camera.main.transform;
+            }
+            else
+            {
+                soundInfo.locationTransform = playerObject.transform;
             }
             
             if (soundInfo.locationTransform == null)
