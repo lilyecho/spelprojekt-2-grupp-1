@@ -31,7 +31,6 @@ public class Falling : State
     
     public override void Enter()
     {
-        GameManager.instance.HideBell();
         airForceMode = ConvertMovementModeToAirForceMode(playerBehaviour.movementMode);
         playerBehaviour.anim.SetBool(animationSuperJumpActivate, false);
         playerBehaviour.anim.SetBool(animationGrounded, false);
@@ -50,7 +49,8 @@ public class Falling : State
             
             playerBehaviour.GetAudioPort.OnSoundInfos(soundInfos.onLanding);
 
-            
+            GameManager.instance.PlayBellAlert();
+
             playerBehaviour.ChangeState(playerBehaviour.idle);
             playerBehaviour.ChangeJumpState(playerBehaviour.normalJump);
         }
