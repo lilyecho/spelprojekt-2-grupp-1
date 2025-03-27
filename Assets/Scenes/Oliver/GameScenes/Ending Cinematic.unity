@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 697660002}
+  sceneToLoad: Start Main Menu
 --- !u!114 &697660006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd905b5b3d4ec624f9f3182cd6efbd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeSceneCooldown: 1
 --- !u!114 &697660007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +440,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ff789b7e-f4b7-4381-beb2-a569a54d3c24
     m_ActionName: Player/Respawn[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bf1f8b90-2390-4bf2-beb2-65e308a326df
+    m_ActionName: Player/ReloadScene[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 33198e01-1e01-4a31-a575-22643b9be3f4
+    m_ActionName: Player/LoadLastScene[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 29458ba7-0f6f-4c03-b4c0-1a6506ecf83c
+    m_ActionName: Player/LoadNextScene[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
