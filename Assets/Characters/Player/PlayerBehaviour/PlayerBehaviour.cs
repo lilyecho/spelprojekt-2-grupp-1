@@ -415,7 +415,6 @@ public class PlayerBehaviour : MonoBehaviour
             _shrinkCooldownTimer = shrinkCooldown;
         }
     }
-
     
     public void Respawn(InputAction.CallbackContext context)
     {
@@ -428,8 +427,7 @@ public class PlayerBehaviour : MonoBehaviour
             checkPointPort.Respawn();
         }
     }
-
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (!_movementOn) return;
@@ -483,6 +481,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PauseGame(InputAction.CallbackContext context)
     {
+        if (!_movementOn) return;
+        
         if (context.performed)
         {
             GameManager.instance?.PauseGame();
