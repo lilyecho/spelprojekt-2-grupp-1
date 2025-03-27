@@ -23,4 +23,14 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+    }
 }
