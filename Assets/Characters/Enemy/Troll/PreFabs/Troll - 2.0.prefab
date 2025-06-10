@@ -651,6 +651,9 @@ PrefabInstance:
       addedObject: {fileID: 918581937084548002}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1860853666307097325}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5322119138117602721}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
       insertIndex: -1
@@ -894,7 +897,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
   soundInfo:
-    soundImplementationName: TrollSteg
+    soundImplementationName: TrollStegL
+    action: 13
+    eventReference:
+      Guid:
+        Data1: -1487460158
+        Data2: 1080510655
+        Data3: -1295468893
+        Data4: 1902215575
+      Path: event:/Sound/Characters/Enemy/Troll/ENMY_TrollFootstep
+    instanceVariant: 0
+    locality: 0
+    parameterName: 
+    parameterValue: 0
+    locationVariant: 1
+    locationTransform: {fileID: 6076666073757278075}
+    stopMode: 0
+  curveName: sfxTrollStep
+  activationValue: 0.9
+--- !u!114 &1860853666307097325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422898272927467253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb1a393838506a4eb386f12716f0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPort: {fileID: 11400000, guid: 501d1707a3403be40bee761bb183c40a, type: 2}
+  soundInfo:
+    soundImplementationName: TrollStegR
     action: 13
     eventReference:
       Guid:
@@ -910,7 +945,7 @@ MonoBehaviour:
     locationVariant: 1
     locationTransform: {fileID: 2759658157397552981}
     stopMode: 0
-  curveName: sfxTrollStep
+  curveName: sfxTrollStepR
   activationValue: 0.9
 --- !u!114 &5322119138117602721
 MonoBehaviour:
@@ -1012,6 +1047,11 @@ Transform:
 --- !u!4 &3086106526684781647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
+  m_PrefabInstance: {fileID: 3269249346036759460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6076666073757278075 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -501567050829093665, guid: f654dd2e6a8ba384398f966b22da74ea, type: 3}
   m_PrefabInstance: {fileID: 3269249346036759460}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6450559972068128234 stripped
